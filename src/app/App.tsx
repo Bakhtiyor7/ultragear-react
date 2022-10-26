@@ -24,9 +24,9 @@ function App() {
       {main_path == "/" ? (
         <NavbarHome setPath={setPath} />
       ) : main_path.includes("/restaurant") ? (
-        <NavbarRestaurant />
+        <NavbarRestaurant setPath={setPath} />
       ) : (
-        <NavbarOthers />
+        <NavbarOthers setPath={setPath} />
       )}
 
       {/* <nav>
