@@ -11,7 +11,7 @@ import { OrdersPage } from "./screens/OrdersPage/indes";
 import { MemberPage } from "./screens/MemberPage/indes";
 import { HelpPage } from "./screens/HelpPage/indes";
 import { LoginPage } from "./screens/LoginPage/indes";
-import { HomePage } from "./screens/Homepage/indes";
+import { HomePage } from "./screens/Homepage";
 import { NavbarHome } from "./components/header";
 import { NavbarRestaurant } from "./components/header/restaurant";
 import { NavbarOthers } from "./components/header/others";
