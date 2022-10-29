@@ -32,6 +32,7 @@ export function Statistics() {
             <Box className="static_num">200+</Box>
             <Box className="static_text">Foydalanuvchilar</Box>
           </Stack>
+          <div className="personage_img right"></div>
         </Stack>
       </Container>
     </div>
