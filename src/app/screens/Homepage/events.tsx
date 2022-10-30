@@ -16,7 +16,7 @@ export function Events() {
     },
     {
       title: "Katta chegirma endi Bellissimoda",
-      desc: "Faqat 25-31-iyun kunlari anqtiq Pizza uchun tashrif buyuring",
+      desc: "Faqat 25-31-iyun kunlari antiqa Pizza uchun tashrif buyuring",
       author: "Bellissimo",
       date: "2022/09/12",
       location: "Toshkent, Chilonzor",
