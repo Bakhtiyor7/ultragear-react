@@ -434,15 +434,24 @@
   z-index: 2;
 }
 
+.restaurant_page .single_restaurant .dish_img:hover:before {
+  border-radius: 0px 50px 0px 0px;
+  opacity: 1;
+}
+
+.restaurant_page .single_restaurant .dish_img img {
+  position: absolute;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  z-index: 1;
+}
+
 .restaurant_page .single_restaurant .dish_box .dish_img:hover .view_btn {
   opacity: 1;
 }
 
 .restaurant_page .single_restaurant .dish_box .dish_img:hover .like_view_btn {
-  opacity: 1;
-}
-
-.restaurant_page .single_restaurant .dish_box .dish_img:hover .view_btn {
   opacity: 1;
 }
 
@@ -580,7 +589,7 @@
   margin-top: 40px;
   padding: 20px;
   width: 249px;
-  height: 346px;
+  height: 356px;
 
   display: flex;
   flex-direction: column;
@@ -612,7 +621,7 @@
   color: #08090d;
 }
 
-.restaurant_page .single_restaurant .review_stars {
+.restaurant_page .single_restaurant .review_for_restaurant .review_stars {
   margin-top: 10px;
   width: 149px;
   height: 24px;
@@ -623,25 +632,281 @@
   align-items: center;
 }
 
-.restaurant_page .single_restaurant .review_prof {
+.restaurant_page .single_restaurant .review_for_restaurant .review_prof {
   font-family: "Commissioner";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 36px;
-  /* identical to box height, or 180% */
-
   color: #a1a1a1;
 }
 
-.restaurant_page .single_restaurant .reveiw_desc {
+.restaurant_page .single_restaurant .review_for_restaurant .review_desc {
   margin-top: 10px;
   font-family: "DM Sans";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  /* or 150% */
-
   color: #616164;
 }
+
+.restaurant_page .single_restaurant .category_title {
+  font-family: "Dancing Script";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 43px;
+  color: #e3c08d;
+}
+
+.restaurant_page .single_restaurant .member_reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  margin-bottom: 60px;
+}
+
+.restaurant_page .single_restaurant .review_for_restaurant {
+  margin-top: 60px;
+  width: 100%;
+  height: 630px;
+  display: flex;
+  background-color: #0d1518;
+}
+
+.restaurant_page .single_restaurant .about_left {
+  width: 50%;
+  height: auto;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 0px 50px 0px 0px;
+  background-size: cover;
+  background-position: center;
+}
+
+.restaurant_page .single_restaurant .about_left .about_left_desc {
+  padding: 20px;
+  width: 100%;
+  height: 329px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 90.88%);
+}
+
+.restaurant_page .single_restaurant .about_left_desc span {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 42px;
+  color: #ffffff;
+}
+
+.restaurant_page .single_restaurant .about_left_desc p {
+  margin-top: 10px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #d4d4d4;
+}
+
+.restaurant_page .single_restaurant .about_right {
+  margin-left: 20px;
+  width: 50%;
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.restaurant_page .single_restaurant .about_right .about_right_img {
+  width: 160px;
+  height: 140px;
+  left: 763px;
+  top: 3653px;
+  display: flex;
+  border-radius: 0px 50px 0px 0px;
+  background: url(https://i0.wp.com/educationplanetonline.com/wp-content/uploads/2022/03/Culinary-Schools-in-Europe-1.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.restaurant_page .single_restaurant .about_right .about_right_desc {
+  padding-bottom: 5px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.restaurant_page .single_restaurant .about_right_desc span {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  color: #ffffff;
+}
+
+.restaurant_page .single_restaurant .about_right_desc p {
+  margin-top: 10px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #d4d4d4;
+}
+/* End of chosen restaurant page */
+
+/* Start of Chosedn dish page */
+
+.restaurant_page .chosen_dish_page {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background: #0b0e11;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.chosen_dish_page .swiper-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  transition-property: transform;
+  box-sizing: content-box;
+}
+
+.chosen_dish_page .chosen_dish_info_container {
+  padding: 30px 40px;
+  width: 49%;
+  height: 452px;
+  display: flex;
+  /*align-items: center;*/
+  background: #ffffff;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+}
+
+.chosen_dish_page .chosen_dish_info_container .chosen_dish_info_box {
+  /*margin-top: 30px;*/
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.chosen_dish_page .chosen_dish_info_box .dish_txt {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 36px;
+  color: #000000;
+}
+
+.chosen_dish_page .chosen_dish_info_box .resto_name {
+  margin-top: 16px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 15px;
+  color: #979797;
+}
+
+.chosen_dish_page .chosen_dish_info_box .rating_box {
+  margin-top: 20px;
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chosen_dish_page .rating_box .star_box {
+  width: auto;
+  height: auto;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.chosen_dish_page .rating_box .evaluation_box {
+  width: auto;
+  height: auto;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.chosen_dish_page .chosen_dish_info_box .dish_desc_info {
+  height: 112px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+
+  color: #000000;
+}
+
+.chosen_dish_page .chosen_dish_info_box .dish_price_box {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chosen_dish_page .dish_price_box span {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 22px;
+  color: #000000;
+}
+
+.chosen_dish_page .button_box {
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chosen_dish_page .button_box button {
+  width: 230px;
+  height: 44px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 22px;
+  color: #ffffff;
+}
+
+/*End ChosenDish*/

@@ -50,7 +50,7 @@ export function Events() {
           <Box className={"prev_next_frame"}>
             <img
               src={"/icons/arrow-right.svg"}
-              className={"swiper-button-next"}
+              className={"swiper-button-prev"}
             />
             <div className={"dot_frame_pagination swiper-pagination"}></div>
             <img

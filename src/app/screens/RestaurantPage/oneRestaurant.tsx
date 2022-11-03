@@ -59,8 +59,8 @@ export function OneRestaurant() {
               centeredSlides={false}
               spaceBetween={30}
               navigation={{
-                nextEl: ".restaurant_next",
-                prevEl: ".restaurant_prev",
+                nextEl: ".restaurant-next",
+                prevEl: ".restaurant-prev",
               }}
             >
               {restaurant_list.map((ele, index) => {
@@ -239,7 +239,7 @@ export function OneRestaurant() {
         </Container>
       </div>
 
-      <Container className="member_reviews">
+      <Container className={"member_reviews"}>
         <Box className={"category_title"}>Oshxona haqida</Box>
         <Stack
           display={"flex"}
@@ -249,11 +249,13 @@ export function OneRestaurant() {
         >
           <Box
             className={"about_left"}
-            sx={{ backgroundImage: `url(/restaurant/texas_de_brazil.jpeg)` }}
+            sx={{
+              backgroundImage: `url(http://45.13.132.208:3003/uploads/members/d04f2ff1-02cb-4191-b65b-7d6bdfa87681.jpeg)`,
+            }}
           >
             <div className={"about_left_desc"}>
               <span>Burak</span>
-              <p>Eng mazzali oshxona</p>
+              <p>Shahrimizdagi eng ajoyib va ko'rkam restoran</p>
             </div>
           </Box>
           <Box className={"about_right"}>
@@ -261,9 +263,13 @@ export function OneRestaurant() {
               return (
                 <Box display={"flex"} flexDirection={"row"} key={index}>
                   <div className={"about_right_img"}></div>
-                  <div className={"about_right_desc"}></div>
-                  <span>Bizning mohir oshpazlarimiz</span>
-                  <p>Bizning oshpazlar ajoyib oshpazlar</p>
+                  <div className={"about_right_desc"}>
+                    <span>Bizning mohir oshpazlarimiz </span>
+                    <p>
+                      Bizning oshpazlar ajoyib oshpazlar chet eldagi taniqli
+                      restoranlarda malaka orttirib kelishgan
+                    </p>
+                  </div>
                 </Box>
               );
             })}
@@ -281,7 +287,7 @@ export function OneRestaurant() {
           <Box className={"category_title"}>Oshxona Manzili</Box>
           <iframe
             style={{ marginTop: "60px" }}
-            src="https://www.google.com/maps?lqi=CglrZmMgYnVzYW4iA4gBAUjc5sD1sa6AgAhaFxAAGAAYASIJa2ZjIGJ1c2FuKgQIAhAAkgEUZmFzdF9mb29kX3Jlc3RhdXJhbnSqAQsQASoHIgNrZmMoAA&vet=12ahUKEwiXqdCa0oz7AhUXgVYBHQtmDZYQ8UF6BAgDED8..i&lei=PONgY5ebB5eC2roPi8y1sAk&cs=1&um=1&ie=UTF-8&fb=1&gl=kr&sa=X&geocode=Kc_NJ0Rw62g1MXCFOJ0K-_bK&daddr=681-1+Jungang-daero,+Busanjin-gu,+Busan"
+            src="https://goo.gl/maps/P3RJYG8Mo3jZSmDv8"
             width="1320"
             height="500"
             referrerPolicy="no-referrer-when-downgrade"
