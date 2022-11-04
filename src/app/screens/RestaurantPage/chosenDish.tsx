@@ -6,6 +6,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import CheckBox from "@mui/material/Checkbox";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Marginer from "../../components/marginer";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
 
 const chosen_list = Array.from(Array(3).keys());
 
@@ -38,18 +42,22 @@ export function ChosenDish() {
           </Swiper>
           <Swiper
             // onSwiper={setThumbsSwiper}
-            spaceBetween={10}
-            slidesPerView={4}
+            loop={true}
+            spaceBetween={50}
+            slidesPerView={3}
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Navigation, Thumbs]}
+            style={{ width: "450px", height: "245px", marginTop: "20px" }}
             className="mySwiper"
           >
-            <SwiperSlide>
-              <img
-                src="/others/kebab.jpeg"
-                style={{ width: "100%", height: "100%", borderRadius: "15px" }}
-              />
+            <SwiperSlide
+              style={{
+                height: "107px",
+                display: "flex",
+              }}
+            >
+              <img src="/others/kebab.jpeg" style={{ borderRadius: "15px" }} />
             </SwiperSlide>
           </Swiper>
         </Stack>
@@ -83,7 +91,7 @@ export function ChosenDish() {
                 </div>
               </div>
             </Box>
-            <p>Juda mazzali sandwich</p>
+            <p className={"dish_desc_info"}>Juda mazzali sandwich</p>
             <Marginer
               direction="horizontal"
               height="1"

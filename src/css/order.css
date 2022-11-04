@@ -1,0 +1,35 @@
+.order_page {
+  width: 100%;
+  height: auto;
+  background: #0b0e11;
+
+  display: flex;
+}
+
+.order_page .order_left {
+  width: 70%;
+  height: auto;
+}
+
+.order_page .order_right {
+  margin-top: 86px;
+  margin-left: 30px;
+  width: 30%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.order_page .order_left .order_nav_frame {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-bottom: 1px solid #ffffff;
+}
+
+.order_page .order_main_content {
+  width: 100%;
+  height: auto;
+}

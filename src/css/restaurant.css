@@ -777,6 +777,28 @@
   justify-content: space-between;
 }
 
+.chosen_dish_page .dish_container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.chosen_dish_page .chosen_dish_slider {
+  width: 48%;
+  height: 581px;
+}
+
+.chosen_dish_page .dish_swiper {
+  --swiper-navigation-color: #fff;
+  --swiper-pagination-color: #fff;
+  width: 100%;
+  height: 1020px;
+}
+
 .chosen_dish_page .swiper-wrapper {
   position: relative;
   width: 100%;
