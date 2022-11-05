@@ -194,6 +194,7 @@ export function VisitMyPage(props: any) {
                   aria-label="lab API tabs example"
                   style={{
                     flexDirection: "column",
+                    width: "100%",
                   }}
                 >
                   <Tab
