@@ -5,7 +5,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 
 export function MemberPosts(props: any) {
   return (
-    <Stack>
+    <Box>
       <Link
         className={"all_article_box"}
         sx={{ textDecoration: "none" }}
@@ -63,6 +63,6 @@ export function MemberPosts(props: any) {
         </Box>
       </Link>
       );
-    </Stack>
+    </Box>
   );
 }

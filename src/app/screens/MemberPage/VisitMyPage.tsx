@@ -14,8 +14,6 @@ import { MemberFollowing } from "./memberFollowing";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { MySettings } from "./mySettings";
 
-const userInfo = [1, 2, 3, 4, 5];
-
 export function VisitMyPage(props: any) {
   /**INITIALIZATION */
   const [value, setValue] = useState("1");
@@ -94,7 +92,7 @@ export function VisitMyPage(props: any) {
                 <TabPanel value="3">
                   <Box className={"menu_name"}>Following</Box>
                   <Box className={"menu_content"}>
-                    <MemberFollowing userInfo={userInfo} />
+                    <MemberFollowing />
                     <Stack
                       sx={{ my: "40px" }}
                       direction="row"
