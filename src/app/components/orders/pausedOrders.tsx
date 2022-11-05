@@ -48,8 +48,15 @@ export default function PausedOrders(props: any) {
                   <p>jami narx</p>
                   <p>$89</p>
                 </Box>
-                <Button variant="contained">Bekor qilish</Button>
-                <Button variant="contained">to'lash</Button>
+                <Button
+                  variant="contained"
+                  style={{ backgroundColor: "#c40909", borderRadius: "10px" }}
+                >
+                  Bekor qilish
+                </Button>
+                <Button variant="contained" style={{ borderRadius: "10px" }}>
+                  to'lash
+                </Button>
               </Box>
             </Box>
           );

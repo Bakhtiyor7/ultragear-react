@@ -111,13 +111,13 @@ export function OrdersPage() {
               <input
                 type={"text"}
                 name={"card_period"}
-                placeholder={"07 / 24"}
+                placeholder={"07 / 25"}
                 className={"card_half_input"}
               />
               <input
                 type={"text"}
                 name={"card_period"}
-                placeholder={"07 / 24"}
+                placeholder={"CVV : 007"}
                 className={"card_half_input"}
               />
             </div>

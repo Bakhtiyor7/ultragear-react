@@ -51,7 +51,9 @@ export default function ProcessOrders(props: any) {
                   <p>$32</p>
                 </Box>
                 <p className="data_compl">2022-11-04 23:19</p>
-                <Button variant="contained">Yakunlash</Button>
+                <Button variant="contained" style={{ borderRadius: "10px" }}>
+                  Yakunlash
+                </Button>
               </Box>
             </Box>
           );
