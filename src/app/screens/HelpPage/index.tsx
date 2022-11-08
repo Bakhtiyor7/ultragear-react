@@ -33,41 +33,36 @@ export function HelpPage() {
         "To'lovni Payme, click ilovalari orqali amalga oshirishingiz mumkin",
     },
     {
-      question: "To'lov qanday amalga oshiriladi?",
+      question: "Buyurtmalar qancha vaqtda yetib keladi?",
       answer:
-        "To'lovni Payme, click ilovalari orqali amalga oshirishingiz mumkin",
+        "Buyurtmalar harid qilgan narsangizga qarab har xil vaqtda yetkazilishi mumkin. Maximum 1 soat ichida!",
     },
     {
-      question: "To'lov qanday amalga oshiriladi?",
+      question:
+        "Saytdan foydalansam ma'lumotlarim xavfsizligiga kafolat bormi?",
       answer:
-        "To'lovni Payme, click ilovalari orqali amalga oshirishingiz mumkin",
+        "albatta, bizning dasturchilamiz sizning ma'lumotlaringiz havfsizligiga kafolat berishadi",
     },
     {
-      question: "To'lov qanday amalga oshiriladi?",
+      question: "saytda muammo yuzaga kelsa kimga murojaat qilaman?",
       answer:
-        "To'lovni Payme, click ilovalari orqali amalga oshirishingiz mumkin",
+        "Hurmatli mijoz, iltimos adminga xat yo'llash bo'limidan foydalaning",
     },
     {
-      question: "To'lov qanday amalga oshiriladi?",
+      question:
+        "Men foydalanuvchi emas biznesmen sifatida faoliyat yuritmoqchima. Nima qilishim kerak?",
       answer:
-        "To'lovni Payme, click ilovalari orqali amalga oshirishingiz mumkin",
-    },
-    {
-      question: "To'lov qanday amalga oshiriladi?",
-      answer:
-        "To'lovni Payme, click ilovalari orqali amalga oshirishingiz mumkin",
-    },
-    {
-      question: "To'lov qanday amalga oshiriladi?",
-      answer:
-        "To'lovni Payme, click ilovalari orqali amalga oshirishingiz mumkin",
+        "Hurmatli mijoz, saytda ko'rsatilgan telefon raqamlarga qo'ng'iroq qilishingizni so'rab qolamiz!",
     },
   ];
 
   const rules = [
     "Iltimos saytimizda odob-ahloq qoidalariga rioya qiling!",
-    "Iltimos saytimizda odob-ahloq qoidalariga rioya qiling!",
-    "Iltimos saytimizda odob-ahloq qoidalariga rioya qiling!",
+    "Buyurtmalaringizga to'lovni amalga oshirganingizdan so'ng bekor qilishning imkoni yo'q shu sababli to'lovlarni amalga oshirishdan avval tekshirib oling.",
+    "Jonli muloqot vaqtida bexayo so'zlarni ishlatish mutlaqo taqiqlanadi.",
+    "Shaxsiy reklamalarni adminning ruxsatisiz yozish va tarqatish mumkun emas.",
+    "Maqolalaringiz odob doirasidan chiqib ketmasligi shart.",
+    "Barcha xarakatlaringiz adminlarimiz nazorati ostida bo'lani sabab iltimos talablarimizni xurmat qiling.",
   ];
 
   return (
@@ -98,65 +93,72 @@ export function HelpPage() {
                 </Box>
               </Stack>
             </TabPanel>
-          </Stack>
-
-          <TabPanel value="2">
-            <Stack className={"accordian_menu"}>
-              {FAQ.map((ele, number) => {
-                return (
-                  <Accordion>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panella-content"
-                      id="panella-header"
-                    >
-                      <Typography>{ele.question}</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Typography>{ele.answer}</Typography>
-                    </AccordionDetails>
-                  </Accordion>
-                );
-              })}
-            </Stack>
-          </TabPanel>
-          <TabPanel value="3">
-            <Stack className={"admin_letter_box"}>
-              <Stack className={"admin_letter_container"}>
-                <Box className={"admin_letter_frame"}>
-                  <span>Adminga Xabar Qoldirish</span>
-                  <p>Assalomu alaykum! {""}</p>
-                </Box>
-                <form
-                  action={"#"}
-                  method="POST"
-                  className={"admin_letter_frame"}
-                >
-                  <div className="admin_input_box">
-                    <label>Ism</label>
-                    <input type={"text"} name={"mb_nick"} placeholder="ism" />
-                  </div>
-
-                  <div className="admin_input_box">
-                    <label>Elektron Manzil</label>
-                    <input
-                      type={"text"}
-                      name={"mb_email"}
-                      placeholder="Elektron manzil"
-                    />
-                  </div>
-
-                  <div className="admin_input_box">
-                    <label>Xabar</label>
-                    <textarea name="mb_msg" placeholder="Xabar"></textarea>
-                  </div>
-                  <Button variant="contained" type={"submit"}>
-                    Jo'natish
-                  </Button>
-                </form>
+            <TabPanel value="2">
+              <Stack className={"accordian_menu"}>
+                {FAQ.map((ele, number) => {
+                  return (
+                    <Accordion>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panella-content"
+                        id="panella-header"
+                      >
+                        <Typography>{ele.question}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Typography>{ele.answer}</Typography>
+                      </AccordionDetails>
+                    </Accordion>
+                  );
+                })}
               </Stack>
-            </Stack>
-          </TabPanel>
+            </TabPanel>
+            <TabPanel value="3">
+              <Stack className={"admin_letter_box"}>
+                <Stack className={"admin_letter_container"}>
+                  <Box className={"admin_letter_frame"}>
+                    <span>Adminga Xabar Qoldirish</span>
+                    <p>Assalomu alaykum! {""}</p>
+                  </Box>
+                  <form
+                    action={"#"}
+                    method="POST"
+                    className={"admin_letter_frame"}
+                  >
+                    <div className="admin_input_box">
+                      <label>Ism</label>
+                      <input type={"text"} name={"mb_nick"} placeholder="ism" />
+                    </div>
+
+                    <div className="admin_input_box">
+                      <label>Elektron Manzil</label>
+                      <input
+                        type={"text"}
+                        name={"mb_email"}
+                        placeholder="Elektron manzil"
+                      />
+                    </div>
+
+                    <div className="admin_input_box">
+                      <label>Xabar</label>
+                      <textarea name="mb_msg" placeholder="Xabar"></textarea>
+                    </div>
+                    <Box
+                      style={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        marginTop: "30px",
+                      }}
+                    >
+                      <Button variant="contained" type={"submit"}>
+                        Jo'natish
+                      </Button>
+                    </Box>
+                  </form>
+                </Stack>
+              </Stack>
+            </TabPanel>
+          </Stack>
         </TabContext>
       </Container>
     </div>
