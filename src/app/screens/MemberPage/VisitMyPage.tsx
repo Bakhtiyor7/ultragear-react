@@ -23,7 +23,7 @@ import { TViewer } from "../../components/tuiEditor/TViewer";
 
 export function VisitMyPage(props: any) {
   /** INITIALIZATIONS **/
-  const [value, setValue] = useState("1");
+  const [value, setValue] = useState("5");
 
   /** HANDLERS **/
   const handleChange = (event: any, newValue: string) => {

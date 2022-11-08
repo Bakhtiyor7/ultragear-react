@@ -9,7 +9,7 @@ import { RestaurantPage } from "./screens/RestaurantPage/indes";
 import { CommunityPage } from "./screens/CommunityPage";
 import { OrdersPage } from "./screens/OrdersPage/indes";
 import { MemberPage } from "./screens/MemberPage";
-import { HelpPage } from "./screens/HelpPage/indes";
+import { HelpPage } from "./screens/HelpPage";
 import { LoginPage } from "./screens/LoginPage/indes";
 import { HomePage } from "./screens/Homepage";
 import { NavbarHome } from "./components/header";
