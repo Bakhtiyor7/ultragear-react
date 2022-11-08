@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { RestaurantPage } from "./screens/RestaurantPage/indes";
 import { CommunityPage } from "./screens/CommunityPage";
 import { OrdersPage } from "./screens/OrdersPage/indes";
-import { MemberPage } from "./screens/MemberPage/indes";
+import { MemberPage } from "./screens/MemberPage";
 import { HelpPage } from "./screens/HelpPage/indes";
 import { LoginPage } from "./screens/LoginPage/indes";
 import { HomePage } from "./screens/Homepage";

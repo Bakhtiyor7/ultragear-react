@@ -1,24 +1,29 @@
-import React, { useState } from "react";
-import { Box, Button, Container, Stack } from "@mui/material";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { Box, Container, Stack } from "@mui/material";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TelegramIcon from "@mui/icons-material/Telegram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import Button from "@mui/material/Button";
 import Tab from "@mui/material/Tab";
-import TabContext from "@material-ui/lab/TabContext";
-import TabList from "@material-ui/lab/TabList";
-import TabPanel from "@material-ui/lab/TabPanel";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
+import SettingsIcon from "@mui/icons-material/Settings";
 import { MemberPosts } from "./memberPosts";
+import { MemberFollowers } from "./memberFollowers";
+import { MemberFollowing } from "./memberFollowing";
+import { MySettings } from "./mySettings";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { MemberFollowers } from "./memberFollowers";
-import { MemberFollowing } from "./memberFollowing";
-import SettingsIcon from "@mui/icons-material/Settings";
-import { MySettings } from "./mySettings";
 
 export function VisitMyPage(props: any) {
-  /**INITIALIZATION */
+  /** INITIALIZATIONS **/
   const [value, setValue] = useState("1");
 
-  /**HANDLERS */
+  /** HANDLERS **/
   const handleChange = (event: any, newValue: string) => {
     setValue(newValue);
   };
@@ -30,19 +35,19 @@ export function VisitMyPage(props: any) {
           <TabContext value={value}>
             <Stack className={"my_page_left"}>
               <Box display={"flex"} flexDirection={"column"}>
-                <TabPanel value="1">
+                <TabPanel value={"1"}>
                   <Box className={"menu_name"}>Mening Maqolalarim</Box>
                   <Box className={"menu_content"}>
                     <MemberPosts />
                     <Stack
                       sx={{ my: "40px" }}
                       direction="row"
-                      alignItems={"center"}
+                      alignItems="center"
                       justifyContent="center"
                     >
                       <Box className={"bottom_box"}>
                         <Pagination
-                          count={5}
+                          count={3}
                           page={1}
                           renderItem={(item) => (
                             <PaginationItem
@@ -60,66 +65,31 @@ export function VisitMyPage(props: any) {
                   </Box>
                 </TabPanel>
 
-                <TabPanel value="2">
+                <TabPanel value={"2"}>
                   <Box className={"menu_name"}>Followers</Box>
                   <Box className={"menu_content"}>
-                    <MemberFollowers />
-                    <Stack
-                      sx={{ my: "40px" }}
-                      direction="row"
-                      alignItems={"center"}
-                      justifyContent="center"
-                    >
-                      <Box className={"bottom_box"}>
-                        <Pagination
-                          count={5}
-                          page={1}
-                          renderItem={(item) => (
-                            <PaginationItem
-                              components={{
-                                previous: ArrowBackIcon,
-                                next: ArrowForwardIcon,
-                              }}
-                              {...item}
-                              color={"secondary"}
-                            />
-                          )}
-                        />
-                      </Box>
-                    </Stack>
-                  </Box>
-                </TabPanel>
-                <TabPanel value="3">
-                  <Box className={"menu_name"}>Following</Box>
-                  <Box className={"menu_content"}>
-                    <MemberFollowing />
-                    <Stack
-                      sx={{ my: "40px" }}
-                      direction="row"
-                      alignItems={"center"}
-                      justifyContent="center"
-                    >
-                      <Box className={"bottom_box"}>
-                        <Pagination
-                          count={5}
-                          page={1}
-                          renderItem={(item) => (
-                            <PaginationItem
-                              components={{
-                                previous: ArrowBackIcon,
-                                next: ArrowForwardIcon,
-                              }}
-                              {...item}
-                              color={"secondary"}
-                            />
-                          )}
-                        />
-                      </Box>
-                    </Stack>
+                    <MemberFollowers actions_enabled={true} />
                   </Box>
                 </TabPanel>
 
-                <TabPanel value="6">
+                <TabPanel value={"3"}>
+                  <Box className={"menu_name"}>Following</Box>
+                  <Box className={"menu_content"}>
+                    <MemberFollowing actions_enabled={true} />
+                  </Box>
+                </TabPanel>
+
+                <TabPanel value={"4"}>
+                  <Box className={"menu_name"}>Maqola yozish</Box>
+                  <Box className={"write_content"}></Box>
+                </TabPanel>
+
+                <TabPanel value={"5"}>
+                  <Box className={"menu_name"}>Tanlangan Maqola</Box>
+                  <Box className={"menu_content"}></Box>
+                </TabPanel>
+
+                <TabPanel value={"6"}>
                   <Box className={"menu_name"}>Ma'lumotlarni o'zgartirish</Box>
                   <Box className={"menu_content"}>
                     <MySettings />
@@ -134,40 +104,37 @@ export function VisitMyPage(props: any) {
                   <SettingsIcon />
                 </a>
                 <Box
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
+                  display={"flex"}
+                  flexDirection={"column"}
+                  alignItems={"center"}
                 >
                   <div className={"order_user_img"}>
                     <img
+                      src={"/auth/default_user.svg"}
                       className={"order_user_avatar"}
-                      src={"/icons/profile.svg"}
                     />
                     <div className={"order_user_icon_box"}>
-                      <img src="/icons/user_icon.svg" />
+                      <img src={"/icons/user_icon.svg"} />
                     </div>
                   </div>
-                  <span className={"order_user_name"}>Baxtiyor</span>
+                  <span className={"order_user_name"}>Akhatov Bakhtiyor</span>
                   <span className={"order_user_prof"}>USER</span>
                 </Box>
-                <div className={"user_media_box"}>
-                  <img src="/icons/facebook.svg" />
-                  <img src="/icons/instagram.svg" />
-                  <img src="/icons/telegram.svg" />
-                  <img src="/icons/youtube.svg" />
-                </div>
                 <Box className={"user_media_box"}>
-                  <p className="follows">Followers: 0</p>
-                  <p className="follows">Following: 0</p>
+                  <FacebookIcon />
+                  <InstagramIcon />
+                  <TelegramIcon />
+                  <YouTubeIcon />
                 </Box>
-                <p>Qo'shimcha kiritilmagan</p>
+                <Box className={"user_media_box"}>
+                  <p className={"follows"}>Followers: 3</p>
+                  <p className={"follows"}>Followings: 2</p>
+                </Box>
+                <p className={"user_desc"}>this is my bio</p>
                 <Box
                   display={"flex"}
                   justifyContent={"flex-end"}
-                  marginTop={"10px"}
+                  sx={{ mt: "10px" }}
                 >
                   <TabList
                     onChange={handleChange}
@@ -178,61 +145,57 @@ export function VisitMyPage(props: any) {
                       value={"4"}
                       component={(e) => (
                         <Button
-                          variant="contained"
+                          variant={"contained"}
                           onClick={() => setValue("4")}
                         >
-                          Maqola yozish
+                          Maqola Yozish
                         </Button>
                       )}
                     />
                   </TabList>
                 </Box>
               </Box>
+
               <Box className={"my_page_menu"}>
                 <TabList
                   onChange={handleChange}
                   aria-label="lab API tabs example"
-                  style={{
-                    flexDirection: "column",
-                    width: "100%",
-                  }}
                 >
                   <Tab
+                    style={{ flexDirection: "column" }}
                     value={"1"}
-                    component={(e) => (
+                    component={() => (
                       <div
-                        className={`menu_box ${value}`}
+                        className={`menu_box ${value} `}
                         onClick={() => setValue("1")}
                       >
-                        <img src="/icons/pencil.svg" />
+                        <img src={"/icons/pencil.svg"} />
                         <span>Maqolalarim</span>
                       </div>
                     )}
                   />
-
                   <Tab
                     style={{ flexDirection: "column" }}
-                    value={"1"}
-                    component={(e) => (
+                    value={"2"}
+                    component={() => (
                       <div
-                        className={`menu_box ${value}`}
+                        className={`menu_box ${value} `}
                         onClick={() => setValue("2")}
                       >
-                        <img src="/icons/follower.svg" />
+                        <img src={"/icons/follower.svg"} />
                         <span>Follower</span>
                       </div>
                     )}
                   />
-
                   <Tab
                     style={{ flexDirection: "column" }}
-                    value={"1"}
-                    component={(e) => (
+                    value={"3"}
+                    component={() => (
                       <div
-                        className={`menu_box ${value}`}
+                        className={`menu_box ${value} `}
                         onClick={() => setValue("3")}
                       >
-                        <img src="/icons/following.svg" />
+                        <img src={"/icons/following.svg"} />
                         <span>Following</span>
                       </div>
                     )}

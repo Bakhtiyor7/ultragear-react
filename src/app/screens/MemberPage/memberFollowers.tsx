@@ -1,31 +1,60 @@
-import React, { useState } from "react";
-import { Box, Button, Container, Link, Stack } from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+import React, { useEffect, useState } from "react";
+import { Box, Stack } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
 
-export function MemberFollowers() {
+const followers = [
+  { mb_nick: "jack", following: true },
+  { mb_nick: "sergey", following: false },
+  { mb_nick: "rose", following: true },
+];
+
+export function MemberFollowers(props: any) {
   return (
     <Stack>
-      <Stack className={"following_list"}>
-        <div className={"member_img"}>
-          <img className={"member_avatar"} src={"/icons/profile.svg"} />
-        </div>
-        <Box
-          style={{
-            marginLeft: "25px",
-            width: "400px",
-            height: "50px",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <span className={"mb_username"}>leo7</span>
-          <span className={"mb_name"}>Baxtiyor</span>
-        </Box>
-        <Button variant="contained" className={"follow_btn"}>
-          Following
-        </Button>
-      </Stack>
+      {followers.map((follower) => {
+        const image_url = "/auth/default_user.svg";
+        return (
+          <Box className={"follow_box"}>
+            <Avatar alt={""} src={image_url} sx={{ width: 89, height: 89 }} />
+            <div
+              style={{
+                width: "400px",
+                display: "flex",
+                flexDirection: "column",
+                marginLeft: "25px",
+                height: "85%",
+              }}
+            >
+              <span className={"username_text"}>USER</span>
+              <span className={"name_text"}>{follower.mb_nick}</span>
+            </div>
+            {props.actions_enabled &&
+              (follower.following ? (
+                <Button
+                  variant={"contained"}
+                  className={"following_already"}
+                  disabled
+                >
+                  FOLLOWING
+                </Button>
+              ) : (
+                <Button
+                  variant={"contained"}
+                  startIcon={
+                    <img
+                      src={"/icons/follow_icon.svg"}
+                      style={{ width: "40px" }}
+                    />
+                  }
+                  className={"follow_btn"}
+                >
+                  Follow Back
+                </Button>
+              ))}
+          </Box>
+        );
+      })}
     </Stack>
   );
 }

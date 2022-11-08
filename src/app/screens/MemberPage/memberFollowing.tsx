@@ -1,31 +1,53 @@
-import React, { useState } from "react";
-import { Box, Button, Container, Link, Stack } from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+import React, { useEffect, useState } from "react";
+import { Box, Stack } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import { Dispatch } from "@reduxjs/toolkit";
+
+const followings = [
+  { mb_nick: "leo" },
+  { mb_nick: "sevara" },
+  { mb_nick: "lola" },
+];
 
 export function MemberFollowing(props: any) {
   return (
     <Stack>
-      <Stack className={"following_list"}>
-        <div className={"member_img"}>
-          <img className={"member_avatar"} src={"/icons/profile.svg"} />
-        </div>
-        <Box
-          style={{
-            marginLeft: "25px",
-            width: "400px",
-            height: "50px",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <span className={"mb_username"}>leo7</span>
-          <span className={"mb_name"}>Baxtiyor</span>
-        </Box>
-        <Button variant="contained" className={"unfollow_btn"}>
-          Unfollow
-        </Button>
-      </Stack>
+      {followings.map((following) => {
+        const image_url = "/auth/default_user.svg";
+        return (
+          <Box className={"follow_box"}>
+            <Avatar alt={""} src={image_url} sx={{ width: 89, height: 89 }} />
+            <div
+              style={{
+                width: "400px",
+                display: "flex",
+                flexDirection: "column",
+                marginLeft: "25px",
+                height: "85%",
+              }}
+            >
+              <span className={"username_text"}>USER</span>
+              <span className={"name_text"}>{following.mb_nick}</span>
+            </div>
+
+            {props.actions_enabled && (
+              <Button
+                variant={"contained"}
+                startIcon={
+                  <img
+                    src={"/icons/follow_icon.svg"}
+                    style={{ width: "40px", marginLeft: "16px" }}
+                  />
+                }
+                className={"follow_cancel_btn"}
+              >
+                Bekor Qilish
+              </Button>
+            )}
+          </Box>
+        );
+      })}
     </Stack>
   );
 }
