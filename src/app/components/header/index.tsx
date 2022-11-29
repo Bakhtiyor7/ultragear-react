@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Badge, Box, Button, Icon, IconButton, Stack } from "@mui/material";
 import { Container } from "@mui/system";
 import { NavLink } from "react-router-dom";
 
 export function NavbarHome(props: any) {
-  const [count, setcount] = useState(0);
+  const [count, setCount] = useState(0); //componentDidMount
+  const [value, setValue] = useState(true); // componentWillUnmount
+
+  useEffect(() => {
+    setCount(count + 1);
+  }, [value]); // component DidUpdate
 
   return (
     <div className="format home_navbar">
@@ -95,7 +100,7 @@ export function NavbarHome(props: any) {
                   background: "#1976D2",
                   color: "#FFFFFF",
                 }}
-                onClick={() => setcount(count + 1)}
+                onClick={() => setValue(!value)}
               >
                 RO'YHATDAN O'TISH
               </Button>
