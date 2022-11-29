@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Badge, Box, Button, Icon, IconButton, Stack } from "@mui/material";
 import { Container } from "@mui/system";
 import { NavLink } from "react-router-dom";
 
 export function NavbarHome(props: any) {
+  const [count, setcount] = useState(0);
+
   return (
     <div className="format home_navbar">
       <Container>
@@ -81,7 +83,9 @@ export function NavbarHome(props: any) {
             <Box className="define_restaurant">
               The Authentic Restaurant & Cafe
             </Box>
-            <Box className="timeline_service">24 soat xizmatingizdamiz.</Box>
+            <Box className="timeline_service">
+              {count} soat xizmatingizdamiz.
+            </Box>
             <Box sx={{ mt: "90px" }}>
               <Button
                 variant="contained"
@@ -91,6 +95,7 @@ export function NavbarHome(props: any) {
                   background: "#1976D2",
                   color: "#FFFFFF",
                 }}
+                onClick={() => setcount(count + 1)}
               >
                 RO'YHATDAN O'TISH
               </Button>
