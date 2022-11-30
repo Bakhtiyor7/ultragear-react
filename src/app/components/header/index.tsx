@@ -4,8 +4,8 @@ import { Container } from "@mui/system";
 import { NavLink } from "react-router-dom";
 
 export function NavbarHome(props: any) {
-  const [count, setCount] = useState(0); //componentDidMount
-  const [value, setValue] = useState(true); // componentWillUnmount
+  const [count, setCount] = useState(0);
+  const [value, setValue] = useState(true);
 
   useEffect(() => {
     setCount(count + 1);
