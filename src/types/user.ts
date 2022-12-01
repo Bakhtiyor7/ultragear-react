@@ -8,8 +8,8 @@ export interface Restaurant {
   mb_password: string;
   mb_type: string;
   mb_status: string;
-  mb_address: string;
-  mb_description: string;
+  mb_address?: string;
+  mb_description?: string;
   mb_image: string;
   mb_point: number;
   mb_top: string;
@@ -17,7 +17,7 @@ export interface Restaurant {
   mb_likes: number;
   mb_follow_cnt: number;
   mb_subscriber_cnt: number;
-  createdAt: Date;
+  createdAt?: Date;
   me_liked: MeLiked[];
 }
 
