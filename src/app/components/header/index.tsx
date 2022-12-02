@@ -70,6 +70,7 @@ export function NavbarHome(props: any) {
               <Button
                 variant="contained"
                 style={{ color: "#FFFFFF", background: "#1976D2" }}
+                onClick={props.handleLoginOpen}
               >
                 KIRISH
               </Button>
@@ -98,7 +99,7 @@ export function NavbarHome(props: any) {
                   background: "#1976D2",
                   color: "#FFFFFF",
                 }}
-                onClick={() => setValue(!value)}
+                onClick={props.handleSignupOpen}
               >
                 RO'YHATDAN O'TISH
               </Button>

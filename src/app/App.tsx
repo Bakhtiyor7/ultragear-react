@@ -18,21 +18,41 @@ import { NavbarOthers } from "./components/header/others";
 import { Footer } from "./components/footer";
 import Car from "./screens/testCar";
 import AuthenticationModal from "./components/auth";
+import { SettingsSharp } from "@mui/icons-material";
 
 function App() {
+  //** INITIALIZATIONS */
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
+  const [signUpOpen, setSignUpOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
 
+  /**  HANDLERS */
+  const handleSignupOpen = () => setSignUpOpen(true);
+  const handleSignupClose = () => setSignUpOpen(false);
+  const handleLoginOpen = () => setLoginOpen(true);
+  const handleLoginClose = () => setLoginOpen(false);
   return (
     <Router>
       {main_path == "/" ? (
-        <NavbarHome setPath={setPath} />
+        <NavbarHome
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignupOpen={handleSignupOpen}
+        />
       ) : main_path.includes("/restaurant") ? (
-        <NavbarRestaurant setPath={setPath} />
+        <NavbarRestaurant
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignupOpen={handleSignupOpen}
+        />
       ) : (
-        <NavbarOthers setPath={setPath} />
+        <NavbarOthers
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignupOpen={handleSignupOpen}
+        />
       )}
-
       <Switch>
         <Route path="/restaurant">
           <RestaurantPage />
@@ -56,10 +76,15 @@ function App() {
           <HomePage />
         </Route>
       </Switch>
-
       <Footer />
-
-      <AuthenticationModal />
+      <AuthenticationModal
+        loginOpen={loginOpen}
+        handleLoginOpen={handleLoginOpen}
+        handleLoginClose={handleLoginClose}
+        signUpOpen={signUpOpen}
+        handleSignupOpen={handleSignupOpen}
+        handleSignupClose={handleSignupClose}
+      />
     </Router>
   );
 }
