@@ -88,9 +88,7 @@ export function NavbarHome(props: any) {
             <Box className="define_restaurant">
               The Authentic Restaurant & Cafe
             </Box>
-            <Box className="timeline_service">
-              {count} soat xizmatingizdamiz.
-            </Box>
+            <Box className="timeline_service">24 soat xizmatingizdamiz.</Box>
             <Box sx={{ mt: "90px" }}>
               <Button
                 variant="contained"
