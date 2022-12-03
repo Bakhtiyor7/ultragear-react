@@ -36,6 +36,7 @@
     "sweetalert2": "^11.6.15",
     "swiper": "^8.4.4",
     "typescript": "^4.8.4",
+    "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

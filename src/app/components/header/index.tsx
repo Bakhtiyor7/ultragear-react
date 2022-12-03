@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Badge, Box, Button, Icon, IconButton, Stack } from "@mui/material";
+import {
+  Badge,
+  Box,
+  Button,
+  Icon,
+  IconButton,
+  ListItem,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Stack,
+} from "@mui/material";
 import { Container } from "@mui/system";
 import { NavLink } from "react-router-dom";
+import { Logout } from "@mui/icons-material";
 
 export function NavbarHome(props: any) {
-  const [count, setCount] = useState(0);
-  const [value, setValue] = useState(true);
-
-  useEffect(() => {
-    setCount(count + 1);
-  }, [value]); // component DidUpdate
-
   return (
     <div className="format home_navbar">
       <Container>
@@ -48,6 +53,15 @@ export function NavbarHome(props: any) {
                 Jamiyat
               </NavLink>
             </Box>
+
+            {props.verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/member-page" activeClassName="underline">
+                  Sahifam
+                </NavLink>
+              </Box>
+            ) : null}
+
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/help" activeClassName="underline">
                 Yordam
@@ -66,15 +80,65 @@ export function NavbarHome(props: any) {
                 </Badge>
               </IconButton>
             </Box>
-            <Box>
-              <Button
-                variant="contained"
-                style={{ color: "#FFFFFF", background: "#1976D2" }}
-                onClick={props.handleLoginOpen}
-              >
-                KIRISH
-              </Button>
-            </Box>
+            {!props.verifiedMemberData ? (
+              <Box>
+                <Button
+                  variant="contained"
+                  style={{ color: "#FFFFFF", background: "#1976D2" }}
+                  onClick={props.handleLoginOpen}
+                >
+                  KIRISH
+                </Button>
+              </Box>
+            ) : (
+              <img
+                style={{ width: "48px", height: "48px", borderRadius: "24px" }}
+                src={props.verifiedMemberData.mb_image}
+                onClick={props.handleLogoutClick}
+              />
+            )}
+
+            <Menu
+              anchorEl={props.anchorEl}
+              open={props.open}
+              onClose={props.handleCloseLogOut}
+              onClick={props.handleCloseLogOut}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: "visible",
+                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32)",
+                  mt: 1.5,
+                  "& .MuiAvatar-root": {
+                    width: 32,
+                    height: 32,
+                    ml: -0.5,
+                    mr: 1,
+                  },
+                  "&:before": {
+                    content: '"',
+                    display: "block",
+                    position: "absolute",
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: "background.paper",
+                    transform: "translateY(-50%) rotate(45deg)",
+                    zIndex: 0,
+                  },
+                },
+              }}
+              transformOrigin={{ horizontal: "right", vertical: "top" }}
+              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+            >
+              <MenuItem onClick={props.handleLogOutRequest}>
+                <ListItemIcon>
+                  <Logout fontSize="small" style={{ color: "blue" }} />
+                </ListItemIcon>
+                Logout
+              </MenuItem>
+            </Menu>
           </Stack>
         </Stack>
 
@@ -91,18 +155,20 @@ export function NavbarHome(props: any) {
             </Box>
             <Box className="timeline_service">24 soat xizmatingizdamiz.</Box>
             <Box sx={{ mt: "90px" }}>
-              <Button
-                variant="contained"
-                style={{
-                  width: "210px",
-                  height: "60px",
-                  background: "#1976D2",
-                  color: "#FFFFFF",
-                }}
-                onClick={props.handleSignupOpen}
-              >
-                RO'YHATDAN O'TISH
-              </Button>
+              {!props.verifiedMemberData ? ( // login buganda signup button yoqoladi
+                <Button
+                  variant="contained"
+                  style={{
+                    width: "210px",
+                    height: "60px",
+                    background: "#1976D2",
+                    color: "#FFFFFF",
+                  }}
+                  onClick={props.handleSignupOpen}
+                >
+                  RO'YHATDAN O'TISH
+                </Button>
+              ) : null}
             </Box>
           </Stack>
           <Box className="big_img"></Box>
