@@ -28,8 +28,8 @@ function App() {
   const [loginOpen, setLoginOpen] = useState(false);
 
   /**  HANDLERS */
-  const handleSignupOpen = () => setSignUpOpen(true);
-  const handleSignupClose = () => setSignUpOpen(false);
+  const handleSignUpOpen = () => setSignUpOpen(true);
+  const handleSignUpClose = () => setSignUpOpen(false);
   const handleLoginOpen = () => setLoginOpen(true);
   const handleLoginClose = () => setLoginOpen(false);
   return (
@@ -38,19 +38,19 @@ function App() {
         <NavbarHome
           setPath={setPath}
           handleLoginOpen={handleLoginOpen}
-          handleSignupOpen={handleSignupOpen}
+          handleSignupOpen={handleSignUpOpen}
         />
       ) : main_path.includes("/restaurant") ? (
         <NavbarRestaurant
           setPath={setPath}
           handleLoginOpen={handleLoginOpen}
-          handleSignupOpen={handleSignupOpen}
+          handleSignupOpen={handleSignUpOpen}
         />
       ) : (
         <NavbarOthers
           setPath={setPath}
           handleLoginOpen={handleLoginOpen}
-          handleSignupOpen={handleSignupOpen}
+          handleSignupOpen={handleSignUpOpen}
         />
       )}
       <Switch>
@@ -82,8 +82,8 @@ function App() {
         handleLoginOpen={handleLoginOpen}
         handleLoginClose={handleLoginClose}
         signUpOpen={signUpOpen}
-        handleSignupOpen={handleSignupOpen}
-        handleSignupClose={handleSignupClose}
+        handleSignUpOpen={handleSignUpOpen}
+        handleSignUpClose={handleSignUpClose}
       />
     </Router>
   );
