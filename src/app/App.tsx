@@ -5,7 +5,7 @@ import "../css/navbar.css";
 import "../css/footer.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import { RestaurantPage } from "./screens/RestaurantPage/indes";
+import { RestaurantPage } from "./screens/RestaurantPage";
 import { CommunityPage } from "./screens/CommunityPage";
 import { OrdersPage } from "./screens/OrdersPage/indes";
 import { MemberPage } from "./screens/MemberPage";
