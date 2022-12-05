@@ -135,7 +135,6 @@ export function NavbarRestaurant(props: any) {
           </Stack>
         </Stack>
       </Container>
-      ;
     </div>
   );
 }

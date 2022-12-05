@@ -23,6 +23,7 @@ import { Member } from "../types/user";
 import { serverApi } from "../lib/config";
 import {
   sweetErrorHandling,
+  sweetFailureProvider,
   sweetTopSmallSuccessAlert,
 } from "../lib/sweetAlert";
 import { Definer } from "../lib/Definer";
@@ -61,13 +62,13 @@ function App() {
   const handleSignUpClose = () => setSignUpOpen(false);
   const handleLoginOpen = () => setLoginOpen(true);
   const handleLoginClose = () => setLoginOpen(false);
+
   const handleLogoutClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleCloseLogOut = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(null);
   };
-
   const handleLogOutRequest = async () => {
     try {
       const memberApiService = new MemberApiService();
@@ -75,7 +76,7 @@ function App() {
       await sweetTopSmallSuccessAlert("success", 700, true);
     } catch (err: any) {
       console.log(err);
-      sweetErrorHandling(Definer.general_err1);
+      sweetFailureProvider(Definer.general_err1);
     }
   };
 
