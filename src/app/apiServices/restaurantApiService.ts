@@ -33,7 +33,7 @@ class RestaurantApiService {
         result = await axios.get(this.path + url, { withCredentials: true });
       assert.ok(result, Definer.general_err1);
 
-      console.log("result:::", result.data.state);
+      console.log("state:::", result.data.state);
       const restaurants: Restaurant[] = result.data.data;
       return restaurants;
     } catch (err: any) {
