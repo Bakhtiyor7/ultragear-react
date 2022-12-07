@@ -47,9 +47,9 @@ export function BestRestaurants() {
   /** HANDLERS */
 
   const chosenRestaurantHandler = (id: string) => {
-    history.push(`/restaurant/${id}`);
+    history?.push(`/restaurant/${id}`);
   };
-  const goRestaurantHandler = () => history.push("/restaurant");
+  const goRestaurantHandler = () => history?.push("/restaurant");
   const targetLikeBest = async (e: any, id: string) => {
     try {
       assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);

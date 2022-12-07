@@ -40,8 +40,6 @@ export function TopRestaurants() {
   console.log("topRestaurants:", topRestaurants);
   const refs: any = useRef([]);
 
-  console.log("topRestaurants:::", topRestaurants);
-
   /** HANDLERS */
   const chosenRestaurantHandler = (id: string) => {
     history.push(`/restaurant/${id}`);

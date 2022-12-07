@@ -30,7 +30,6 @@ import { createSelector } from "reselect";
 import { retrieveTargetRestaurants } from "../../screens/RestaurantPage/selector";
 import { Restaurant } from "../../../types/user";
 import { Dispatch } from "@reduxjs/toolkit";
-import { setTargetRestaurants } from "../../screens/RestaurantPage/slice";
 import RestaurantApiService from "../../apiServices/restaurantApiService";
 import { SearchObj } from "../../../types/others";
 import assert from "assert";
@@ -40,6 +39,8 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
+import { setTargetRestaurants } from "./slice";
+import { useHistory } from "react-router-dom";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -57,13 +58,16 @@ const targetRestaurantsRetriever = createSelector(
 
 export function AllRestaurants() {
   /** INITIALIZATIONS */
+  const history = useHistory();
   const { setTargetRestaurants } = actionDispatch(useDispatch());
   const { targetRestaurants } = useSelector(targetRestaurantsRetriever);
+
   const [targetSearchObject, setTargetSearchObject] = useState<SearchObj>({
     page: 1,
     limit: 8,
     order: "mb_point",
   });
+
   const refs: any = useRef([]);
 
   useEffect(() => {
@@ -76,6 +80,9 @@ export function AllRestaurants() {
   }, [targetSearchObject]);
 
   /** HANDLERS */
+  const chosenRestaurantHandler = (id: string) => {
+    history.push(`/restaurant/${id}`);
+  };
   const searchHandler = (category: string) => {
     targetSearchObject.page = 1;
     targetSearchObject.order = category;
@@ -147,12 +154,14 @@ export function AllRestaurants() {
                 const image_path = `${serverApi}/${ele.mb_image}`;
                 return (
                   <Card
+                    onClick={() => chosenRestaurantHandler(ele._id)}
                     variant="outlined"
                     sx={{
                       minHeight: 410,
                       minWidth: 290,
                       mx: "17px",
                       my: "20px",
+                      cursor: "pointer",
                     }}
                   >
                     <CardOverflow>
@@ -163,7 +172,7 @@ export function AllRestaurants() {
                         aria-label="Like minimal photography"
                         size="md"
                         variant="solid"
-                        color="danger"
+                        color="neutral"
                         sx={{
                           position: "absolute",
                           zIndex: 2,

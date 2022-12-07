@@ -8,7 +8,7 @@ export const store = configureStore({
     getDefaultMiddleware().concat(reduxLogger),
   reducer: {
     homePage: HomePageReducer,
-    restauRantPage: RestaurantPageReducer,
+    restaurantPage: RestaurantPageReducer,
   },
 });
 

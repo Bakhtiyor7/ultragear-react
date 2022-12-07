@@ -8,7 +8,7 @@ export interface AppRootState {
   restaurantPage: RestaurantPageState;
 }
 
-/** HANDLERS */
+/** HOMEPAGE */
 export interface HomePageState {
   topRestaurants: Restaurant[];
   bestRestaurants: Restaurant[];
