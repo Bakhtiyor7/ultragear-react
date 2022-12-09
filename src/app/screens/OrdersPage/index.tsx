@@ -21,6 +21,7 @@ import {
   setFinishedOrders,
 } from "../../screens/OrdersPage/slice";
 import OrderApiService from "../../apiServices/orderApiService";
+import { Member } from "../../../types/user";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -34,6 +35,7 @@ export function OrdersPage(props: any) {
   const [value, setValue] = useState("1");
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
+  const verifiedMemberData: Member | null = props.verifiedMemberData;
 
   useEffect(() => {
     const orderService = new OrderApiService();
@@ -110,14 +112,18 @@ export function OrdersPage(props: any) {
               <div className={"order_user_img"}>
                 <img
                   className={"order_user_avatar"}
-                  src={"/icons/profile.svg"}
+                  src={verifiedMemberData?.mb_image}
                 />
                 <div className={"order_user_icon_box"}>
-                  <img src="/icons/user_icon.svg" />
+                  <img src={verifiedMemberData?.mb_image} />
                 </div>
               </div>
-              <span className={"order_user_name"}>Baxtiyor</span>
-              <span className={"order_user_prof"}>USER</span>
+              <span className={"order_user_name"}>
+                {props.verifiedMemberData?.mb_nick}
+              </span>
+              <span className={"order_user_prof"}>
+                {verifiedMemberData?.mb_type ?? "USER"}
+              </span>
             </Box>
             <div
               style={{
@@ -130,7 +136,9 @@ export function OrdersPage(props: any) {
               <div style={{ display: "flex" }}>
                 <LocationOnIcon />
               </div>
-              <div className={"spec_address_txt"}>Tashkent, Yakkasaroy</div>
+              <div className={"spec_address_txt"}>
+                {verifiedMemberData?.mb_address ?? "manzil kiritilmagan"}
+              </div>
             </Box>
           </Box>
           <Box className={"order_info_box"} marginTop={"15px"}>
