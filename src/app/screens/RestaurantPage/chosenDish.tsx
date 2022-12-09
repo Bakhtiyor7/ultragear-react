@@ -56,7 +56,7 @@ const chosenRestaurantRetriever = createSelector(
 
 const chosen_list = Array.from(Array(3).keys());
 
-export function ChosenDish() {
+export function ChosenDish(props: any) {
   // INITIALIZATIONS
   const { setChosenProduct, setChosenRestaurant } = actionDispatch(
     useDispatch()
@@ -214,8 +214,11 @@ export function ChosenDish() {
               <Button
                 variant="contained"
                 style={{ color: "#FFFFFF", background: "#1976D2" }}
+                onClick={() => {
+                  props.onAdd(chosenProduct);
+                }}
               >
-                SAVATGA QO'SHISH
+                Savatga qo'shish
               </Button>
             </div>
           </Box>
