@@ -30,7 +30,8 @@ import {
   setChosenRestaurant,
   setRandomRestaurants,
   setTargetProducts,
-} from "./slice";
+} from "../../screens/RestaurantPage/slice";
+
 import { ProductSearchObj } from "../../../types/others";
 import ProductApiService from "../../apiServices/productApiService";
 import { Product } from "../../../types/product";
