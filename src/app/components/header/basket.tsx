@@ -8,13 +8,18 @@ import React from "react";
 import { CartItem } from "../../../types/others";
 import { serverApi } from "../../../lib/config";
 import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import assert from "assert";
+import { Definer } from "../../../lib/Definer";
+import OrderApiService from "../../apiServices/orderApiService";
+import { useHistory } from "react-router-dom";
 
 export default function Basket(props: any) {
   /** INITIALIZATIONS **/
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const { cartItems, onAdd, onRemove, onDelete } = props;
+  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
   const itemsPrice = cartItems.reduce(
     (a: any, c: CartItem) => a + c.price * c.quantity,
     0
@@ -32,6 +37,14 @@ export default function Basket(props: any) {
 
   const processOrderHandler = async () => {
     try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      const order = new OrderApiService();
+      await order.createOrder(cartItems);
+
+      onDeleteAll();
+      handleClose();
+
+      history.push("/orders");
     } catch (err: any) {
       console.log(err);
       sweetErrorHandling(err).then();
