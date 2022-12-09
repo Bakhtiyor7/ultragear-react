@@ -101,12 +101,17 @@ export function OneRestaurant() {
       .then((data) => setRandomRestaurants(data))
       .catch((err) => console.log(err));
 
+    restaurantService
+      .getChosenRestaurant(chosenRestaurantId)
+      .then((data) => setChosenRestaurant(data))
+      .catch((err) => console.log(err));
+
     const productService = new ProductApiService();
     productService
       .getTargetProducts(targetProductSearchObject)
       .then((data) => setTargetProducts(data))
       .catch((err) => console.log(err));
-  }, [targetProductSearchObject, productRebuild]);
+  }, [chosenRestaurantId, targetProductSearchObject, productRebuild]);
   /** HANDLERS */
   const chosenRestaurantHandler = (id: string) => {
     setChosenRestaurantId(id);
@@ -124,6 +129,9 @@ export function OneRestaurant() {
     targetProductSearchObject.page = 1;
     targetProductSearchObject.order = order;
     setTargetProductSearchObject({ ...targetProductSearchObject });
+  };
+  const chosenDishHandler = (id: string) => {
+    history.push(`/restaurant/dish/${id}`);
   };
 
   const targetLikeProduct = async (e: any) => {
@@ -308,7 +316,11 @@ export function OneRestaurant() {
                     : product.product_size + "size";
 
                 return (
-                  <Box className={"dish_box"} key={product._id}>
+                  <Box
+                    className={"dish_box"}
+                    key={product._id}
+                    onClick={() => chosenDishHandler(product._id)}
+                  >
                     <Box
                       className="dish_img"
                       sx={{
@@ -434,12 +446,12 @@ export function OneRestaurant() {
           <Box
             className={"about_left"}
             sx={{
-              backgroundImage: `url(http://45.13.132.208:3003/uploads/members/d04f2ff1-02cb-4191-b65b-7d6bdfa87681.jpeg)`,
+              backgroundImage: `url(${serverApi}/${chosenRestaurant?.mb_image})`,
             }}
           >
             <div className={"about_left_desc"}>
-              <span>Burak</span>
-              <p>Shahrimizdagi eng ajoyib va ko'rkam restoran</p>
+              <span>{chosenRestaurant?.mb_nick}</span>
+              <p>{chosenRestaurant?.mb_description}</p>
             </div>
           </Box>
           <Box className={"about_right"}>
