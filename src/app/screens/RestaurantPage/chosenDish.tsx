@@ -178,7 +178,7 @@ export function ChosenDish() {
                   <CheckBox
                     {...label}
                     icon={<FavoriteBorder />}
-                    checkedIcon={<Favorite style={{ color: "white" }} />}
+                    checkedIcon={<Favorite style={{ color: "red" }} />}
                     id={chosenProduct?._id}
                     onClick={targetLikeProduct}
                     checked={

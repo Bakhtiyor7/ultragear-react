@@ -29,6 +29,7 @@ import {
 import { Definer } from "../lib/Definer";
 import MemberApiService from "./apiServices/memberApiService";
 import "../app/apiServices/verify";
+import { CartItem } from "../types/others";
 
 function App() {
   //** INITIALIZATIONS */
@@ -42,6 +43,8 @@ function App() {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
+  const [cartItems, setCartItems] = useState<CartItem[]>();
 
   useEffect(() => {
     console.log("==== useEffect: App ====");

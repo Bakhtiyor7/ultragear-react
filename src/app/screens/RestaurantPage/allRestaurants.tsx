@@ -182,6 +182,9 @@ export function AllRestaurants() {
                           transform: "translateY(50%)",
                           color: "rgba(0,0,0,.4)",
                         }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
                       >
                         <Favorite
                           onClick={(e) => targetLikeHandler(e, ele._id)}

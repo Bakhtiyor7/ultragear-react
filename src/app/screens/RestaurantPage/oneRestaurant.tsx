@@ -317,7 +317,11 @@ export function OneRestaurant() {
                     : product.product_size + "size";
 
                 return (
-                  <Box className={"dish_box"} key={product._id}>
+                  <Box
+                    className={"dish_box"}
+                    key={product._id}
+                    onClick={() => chosenDishHandler(product._id)}
+                  >
                     <Box
                       className="dish_img"
                       sx={{
@@ -328,6 +332,9 @@ export function OneRestaurant() {
                       <Button
                         className={"like_view_btn"}
                         style={{ left: "36px" }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
                       >
                         <Badge
                           badgeContent={product.product_likes}
@@ -351,11 +358,17 @@ export function OneRestaurant() {
                         <img
                           src={"/icons/shopping_cart.svg"}
                           style={{ display: "flex" }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
                         />
                       </Button>
                       <Button
                         className={"like_view_btn"}
                         style={{ right: "36px" }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
                       >
                         <Badge
                           badgeContent={product.product_views}
