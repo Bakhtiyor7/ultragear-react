@@ -317,11 +317,7 @@ export function OneRestaurant() {
                     : product.product_size + "size";
 
                 return (
-                  <Box
-                    className={"dish_box"}
-                    key={product._id}
-                    onClick={() => chosenDishHandler(product._id)}
-                  >
+                  <Box className={"dish_box"} key={product._id}>
                     <Box
                       className="dish_img"
                       sx={{
