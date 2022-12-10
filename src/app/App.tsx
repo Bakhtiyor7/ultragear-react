@@ -59,7 +59,7 @@ function App() {
     if (member_data) {
       member_data.mb_image = member_data.mb_image
         ? `${serverApi}/${member_data.mb_image}`
-        : "/auth/default_user.svg";
+        : "/auth/profile.svg";
       setverifiedMemberData(member_data);
     }
   }, [signUpOpen, loginOpen]); // ikkalasidan biri ishga tushganda useEffect qayta ishga tushib oladi
