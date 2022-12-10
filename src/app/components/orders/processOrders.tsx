@@ -33,7 +33,7 @@ export default function ProcessOrders(props: any) {
   const finishOrderHandler = async (event: any) => {
     try {
       const order_id = event.target.value;
-      const data = { order_id: order_id, order_status: "DELETED" };
+      const data = { order_id: order_id, order_status: "FINISHED" };
 
       if (!localStorage.getItem("member_data")) {
         sweetFailureProvider("Please Login first!", true);
