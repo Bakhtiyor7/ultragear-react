@@ -12,7 +12,7 @@ export const store = configureStore({
     homePage: HomePageReducer,
     restaurantPage: RestaurantPageReducer,
     ordersPage: OrdersPageReducer,
-    commuintyPage: CommunityPageReducer,
+    communityPage: CommunityPageReducer,
   },
 });
 

@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { Box, Container, Link, Stack } from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import Checkbox from "@mui/material/Checkbox";
+import moment from "moment";
+import { BoArticle } from "../../../types/boArticle";
+import { serverApi } from "../../../lib/config";
 
 export function TargetArticles(props: any) {
   return (
     <Stack>
-      {props.targetBoArticles?.map((article: any, index: string) => {
-        const art_image_url = "/community/article_img.svg";
+      {props.targetBoArticles?.map((article: BoArticle) => {
+        const art_image_url = article?.art_image
+          ? `${serverApi}/${article.art_image}`
+          : "/community/article_img.svg";
         return (
           <Link
             className={"all_article_box"}
@@ -25,7 +31,9 @@ export function TargetArticles(props: any) {
                   width={"35px"}
                   style={{ borderRadius: "50%", backgroundSize: "cover" }}
                 />
-                <span className={"all_article_author_user"}>Leo</span>
+                <span className={"all_article_author_user"}>
+                  {article?.member_data.mb_nick}
+                </span>
               </Box>
               <Box
                 style={{
@@ -34,15 +42,16 @@ export function TargetArticles(props: any) {
                   marginTop: "15px",
                 }}
               >
-                <span className={"all_article_title"}>celebrity</span>
+                <span className={"all_article_title"}>{article?.bo_id}</span>
                 <span className={"all_article_desc"}>
-                  zo'r top musiqa boshlandi
+                  {article?.art_subject}
                 </span>
               </Box>
               <Box>
                 <Box
                   className={"article_share"}
                   style={{ width: "100%", height: "auto" }}
+                  sx={{ mb: "10px" }}
                 >
                   <Box
                     className={"article_share_main"}
@@ -53,11 +62,21 @@ export function TargetArticles(props: any) {
                       alignItems: "center",
                     }}
                   >
-                    <span style={{ marginRight: "18px" }}>22-11-05 13:00</span>
-                    <FavoriteBorderIcon style={{ marginRight: "18px" }} />
-                    <span style={{ marginRight: "18px" }}>0</span>
-                    <VisibilityIcon />
-                    <span style={{ marginLeft: "18px" }}>1</span>
+                    <span>{moment().format("YY-MM-DD HH:mm")}</span>
+                    <Checkbox
+                      sx={{ ml: "40px" }}
+                      icon={<FavoriteBorder />}
+                      checkedIcon={<Favorite style={{ color: "red" }} />}
+                      id={article?._id}
+                      /**@ts-ignore */
+                    />
+                    <span style={{ marginRight: "18px" }}>
+                      {article?.art_likes}
+                    </span>
+                    <RemoveRedEyeIcon />
+                    <span style={{ marginRight: "18px" }}>
+                      {article?.art_views}
+                    </span>
                   </Box>
                 </Box>
               </Box>
