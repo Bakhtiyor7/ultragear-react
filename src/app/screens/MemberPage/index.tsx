@@ -5,7 +5,8 @@ import { VisitOtherPage } from "./VisitOtherPage";
 import { VisitMyPage } from "./VisitMyPage";
 import "../../../css/my_page.css";
 
-export function MemberPage() {
+export function MemberPage(props: any) {
+  const { verifiedMemberData } = props;
   let member = useRouteMatch();
   console.log(member);
 
@@ -13,10 +14,10 @@ export function MemberPage() {
     <div className="restaurant_page">
       <Switch>
         <Route path={`${member.path}/other`}>
-          <VisitOtherPage />
+          <VisitOtherPage verifiedMemberDat={verifiedMemberData} />
         </Route>
         <Route path={`${member.path}`}>
-          <VisitMyPage />
+          <VisitMyPage verifiedMemberDat={verifiedMemberData} />
         </Route>
       </Switch>
     </div>
