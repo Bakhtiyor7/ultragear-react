@@ -50,7 +50,11 @@ export function MemberPosts(props: any) {
           ? `${serverApi}/${article.art_image}`
           : "/community/article_img.svg";
         return (
-          <Stack className={"all_article_box"} sx={{ cursor: "pointer" }}>
+          <Stack
+            className={"all_article_box"}
+            sx={{ cursor: "pointer" }}
+            onClick={() => renderChosenArticleHandler(article?._id)}
+          >
             <Box
               className={"all_article_img"}
               sx={{
