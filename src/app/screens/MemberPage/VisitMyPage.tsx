@@ -106,7 +106,7 @@ export function VisitMyPage(props: any) {
       .getChosenMember(verifiedMemberData?._id)
       .then((data) => setChosenMember(data))
       .catch((err) => console.log(err));
-  }, [memberArticleSearchObj, articleRebuild]);
+  }, [memberArticleSearchObj, articleRebuild, followRebuild]);
 
   /** HANDLERS **/
   const handleChange = (event: any, newValue: string) => {
@@ -184,8 +184,8 @@ export function VisitMyPage(props: any) {
                   <Box className={"menu_content"}>
                     <MemberFollowers
                       actions_enabled={true}
-                      mb_id={props.verifiedMemberData?._id}
                       setFollowRebuild={setFollowRebuild}
+                      mb_id={props.verifiedMemberData?._id}
                       followRebuild={followRebuild}
                     />
                   </Box>

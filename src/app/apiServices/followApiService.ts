@@ -14,7 +14,6 @@ class FollowApiService {
   public async getMemberFollowers(data: FollowSearchObj): Promise<Follower[]> {
     try {
       const url = `/follow/followers?page=${data.page}&limit=${data.limit}&mb_id=${data.mb_id}`;
-
       const result = await axios.get(this.path + url, {
         withCredentials: true,
       });

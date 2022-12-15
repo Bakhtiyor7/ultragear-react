@@ -67,7 +67,7 @@ export function MemberFollowing(props: any) {
       assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
 
       const followService = new FollowApiService();
-      await followService.subscribe(id);
+      await followService.unsubscribe(id);
 
       await sweetTopSmallSuccessAlert("unsubscribed successfully", 700, false);
       setFollowRebuild(!followRebuild);
@@ -118,7 +118,7 @@ export function MemberFollowing(props: any) {
                   />
                 }
                 className={"follow_cancel_btn"}
-                onClick={(e) => unsubscribeHandler(e, following?.subscriber_id)}
+                onClick={(e) => unsubscribeHandler(e, following?.follow_id)}
               >
                 Bekor Qilish
               </Button>
