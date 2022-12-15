@@ -245,7 +245,7 @@ export function VisitMyPage(props: any) {
                       <img
                         src={
                           chosenMember?.mb_type === "RESTAURANT"
-                            ? "icons/restaurant.svg"
+                            ? "icons/restaurant.png"
                             : "/icons/user_icon.svg"
                         }
                       />
