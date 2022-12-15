@@ -21,5 +21,11 @@ export interface Following {
   subscriber_id: string;
   createdAt: Date;
   updatedAt: Date;
-  subscriber_member_data: Member;
+  follow_member_data: Member;
+}
+
+export interface FollowSearchObj {
+  page: number;
+  limit: number;
+  mb_id: string;
 }

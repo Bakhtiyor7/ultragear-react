@@ -10,7 +10,7 @@ const initialState: MemberPageState = {
 };
 
 const MemberPageSlice = createSlice({
-  name: "memberPaqe",
+  name: "memberPage",
   initialState,
   reducers: {
     setChosenMember: (state, action) => {
