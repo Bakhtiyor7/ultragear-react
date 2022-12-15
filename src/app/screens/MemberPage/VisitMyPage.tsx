@@ -42,6 +42,7 @@ import {
 } from "../../../lib/sweetAlert";
 import CommunityApiService from "../../apiServices/communityApiService";
 import MemberApiService from "../../apiServices/memberApiService";
+import { serverApi } from "../../../lib/config";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -238,7 +239,11 @@ export function VisitMyPage(props: any) {
                 >
                   <div className={"order_user_img"}>
                     <img
-                      src={"/auth/default_user.svg"}
+                      src={
+                        chosenMember?.mb_image
+                          ? `${serverApi}/${chosenMember.mb_image}`
+                          : "/auth/profile.svg"
+                      }
                       className={"order_user_avatar"}
                     />
                     <div className={"order_user_icon_box"}>
