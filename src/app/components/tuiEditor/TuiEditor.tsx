@@ -54,7 +54,8 @@ export const TuiEditor = (props: any) => {
           </Typography>
           <TextField
             id="filled-basic"
-            label="filled"
+            label="Mavzu"
+            variant="filled"
             style={{ width: "300px", background: "white" }}
           />
         </Box>
@@ -63,10 +64,11 @@ export const TuiEditor = (props: any) => {
       <Editor
         /*@ts-ignore*/
         ref={editorRef}
+        initialValue="Type here"
         placeholder="Type here"
         previewStyle="vertical"
         height="640px"
-        initialEditType="markdown"
+        initialEditType="wysiwyg"
         toolbarItems={[
           ["heading", "bold", "italic", "strike"],
           ["image", "table", "link"],
