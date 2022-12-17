@@ -1,5 +1,11 @@
-import React, { useState } from "react";
-import { Box, Container, Stack } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Container,
+  Pagination,
+  PaginationItem,
+  Stack,
+} from "@mui/material";
 import Button from "@mui/material/Button";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
@@ -13,6 +19,8 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { TViewer } from "../../components/tuiEditor/TViewer";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 //REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
@@ -23,12 +31,22 @@ import {
   setChosenMemberBoArticles,
   setChosenSingleBoArticle,
 } from "./slice";
-import { BoArticle } from "../../../types/boArticle";
+import { BoArticle, SearchMemberArticlesObj } from "../../../types/boArticle";
 import {
   retrieveChosenMember,
   retrieveChosenSingleBoArticle,
   retrieveChosenMemberBoArticles,
 } from "./selector";
+import { useHistory } from "react-router-dom";
+import CommunityApiService from "../../apiServices/communityApiService";
+import MemberApiService from "../../apiServices/memberApiService";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
+import assert from "assert";
+import FollowApiService from "../../apiServices/followApiService";
+import { Definer } from "../../../lib/Definer";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -61,6 +79,8 @@ const chosenSingleBoArticleRetriever = createSelector(
 
 export function VisitOtherPage(props: any) {
   /** INITIALIZATIONS **/
+  const history = useHistory();
+  const { verifiedMemberData, chosen_mb_id, chosen_art_id } = props;
   const {
     setChosenMember,
     setChosenMemberBoArticles,
@@ -71,11 +91,100 @@ export function VisitOtherPage(props: any) {
     chosenMemberBoArticlesRetriever
   );
   const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
-  const [value, setValue] = useState("5");
+  const [value, setValue] = useState("1");
+  const [memberArticleSearchObj, setMemberArticleSearchObj] =
+    useState<SearchMemberArticlesObj>({
+      mb_id: chosen_mb_id,
+      page: 1,
+      limit: 5,
+    });
+  const [articleRebuild, setArticleRebuild] = useState<Date>(new Date());
+  const [followRebuild, setFollowRebuild] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (chosen_mb_id === verifiedMemberData?._id) {
+      history.push("/member-page"); // agar o'zimiz bo'lsak my page ga jo'nat
+    }
+
+    const communityService = new CommunityApiService();
+    if (chosen_art_id) {
+      communityService
+        .getChosenArticle(chosen_art_id)
+        .then((data) => {
+          setChosenSingleBoArticle(data);
+          setValue("4");
+        })
+        .catch((err) => console.log(err));
+    }
+    communityService
+      .getMemberCommunityArticles(memberArticleSearchObj)
+      .then((data) => setChosenMemberBoArticles(data))
+      .catch((err) => console.log(err));
+  }, [memberArticleSearchObj, chosen_mb_id, articleRebuild]);
+
+  useEffect(() => {
+    if (chosen_mb_id === verifiedMemberData?._id) {
+      history.push("/member-page");
+    }
+
+    const memberService = new MemberApiService();
+    memberService
+      .getChosenMember(memberArticleSearchObj.mb_id)
+      .then((data) => setChosenMember(data))
+      .catch((err) => console.log(err));
+  }, [verifiedMemberData, chosen_mb_id, followRebuild]);
 
   /** HANDLERS **/
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
+  };
+  const renderChosenArticleHandler = async (art_id: string) => {
+    try {
+      const communityService = new CommunityApiService();
+      communityService
+        .getChosenArticle(art_id)
+        .then((data) => {
+          setChosenSingleBoArticle(data);
+          setValue("4");
+        })
+        .catch((err) => console.log(err));
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+  const handlePaginationChange = (event: any, value: number) => {
+    memberArticleSearchObj.page = value;
+    setMemberArticleSearchObj({ ...memberArticleSearchObj });
+  };
+
+  const subscribeHandler = async (e: any) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+
+      const followService = new FollowApiService();
+      await followService.subscribe(e.target.value);
+
+      await sweetTopSmallSuccessAlert("subscribed successfully", 700, false);
+      setFollowRebuild(!followRebuild);
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+  const unsubscribeHandler = async (e: any) => {
+    try {
+      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+
+      const followService = new FollowApiService();
+      await followService.unsubscribe(e.target.value);
+
+      await sweetTopSmallSuccessAlert("unsubscribed successfully", 700, false);
+      setFollowRebuild(!followRebuild);
+    } catch (err: any) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
   };
 
   return (
@@ -88,26 +197,68 @@ export function VisitOtherPage(props: any) {
                 <TabPanel value={"1"}>
                   <Box className={"menu_name"}>Maqolalar</Box>
                   <Box className={"menu_content"}>
-                    <MemberPosts />
+                    <MemberPosts
+                      chosenMemberBoArticles={chosenMemberBoArticles}
+                      renderChosenArticleHandler={renderChosenArticleHandler}
+                      setArticleRebuild={setArticleRebuild}
+                    />
+                    <Stack
+                      sx={{ my: "40px" }}
+                      direction="row"
+                      alignItems="center"
+                      justifyContent="center"
+                    >
+                      <Box className={"bottom_box"}>
+                        <Pagination
+                          count={
+                            memberArticleSearchObj.page >= 3
+                              ? memberArticleSearchObj.page + 1
+                              : 3
+                          }
+                          page={memberArticleSearchObj.page}
+                          renderItem={(item) => (
+                            <PaginationItem
+                              components={{
+                                previous: ArrowBackIcon,
+                                next: ArrowForwardIcon,
+                              }}
+                              {...item}
+                              color={"secondary"}
+                            />
+                          )}
+                          onChange={handlePaginationChange}
+                        />
+                      </Box>
+                    </Stack>
                   </Box>
                 </TabPanel>
                 <TabPanel value={"2"}>
                   <Box className={"menu_name"}>Followers</Box>
                   <Box className={"menu_content"}>
-                    <MemberFollowers actions_enabled={false} />
+                    <MemberFollowers
+                      actions_enabled={false}
+                      followRebuild={followRebuild}
+                      setFollowRebuild={setFollowRebuild}
+                      mb_id={chosen_mb_id}
+                    />
                   </Box>
                 </TabPanel>
                 <TabPanel value={"3"}>
                   <Box className={"menu_name"}>Following</Box>
                   <Box className={"menu_content"}>
-                    <MemberFollowing actions_enabled={false} />
+                    <MemberFollowing
+                      actions_enabled={false}
+                      followRebuild={followRebuild}
+                      setFollowRebuild={setFollowRebuild}
+                      mb_id={chosen_mb_id}
+                    />
                   </Box>
                 </TabPanel>
 
                 <TabPanel value={"4"}>
                   <Box className={"menu_name"}>Tanlangan Maqola</Box>
                   <Box className={"menu_content"}>
-                    <TViewer text={`<h3>Hello</h3>`} />
+                    <TViewer chosenSingleBoArticle={chosenSingleBoArticle} />
                   </Box>
                 </TabPanel>
               </Box>
@@ -129,8 +280,12 @@ export function VisitOtherPage(props: any) {
                       <img src={"/icons/user_icon.svg"} />
                     </div>
                   </div>
-                  <span className={"order_user_name"}>Akhatov Bakhtiyor</span>
-                  <span className={"order_user_prof"}>USER</span>
+                  <span className={"order_user_name"}>
+                    {chosenMember?.mb_nick}
+                  </span>
+                  <span className={"order_user_prof"}>
+                    {chosenMember?.mb_type}
+                  </span>
                 </Box>
                 <Box className={"user_media_box"}>
                   <FacebookIcon />
@@ -139,10 +294,17 @@ export function VisitOtherPage(props: any) {
                   <YouTubeIcon />
                 </Box>
                 <Box className={"user_media_box"}>
-                  <p className={"follows"}>Followers: 3</p>
-                  <p className={"follows"}>Followings: 2</p>
+                  <p className={"follows"}>
+                    Followers: {chosenMember?.mb_subscriber_cnt}{" "}
+                  </p>
+                  <p className={"follows"}>
+                    Followings: {chosenMember?.mb_follow_cnt}
+                  </p>
                 </Box>
-                <p className={"user_desc"}>this is my bio</p>
+                <p className={"user_desc"}>
+                  {chosenMember?.mb_description ??
+                    "qo'shimcha ma'lumot kiritilmagan"}
+                </p>
 
                 <Box
                   display={"flex"}
@@ -153,14 +315,17 @@ export function VisitOtherPage(props: any) {
                     onChange={handleChange}
                     aria-label="lab API tabs example"
                   >
-                    {true ? (
+                    {chosenMember?.me_followed &&
+                    chosenMember.me_followed[0]?.my_following ? (
                       <Tab
                         style={{ flexDirection: "column" }}
                         value={"4"}
                         component={(e) => (
                           <Button
+                            value={chosenMember?._id}
                             variant={"contained"}
                             style={{ backgroundColor: "#f70909b8" }}
+                            onClick={unsubscribeHandler}
                           >
                             BEKOR QILISH
                           </Button>
@@ -172,9 +337,10 @@ export function VisitOtherPage(props: any) {
                         value={"4"}
                         component={(e) => (
                           <Button
+                            value={chosenMember?._id}
                             variant={"contained"}
                             style={{ backgroundColor: "#30945e" }}
-                            // @ts-ignore
+                            onClick={subscribeHandler}
                           >
                             FOLLOW QILISH
                           </Button>

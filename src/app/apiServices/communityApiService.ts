@@ -41,6 +41,7 @@ class CommunityApiService {
       const result = await axios.get(this.path + url, {
         withCredentials: true,
       });
+      console.log("data:::", data);
 
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state != "fail", result?.data?.message);

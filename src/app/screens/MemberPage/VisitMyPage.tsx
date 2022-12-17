@@ -185,9 +185,9 @@ export function VisitMyPage(props: any) {
                   <Box className={"menu_content"}>
                     <MemberFollowers
                       actions_enabled={true}
+                      followRebuild={followRebuild}
                       setFollowRebuild={setFollowRebuild}
                       mb_id={props.verifiedMemberData?._id}
-                      followRebuild={followRebuild}
                     />
                   </Box>
                 </TabPanel>
