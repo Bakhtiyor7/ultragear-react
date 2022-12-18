@@ -15,6 +15,7 @@ import { Container } from "@mui/system";
 import { NavLink } from "react-router-dom";
 import { Logout } from "@mui/icons-material";
 import Basket from "./basket";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 export function NavbarHome(props: any) {
   return (
@@ -44,7 +45,7 @@ export function NavbarHome(props: any) {
                 Oshxona
               </NavLink>
             </Box>
-            {props.verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
+            {verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/orders" activeClassName="underline">
                   Buyurtma
@@ -57,7 +58,7 @@ export function NavbarHome(props: any) {
               </NavLink>
             </Box>
 
-            {props.verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
+            {verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/member-page" activeClassName="underline">
                   Sahifam
@@ -80,7 +81,7 @@ export function NavbarHome(props: any) {
               setOrderRebuild={props.setOrderRebuild}
             />
 
-            {!props.verifiedMemberData ? (
+            {!verifiedMemberData ? (
               <Box>
                 <Button
                   variant="contained"
@@ -93,7 +94,7 @@ export function NavbarHome(props: any) {
             ) : (
               <img
                 style={{ width: "48px", height: "48px", borderRadius: "24px" }}
-                src={props.verifiedMemberData.mb_image}
+                src={verifiedMemberData.mb_image}
                 onClick={props.handleLogoutClick}
               />
             )}
@@ -155,7 +156,7 @@ export function NavbarHome(props: any) {
             </Box>
             <Box className="timeline_service">24 soat xizmatingizdamiz.</Box>
             <Box sx={{ mt: "90px" }}>
-              {!props.verifiedMemberData ? ( // login buganda signup button yoqoladi
+              {!verifiedMemberData ? ( // login buganda signup button yoqoladi
                 <Button
                   variant="contained"
                   style={{
