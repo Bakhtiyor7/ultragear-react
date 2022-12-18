@@ -90,7 +90,7 @@ export function VisitMyPage(props: any) {
   const [articleRebuild, setArticleRebuild] = useState<Date>(new Date());
   const [followRebuild, setFollowRebuild] = useState<boolean>(false);
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
-    useState<SearchMemberArticlesObj>({ mb_id: "none", page: 1, limit: 5 });
+    useState<SearchMemberArticlesObj>({ mb_id: "none", page: 1, limit: 4 });
 
   useEffect(() => {
     if (!localStorage.getItem("member_data")) {
@@ -207,7 +207,10 @@ export function VisitMyPage(props: any) {
                 <TabPanel value={"4"}>
                   <Box className={"menu_name"}>Maqola yozish</Box>
                   <Box className={"write_content"}>
-                    <TuiEditor />
+                    <TuiEditor
+                      setValue={setValue}
+                      setArticleRebuild={setArticleRebuild}
+                    />
                   </Box>
                 </TabPanel>
 
