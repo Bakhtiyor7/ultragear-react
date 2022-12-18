@@ -33,7 +33,7 @@ export default function PausedOrders(props: any) {
       const order_id = event.target.value;
       const data = { order_id: order_id, order_status: "DELETED" };
 
-      if (verifiedMemberData) {
+      if (!verifiedMemberData) {
         sweetFailureProvider("Please Login first!", true);
       }
 
