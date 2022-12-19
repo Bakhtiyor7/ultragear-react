@@ -45,7 +45,7 @@ export function TargetArticles(props: any) {
           <Link
             className={"all_article_box"}
             sx={{ textDecoration: "none" }}
-            href={""}
+            href={`/member-page/other?mb_id=${article.mb_id}&art_id=${article._id}`}
           >
             <Box
               className={"all_article_img"}
@@ -107,7 +107,7 @@ export function TargetArticles(props: any) {
                       {article?.art_likes}
                     </span>
                     <RemoveRedEyeIcon />
-                    <span style={{ marginRight: "18px" }}>
+                    <span style={{ marginLeft: "18px" }}>
                       {article?.art_views}
                     </span>
                   </Box>
