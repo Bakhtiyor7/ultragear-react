@@ -40,7 +40,7 @@ export function TargetArticles(props: any) {
       {props.targetBoArticles?.map((article: BoArticle) => {
         const art_image_url = article?.art_image
           ? `${serverApi}/${article.art_image}`
-          : "/community/article_img.svg";
+          : "/community/default_article.svg";
         return (
           <Link
             className={"all_article_box"}
