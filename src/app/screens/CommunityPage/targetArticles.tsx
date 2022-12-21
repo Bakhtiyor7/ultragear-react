@@ -54,7 +54,11 @@ export function TargetArticles(props: any) {
             <Box className={"all_article_container"}>
               <Box alignItems={"center"} display={"flex"}>
                 <img
-                  src="/auth/profile.svg"
+                  src={
+                    article?.member_data?.mb_image
+                      ? `${serverApi}/${article.member_data.mb_image}`
+                      : "/auth/default_user.svg"
+                  }
                   width={"35px"}
                   style={{ borderRadius: "50%", backgroundSize: "cover" }}
                 />
