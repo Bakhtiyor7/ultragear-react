@@ -27,10 +27,10 @@ import { serverApi } from "../../../lib/config";
 //REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { retrieveTargetRestaurants } from "../../screens/RestaurantPage/selector";
-import { Restaurant } from "../../../types/user";
+import { retrieveTargetBrands } from "./selector";
+import { Brand } from "../../../types/user";
 import { Dispatch } from "@reduxjs/toolkit";
-import RestaurantApiService from "../../apiServices/restaurantApiService";
+import BrandApiService from "../../apiServices/brandApiService";
 import { SearchObj } from "../../../types/others";
 import assert from "assert";
 import MemberApiService from "../../apiServices/memberApiService";
@@ -39,29 +39,28 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
-import { setTargetRestaurants } from "./slice";
+import { setTargetBrands } from "./slice";
 import { useHistory } from "react-router-dom";
 import { verifiedMemberData } from "../../apiServices/verify";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
-  setTargetRestaurants: (data: Restaurant[]) =>
-    dispatch(setTargetRestaurants(data)),
+  setTargetBrands: (data: Brand[]) => dispatch(setTargetBrands(data)),
 });
 
 /** REDUX SELECTOR */
-const targetRestaurantsRetriever = createSelector(
-  retrieveTargetRestaurants,
-  (targetRestaurants) => ({
-    targetRestaurants,
+const targetBrandsRetriever = createSelector(
+  retrieveTargetBrands,
+  (targetBrands) => ({
+    targetBrands,
   })
 );
 
-export function AllRestaurants() {
+export function AllBrands() {
   /** INITIALIZATIONS */
   const history = useHistory();
-  const { setTargetRestaurants } = actionDispatch(useDispatch());
-  const { targetRestaurants } = useSelector(targetRestaurantsRetriever);
+  const { setTargetBrands } = actionDispatch(useDispatch());
+  const { targetBrands } = useSelector(targetBrandsRetriever);
 
   const [targetSearchObject, setTargetSearchObject] = useState<SearchObj>({
     page: 1,
@@ -72,17 +71,17 @@ export function AllRestaurants() {
   const refs: any = useRef([]);
 
   useEffect(() => {
-    // TODO: retrieve target restaurants data
-    const restaurantService = new RestaurantApiService();
-    restaurantService
-      .getRestaurants(targetSearchObject)
-      .then((data) => setTargetRestaurants(data))
+    // TODO: retrieve target brands data
+    const brandService = new BrandApiService();
+    brandService
+      .getBrands(targetSearchObject)
+      .then((data) => setTargetBrands(data))
       .catch((err) => console.log(err));
   }, [targetSearchObject]);
 
   /** HANDLERS */
-  const chosenRestaurantHandler = (id: string) => {
-    history.push(`/restaurant/${id}`);
+  const chosenBrandHandler = (id: string) => {
+    history.push(`/brand/${id}`);
   };
   const searchHandler = (category: string) => {
     targetSearchObject.page = 1;
@@ -151,11 +150,11 @@ export function AllRestaurants() {
           </Box>
           <Stack className={"all_res_box"}>
             <CssVarsProvider>
-              {targetRestaurants.map((ele: Restaurant) => {
+              {targetBrands.map((ele: Brand) => {
                 const image_path = `${serverApi}/${ele.mb_image}`;
                 return (
                   <Card
-                    onClick={() => chosenRestaurantHandler(ele._id)}
+                    onClick={() => chosenBrandHandler(ele._id)}
                     variant="outlined"
                     sx={{
                       minHeight: 410,

@@ -22,28 +22,25 @@ import { useHistory } from "react-router-dom";
 //REDUX
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { retrieveTopRestaurants } from "../../screens/Homepage/selector";
-import { Restaurant } from "../../../types/user";
+import { retrieveTopBrands } from "./selector";
+import { Brand } from "../../../types/user";
 import { verifiedMemberData } from "../../apiServices/verify";
 
 //** REDUX SELECTOR */
-const topRestaurantsRetriever = createSelector(
-  retrieveTopRestaurants,
-  (topRestaurants) => ({
-    topRestaurants,
-  })
-);
+const topBrandsRetriever = createSelector(retrieveTopBrands, (topBrands) => ({
+  topBrands,
+}));
 
-export function TopRestaurants() {
+export function TopBrands() {
   /** INITIALIZATIONS */
   const history = useHistory();
-  const { topRestaurants } = useSelector(topRestaurantsRetriever);
-  console.log("topRestaurants:", topRestaurants);
+  const { topBrands } = useSelector(topBrandsRetriever);
+  console.log("topBrands:", topBrands);
   const refs: any = useRef([]);
 
   /** HANDLERS */
-  const chosenRestaurantHandler = (id: string) => {
-    history.push(`/restaurant/${id}`);
+  const chosenBrandHandler = (id: string) => {
+    history.push(`/brand/${id}`);
   };
 
   const targetLikeTop = async (e: any, id: string) => {
@@ -81,13 +78,13 @@ export function TopRestaurants() {
         >
           <Box className="category_title">TOP Restauranlar</Box>
           <Stack sx={{ mt: "43px" }} flexDirection={"row"} m={"16px"}>
-            {topRestaurants.map((ele: Restaurant) => {
+            {topBrands.map((ele: Brand) => {
               const image_path = `${serverApi}/${ele.mb_image}`;
               return (
                 <CssVarsProvider key={ele._id}>
                   {" "}
                   <Card
-                    onClick={() => chosenRestaurantHandler(ele._id)}
+                    onClick={() => chosenBrandHandler(ele._id)}
                     sx={{
                       minHeight: 430,
                       minWidth: 325,
@@ -184,7 +181,7 @@ export function TopRestaurants() {
                         <div
                           ref={(element) => {
                             refs.current[ele._id] = element;
-                          }} // har bir restaurantni mongodb dagi "id"si bilan birga referenceni ichiga save qilib beradi
+                          }} // har bir brendni mongodb dagi "id"si bilan birga referenceni ichiga save qilib beradi
                         >
                           {ele.mb_likes}
                         </div>

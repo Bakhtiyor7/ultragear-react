@@ -18,8 +18,8 @@ import { SentimentNeutral } from "@mui/icons-material";
 //REDUX
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { retrieveBestRestaurants } from "../../screens/Homepage/selector";
-import { Restaurant } from "../../../types/user";
+import { retrieveBestBrands } from "./selector";
+import { Brand } from "../../../types/user";
 import { serverApi } from "../../../lib/config";
 import assert from "assert";
 import MemberApiService from "../../apiServices/memberApiService";
@@ -32,25 +32,25 @@ import { useHistory } from "react-router-dom";
 import { verifiedMemberData } from "../../apiServices/verify";
 
 //** REDUX SELECTOR */
-const bestRestaurantsRetriever = createSelector(
-  retrieveBestRestaurants,
-  (bestRestaurants) => ({
-    bestRestaurants,
+const bestBrandsRetriever = createSelector(
+  retrieveBestBrands,
+  (bestBrands) => ({
+    bestBrands,
   })
 );
 
-export function BestRestaurants() {
+export function BestBrands() {
   // INITIALIZATIONS
-  const { bestRestaurants } = useSelector(bestRestaurantsRetriever);
+  const { bestBrands } = useSelector(bestBrandsRetriever);
   const history = useHistory();
   const refs: any = useRef([]);
 
   /** HANDLERS */
 
-  const chosenRestaurantHandler = (id: string) => {
-    history?.push(`/restaurant/${id}`);
+  const chosenBrandHandler = (id: string) => {
+    history?.push(`/brand/${id}`);
   };
-  const goRestaurantHandler = () => history?.push("/restaurant");
+  const goBrandHandler = () => history?.push("/brand");
   const targetLikeBest = async (e: any, id: string) => {
     try {
       assert.ok(verifiedMemberData, Definer.auth_err1);
@@ -91,12 +91,12 @@ export function BestRestaurants() {
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className="category_title">Zo'r Restoranlar</Box>
           <Stack sx={{ mt: "43px" }} flexDirection={"row"}>
-            {bestRestaurants.map((ele: Restaurant) => {
+            {bestBrands.map((ele: Brand) => {
               const image_path = `${serverApi}/${ele.mb_image}`;
               return (
                 <CssVarsProvider>
                   <Card
-                    onClick={() => chosenRestaurantHandler(ele._id)}
+                    onClick={() => chosenBrandHandler(ele._id)}
                     variant="outlined"
                     sx={{
                       minHeight: 483,
@@ -217,7 +217,7 @@ export function BestRestaurants() {
           >
             <Button
               style={{ background: "#1976D2", color: "#FFFFFF" }}
-              onClick={goRestaurantHandler}
+              onClick={goBrandHandler}
             >
               Barchasini Ko'rish
             </Button>

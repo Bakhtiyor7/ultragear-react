@@ -1,25 +1,23 @@
-import React, { useEffect, useState } from "react";
+import { Logout } from "@mui/icons-material";
 import {
   Badge,
   Box,
   Button,
-  Icon,
+  Container,
   IconButton,
-  ListItem,
   ListItemIcon,
   Menu,
   MenuItem,
   Stack,
 } from "@mui/material";
-import { Container } from "@mui/system";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import { Logout } from "@mui/icons-material";
-import Basket from "./basket";
 import { verifiedMemberData } from "../../apiServices/verify";
+import Basket from "./basket";
 
-export function NavbarHome(props: any) {
+export function NavbarBrand(props: any) {
   return (
-    <div className="format home_navbar">
+    <div className="format_restaurant home_navbar">
       <Container>
         <Stack
           flexDirection={"row"}
@@ -27,7 +25,7 @@ export function NavbarHome(props: any) {
           justifyContent={"space-between"}
         >
           <Box>
-            <NavLink to="/" style={{ color: "white" }}>
+            <NavLink to="/" style={{ color: "#000" }} onClick={props.setPath}>
               <h2>OASIS</h2>
             </NavLink>
           </Box>
@@ -66,6 +64,7 @@ export function NavbarHome(props: any) {
             alignItems={"center"}
           >
             <Basket
+              backgroundColor={"#000"}
               cartItems={props.cartItems}
               onAdd={props.onAdd}
               onRemove={props.onRemove}
@@ -78,7 +77,7 @@ export function NavbarHome(props: any) {
                 <Button
                   variant="text"
                   style={{
-                    color: "#ffffff",
+                    color: "#000",
                   }}
                   onClick={props.handleLoginOpen}
                 >
@@ -134,39 +133,12 @@ export function NavbarHome(props: any) {
                 Logout
               </MenuItem>
             </Menu>
-            <Box>
-              {!verifiedMemberData ? ( // login buganda signup button yoqoladi
-                <Button
-                  variant="text"
-                  style={{
-                    color: "#ffffff",
-                  }}
-                  onClick={props.handleSignupOpen}
-                >
-                  Signup
-                </Button>
-              ) : null}
-            </Box>
           </Stack>
         </Stack>
         <Stack className="head_information">
-          <Stack
-            justifyContent={"column"}
-            style={{ marginTop: "86px", marginLeft: "24px" }}
-          >
-            <Box className="define_restaurant">
-              Find the right device for yourself
-            </Box>
-            <Box className="timeline_service">
-              Hub for unlimited devices of your desire. <br />
-              Find out by checking among all of our brands
-            </Box>
-          </Stack>
-          <Box className="big_img">
-            <Button className="shop_btn" size={"large"} variant="contained">
-              SHOP NOW
-            </Button>
-          </Box>
+          <img className="mouse_img" src="/icons/mouse.png" />
+          <Box className="head_text">THE MOST POPULAR BRANDS</Box>
+          <img className="keyboard_img" src="/icons/keyboard.png" />
         </Stack>
       </Container>
     </div>

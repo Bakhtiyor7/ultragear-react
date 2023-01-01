@@ -5,15 +5,15 @@ import "../css/navbar.css";
 import "../css/footer.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import { RestaurantPage } from "./screens/RestaurantPage";
+import { BrandPage } from "./screens/BrandPage";
 import { CommunityPage } from "./screens/CommunityPage";
 import { OrdersPage } from "./screens/OrdersPage";
 import { MemberPage } from "./screens/MemberPage";
 import { HelpPage } from "./screens/HelpPage";
 import { LoginPage } from "./screens/LoginPage/indes";
 import { HomePage } from "./screens/Homepage";
-import { NavbarHome } from "./components/header";
-import { NavbarRestaurant } from "./components/header/restaurant";
+import { NavbarHome } from "./components/header/index";
+import { NavbarBrand } from "./components/header/brand";
 import { NavbarOthers } from "./components/header/others";
 import { Footer } from "./components/footer";
 import Car from "./screens/testCar";
@@ -146,8 +146,8 @@ function App() {
           onDeleteAll={onDeleteAll}
           setOrderRebuild={setOrderRebuild}
         />
-      ) : main_path.includes("/restaurant") ? (
-        <NavbarRestaurant
+      ) : main_path.includes("/brand") ? (
+        <NavbarBrand
           setPath={setPath}
           handleLoginOpen={handleLoginOpen}
           handleSignupOpen={handleSignUpOpen}
@@ -182,8 +182,8 @@ function App() {
         />
       )}
       <Switch>
-        <Route path="/restaurant">
-          <RestaurantPage onAdd={onAdd} />
+        <Route path="/brand">
+          <BrandPage onAdd={onAdd} />
         </Route>
         <Route path="/community">
           <CommunityPage />
@@ -221,7 +221,3 @@ function App() {
 }
 
 export default App;
-
-function Home() {
-  return <h2>Home</h2>;
-}

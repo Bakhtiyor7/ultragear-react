@@ -42,7 +42,7 @@ export function BestDishes() {
 
   // HANDLERS
   const chosenDishHandler = (id: string) => {
-    history.push(`/restaurant/dish/${id}`);
+    history.push(`/brand/dish/${id}`);
   };
   return (
     <div className="best_dishes_frame">
@@ -52,10 +52,6 @@ export function BestDishes() {
           <Stack sx={{ mt: "43px" }} flexDirection={"row"}>
             {trendProducts.map((product: Product) => {
               const image_path = `${serverApi}/${product.product_images[0]}`;
-              const size_volume =
-                product.product_collection === "drink"
-                  ? product.product_volume + "l"
-                  : product.product_size + "size";
               return (
                 <Box className="dish_box">
                   <Stack
@@ -64,7 +60,7 @@ export function BestDishes() {
                       backgroundImage: `url(${image_path})`,
                     }}
                   >
-                    <div className={"dish_sale"}>{size_volume}</div>
+                    <div className={"dish_sale"}></div>
                     <div className={"view_btn"}>
                       <div onClick={() => chosenDishHandler(product._id)}>
                         Batfsil Ko'rish

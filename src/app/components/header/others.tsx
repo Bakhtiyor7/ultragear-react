@@ -26,48 +26,70 @@ export function NavbarOthers(props: any) {
           justifyContent={"space-between"}
         >
           <Box>
-            <img src="/icons/papay.svg" alt="papay-pic" />
+            <NavLink to="/" style={{ color: "#fff" }} onClick={props.setPath}>
+              <h2>OASIS</h2>
+            </NavLink>
           </Box>
+          <Stack
+            flexDirection={"row"}
+            alignItems={"center"}
+            justifyContent={"space-evenly"}
+            className="nav_links"
+          >
+            <Box className="hover-line" onClick={props.setPath}>
+              <NavLink
+                to="/brand"
+                activeClassName="underline"
+                style={{
+                  color: "#fff",
+                }}
+              >
+                Brands
+              </NavLink>
+            </Box>
+            <Box className="hover-line" onClick={props.setPath}>
+              <NavLink
+                to="/community"
+                activeClassName="underline"
+                style={{
+                  color: "#fff",
+                }}
+              >
+                Community
+              </NavLink>
+            </Box>
+            {verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink
+                  to="/orders"
+                  activeClassName="underline"
+                  style={{
+                    color: "#fff",
+                  }}
+                >
+                  My Orders
+                </NavLink>
+              </Box>
+            ) : null}
+            <Box className="hover-line" onClick={props.setPath}>
+              <NavLink
+                to="/help"
+                activeClassName="underline"
+                style={{
+                  color: "#fff",
+                }}
+              >
+                Support
+              </NavLink>
+            </Box>
+          </Stack>
           <Stack
             flexDirection={"row"}
             justifyContent="space-evenly"
             alignItems={"center"}
-            className="navbar_links"
           >
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/">Bosh Sahifa</NavLink>
-            </Box>
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/restaurant" activeClassName="underline">
-                Oshxona
-              </NavLink>
-            </Box>
-            {verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
-              <Box className="hover-line" onClick={props.setPath}>
-                <NavLink to="/orders" activeClassName="underline">
-                  Buyurtma
-                </NavLink>
-              </Box>
-            ) : null}
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/community" activeClassName="underline">
-                Jamiyat
-              </NavLink>
-            </Box>
-            {verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
-              <Box className="hover-line" onClick={props.setPath}>
-                <NavLink to="/member-page" activeClassName="underline">
-                  Sahifam
-                </NavLink>
-              </Box>
-            ) : null}
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/help" activeClassName="underline">
-                Yordam
-              </NavLink>
-            </Box>
-
             <Basket
+              backgroundColor={"#000"}
               cartItems={props.cartItems}
               onAdd={props.onAdd}
               onRemove={props.onRemove}
@@ -75,15 +97,16 @@ export function NavbarOthers(props: any) {
               onDeleteAll={props.onDeleteAll}
               setOrderRebuild={props.setOrderRebuild}
             />
-
             {!verifiedMemberData ? (
               <Box>
                 <Button
-                  variant="contained"
-                  style={{ color: "#FFFFFF", background: "#1976D2" }}
+                  variant="text"
+                  style={{
+                    color: "#fff",
+                  }}
                   onClick={props.handleLoginOpen}
                 >
-                  KIRISH
+                  LOGIN
                 </Button>
               </Box>
             ) : (
@@ -93,6 +116,7 @@ export function NavbarOthers(props: any) {
                 onClick={props.handleLogoutClick}
               />
             )}
+
             <Menu
               anchorEl={props.anchorEl}
               open={props.open}
@@ -137,7 +161,6 @@ export function NavbarOthers(props: any) {
           </Stack>
         </Stack>
       </Container>
-      ;
     </div>
   );
 }

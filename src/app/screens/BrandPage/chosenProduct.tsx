@@ -14,16 +14,13 @@ import { useParams } from "react-router-dom";
 //REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import {
-  retrieveChosenProduct,
-  retrieveChosenRestaurant,
-} from "../../screens/RestaurantPage/selector";
-import { Restaurant } from "../../../types/user";
+import { retrieveChosenProduct, retrieveChosenBrand } from "./selector";
+import { Brand } from "../../../types/user";
 import { Dispatch } from "@reduxjs/toolkit";
-import { setChosenProduct, setChosenRestaurant } from "./slice";
+import { setChosenProduct, setChosenBrand } from "./slice";
 import { Product } from "../../../types/product";
 import ProductApiService from "../../apiServices/productApiService";
-import RestaurantApiService from "../../apiServices/restaurantApiService";
+import BrandApiService from "../../apiServices/brandApiService";
 import { serverApi } from "../../../lib/config";
 import assert from "assert";
 import MemberApiService from "../../apiServices/memberApiService";
@@ -37,8 +34,7 @@ import { verifiedMemberData } from "../../apiServices/verify";
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
   setChosenProduct: (data: Product) => dispatch(setChosenProduct(data)),
-  setChosenRestaurant: (data: Restaurant) =>
-    dispatch(setChosenRestaurant(data)),
+  setChosenBrand: (data: Brand) => dispatch(setChosenBrand(data)),
 });
 
 /** REDUX SELECTOR */
@@ -48,10 +44,10 @@ const chosenProductRetriever = createSelector(
     chosenProduct,
   })
 );
-const chosenRestaurantRetriever = createSelector(
-  retrieveChosenRestaurant,
-  (chosenRestaurant) => ({
-    chosenRestaurant,
+const chosenBrandRetriever = createSelector(
+  retrieveChosenBrand,
+  (chosenBrand) => ({
+    chosenBrand,
   })
 );
 
@@ -59,33 +55,29 @@ const chosen_list = Array.from(Array(3).keys());
 
 export function ChosenDish(props: any) {
   // INITIALIZATIONS
-  const { setChosenProduct, setChosenRestaurant } = actionDispatch(
-    useDispatch()
-  );
+  const { setChosenProduct, setChosenBrand } = actionDispatch(useDispatch());
   const { chosenProduct } = useSelector(chosenProductRetriever);
-  const { chosenRestaurant } = useSelector(chosenRestaurantRetriever);
+  const { chosenBrand } = useSelector(chosenBrandRetriever);
   let { dish_id } = useParams<{ dish_id: string }>();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
-  const dishRelatedProcess = async () => {
+  const productRelatedProcess = async () => {
     try {
       const productService = new ProductApiService();
-      const product: Product = await productService.getChosenDish(dish_id);
+      const product: Product = await productService.getChosenProduct(dish_id);
       setChosenProduct(product);
 
-      const restaurantService = new RestaurantApiService();
-      const restaurant = await restaurantService.getChosenRestaurant(
-        product.restaurant_mb_id
-      );
-      setChosenRestaurant(restaurant);
+      const brandService = new BrandApiService();
+      const brand = await brandService.getChosenBrand(product.brand_mb_id);
+      setChosenBrand(brand);
     } catch (err) {
-      console.log(`dishRelatedProcess, ERROR: `, err);
+      console.log(`productRelatedProcess, ERROR: `, err);
     }
   };
 
   useEffect(() => {
-    dishRelatedProcess().then();
+    productRelatedProcess().then();
   }, [productRebuild]);
 
   /** HANDLERS */
@@ -165,7 +157,7 @@ export function ChosenDish(props: any) {
             <strong className={"dish_txt"}>
               {chosenProduct?.product_name}
             </strong>
-            <span className={"resto_name"}>{chosenRestaurant?.mb_nick}</span>
+            <span className={"resto_name"}>{chosenBrand?.mb_nick}</span>
             <Box className={"rating_box"}>
               <Rating name="half-rating" defaultValue={3.5} precision={0.5} />
               <div className="evaluation_box">

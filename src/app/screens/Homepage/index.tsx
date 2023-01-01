@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Container } from "@mui/system";
 import { Statistics } from "./statistics";
-import { TopRestaurants } from "./topRestaurants";
-import { BestRestaurants } from "./bestRestaurants";
+import { TopBrands } from "./topBrands";
+import { BestBrands } from "./bestBrands";
 import { BestDishes } from "./bestDishes";
 import { Advertisements } from "./advertisements";
 import { Events } from "./events";
@@ -13,50 +13,44 @@ import "../../../css/home.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
-import {
-  setBestRestaurants,
-  setTopRestaurants,
-} from "../../screens/Homepage/slice";
-import { retrieveTopRestaurants } from "../../screens/Homepage/selector";
-import { Restaurant } from "../../../types/user";
-import RestaurantApiService from "../../apiServices/restaurantApiService";
+import { setBestBrands, setTopBrands } from "../../screens/Homepage/slice";
+import { retrieveTopBrands } from "../../screens/Homepage/selector";
+import { Brand } from "../../../types/user";
+import BrandApiService from "../../apiServices/brandApiService";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
-  setTopRestaurants: (data: Restaurant[]) => dispatch(setTopRestaurants(data)),
-  setBestRestaurants: (data: Restaurant[]) =>
-    dispatch(setBestRestaurants(data)),
+  setTopBrands: (data: Brand[]) => dispatch(setTopBrands(data)),
+  setBestBrands: (data: Brand[]) => dispatch(setBestBrands(data)),
 });
 
 export function HomePage() {
   // selector: store => data
   // INITIALIZATIONS
-  const { setTopRestaurants, setBestRestaurants } = actionDispatch(
-    useDispatch()
-  );
+  const { setTopBrands, setBestBrands } = actionDispatch(useDispatch());
 
   useEffect(() => {
     // backend data request => data
-    const restaurantService = new RestaurantApiService();
-    restaurantService
-      .getTopRestaurants()
+    const brandService = new BrandApiService();
+    brandService
+      .getTopBrands()
       .then((data) => {
-        setTopRestaurants(data);
+        setTopBrands(data);
       })
       .catch((err) => console.log(err));
 
-    restaurantService
-      .getRestaurants({ page: 1, limit: 4, order: "mb_point" })
+    brandService
+      .getBrands({ page: 1, limit: 4, order: "mb_point" })
       .then((data) => {
-        setBestRestaurants(data);
+        setBestBrands(data);
       })
       .catch((err) => console.log(err));
   }, []);
   return (
     <div className="homepage">
       <Statistics />
-      <TopRestaurants />
-      <BestRestaurants />
+      <TopBrands />
+      <BestBrands />
       <BestDishes />
       <Advertisements />
       <Events />

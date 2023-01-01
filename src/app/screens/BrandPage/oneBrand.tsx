@@ -20,23 +20,19 @@ import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import {
-  retrieveChosenRestaurant,
-  retrieveRandomRestaurants,
+  retrieveChosenBrand,
+  retrieveRandomBrands,
   retrieveTargetProducts,
-} from "../../screens/RestaurantPage/selector";
-import { Restaurant } from "../../../types/user";
+} from "./selector";
+import { Brand } from "../../../types/user";
 import { Dispatch } from "@reduxjs/toolkit";
-import {
-  setChosenRestaurant,
-  setRandomRestaurants,
-  setTargetProducts,
-} from "../../screens/RestaurantPage/slice";
+import { setChosenBrand, setRandomBrands, setTargetProducts } from "./slice";
 
 import { ProductSearchObj } from "../../../types/others";
 import ProductApiService from "../../apiServices/productApiService";
 import { Product } from "../../../types/product";
 import { serverApi } from "../../../lib/config";
-import RestaurantApiService from "../../apiServices/restaurantApiService";
+import BrandApiService from "../../apiServices/brandApiService";
 import assert from "assert";
 import MemberApiService from "../../apiServices/memberApiService";
 import { Definer } from "../../../lib/Definer";
@@ -48,24 +44,22 @@ import { verifiedMemberData } from "../../apiServices/verify";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
-  setRandomRestaurants: (data: Restaurant[]) =>
-    dispatch(setRandomRestaurants(data)),
-  setChosenRestaurant: (data: Restaurant) =>
-    dispatch(setChosenRestaurant(data)),
+  setRandomBrands: (data: Brand[]) => dispatch(setRandomBrands(data)),
+  setChosenBrand: (data: Brand) => dispatch(setChosenBrand(data)),
   setTargetProducts: (data: Product[]) => dispatch(setTargetProducts(data)),
 });
 
 /** REDUX SELECTOR */
-const randomRestaurantsRetriever = createSelector(
-  retrieveRandomRestaurants,
-  (randomRestaurants) => ({
-    randomRestaurants,
+const randomBrandsRetriever = createSelector(
+  retrieveRandomBrands,
+  (randomBrands) => ({
+    randomBrands,
   })
 );
-const chosenRestaurantsRetriever = createSelector(
-  retrieveChosenRestaurant,
-  (chosenRestaurant) => ({
-    chosenRestaurant,
+const chosenBrandRetriever = createSelector(
+  retrieveChosenBrand,
+  (chosenBrand) => ({
+    chosenBrand,
   })
 );
 const targetProductsRetriever = createSelector(
@@ -75,37 +69,37 @@ const targetProductsRetriever = createSelector(
   })
 );
 
-export function OneRestaurant(props: any) {
+export function OneBrand(props: any) {
   /** INITIALIZATIONS */
   const history = useHistory();
-  let { restaurant_id } = useParams<{ restaurant_id: string }>();
-  const { setRandomRestaurants, setChosenRestaurant, setTargetProducts } =
-    actionDispatch(useDispatch());
-  const { randomRestaurants } = useSelector(randomRestaurantsRetriever);
-  const { chosenRestaurant } = useSelector(chosenRestaurantsRetriever);
+  let { brand_id } = useParams<{ brand_id: string }>();
+  const { setRandomBrands, setChosenBrand, setTargetProducts } = actionDispatch(
+    useDispatch()
+  );
+  const { randomBrands } = useSelector(randomBrandsRetriever);
+  const { chosenBrand } = useSelector(chosenBrandRetriever);
   const { targetProducts } = useSelector(targetProductsRetriever);
-  const [chosenRestaurantId, setChosenRestaurantId] =
-    useState<string>(restaurant_id);
+  const [chosenBrandId, setChosenBrandId] = useState<string>(brand_id);
   const [targetProductSearchObject, setTargetProductSearchObject] =
     useState<ProductSearchObj>({
       page: 1,
       limit: 8,
       order: "createdAt",
-      restaurant_mb_id: restaurant_id,
-      product_collection: "dish",
+      brand_mb_id: brand_id,
+      product_collection: "keyboard",
     });
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
   useEffect(() => {
-    const restaurantService = new RestaurantApiService();
-    restaurantService
-      .getRestaurants({ page: 1, limit: 10, order: "random" })
-      .then((data) => setRandomRestaurants(data))
+    const brandService = new BrandApiService();
+    brandService
+      .getBrands({ page: 1, limit: 10, order: "random" })
+      .then((data) => setRandomBrands(data))
       .catch((err) => console.log(err));
 
-    restaurantService
-      .getChosenRestaurant(chosenRestaurantId)
-      .then((data) => setChosenRestaurant(data))
+    brandService
+      .getChosenBrand(chosenBrandId)
+      .then((data) => setChosenBrand(data))
       .catch((err) => console.log(err));
 
     const productService = new ProductApiService();
@@ -113,13 +107,13 @@ export function OneRestaurant(props: any) {
       .getTargetProducts(targetProductSearchObject)
       .then((data) => setTargetProducts(data))
       .catch((err) => console.log(err));
-  }, [chosenRestaurantId, targetProductSearchObject, productRebuild]);
+  }, [chosenBrandId, targetProductSearchObject, productRebuild]);
   /** HANDLERS */
-  const chosenRestaurantHandler = (id: string) => {
-    setChosenRestaurantId(id);
-    targetProductSearchObject.restaurant_mb_id = id;
+  const chosenBrandHandler = (id: string) => {
+    setChosenBrandId(id);
+    targetProductSearchObject.brand_mb_id = id;
     setTargetProductSearchObject({ ...targetProductSearchObject });
-    history.push(`/restaurant/${id}`);
+    history.push(`/brand/${id}`);
   };
 
   const searchCollectionHandler = (collection: string) => {
@@ -133,7 +127,7 @@ export function OneRestaurant(props: any) {
     setTargetProductSearchObject({ ...targetProductSearchObject });
   };
   const chosenDishHandler = (id: string) => {
-    history.push(`/restaurant/dish/${id}`);
+    history.push(`/brand/keyboard/${id}`);
   };
 
   const targetLikeProduct = async (e: any) => {
@@ -203,11 +197,11 @@ export function OneRestaurant(props: any) {
                 prevEl: ".restaurant-prev",
               }}
             >
-              {randomRestaurants.map((ele: Restaurant) => {
+              {randomBrands.map((ele: Brand) => {
                 const image_path = `${serverApi}/${ele.mb_image}`;
                 return (
                   <SwiperSlide
-                    onClick={() => chosenRestaurantHandler(ele._id)}
+                    onClick={() => chosenBrandHandler(ele._id)}
                     style={{ cursor: "pointer" }}
                     key={ele._id}
                     className={"restaurant_avatars"}
@@ -281,30 +275,30 @@ export function OneRestaurant(props: any) {
                 <Button
                   variant={"contained"}
                   color="secondary"
-                  onClick={() => searchCollectionHandler("dessert")}
+                  onClick={() => searchCollectionHandler("earphone")}
                 >
-                  dessert
+                  earphone
                 </Button>
                 <Button
                   variant={"contained"}
                   color="secondary"
-                  onClick={() => searchCollectionHandler("drink")}
+                  onClick={() => searchCollectionHandler("headset")}
                 >
-                  drinks
+                  headset
                 </Button>
                 <Button
                   variant={"contained"}
                   color="secondary"
-                  onClick={() => searchCollectionHandler("salad")}
+                  onClick={() => searchCollectionHandler("mouse")}
                 >
-                  salad
+                  mice
                 </Button>
                 <Button
                   variant={"contained"}
                   color="secondary"
-                  onClick={() => searchCollectionHandler("dish")}
+                  onClick={() => searchCollectionHandler("keyboard")}
                 >
-                  dishes
+                  keyboard
                 </Button>
               </div>
             </Stack>
@@ -312,11 +306,6 @@ export function OneRestaurant(props: any) {
             <Stack className={"dish_wrapper"}>
               {targetProducts.map((product: Product) => {
                 const image_path = `${serverApi}/${product.product_images[0]}`;
-                const size_volume =
-                  product.product_collection === "drink"
-                    ? product.product_volume + "l"
-                    : product.product_size + "size";
-
                 return (
                   <Box
                     className={"dish_box"}
@@ -329,7 +318,7 @@ export function OneRestaurant(props: any) {
                         backgroundImage: `url(${image_path} )`,
                       }}
                     >
-                      <div className={"dish_sale"}>{size_volume}</div>
+                      <div className={"dish_sale"}></div>
                       <Button
                         className={"like_view_btn"}
                         style={{ left: "36px" }}
@@ -460,12 +449,12 @@ export function OneRestaurant(props: any) {
           <Box
             className={"about_left"}
             sx={{
-              backgroundImage: `url(${serverApi}/${chosenRestaurant?.mb_image})`,
+              backgroundImage: `url(${serverApi}/${chosenBrand?.mb_image})`,
             }}
           >
             <div className={"about_left_desc"}>
-              <span>{chosenRestaurant?.mb_nick}</span>
-              <p>{chosenRestaurant?.mb_description}</p>
+              <span>{chosenBrand?.mb_nick}</span>
+              <p>{chosenBrand?.mb_description}</p>
             </div>
           </Box>
           <Box className={"about_right"}>

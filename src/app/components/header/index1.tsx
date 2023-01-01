@@ -17,7 +17,7 @@ import { Logout } from "@mui/icons-material";
 import Basket from "./basket";
 import { verifiedMemberData } from "../../apiServices/verify";
 
-export function NavbarHome(props: any) {
+export function NavbarHome2(props: any) {
   return (
     <div className="format home_navbar">
       <Container>
@@ -27,44 +27,51 @@ export function NavbarHome(props: any) {
           justifyContent={"space-between"}
         >
           <Box>
-            <NavLink to="/" style={{ color: "white" }}>
-              <h2>OASIS</h2>
-            </NavLink>
+            <img src="/icons/papay.svg" alt="papay-pic" />
           </Box>
           <Stack
             flexDirection={"row"}
+            justifyContent="space-evenly"
             alignItems={"center"}
-            justifyContent={"space-evenly"}
             className="navbar_links"
           >
             <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/brand" activeClassName="underline">
-                Brands
+              <NavLink to="/" activeClassName="underline">
+                Bosh Sahifa
               </NavLink>
             </Box>
             <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/community" activeClassName="underline">
-                Community
+              <NavLink to="/restaurant" activeClassName="underline">
+                Oshxona
               </NavLink>
             </Box>
             {verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/orders" activeClassName="underline">
-                  My Orders
+                  Buyurtma
                 </NavLink>
               </Box>
             ) : null}
             <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/help" activeClassName="underline">
-                Support
+              <NavLink to="/community" activeClassName="underline">
+                Jamiyat
               </NavLink>
             </Box>
-          </Stack>
-          <Stack
-            flexDirection={"row"}
-            justifyContent="space-evenly"
-            alignItems={"center"}
-          >
+
+            {verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/member-page" activeClassName="underline">
+                  Sahifam
+                </NavLink>
+              </Box>
+            ) : null}
+
+            <Box className="hover-line" onClick={props.setPath}>
+              <NavLink to="/help" activeClassName="underline">
+                Yordam
+              </NavLink>
+            </Box>
+
             <Basket
               cartItems={props.cartItems}
               onAdd={props.onAdd}
@@ -73,16 +80,15 @@ export function NavbarHome(props: any) {
               onDeleteAll={props.onDeleteAll}
               setOrderRebuild={props.setOrderRebuild}
             />
+
             {!verifiedMemberData ? (
               <Box>
                 <Button
-                  variant="text"
-                  style={{
-                    color: "#ffffff",
-                  }}
+                  variant="contained"
+                  style={{ color: "#FFFFFF", background: "#1976D2" }}
                   onClick={props.handleLoginOpen}
                 >
-                  LOGIN
+                  KIRISH
                 </Button>
               </Box>
             ) : (
@@ -134,39 +140,39 @@ export function NavbarHome(props: any) {
                 Logout
               </MenuItem>
             </Menu>
-            <Box>
-              {!verifiedMemberData ? ( // login buganda signup button yoqoladi
-                <Button
-                  variant="text"
-                  style={{
-                    color: "#ffffff",
-                  }}
-                  onClick={props.handleSignupOpen}
-                >
-                  Signup
-                </Button>
-              ) : null}
-            </Box>
           </Stack>
         </Stack>
-        <Stack className="head_information">
+
+        <Stack className="head_information" justifyContent={"row"}>
           <Stack
             justifyContent={"column"}
             style={{ marginTop: "86px", marginLeft: "24px" }}
           >
-            <Box className="define_restaurant">
-              Find the right device for yourself
+            <Box>
+              <img src="/icons/welcome.svg" />
             </Box>
-            <Box className="timeline_service">
-              Hub for unlimited devices of your desire. <br />
-              Find out by checking among all of our brands
+            <Box className="define_restaurant">
+              The Authentic Restaurant & Cafe
+            </Box>
+            <Box className="timeline_service">24 soat xizmatingizdamiz.</Box>
+            <Box sx={{ mt: "90px" }}>
+              {!verifiedMemberData ? ( // login buganda signup button yoqoladi
+                <Button
+                  variant="contained"
+                  style={{
+                    width: "210px",
+                    height: "60px",
+                    background: "#1976D2",
+                    color: "#FFFFFF",
+                  }}
+                  onClick={props.handleSignupOpen}
+                >
+                  RO'YHATDAN O'TISH
+                </Button>
+              ) : null}
             </Box>
           </Stack>
-          <Box className="big_img">
-            <Button className="shop_btn" size={"large"} variant="contained">
-              SHOP NOW
-            </Button>
-          </Box>
+          <Box className="big_img"></Box>
         </Stack>
       </Container>
     </div>

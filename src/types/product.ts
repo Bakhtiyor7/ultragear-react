@@ -12,13 +12,11 @@ export interface Product {
   product_price: number;
   product_discount: number;
   product_left_cnt: number;
-  product_size: string;
-  product_volume: string;
   product_description: string;
   product_images: string[];
   product_likes: number;
   product_views: number;
-  restaurant_mb_id: string;
+  brand_mb_id: string;
   createdAt: Date;
   updatedAt: Date;
   me_liked: MeLiked[];

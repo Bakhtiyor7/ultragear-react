@@ -13,6 +13,7 @@ class ProductApiService {
   }
 
   async getTargetProducts(data: ProductSearchObj) {
+    console.log("data:::", data);
     try {
       const url = "/products",
         result = await axios.post(this.path + url, data, {
@@ -30,9 +31,9 @@ class ProductApiService {
     }
   }
 
-  async getChosenDish(dish_id: string) {
+  async getChosenProduct(product_id: string) {
     try {
-      const url = `/products/${dish_id}`,
+      const url = `/products/${product_id}`,
         result = await axios.get(this.path + url, {
           withCredentials: true,
         });
