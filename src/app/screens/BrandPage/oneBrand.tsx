@@ -126,8 +126,8 @@ export function OneBrand(props: any) {
     targetProductSearchObject.order = order;
     setTargetProductSearchObject({ ...targetProductSearchObject });
   };
-  const chosenDishHandler = (id: string) => {
-    history.push(`/brand/keyboard/${id}`);
+  const chosenProductHandler = (id: string) => {
+    history.push(`/brand/product/${id}`);
   };
 
   const targetLikeProduct = async (e: any) => {
@@ -310,7 +310,7 @@ export function OneBrand(props: any) {
                   <Box
                     className={"dish_box"}
                     key={product._id}
-                    onClick={() => chosenDishHandler(product._id)}
+                    onClick={() => chosenProductHandler(product._id)}
                   >
                     <Box
                       className="dish_img"
@@ -449,7 +449,7 @@ export function OneBrand(props: any) {
           <Box
             className={"about_left"}
             sx={{
-              backgroundImage: `url(${serverApi}/${chosenBrand?.mb_image})`,
+              backgroundImage: `url(${serverApi}/${chosenBrand?.mb_image[0]})`,
             }}
           >
             <div className={"about_left_desc"}>

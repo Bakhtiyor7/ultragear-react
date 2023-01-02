@@ -12,7 +12,7 @@ export function BrandPage(props: any) {
   return (
     <div className="restaurant_page">
       <Switch>
-        <Route path={`${brand.path}/keyboard/:keyboard_id`}>
+        <Route path={`${brand.path}/products/:product_id`}>
           <ChosenDish onAdd={props.onAdd} />
         </Route>
         <Route path={`${brand.path}/:brand_id`}>
