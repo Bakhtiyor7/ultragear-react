@@ -1,5 +1,5 @@
 .homepage {
-  background: #0b0e11;
+  background: #fff;
 }
 
 .homepage .static_frame {
@@ -52,20 +52,20 @@
   color: #e3c08d;
 }
 
-.homepage .top_restaurant_frame {
+.homepage .top_brand_frame {
   height: 605px;
   width: 100%;
   display: flex;
-  background: #0b0e11;
+  /* background: url(/public/brand/top_background.jpg); */
 }
 
 .homepage .category_title {
-  font-family: "Roboto";
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 36px;
   line-height: 42px;
-  color: #e3c08d;
+  color: #000000;
 }
 
 .homepage .best_restaurant_frame {
@@ -78,14 +78,15 @@
 .homepage .best_dishes_frame {
   margin-top: 72px;
   width: 100%;
-  height: 462px;
+  height: 600px;
   display: flex;
+  background: #ffffff;
 }
 
 .homepage .dish_box {
   margin-right: 26px;
-  width: 273px;
-  height: 376px;
+  width: 300px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,9 +95,8 @@
 .homepage .dish_box .dish_img {
   position: relative;
   width: 273px;
-  height: 275px;
+  height: 300px;
   background-size: cover;
-  border-radius: 0px 50px 0px 0px;
   display: flex;
   flex-direction: column;
 }
@@ -151,37 +151,37 @@
   width: 90%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .homepage .dish_desc .dish_title_text {
   margin-top: 18px;
-  font-family: "Poppins";
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 30px;
 
-  color: #d1d1d1;
+  color: #000000;
 }
 
 .homepage .dish_desc .dish_desc_text {
   margin-top: 15px;
-  font-family: "Poppins";
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
-  font-weight: 600;
-  font-size: 24px;
+  font-weight: 200;
+  font-size: 16px;
   line-height: 36px;
-  color: #e3c08d;
+  color: #000000;
 }
 
 .homepage .ads_restaurant_frame {
   width: 100%;
-  height: 693px;
+  height: 900px;
   display: flex;
+  flex-direction: column;
   overflow: hidden;
-  box-shadow: 0px -62px 60px 20px rgb(217 217 217 / 40%);
-  margin-top: 186px;
+  margin-top: 15px;
   background-color: #956dd3;
 }
 
@@ -189,17 +189,16 @@
   width: 100%;
   background: #0b0e11;
   display: flex;
-  box-shadow: 0px -8px 90px rgb(215 215 255);
-  transform: scale(1.5);
   overflow: hidden;
 }
 
 .homepage .events_frame {
-  margin-top: 45px;
+  margin-top: 10px;
   width: 100%;
   height: 700px;
   display: flex;
   overflow: hidden;
+  background: url(/public/home/events.jpg);
 }
 
 .homepage .events_main {
@@ -378,18 +377,19 @@
   width: 568px;
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .homepage .article_main .article_category {
   display: flex;
   justify-content: center;
-  font-family: "Poppins";
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 29px;
   line-height: 44px;
-  color: #ffffff;
+  color: #000;
 }
 
 .homepage .article_container .article_box {

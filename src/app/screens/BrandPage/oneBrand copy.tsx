@@ -177,6 +177,50 @@ export function OneBrand(props: any) {
           </Stack>
 
           <Stack
+            style={{ width: "100%", display: "flex" }}
+            flexDirection={"row"}
+            sx={{ mt: "35px" }}
+          >
+            <Box className={"prev_btn restaurant-prev"}>
+              <ArrowBackIosNewIcon
+                sx={{ fontSize: 40 }}
+                style={{ color: "white" }}
+              />
+            </Box>
+            <Swiper
+              className={"restaurant_avatars_wrapper"}
+              slidesPerView={7}
+              centeredSlides={false}
+              spaceBetween={30}
+              navigation={{
+                nextEl: ".restaurant-next",
+                prevEl: ".restaurant-prev",
+              }}
+            >
+              {randomBrands.map((ele: Brand) => {
+                const image_path = `${serverApi}/${ele.mb_image}`;
+                return (
+                  <SwiperSlide
+                    onClick={() => chosenBrandHandler(ele._id)}
+                    style={{ cursor: "pointer" }}
+                    key={ele._id}
+                    className={"restaurant_avatars"}
+                  >
+                    <img src={image_path} />
+                    <span>{ele.mb_nick}</span>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            <Box
+              className={"next_btn restaurant-next"}
+              style={{ color: "white" }}
+            >
+              <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
+            </Box>
+          </Stack>
+
+          <Stack
             display={"flex"}
             flexDirection={"row"}
             justifyContent={"flex-end"}
@@ -345,49 +389,6 @@ export function OneBrand(props: any) {
                 );
               })}
             </Stack>
-          </Stack>
-          <Stack
-            style={{ width: "100%", display: "flex" }}
-            flexDirection={"row"}
-            sx={{ mt: "35px" }}
-          >
-            <Box className={"prev_btn restaurant-prev"}>
-              <ArrowBackIosNewIcon
-                sx={{ fontSize: 40 }}
-                style={{ color: "black" }}
-              />
-            </Box>
-            <Swiper
-              className={"restaurant_avatars_wrapper"}
-              slidesPerView={7}
-              centeredSlides={false}
-              spaceBetween={30}
-              navigation={{
-                nextEl: ".restaurant-next",
-                prevEl: ".restaurant-prev",
-              }}
-            >
-              {randomBrands.map((ele: Brand) => {
-                const image_path = `${serverApi}/${ele.mb_image}`;
-                return (
-                  <SwiperSlide
-                    onClick={() => chosenBrandHandler(ele._id)}
-                    style={{ cursor: "pointer" }}
-                    key={ele._id}
-                    className={"restaurant_avatars"}
-                  >
-                    <img src={image_path} />
-                    <span>{ele.mb_nick}</span>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-            <Box
-              className={"next_btn restaurant-next"}
-              style={{ color: "black" }}
-            >
-              <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
-            </Box>
           </Stack>
         </Stack>
       </Container>

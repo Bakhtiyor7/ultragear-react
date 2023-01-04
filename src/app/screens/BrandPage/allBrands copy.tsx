@@ -13,7 +13,6 @@ import {
   Card,
   CardOverflow,
   CssVarsProvider,
-  Divider,
   IconButton,
   Link,
   Typography,
@@ -125,14 +124,11 @@ export function AllBrands() {
       <Container>
         <Stack>
           <Box className={"fill_search_box"}>
-            <Box className={"dropdown"}>
-              <button className="dropbtn">SORT BY:</button>
-              <div className="dropdown-content">
-                <a onClick={() => searchHandler("mb_point")}>Top</a>
-                <a onClick={() => searchHandler("mb_views")}>Most visited</a>
-                <a onClick={() => searchHandler("mb_likes")}>Most liked</a>
-                <a onClick={() => searchHandler("createdAt")}>New</a>
-              </div>
+            <Box className={"fil_box"}>
+              <a onClick={() => searchHandler("mb_point")}>Zo'r</a>
+              <a onClick={() => searchHandler("mb_views")}>Mashhur</a>
+              <a onClick={() => searchHandler("mb_likes")}>Trenddagi</a>
+              <a onClick={() => searchHandler("createdAt")}>Yangi</a>
             </Box>
             <Box className={"search_big_box"}>
               <form className={"search_form"} action={""} method={""}>
@@ -147,7 +143,7 @@ export function AllBrands() {
                   variant="contained"
                   endIcon={<SearchIcon />}
                 >
-                  Search
+                  Izlash
                 </Button>
               </form>
             </Box>
@@ -161,48 +157,110 @@ export function AllBrands() {
                     onClick={() => chosenBrandHandler(ele._id)}
                     variant="outlined"
                     sx={{
+                      minHeight: 410,
                       minWidth: 290,
-                      mr: "30px",
+                      mx: "17px",
+                      my: "20px",
                       cursor: "pointer",
-                      mb: "30px",
                     }}
                   >
                     <CardOverflow>
                       <AspectRatio ratio="1">
-                        <img
-                          src={image_path}
-                          loading="lazy"
-                          alt="brand_image"
-                        />
+                        <img src={image_path} />
                       </AspectRatio>
+                      <IconButton
+                        aria-label="Like minimal photography"
+                        size="md"
+                        variant="solid"
+                        color="neutral"
+                        sx={{
+                          position: "absolute",
+                          zIndex: 2,
+                          borderRadius: "50%",
+                          right: "1rem",
+                          bottom: 0,
+                          transform: "translateY(50%)",
+                          color: "rgba(0,0,0,.4)",
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
+                        <Favorite
+                          onClick={(e) => targetLikeHandler(e, ele._id)}
+                          style={{
+                            fill:
+                              ele?.me_liked && ele?.me_liked[0]?.my_favorite
+                                ? "red"
+                                : "white",
+                          }}
+                        />
+                      </IconButton>
                     </CardOverflow>
                     <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
-                      {ele.mb_nick}
+                      {ele.mb_nick} restaurant
                     </Typography>
-
-                    <Divider />
+                    <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
+                      <Link
+                        href=""
+                        startDecorator={<LocationOnRoundedIcon />}
+                        textColor="neutral.700"
+                      >
+                        {ele.mb_address}
+                      </Link>
+                    </Typography>
+                    <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
+                      <Link
+                        href=""
+                        startDecorator={<CallIcon />}
+                        textColor="neutral.700"
+                      >
+                        {ele.mb_phone}
+                      </Link>
+                    </Typography>
                     <CardOverflow
-                      variant="soft"
                       sx={{
                         display: "flex",
                         gap: 1.5,
                         py: 1.5,
-                        px: "var(--Card-padding)",
+                        px: "var(--Card--padding",
+                        borderTop: "1px solid",
+                        borderColor: "neutral.outlineBorder",
                         bgcolor: "background.level1",
                       }}
                     >
                       <Typography
                         level="body3"
-                        sx={{ fontWeight: "md", color: "text.secondary" }}
+                        sx={{
+                          fontweight: "md",
+                          color: "text.secondary",
+                          alignItems: "center",
+                          display: "flex",
+                        }}
                       >
-                        {ele.mb_views} views
+                        {ele.mb_views}
+                        <VisibilityIcon
+                          sx={{ fontSize: 20, marginLeft: "5px" }}
+                        />
                       </Typography>
-                      <Divider orientation="vertical" />
+                      <Box sx={{ width: 2, bgcolor: "divider" }} />
                       <Typography
                         level="body3"
-                        sx={{ fontWeight: "md", color: "text.secondary" }}
+                        sx={{
+                          fontweight: "md",
+                          color: "text.secondary",
+                          alignItems: "center",
+                          display: "flex",
+                        }}
                       >
-                        {ele.mb_subscriber_cnt} subscribers
+                        <div
+                          ref={(element) => {
+                            refs.current[ele._id] = element;
+                          }}
+                        >
+                          {ele.mb_likes}
+                        </div>
+                        <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
                       </Typography>
                     </CardOverflow>
                   </Card>
@@ -212,6 +270,7 @@ export function AllBrands() {
           </Stack>
 
           <Stack className={"bottom_box"}>
+            <img className={"line_img"} src={"/restaurant/line.svg"} />
             <Pagination
               count={
                 targetSearchObject.page >= 3 ? targetSearchObject.page + 1 : 3
@@ -229,6 +288,7 @@ export function AllBrands() {
               )}
               onChange={handlePaginationChange}
             />
+            <img className={"line_img_two"} src={"/restaurant/line_two.svg"} />
           </Stack>
         </Stack>
       </Container>

@@ -7,36 +7,36 @@ SwiperCore.use([Autoplay, Navigation, Pagination]);
 export function Events() {
   const events_list = [
     {
-      title: "Boyin Foodga marhamat",
-      desc: "Yangicha Uslubda Yangicha Ta'm",
-      author: "Al-Majid",
+      title: "Logi Sales 🥳",
+      desc: "70% off during Black Friday, Start shopping now!",
+      author: "Logitech",
       date: "2022/09/12",
       location: "Toshkent, Yakkasaroy",
-      img: "/restaurant/boyin-food.jpeg",
+      img: "/home/black_friday.jpg",
     },
     {
-      title: "Katta chegirma endi Bellissimoda",
-      desc: "Faqat 25-31-iyun kunlari antiqa Pizza uchun tashrif buyuring",
-      author: "Bellissimo",
-      date: "2022/09/12",
+      title: "MSI TOKYO GAME SHOW",
+      desc: "Attend in our Game Show in Tokyo and win prizes. Order tickets through www.msi.com",
+      author: "MSI",
+      date: "2022/12/30",
       location: "Toshkent, Chilonzor",
-      img: "/restaurant/belissimo.jpg",
+      img: "/home/msi_event.jpeg",
     },
     {
-      title: "Hali his qilmagan tamni his qilmoqchimisiz?",
-      desc: "Merhaba promokodi orqali 50% chegirmaga ega bo'ling",
-      author: "Chicken House",
-      date: "2022/09/12",
+      title: "Special event from Razer",
+      desc: "Buy any product by Razer and get 80% off coupons for your next choice",
+      author: "Razer",
+      date: "2023/01/15 - 2023/02/15",
       location: "Toshkent, Uchtepa",
-      img: "/restaurant/merhaba.jpg",
+      img: "/home/razer_event.jpeg",
     },
     {
-      title: "Yangicha yondashuv endi O'zbekistonda",
-      desc: "O'zbekistondagi eng yirik ulgurji bozor",
-      author: "Food city",
-      date: "2022/09/12",
+      title: "Samsung Galaxy buds sale",
+      desc: "Get Samsung Galaxy buds 30% off deal only with us",
+      author: "Oasis",
+      date: "2023/01/10 - 2022/02/10",
       location: "Toshkent, Chilonzor",
-      img: "/restaurant/food_city.jpg",
+      img: "/home/samsung_event.webp",
     },
   ];
 
@@ -44,9 +44,9 @@ export function Events() {
     <div className="events_frame">
       <Container sx={{ overflow: "hidden" }}>
         <Stack className={"events_main"}>
-          <Box className={"events_text"}>
-            <span className={"category_title"}>Hodisalar</span>
-          </Box>
+          {/* <Box className={"events_text"}>
+            <span className={"category_title"}>Events</span>
+          </Box> */}
           <Box className={"prev_next_frame"}>
             <img
               src={"/icons/arrow-right.svg"}
@@ -112,13 +112,13 @@ export function Events() {
                             />
                             {value.date}
                           </div>
-                          <div className={"bott_info_main"}>
+                          {/* <div className={"bott_info_main"}>
                             <img
                               src={"/icons/location.svg"}
                               style={{ marginRight: "10px" }}
                             />
                             {value.location}
-                          </div>
+                          </div> */}
                         </div>
                       </Box>
                     </Box>

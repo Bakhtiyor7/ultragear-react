@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
-import { setTrendProducts } from "../../screens/Homepage/slice";
+import { setTrendProducts } from "./slice";
 import { Product } from "../../../types/product";
 import ProductApiService from "../../apiServices/productApiService";
 import { retrieveTrendProducts } from "./selector";
@@ -25,7 +25,7 @@ const trendProductsRetriever = createSelector(
   })
 );
 
-export function BestDishes() {
+export function BestProducts() {
   // INITIALIZATIONS
   const history = useHistory();
   const { setTrendProducts } = actionDispatch(useDispatch());
@@ -41,14 +41,14 @@ export function BestDishes() {
   }, []);
 
   // HANDLERS
-  const chosenDishHandler = (id: string) => {
-    history.push(`/brand/dish/${id}`);
+  const chosenProductHandler = (id: string) => {
+    history.push(`/brand/keyboard/${id}`);
   };
   return (
     <div className="best_dishes_frame">
       <Container>
         <Stack flexDirection={"column"} alignItems={"center"}>
-          <Box className="category_title">Trenddagi Ovqatlar</Box>
+          <Box className="category_title">Bestsellers</Box>
           <Stack sx={{ mt: "43px" }} flexDirection={"row"}>
             {trendProducts.map((product: Product) => {
               const image_path = `${serverApi}/${product.product_images[0]}`;
@@ -58,26 +58,16 @@ export function BestDishes() {
                     className="dish_img"
                     sx={{
                       backgroundImage: `url(${image_path})`,
+                      cursor: "pointer",
                     }}
-                  >
-                    <div className={"dish_sale"}></div>
-                    <div className={"view_btn"}>
-                      <div onClick={() => chosenDishHandler(product._id)}>
-                        Batfsil Ko'rish
-                      </div>
-                      <img
-                        src={"/icons/arrow_right.svg"}
-                        style={{ marginLeft: "9px" }}
-                      />
-                    </div>
-                  </Stack>
+                    onClick={() => chosenProductHandler(product._id)}
+                  ></Stack>
                   <Stack className={"dish_desc"}>
                     <span className={"dish_title_text"}>
                       {product.product_name}
                     </span>
                     <span className={"dish_desc_text"}>
-                      <MonetizationOn />
-                      {product.product_price}
+                      ${product.product_price}
                     </span>
                   </Stack>
                 </Box>

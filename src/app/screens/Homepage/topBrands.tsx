@@ -1,14 +1,13 @@
 import { Box, Container, Stack } from "@mui/material";
 import React, { useRef } from "react";
-import Card from "@mui/joy/Card";
-import CardCover from "@mui/joy/CardCover";
-import CardContent from "@mui/joy/CardContent";
-import Typography from "@mui/joy/Typography";
-import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import { CssVarsProvider } from "@mui/joy/styles";
 import { CardOverflow, IconButton } from "@mui/joy";
 import { Favorite, RefreshSharp, Visibility } from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import AspectRatio from "@mui/joy/AspectRatio";
+import Card from "@mui/joy/Card";
+import Divider from "@mui/joy/Divider";
+import Typography from "@mui/joy/Typography";
 // OTHERS
 import { serverApi } from "../../../lib/config";
 import assert from "assert";
@@ -69,15 +68,20 @@ export function TopBrands() {
     }
   };
   return (
-    <div className="top_restaurant_frame">
+    <div className="top_brand_frame">
       <Container>
         <Stack
           flexDirection={"column"}
           alignItems={"center"}
           sx={{ mt: "45px" }}
         >
-          <Box className="category_title">TOP Restauranlar</Box>
-          <Stack sx={{ mt: "43px" }} flexDirection={"row"} m={"16px"}>
+          <Box className="category_title">Our Featured Brands</Box>
+          <Stack
+            sx={{ mt: "43px" }}
+            flexDirection={"row"}
+            justifyContent={"space-between"}
+            m={"16px"}
+          >
             {topBrands.map((ele: Brand) => {
               const image_path = `${serverApi}/${ele.mb_image}`;
               return (
@@ -85,107 +89,50 @@ export function TopBrands() {
                   {" "}
                   <Card
                     onClick={() => chosenBrandHandler(ele._id)}
+                    variant="outlined"
                     sx={{
-                      minHeight: 430,
-                      minWidth: 325,
-                      mr: "35px",
+                      minWidth: 320,
+                      width: 320,
+                      mr: "20px",
                       cursor: "pointer",
                     }}
                   >
-                    <CardCover>
-                      <img src={image_path} loading="lazy" alt="" />
-                    </CardCover>
-                    <CardCover
-                      sx={{
-                        background:
-                          "linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 200px), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 300px)",
-                      }}
-                    />
-                    <CardContent sx={{ justifyContent: "flex-end" }}>
-                      <Typography
-                        level="h2"
-                        fontSize="lg"
-                        textColor="#fff"
-                        mb={1}
-                      >
-                        {ele.mb_nick}
-                      </Typography>
-                      <Typography
-                        startDecorator={<LocationOnRoundedIcon />}
-                        textColor="neutral.300"
-                      >
-                        {ele.mb_address}
-                      </Typography>
-                    </CardContent>
+                    <CardOverflow>
+                      <AspectRatio ratio="1">
+                        <img
+                          src={image_path}
+                          loading="lazy"
+                          alt="brand_image"
+                        />
+                      </AspectRatio>
+                    </CardOverflow>
+                    <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
+                      {ele.mb_nick}
+                    </Typography>
+
+                    <Divider />
                     <CardOverflow
+                      variant="soft"
                       sx={{
                         display: "flex",
                         gap: 1.5,
                         py: 1.5,
-                        px: "var(--Card--padding",
-                        borderTop: "1px solid",
+                        px: "var(--Card-padding)",
+                        bgcolor: "background.level1",
                       }}
                     >
-                      <IconButton
-                        aria-label="Add to favorite"
-                        size="md"
-                        variant="solid"
-                        color="neutral"
-                        sx={{
-                          position: "absolute",
-                          zIndex: 2,
-                          borderRadius: "50%",
-                          right: "1rem",
-                          bottom: 45,
-                          transform: "translateY(50%)",
-                          color: "rgba(0, 0, 0,.4)",
-                        }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }} // faqat like buttonni mantig'i amalga oshishi uchun
-                      >
-                        <Favorite
-                          onClick={(e) => targetLikeTop(e, ele._id)} // restoranga like bosish mantig'i
-                          style={{
-                            fill:
-                              ele?.me_liked && ele?.me_liked[0]?.my_favorite
-                                ? "red"
-                                : "white",
-                          }}
-                        />
-                      </IconButton>
                       <Typography
                         level="body3"
-                        sx={{
-                          fontweight: "md",
-                          color: "neutral.300",
-                          alignItems: "center",
-                          display: "flex",
-                        }}
+                        sx={{ fontWeight: "md", color: "text.secondary" }}
                       >
-                        {ele.mb_views}
-                        <VisibilityIcon
-                          sx={{ fontSize: 20, marginLeft: "5px" }}
-                        />
+                        {ele.mb_views} views
                       </Typography>
-                      <Box sx={{ width: 2, bgcolor: "divider" }} />
+                      <Divider orientation="vertical" />
                       <Typography
                         level="body3"
-                        sx={{
-                          fontweight: "md",
-                          color: "neutral.300",
-                          alignItems: "center",
-                          display: "flex",
-                        }}
+                        sx={{ fontWeight: "md", color: "text.secondary" }}
                       >
-                        <div
-                          ref={(element) => {
-                            refs.current[ele._id] = element;
-                          }} // har bir brendni mongodb dagi "id"si bilan birga referenceni ichiga save qilib beradi
-                        >
-                          {ele.mb_likes}
-                        </div>
-                        <Favorite sx={{ fontSize: 20, marginLeft: "5px" }} />
+                        {ele.mb_subscriber_cnt} subscribers
                       </Typography>
                     </CardOverflow>
                   </Card>

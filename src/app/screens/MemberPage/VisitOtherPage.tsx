@@ -48,6 +48,7 @@ import assert from "assert";
 import FollowApiService from "../../apiServices/followApiService";
 import { Definer } from "../../../lib/Definer";
 import { verifiedMemberData } from "../../apiServices/verify";
+import { serverApi } from "../../../lib/config";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -274,7 +275,11 @@ export function VisitOtherPage(props: any) {
                 >
                   <div className={"order_user_img"}>
                     <img
-                      src={"/auth/default_user.svg"}
+                      src={
+                        chosenMember?.mb_image
+                          ? `${serverApi}/${chosenMember?.mb_image}`
+                          : "/auth/default_user.svg"
+                      }
                       className={"order_user_avatar"}
                     />
                     <div className={"order_user_icon_box"}>

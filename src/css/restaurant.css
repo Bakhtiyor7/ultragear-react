@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   height: auto;
-  background: #0b0e11;
+  background: #fff;
 }
 
 .restaurant_page .all_restaurant .fill_search_box {
@@ -27,21 +27,79 @@
   justify-content: space-between;
 }
 
-.restaurant_page .all_restaurant .fil_box a {
+/* .restaurant_page .all_restaurant .fill_search_box .fil_box a {
   position: relative;
-  font-family: "Quicksand";
+  font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 20px;
   line-height: 25px;
+  color: black;
+} */
 
-  color: #ffffff;
+/* Dropdown Button */
+.restaurant_page .all_restaurant .dropbtn {
+  background-color: #fff;
+  color: #000;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid #000;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.restaurant_page .all_restaurant .fil_box a {
-  overflow: hidden;
+.restaurant_page .all_restaurant .dropbtn img {
+  height: 50px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.restaurant_page .all_restaurant .dropdown {
+  position: relative;
   display: inline-block;
 }
+
+/* Dropdown Content (Hidden by Default) */
+.restaurant_page .all_restaurant .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.restaurant_page .all_restaurant .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+/* Change color of dropdown links on hover */
+.restaurant_page .all_restaurant .dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.restaurant_page .all_restaurant .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.restaurant_page .all_restaurant .dropdown:hover .dropbtn {
+  background-color: #616164;
+  color: #000;
+}
+
+/* .restaurant_page .all_restaurant .fil_box a {
+  overflow: hidden;
+  display: inline-block;
+} */
 
 .restaurant_page .all_restaurant .fil_box a::before,
 .fil_box a::after {
@@ -96,16 +154,17 @@
 
 .restaurant_page .all_restaurant .search_big_box {
   position: relative;
-  width: 360px;
+  width: 500px;
   height: 33px;
 
   display: flex;
   align-items: center;
   background: #fffcfc;
-  border: 1px solid #ffffff;
+  border: 1px solid #434242;
   box-shadow: 0px 4px 4px rgba(213, 213, 213, 0.25);
-  border-radius: 18.5px;
+  border-radius: 10.5px;
   box-sizing: border-box;
+  margin-right: 400px;
 }
 
 .restaurant_page .all_restaurant .search_form {
@@ -141,8 +200,8 @@
   height: 33px;
   display: flex;
 
-  border-radius: 18.5px;
-  background: #f8be69;
+  border-radius: 10.5px;
+  background: #434242;
 }
 
 .restaurant_page .all_restaurant .all_res_box {
@@ -213,7 +272,7 @@
   margin-top: 100px;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: center;
   align-items: center;
   justify-content: space-between;
 }
@@ -223,7 +282,7 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  background: #0b0e11;
+  background: #fff;
 }
 
 .restaurant_page .single_restaurant .avatar_big_box {

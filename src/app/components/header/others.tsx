@@ -71,6 +71,13 @@ export function NavbarOthers(props: any) {
                 </NavLink>
               </Box>
             ) : null}
+            {verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/member-page" activeClassName="underline">
+                  My Page
+                </NavLink>
+              </Box>
+            ) : null}
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink
                 to="/help"

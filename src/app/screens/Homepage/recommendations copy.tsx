@@ -100,10 +100,10 @@ export function Recommendations() {
           alignItems={"center"}
           sx={{ mt: "45px" }}
         >
-          <Box className="category_title">Customer Impressions</Box>
+          <Box className="category_title">Tavsiya qilingan maqolalar</Box>
           <Stack className={"article_main"} flexDirection={"row"}>
-            <Box className={"article_category"}>Most viewed</Box>
             <Stack className={"article_container"}>
+              <Box className={"article_category"}>Ko'p ko'rilgan</Box>
               {bestBoArticles?.map((article: BoArticle) => {
                 const art_image_url = article?.art_image
                   ? `${serverApi}/${article?.art_image}`

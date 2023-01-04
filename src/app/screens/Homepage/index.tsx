@@ -3,7 +3,7 @@ import { Container } from "@mui/system";
 import { Statistics } from "./statistics";
 import { TopBrands } from "./topBrands";
 import { BestBrands } from "./bestBrands";
-import { BestDishes } from "./bestDishes";
+import { BestProducts } from "./bestProducts";
 import { Advertisements } from "./advertisements";
 import { Events } from "./events";
 import { Recommendations } from "./recommendations";
@@ -48,13 +48,11 @@ export function HomePage() {
   }, []);
   return (
     <div className="homepage">
-      <Statistics />
-      <TopBrands />
-      <BestBrands />
-      <BestDishes />
-      <Advertisements />
       <Events />
-      <Recommendations />
+      <BestProducts />
+      <Advertisements />
+      <TopBrands />
+      {/* <Recommendations /> */}
     </div>
   );
 }

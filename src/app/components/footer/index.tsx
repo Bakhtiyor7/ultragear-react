@@ -8,9 +8,7 @@ export function Footer() {
         <Stack className="main_footer_container">
           <Stack flexDirection={"row"} style={{ height: "242px" }}>
             <Stack className="info" flexDirection={"column"}>
-              <Box>
-                <img src={"/papay_footer.svg"} />
-              </Box>
+              <Box className="footer_title">OASIS</Box>
               <Box className="main_text">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor Sed ut perspiciatis unde omnis iste
@@ -31,32 +29,30 @@ export function Footer() {
               </Stack>
             </Stack>
             <Stack className="parts">
-              <Box className="part_subject">Bo'limlar</Box>
+              <Box className="part_subject">Sections</Box>
               <Box className="divider"></Box>
-              <Box className="targets">
-                Bosh Sahifa Oshxonalar Jamiyat Yordam
-              </Box>
+              <Box className="targets">Homepage Brands Communtiy, Help</Box>
             </Stack>
             <Stack className="find_us">
-              <Box className="find"> Bizni top</Box>
+              <Box className="find">Find Us</Box>
               <Box className="divider"></Box>
               <Stack className="details" sx={{ mt: "19.36px" }}>
-                <Box className="detail_first">L.</Box>
-                <Box className="detail_second">Uzbekistan</Box>
+                <Box className="detail_first">L:</Box>
+                <Box className="detail_second">Texas, USA</Box>
               </Stack>
               <Stack className="details" sx={{ mt: "42px" }}>
-                <Box className="detail_first">P.</Box>
-                <Box className="detail_second">+998 - 99 266 25 62</Box>
+                <Box className="detail_first">P:</Box>
+                <Box className="detail_second">+8210-4190-7877</Box>
               </Stack>
               <Stack className="details" sx={{ mt: "9px" }}>
-                <Box className="detail_first">E.</Box>
-                <Box className="detail_second">Papays@restaurant.com</Box>
+                <Box className="detail_first">E:</Box>
+                <Box className="detail_second">Oasis-tech.com</Box>
               </Stack>
             </Stack>
           </Stack>
           <Box className="liner" sx={{ mt: "86px" }}></Box>
           <Box className="copyrights">
-            Copyright Papays 2022, All right reserved.
+            Copyright Oasis 2022, All right reserved.
           </Box>
         </Stack>
       </Container>
