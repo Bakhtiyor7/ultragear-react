@@ -127,7 +127,7 @@ export function OneBrand(props: any) {
     setTargetProductSearchObject({ ...targetProductSearchObject });
   };
   const chosenProductHandler = (id: string) => {
-    history.push(`/brand/keyboard/${id}`);
+    history.push(`/brand/product/${id}`);
   };
 
   const targetLikeProduct = async (e: any) => {

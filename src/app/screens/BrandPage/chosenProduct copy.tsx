@@ -51,7 +51,9 @@ const chosenBrandRetriever = createSelector(
   })
 );
 
-export function ChosenProduct(props: any) {
+const chosen_list = Array.from(Array(3).keys());
+
+export function ChosenDish(props: any) {
   // INITIALIZATIONS
   const { setChosenProduct, setChosenBrand } = actionDispatch(useDispatch());
   const { chosenProduct } = useSelector(chosenProductRetriever);
@@ -153,14 +155,9 @@ export function ChosenProduct(props: any) {
         <Stack className={"chosen_dish_info_container"}>
           <Box className={"chosen_dish_info_box"}>
             <strong className={"dish_txt"}>
-              Product Name {chosenProduct?.product_name}
+              {chosenProduct?.product_name}
             </strong>
-            <span className={"resto_name"}>
-              Brand name: {chosenBrand?.mb_nick}
-            </span>
-            <span className="product_price">
-              {chosenProduct?.product_price}00 usd
-            </span>
+            <span className={"resto_name"}>{chosenBrand?.mb_nick}</span>
             <Box className={"rating_box"}>
               <Rating name="half-rating" defaultValue={3.5} precision={0.5} />
               <div className="evaluation_box">
@@ -183,31 +180,38 @@ export function ChosenProduct(props: any) {
                     }
                   />
 
-                  <span>{chosenProduct?.product_likes} likes</span>
+                  <span>{chosenProduct?.product_likes} ta</span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <RemoveRedEyeIcon sx={{ mr: "10px" }} />
-                  <span>{chosenProduct?.product_views} views</span>
+                  <span>{chosenProduct?.product_views} ta</span>
                 </div>
               </div>
             </Box>
             <p className={"dish_desc_info"}>
               {chosenProduct?.product_description
                 ? chosenProduct?.product_description
-                : "no description"}{" "}
-              Description is not available for now but will be added soon.
-              Thanks for you patience
+                : "no description"}
             </p>
-
+            <Marginer
+              direction="horizontal"
+              height="1"
+              width="100%"
+              bg="#000000"
+            />
+            <div className={"dish_price_box"}>
+              <span>Narx:</span>
+              <span>{chosenProduct?.product_price}</span>
+            </div>
             <div className="button_box">
               <Button
-                variant="outlined"
-                style={{ color: "#000000", fontFamily: "Helvetica" }}
+                variant="contained"
+                style={{ color: "#FFFFFF", background: "#1976D2" }}
                 onClick={() => {
                   props.onAdd(chosenProduct);
                 }}
               >
-                ADD TO CART
+                Savatga qo'shish
               </Button>
             </div>
           </Box>

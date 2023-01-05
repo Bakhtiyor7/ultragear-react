@@ -45,7 +45,7 @@ class ProductApiService {
       const product: Product = result.data.data;
       return product;
     } catch (err: any) {
-      console.log(`ERROR::: getChosenDish ${err.message}`);
+      console.log(`ERROR::: getChosenProduct ${err.message}`);
       throw err;
     }
   }
