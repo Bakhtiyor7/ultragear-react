@@ -155,7 +155,6 @@ export function OneBrand(props: any) {
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Stack className={"avatar_big_box"}>
             <Box className={"top_text"}>
-              <p></p>
               <Box className={"single_search_big_box"}>
                 <form className={"single_search_form"} action={""} method={""}>
                   <input
@@ -169,7 +168,7 @@ export function OneBrand(props: any) {
                     variant={"contained"}
                     endIcon={<SearchIcon />}
                   >
-                    Izlash
+                    Search
                   </Button>
                 </form>
               </Box>
@@ -179,92 +178,57 @@ export function OneBrand(props: any) {
           <Stack
             display={"flex"}
             flexDirection={"row"}
-            justifyContent={"flex-end"}
+            justifyContent={"space-between"}
             width={"90%"}
             sx={{ mt: "65px" }}
           >
-            <Box className={"dishs_filter_box"}>
-              <Button
-                variant={"contained"}
-                color="secondary"
-                onClick={() => searchOrderHandler("createdAt")}
-              >
-                New
-              </Button>
-              <Button
-                variant={"contained"}
-                color="secondary"
-                onClick={() => searchOrderHandler("product_price")}
-              >
-                Price
-              </Button>
-              <Button
-                variant={"contained"}
-                color="secondary"
-                onClick={() => searchOrderHandler("product_likes")}
-              >
-                Likes
-              </Button>
-              <Button
-                variant={"contained"}
-                color="secondary"
-                onClick={() => searchOrderHandler("product_views")}
-              >
-                Views
-              </Button>
+            <Box className={"dropup"}>
+              <button className="dropbtn">ITEMS LIST:</button>
+              <div className="dropup-content">
+                <a onClick={() => searchCollectionHandler("keyboard")}>
+                  Keyboards
+                </a>
+                <a onClick={() => searchCollectionHandler("mouse")}>Mouse</a>
+                <a onClick={() => searchCollectionHandler("headset")}>
+                  Headset
+                </a>
+                <a onClick={() => searchCollectionHandler("earphone")}>
+                  Earphone
+                </a>
+                <a onClick={() => searchCollectionHandler("etc")}>Others</a>
+              </div>
+            </Box>
+            <Box className={"dropup"}>
+              <button className="dropbtn">SORT BY:</button>
+              <div className="dropup-content">
+                <a onClick={() => searchOrderHandler("createdAt")}>New</a>
+                <a onClick={() => searchOrderHandler("product_price")}>
+                  Price: Low to high
+                </a>
+                <a onClick={() => searchOrderHandler("product_likes")}>
+                  Most Liked
+                </a>
+                <a onClick={() => searchCollectionHandler("earphone")}>
+                  Earphone
+                </a>
+                <a onClick={() => searchOrderHandler("product_views")}>
+                  Most viewed
+                </a>
+              </div>
             </Box>
           </Stack>
+          <Box className="liner"></Box>
 
           <Stack
             style={{ width: "100%", display: "flex", minHeight: "60px" }}
             flexDirection={"row"}
           >
-            <Stack className={"dish_category_box"}>
-              <div className={"dish_category_main"}>
-                <Button
-                  variant={"contained"}
-                  color="secondary"
-                  onClick={() => searchCollectionHandler("etc")}
-                >
-                  others
-                </Button>
-                <Button
-                  variant={"contained"}
-                  color="secondary"
-                  onClick={() => searchCollectionHandler("earphone")}
-                >
-                  earphone
-                </Button>
-                <Button
-                  variant={"contained"}
-                  color="secondary"
-                  onClick={() => searchCollectionHandler("headset")}
-                >
-                  headset
-                </Button>
-                <Button
-                  variant={"contained"}
-                  color="secondary"
-                  onClick={() => searchCollectionHandler("mouse")}
-                >
-                  mice
-                </Button>
-                <Button
-                  variant={"contained"}
-                  color="secondary"
-                  onClick={() => searchCollectionHandler("keyboard")}
-                >
-                  keyboard
-                </Button>
-              </div>
-            </Stack>
-
             <Stack className={"dish_wrapper"}>
               {targetProducts.map((product: Product) => {
                 const image_path = `${serverApi}/${product.product_images[0]}`;
                 return (
                   <Box
-                    className={"dish_box"}
+                    className="dish_box"
                     key={product._id}
                     onClick={() => chosenProductHandler(product._id)}
                   >
@@ -274,7 +238,6 @@ export function OneBrand(props: any) {
                         backgroundImage: `url(${image_path} )`,
                       }}
                     >
-                      <div className={"dish_sale"}></div>
                       <Button
                         className={"like_view_btn"}
                         style={{ left: "36px" }}
@@ -315,9 +278,6 @@ export function OneBrand(props: any) {
                       <Button
                         className={"like_view_btn"}
                         style={{ right: "36px" }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
                       >
                         <Badge
                           badgeContent={product.product_views}
@@ -331,16 +291,14 @@ export function OneBrand(props: any) {
                         </Badge>
                       </Button>
                     </Box>
-
-                    <Box className={"dish_desc"}>
+                    <Stack className={"dish_desc"}>
                       <span className={"dish_title_text"}>
                         {product.product_name}
                       </span>
                       <span className={"dish_desc_text"}>
-                        <MonetizationOn />
-                        {product.product_price}
+                        ${product.product_price}
                       </span>
-                    </Box>
+                    </Stack>
                   </Box>
                 );
               })}
@@ -392,7 +350,7 @@ export function OneBrand(props: any) {
         </Stack>
       </Container>
 
-      <div className={"review_for_restaurant"}>
+      <div className="restaurant_review">
         <Container
           sx={{ mt: "100px" }}
           style={{
@@ -401,7 +359,7 @@ export function OneBrand(props: any) {
             alignItems: "center",
           }}
         >
-          <Box className={"category_title"}>Oshxona haqida fikrlar</Box>
+          <Box className={"category_title"}>CUSTOMER REVIEWS</Box>
           <Stack
             flexDirection={"row"}
             display={"flex"}
@@ -418,7 +376,7 @@ export function OneBrand(props: any) {
                     />
                   </Box>
                   <span className={"review_name"}>Kim Jeong Won</span>
-                  <span className={"review_prof"}>Foydalanuvchi</span>
+                  <span className={"review_prof"}>User</span>
                   <p className={"review_desc"}>
                     I really like the food by this restaurant and the atmosphere
                     is very good.
@@ -438,8 +396,8 @@ export function OneBrand(props: any) {
       </div>
 
       <Container className={"member_reviews"}>
-        <Box className={"category_title"}>Oshxona haqida</Box>
-        <Stack
+        {/* <Box className={"category_title"}>Oshxona haqida</Box> */}
+        {/* <Stack
           display={"flex"}
           flexDirection={"row"}
           width={"90%"}
@@ -472,8 +430,8 @@ export function OneBrand(props: any) {
               );
             })}
           </Box>
-        </Stack>
-
+        </Stack> */}
+        {/* 
         <Stack
           sx={{ mt: "60px" }}
           style={{
@@ -490,7 +448,7 @@ export function OneBrand(props: any) {
             height="500"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
-        </Stack>
+        </Stack> */}
       </Container>
     </div>
   );

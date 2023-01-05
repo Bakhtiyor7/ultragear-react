@@ -169,7 +169,7 @@ export function OneBrand(props: any) {
                     variant={"contained"}
                     endIcon={<SearchIcon />}
                   >
-                    Izlash
+                    Search
                   </Button>
                 </form>
               </Box>
