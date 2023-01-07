@@ -97,10 +97,7 @@ export const TuiEditor = (props: any) => {
         justifyContent={"space-evenly"}
       >
         <Box className={"form_row"} style={{ width: "300px" }}>
-          <Typography
-            style={{ color: "rgb(225 255 233", margin: "10px" }}
-            variant="h3"
-          >
+          <Typography style={{ color: "gray", margin: "10px" }} variant="h3">
             Category
           </Typography>
           <FormControl sx={{ width: "100%", background: "white" }}>
@@ -111,24 +108,23 @@ export const TuiEditor = (props: any) => {
               onChange={changeCategoryHandler}
             >
               <MenuItem value={""}>
-                <span>Kategoriyani tanlang</span>
+                <span>Choose a category</span>
               </MenuItem>
-              <MenuItem value={"celebrity"}>Mashhurlar</MenuItem>
-              <MenuItem value={"evaluation"}>Restaurant baho</MenuItem>
-              <MenuItem value={"story"}>Mening hikoyam</MenuItem>
+              <MenuItem value={"celebrity"}>celebrity</MenuItem>
+              <MenuItem value={"evaluation"}>
+                Review about brand products
+              </MenuItem>
+              <MenuItem value={"story"}>Story</MenuItem>
             </Select>
           </FormControl>
         </Box>
         <Box className={"form_row"} style={{ width: "300px" }}>
-          <Typography
-            style={{ color: "rgb(225 255 233)", margin: "10px" }}
-            variant="h3"
-          >
-            Mavzu
+          <Typography style={{ color: "gray", margin: "10px" }} variant="h3">
+            Theme
           </Typography>
           <TextField
             id="filled-basic"
-            label="Mavzu"
+            label="Theme"
             variant="filled"
             style={{ width: "300px", background: "white" }}
             onChange={changeTitleHandler}
@@ -168,7 +164,7 @@ export const TuiEditor = (props: any) => {
           style={{ margin: "30px", width: "250px", height: "45px" }}
           onClick={handleRegisterButton}
         >
-          Register
+          SUBMIT
         </Button>
       </Stack>
     </Stack>

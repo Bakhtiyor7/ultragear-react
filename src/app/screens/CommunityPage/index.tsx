@@ -82,7 +82,6 @@ export function CommunityPage(props: any) {
       <div className={"community_frame"}>
         <Container sx={{ mt: "50px", mb: "50px" }}>
           <Stack flexDirection={"row"} justifyContent={"space-between"}>
-            <CommunityChats />
             <Stack
               className={"community_all_frame"}
               inputMode={"text"}
@@ -99,22 +98,22 @@ export function CommunityPage(props: any) {
                       style={{ borderColor: "blue" }}
                     >
                       <Tab
-                        label="Barcha Maqolalar"
+                        label="All articles"
                         value="1"
                         style={{ color: "#1976d2" }}
                       />
                       <Tab
-                        label="Mashhurlar"
+                        label="Popular"
                         value="2"
                         style={{ color: "#1976d2" }}
                       />
                       <Tab
-                        label="Oshxonaga baho"
+                        label="Brand review"
                         value="3"
                         style={{ color: "#1976d2" }}
                       />
                       <Tab
-                        label="Hikoyalar"
+                        label="Stories"
                         value="4"
                         style={{ color: "#1976d2" }}
                       />
@@ -172,6 +171,7 @@ export function CommunityPage(props: any) {
                 </Box>
               </TabContext>
             </Stack>
+            <CommunityChats />
           </Stack>
         </Container>
       </div>

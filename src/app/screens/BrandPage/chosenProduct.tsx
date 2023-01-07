@@ -56,14 +56,16 @@ export function ChosenProduct(props: any) {
   const { setChosenProduct, setChosenBrand } = actionDispatch(useDispatch());
   const { chosenProduct } = useSelector(chosenProductRetriever);
   const { chosenBrand } = useSelector(chosenBrandRetriever);
-  let { dish_id } = useParams<{ dish_id: string }>();
+  let { product_id } = useParams<{ product_id: string }>();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
   const productRelatedProcess = async () => {
     try {
       const productService = new ProductApiService();
-      const product: Product = await productService.getChosenProduct(dish_id);
+      const product: Product = await productService.getChosenProduct(
+        product_id
+      );
       setChosenProduct(product);
 
       const brandService = new BrandApiService();
@@ -127,7 +129,7 @@ export function ChosenProduct(props: any) {
             // onSwiper={setThumbsSwiper}
             loop={true}
             spaceBetween={20}
-            slidesPerView={chosenProduct?.product_images.length}
+            slidesPerView={3}
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Navigation, Thumbs]}
@@ -143,7 +145,13 @@ export function ChosenProduct(props: any) {
                     display: "flex",
                   }}
                 >
-                  <img src={image_path} style={{ borderRadius: "15px" }} />
+                  <img
+                    src={image_path}
+                    style={{
+                      borderRadius: "8px",
+                      height: "80px",
+                    }}
+                  />
                 </SwiperSlide>
               );
             })}
@@ -153,13 +161,11 @@ export function ChosenProduct(props: any) {
         <Stack className={"chosen_dish_info_container"}>
           <Box className={"chosen_dish_info_box"}>
             <strong className={"dish_txt"}>
-              Product Name {chosenProduct?.product_name}
+              {chosenProduct?.product_name}
             </strong>
-            <span className={"resto_name"}>
-              Brand name: {chosenBrand?.mb_nick}
-            </span>
+            <span className={"resto_name"}>{chosenBrand?.mb_nick}</span>
             <span className="product_price">
-              {chosenProduct?.product_price}00 usd
+              ${chosenProduct?.product_price}
             </span>
             <Box className={"rating_box"}>
               <Rating name="half-rating" defaultValue={3.5} precision={0.5} />
@@ -195,8 +201,6 @@ export function ChosenProduct(props: any) {
               {chosenProduct?.product_description
                 ? chosenProduct?.product_description
                 : "no description"}{" "}
-              Description is not available for now but will be added soon.
-              Thanks for you patience
             </p>
 
             <div className="button_box">

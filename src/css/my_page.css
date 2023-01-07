@@ -2,7 +2,12 @@
   width: 100%;
   height: auto;
   display: flex;
-  background: #0b0e11;
+  background: #dddddd;
+}
+
+.my_page .left_frame {
+  display: flex;
+  justify-content: center;
 }
 
 .my_page .css-heg063-MuiTabs-flexContainer {
@@ -40,11 +45,11 @@
   justify-content: center;
   border-bottom: 1px solid #ffffff;
 
-  font-family: "Poppins";
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 600;
-  font-size: 45px;
-  color: #ffffff;
+  font-size: 40px;
+  color: gray;
 }
 
 .my_page_left .menu_content {
@@ -73,69 +78,75 @@
 }
 
 .my_page .all_article_box {
-  margin-top: 20px;
-  width: 100%;
-  height: 175px;
+  width: 90%;
+  height: 200px;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border: 0.5px solid gray;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
 
+.my_page .all_article_box .mb_name_holder {
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  background: #182226;
-  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
-  border-radius: 30px;
+  justify-content: space-between;
+  height: 30px;
+  width: 100%;
 }
 
 .my_page .all_article_box .all_article_img {
-  width: 150px;
-  height: 150px;
-
-  border-radius: 30px 0px 0px 30px;
-  /*background: url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3160&q=80");*/
+  width: 130px;
+  height: 130px;
+  margin-top: 10px;
+  border-radius: 15px;
+  /* background: url(https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3160&q=80); */
   background-size: cover;
+  overflow: hidden;
 }
 
 .my_page .all_article_box .all_article_container {
   margin-left: 15px;
   width: 75%;
   height: 90%;
-
   display: flex;
   flex-direction: column;
 }
 
 .my_page .all_article_author_user {
   margin-left: 10px;
-  font-family: "Poppins";
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 26px;
-  color: #ffffff;
+  color: gray;
 }
 
 .my_page .all_article_title {
-  font-family: "Poppins";
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
   line-height: 33px;
-  color: #e3c08d;
+  color: #000;
 }
 
 .my_page .all_article_desc {
   margin-top: 5px;
-  font-family: "Poppins";
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 26px;
-  color: #ffffff;
+  color: gray;
 }
 
 .my_page .article_share {
-  width: 100%;
-  height: 10%;
-
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -152,42 +163,34 @@
 .my_page .menu_content .follow_box {
   margin-top: 15px;
   padding: 25px 45px;
-  width: 100%;
+  width: 80%;
   height: 140px;
 
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: linear-gradient(
-    180deg,
-    rgba(38, 112, 129, 0.9) 0%,
-    rgba(21, 61, 70, 0.9) 100%
-  );
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15),
-    inset 3px 2px 9px rgba(255, 255, 255, 0.25);
-  border-radius: 17px;
 }
 
 .my_page .follow_box .username_text {
   margin-top: 10px;
   width: 100%;
 
-  font-family: "Montserrat";
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 12px;
-  color: #ffffff;
+  color: #434242;
 }
 
 .my_page .follow_box .name_text {
   margin-top: 16px;
-  font-family: "Montserrat";
+  font-family: "Helvetica";
   font-style: normal;
-  font-weight: 400;
-  font-size: 26px;
+  font-weight: 600;
+  font-size: 20px;
   line-height: 24px;
-  color: #ffffff;
+  color: #434242;
 }
 
 .my_page .follow_box .follow_btn {
@@ -196,11 +199,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background: #30945e;
+  background: #8675a9;
   border: 1px solid #ffffff;
-  box-shadow: 1px 4px 6px rgba(211, 211, 211, 0.25),
-    inset 0px 4px 4px rgba(255, 255, 255, 0.25);
-  border-radius: 43px;
+  border-radius: 10px;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 500;
@@ -211,16 +212,14 @@
 
 .my_page .follow_box .follow_cancel_btn {
   width: 185px;
-  height: 57px;
+  height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   background: #e81010b8;
   border: 1px solid #ffffff;
-  box-shadow: 1px 4px 6px rgba(211, 211, 211, 0.25),
-    inset 0px 4px 4px rgba(255, 255, 255, 0.25);
-  border-radius: 43px;
-  font-family: "Montserrat";
+  border-radius: 10px;
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -235,14 +234,13 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background: #68c5cb;
-  box-shadow: 1px 4px 6px rgba(211, 211, 211, 0.25),
-    inset 0px 4px 4px rgba(255, 255, 255, 0.25);
-  border-radius: 26px;
-  font-family: "Montserrat";
+  background: #4fa095;
+
+  border-radius: 10px;
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 24px;
   color: #ffffff;
 }
@@ -257,18 +255,28 @@
 
 .my_page .order_info_box {
   position: relative;
-  padding: 20px;
   width: 100%;
   height: auto;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #ffffff;
-  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25),
-    inset 0px 4px 4px rgba(0, 0, 0, 0.25),
-    inset 0px 4px 16px rgba(242, 189, 87, 0.04);
-  border-radius: 16px;
+  background: #8675a9;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.my_page .order_info_box .user_menu_top {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.my_page .order_info_box .user_menu_bottom {
+  width: 100%;
+  display: flex;
+
+  justify-content: flex-start;
+  padding: 10px 20px 10px 20px;
+  flex-direction: column;
+  background-color: #fff;
 }
 
 .my_page .order_info_box .settings_btn {
@@ -276,6 +284,7 @@
   top: 6%;
   right: 19%;
   cursor: pointer;
+  color: #fff;
 }
 
 .my_page .order_info_box .order_user_img {
@@ -288,8 +297,8 @@
 .my_page .order_info_box .order_user_img .order_user_avatar {
   width: 117px;
   height: 112px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  border-radius: 37px;
+  border-radius: 90px;
+  border: 1px solid #fff;
 }
 
 .my_page .order_info_box .order_user_icon_box {
@@ -315,52 +324,50 @@
   font-weight: 500;
   font-size: 28px;
   line-height: 36px;
-  color: #08090d;
+  color: #fff;
 }
 
 .my_page .order_info_box .order_user_prof {
-  font-family: "Commissioner";
+  font-family: "Helvetica";
   font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: 400;
+  font-size: 16px;
   line-height: 36px;
-  color: #a1a1a1;
+  color: #000;
 }
 
-.my_page .order_info_box .user_media_box {
+.my_page .order_info_box .user_menu_bottom .user_media_box {
   margin-top: 10px;
   width: 60%;
 
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
 .my_page .order_info_box .user_desc {
   margin-top: 30px;
   width: 90%;
   display: flex;
-  justify-content: center;
 
-  font-family: "DM Sans";
+  font-family: "Helvetica";
+  align-items: center;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #616164;
+  color: gray;
 }
 
 .my_page .order_info_box .follows {
-  margin-top: 30px;
+  margin-top: 10px;
   width: 90%;
   display: flex;
-  justify-content: center;
 
-  font-family: "DM Sans";
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 14px;
+  line-height: 15px;
   color: #616164;
 }
 
@@ -378,16 +385,14 @@
 }
 
 .my_page .my_page_menu {
-  margin-top: 40px;
   width: 100%;
-  height: auto;
-
+  height: 94px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 
-.my_page_menu .menu_box {
+/* .my_page_menu .menu_box {
   margin-bottom: 10px;
   padding: 0px 20px;
   width: 98%;
@@ -398,10 +403,8 @@
   justify-content: center;
   cursor: pointer;
   border-radius: 10px;
-  background: #ffffff;
-  box-shadow: inset 1px 4px 4px rgb(172 87 87 / 25%),
-    inset 0px 4px 4px rgb(0 0 0 / 25%), inset 0px 4px 4px rgb(0 0 0 / 25%);
-}
+  border: 1px solid gray;
+} */
 
 .my_page .active {
   background: red;

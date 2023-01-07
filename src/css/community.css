@@ -2,33 +2,37 @@
   display: flex;
   width: 100%;
   height: 100%;
+  background-color: #dddddd;
 }
 
 .community_page .community_frame {
   display: flex;
   width: 100%;
   height: 100%;
-  background: #0b0e11;
 }
 
 .community_page .chat_frame {
   width: 30%;
-  height: 1150px;
+  height: 600px;
 
   display: flex;
   flex-direction: column;
-  background: #e3f2fd;
-  border: 1px solid #ffffff;
+  background-color: #6c00ff;
+  border: 0.5px solid gray;
   border-radius: 34px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .community_page .community_all_frame {
   width: 68%;
   height: 1150px;
 
-  background: #0b0e11;
-  border: 1px solid #ffffff;
-  border-radius: 34px;
+  background: #dddddd;
+  border: 1px solid gray;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
 }
 
 .community_page .chat_frame .chat_top {
@@ -40,12 +44,12 @@
   align-items: center;
   border-bottom: 1px solid rgba(228, 228, 228, 0.83);
 
-  font-family: "Poppins";
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 600;
   font-size: 36px;
   line-height: 54px;
-  color: #000000;
+  color: #fff;
 }
 
 .community_page .chat_content {
@@ -58,6 +62,7 @@
   flex-direction: column;
   justify-content: flex-start;
   overflow: hidden;
+  background: #fff;
 }
 
 .community_page .chat_content .chat_main {
@@ -142,7 +147,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid rgba(228, 228, 228, 0.83);
+  border-bottom: 1px solid gray;
 }
 
 .article_main {
@@ -153,23 +158,44 @@
 }
 
 .community_page .all_article_box {
-  width: 100%;
-  height: 170px;
+  width: 90%;
+  height: 200px;
   margin-top: 15px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  background: #182226;
-  box-shadow: 0px 4px 40px rgb(0 0 0 / 25%);
-  border-radius: 30px;
+  background: #fff;
+  border: 0.5px solid gray;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.community_page .all_article_box .mb_name_holder {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 30px;
+  width: 100%;
+}
+
+.community_page .all_article_box .mb_name_box {
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+
+  font-family: "Helvetica";
+  color: gray;
 }
 
 .community_page .all_article_box .all_article_img {
-  width: 155px;
-  height: 155px;
-  border-radius: 30px 0px 0px 30px;
+  width: 130px;
+  height: 130px;
+  margin-top: 10px;
+  border-radius: 15px;
   /* background: url(https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3160&q=80); */
   background-size: cover;
+  overflow: hidden;
 }
 
 .community_page .all_article_box .all_article_container {
@@ -182,31 +208,31 @@
 
 .community_page .all_article_author_user {
   margin-left: 10px;
-  font-family: "Poppins";
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 26px;
-  color: #ffffff;
+  color: gray;
 }
 
 .community_page .all_article_title {
-  font-family: "Poppins";
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
   line-height: 33px;
-  color: #e3c08d;
+  color: #000;
 }
 
 .community_page .all_article_desc {
   margin-top: 5px;
-  font-family: "Poppins";
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 26px;
-  color: #ffffff;
+  color: gray;
 }
 
 .community_page .article_share {
@@ -221,6 +247,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: gray;
   border-top: 1px solid rgba(228, 228, 228, 0.83);
 }

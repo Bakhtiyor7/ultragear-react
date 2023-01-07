@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { Box, Container, Stack } from "@mui/material";
+import { Box, Container, Stack, Tabs } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TelegramIcon from "@mui/icons-material/Telegram";
@@ -139,10 +139,109 @@ export function VisitMyPage(props: any) {
       <Container maxWidth="lg" sx={{ mt: "50px", mb: "50px" }}>
         <Stack className={"my_page_frame"}>
           <TabContext value={value}>
+            <Stack className={"my_page_right"}>
+              <Box className={"order_info_box"}>
+                <Box className="user_menu_top">
+                  <a onClick={() => setValue("6")} className={"settings_btn"}>
+                    <SettingsIcon />
+                  </a>
+                  <Box
+                    display={"flex"}
+                    flexDirection={"column"}
+                    alignItems={"center"}
+                  >
+                    <div className={"order_user_img"}>
+                      <img
+                        src={verifiedMemberData?.mb_image}
+                        className={"order_user_avatar"}
+                      />
+                    </div>
+                    <span className={"order_user_name"}>
+                      {chosenMember?.mb_nick}
+                    </span>
+
+                    <Box
+                      display={"flex"}
+                      justifyContent={"flex-end"}
+                      sx={{ mt: "10px" }}
+                    >
+                      <TabList
+                        onChange={handleChange}
+                        aria-label="lab API tabs example"
+                      >
+                        <Tab
+                          style={{ flexDirection: "column" }}
+                          value={"4"}
+                          component={(e) => (
+                            <Button
+                              variant={"contained"}
+                              style={{ background: "gray" }}
+                              onClick={() => setValue("4")}
+                            >
+                              Create Article
+                            </Button>
+                          )}
+                        />
+                      </TabList>
+                    </Box>
+                  </Box>
+                </Box>
+
+                {/* <Box className={"user_media_box"}>
+                  <FacebookIcon />
+                  <InstagramIcon />
+                  <TelegramIcon />
+                  <YouTubeIcon />
+                </Box> */}
+                <Box className="user_menu_bottom">
+                  <span className={"order_user_prof"}>
+                    {chosenMember?.mb_type}
+                  </span>
+                  <p className={"user_desc"}>
+                    {chosenMember?.mb_description ??
+                      "No additional info provided"}
+                  </p>
+                  <Box className={"user_media_box"}>
+                    <p className={"follows"}>
+                      FOLLOWERS: {chosenMember?.mb_subscriber_cnt}{" "}
+                    </p>
+                    <p className={"follows"}>
+                      FOLLOWING: {chosenMember?.mb_follow_cnt}{" "}
+                    </p>
+                  </Box>
+                </Box>
+              </Box>
+            </Stack>
             <Stack className={"my_page_left"}>
+              <Box sx={{ width: "100%", borderColor: "divider" }}>
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  centered
+                  sx={{
+                    "& button": { borderRadius: "2" },
+                    "& button:hover": { backgroundColor: "#fff" },
+                  }}
+                >
+                  <Tab
+                    value={"1"}
+                    label="My Articles"
+                    onClick={() => setValue("1")}
+                  />
+                  <Tab
+                    value={"2"}
+                    label="Follower"
+                    onClick={() => setValue("2")}
+                  />
+                  <Tab
+                    value={"3"}
+                    label="Following"
+                    onClick={() => setValue("3")}
+                  />
+                </Tabs>
+              </Box>
               <Box display={"flex"} flexDirection={"column"}>
                 <TabPanel value={"1"}>
-                  <Box className={"menu_name"}>Mening Maqolalarim</Box>
                   <Box className={"menu_content"}>
                     <MemberPosts
                       chosenMemberBoArticles={chosenMemberBoArticles}
@@ -181,7 +280,6 @@ export function VisitMyPage(props: any) {
                 </TabPanel>
 
                 <TabPanel value={"2"}>
-                  <Box className={"menu_name"}>Followers</Box>
                   <Box className={"menu_content"}>
                     <MemberFollowers
                       actions_enabled={true}
@@ -193,7 +291,6 @@ export function VisitMyPage(props: any) {
                 </TabPanel>
 
                 <TabPanel value={"3"}>
-                  <Box className={"menu_name"}>Following</Box>
                   <Box className={"menu_content"}>
                     <MemberFollowing
                       actions_enabled={true}
@@ -205,7 +302,7 @@ export function VisitMyPage(props: any) {
                 </TabPanel>
 
                 <TabPanel value={"4"}>
-                  <Box className={"menu_name"}>Maqola yozish</Box>
+                  <Box className={"menu_name"}>CREATE ARTICLE</Box>
                   <Box className={"write_content"}>
                     <TuiEditor
                       setValue={setValue}
@@ -227,124 +324,6 @@ export function VisitMyPage(props: any) {
                     <MySettings />
                   </Box>
                 </TabPanel>
-              </Box>
-            </Stack>
-
-            <Stack className={"my_page_right"}>
-              <Box className={"order_info_box"}>
-                <a onClick={() => setValue("6")} className={"settings_btn"}>
-                  <SettingsIcon />
-                </a>
-                <Box
-                  display={"flex"}
-                  flexDirection={"column"}
-                  alignItems={"center"}
-                >
-                  <div className={"order_user_img"}>
-                    <img
-                      src={verifiedMemberData?.mb_image}
-                      className={"order_user_avatar"}
-                    />
-                    <div className={"order_user_icon_box"}>
-                      <img
-                        src={
-                          chosenMember?.mb_type === "RESTAURANT"
-                            ? "icons/restaurant.png"
-                            : "/icons/user_icon.svg"
-                        }
-                      />
-                    </div>
-                  </div>
-                  <span className={"order_user_name"}>
-                    {chosenMember?.mb_nick}
-                  </span>
-                  <span className={"order_user_prof"}>
-                    {chosenMember?.mb_type}
-                  </span>
-                </Box>
-                <Box className={"user_media_box"}>
-                  <FacebookIcon />
-                  <InstagramIcon />
-                  <TelegramIcon />
-                  <YouTubeIcon />
-                </Box>
-                <Box className={"user_media_box"}>
-                  <p className={"follows"}>
-                    Followers: {chosenMember?.mb_subscriber_cnt}{" "}
-                  </p>
-                  <p className={"follows"}>
-                    Followings: {chosenMember?.mb_follow_cnt}{" "}
-                  </p>
-                </Box>
-                <p className={"user_desc"}>
-                  {chosenMember?.mb_description ??
-                    "Qo'shimcha ma'lumot kiritilmagan."}
-                </p>
-                <Box
-                  display={"flex"}
-                  justifyContent={"flex-end"}
-                  sx={{ mt: "10px" }}
-                >
-                  <TabList
-                    onChange={handleChange}
-                    aria-label="lab API tabs example"
-                  >
-                    <Tab
-                      style={{ flexDirection: "column" }}
-                      value={"4"}
-                      component={(e) => (
-                        <Button
-                          variant={"contained"}
-                          onClick={() => setValue("4")}
-                        >
-                          Maqola Yozish
-                        </Button>
-                      )}
-                    />
-                  </TabList>
-                </Box>
-              </Box>
-
-              <Box className={"my_page_menu"}>
-                <TabList
-                  orientation="vertical"
-                  variant="scrollable"
-                  value={value}
-                  onChange={handleChange}
-                  aria-label="Vertical tabs example"
-                  sx={{ borderRight: 1, borderColor: "divider", width: "95%" }}
-                >
-                  <Tab
-                    style={{ flexDirection: "column" }}
-                    value={"1"}
-                    component={() => (
-                      <div className={`menu_box`} onClick={() => setValue("1")}>
-                        <img src={"/icons/pencil.svg"} />
-                        <span>Maqolalarim</span>
-                      </div>
-                    )}
-                  />
-                  <Tab
-                    style={{ flexDirection: "column" }}
-                    value={"2"}
-                    component={() => (
-                      <div className={`menu_box`} onClick={() => setValue("2")}>
-                        <img src={"/icons/follower.svg"} />
-                        <span>Follower</span>
-                      </div>
-                    )}
-                  />
-                  <Tab
-                    style={{ flexDirection: "column" }}
-                    value={"3"}
-                    component={() => (
-                      <div className={`menu_box`} onClick={() => setValue("3")}>
-                        <img src={"/icons/following.svg"} />
-                        <span>Following</span>
-                      </div>
-                    )}
-                  />
-                </TabList>
               </Box>
             </Stack>
           </TabContext>

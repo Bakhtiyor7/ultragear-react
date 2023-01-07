@@ -380,6 +380,7 @@
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
+  margin-top: 20px;
 }
 
 .restaurant_page .single_restaurant .swiper-wrapper {
@@ -518,6 +519,13 @@
 .dish_category_box .dish_category_main button {
   min-width: auto;
   margin-right: 10px;
+}
+
+.restaurant_page .single_restaurant .brand_name {
+  font-family: "Helvetica";
+  font-size: 40px;
+  font-weight: 600;
+  color: #1c315e;
 }
 
 .restaurant_page .single_restaurant .dish_wrapper {
@@ -912,8 +920,8 @@
 }
 
 .chosen_dish_page .dish_swiper {
-  --swiper-navigation-color: #73777b;
-  --swiper-pagination-color: #73777b;
+  --swiper-navigation-color: #ffffff;
+  --swiper-pagination-color: #ffffff;
   width: 100%;
   height: 1020px;
 }

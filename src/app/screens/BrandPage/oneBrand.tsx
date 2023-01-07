@@ -127,7 +127,7 @@ export function OneBrand(props: any) {
     setTargetProductSearchObject({ ...targetProductSearchObject });
   };
   const chosenProductHandler = (id: string) => {
-    history.push(`/brand/product/${id}`);
+    history.push(`/brand/products/${id}`);
   };
 
   const targetLikeProduct = async (e: any) => {
@@ -161,7 +161,7 @@ export function OneBrand(props: any) {
                     type={"search"}
                     className={"Single_searchInput"}
                     name={"Single_reSearch"}
-                    placeholder={"Qidiruv"}
+                    placeholder={"Search"}
                   />
                   <Button
                     className={"Single_button_search"}
@@ -180,7 +180,7 @@ export function OneBrand(props: any) {
             flexDirection={"row"}
             justifyContent={"space-between"}
             width={"90%"}
-            sx={{ mt: "65px" }}
+            style={{ marginTop: "65px" }}
           >
             <Box className={"dropup"}>
               <button className="dropbtn">ITEMS LIST:</button>
@@ -198,6 +198,9 @@ export function OneBrand(props: any) {
                 <a onClick={() => searchCollectionHandler("etc")}>Others</a>
               </div>
             </Box>
+            <Box className="brand_name">
+              {chosenBrand?.mb_nick} Products Menu
+            </Box>
             <Box className={"dropup"}>
               <button className="dropbtn">SORT BY:</button>
               <div className="dropup-content">
@@ -207,9 +210,6 @@ export function OneBrand(props: any) {
                 </a>
                 <a onClick={() => searchOrderHandler("product_likes")}>
                   Most Liked
-                </a>
-                <a onClick={() => searchCollectionHandler("earphone")}>
-                  Earphone
                 </a>
                 <a onClick={() => searchOrderHandler("product_views")}>
                   Most viewed
@@ -305,7 +305,12 @@ export function OneBrand(props: any) {
             </Stack>
           </Stack>
           <Stack
-            style={{ width: "100%", display: "flex" }}
+            style={{
+              width: "100%",
+              display: "flex",
+              borderTop: "1px solid #2980b9",
+              borderBottom: "1px solid #2980b9",
+            }}
             flexDirection={"row"}
             sx={{ mt: "35px" }}
           >

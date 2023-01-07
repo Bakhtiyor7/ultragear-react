@@ -148,7 +148,7 @@ export function CommunityChats() {
   return (
     <Stack className={"chat_frame"}>
       <Box className={"chat_top"}>
-        <div>Jonli Muloqot</div>
+        <div>Live Chat</div>
         <RippleBadge
           style={{ margin: "-30px 0 0 20px" }}
           badgeContent={onlineUsers}
@@ -161,7 +161,7 @@ export function CommunityChats() {
             style={{ display: "flex" }}
             sx={{ m: "10px 0px" }}
           >
-            <div className={"msg_left"}>Bu yer jonli muloqot</div>
+            <div className={"msg_left"}>We are online</div>
           </Box>
           {messagesList}
         </Stack>
@@ -172,7 +172,7 @@ export function CommunityChats() {
           type={"text"}
           name={"message"}
           className={"msg_input"}
-          placeholder={"Xabar jo'natish"}
+          placeholder={"Send a message"}
           onChange={getInputMessageHandler}
           onKeyDown={getKeyHandler}
         />

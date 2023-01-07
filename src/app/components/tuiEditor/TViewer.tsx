@@ -8,7 +8,10 @@ export const TViewer = (props: any) => {
   const editorRef = useRef();
 
   return (
-    <Stack sx={{ background: "white", mt: "30px", borderRadius: "10%" }}>
+    <Stack
+      className="chosen_article"
+      sx={{ background: "#dddddd", mt: "30px" }}
+    >
       <Box sx={{ m: "40px" }}>
         <Viewer
           //@ts-ignore

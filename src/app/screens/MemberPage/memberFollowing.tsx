@@ -132,13 +132,13 @@ export function MemberFollowing(props: any) {
                 startIcon={
                   <img
                     src={"/icons/follow_icon.svg"}
-                    style={{ width: "40px", marginLeft: "16px" }}
+                    style={{ width: "30px", marginLeft: "16px" }}
                   />
                 }
                 className={"follow_cancel_btn"}
                 onClick={(e) => unsubscribeHandler(e, following?.follow_id)}
               >
-                Bekor Qilish
+                Cancel
               </Button>
             )}
           </Box>

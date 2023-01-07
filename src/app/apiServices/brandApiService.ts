@@ -47,7 +47,7 @@ class BrandApiService {
   async getChosenBrand(id: string) {
     console.log("id:::", id);
     try {
-      const url = `/brand/${id}`,
+      const url = `/brands/${id}`,
         result = await axios.get(this.path + url, { withCredentials: true });
 
       assert.ok(result?.data, Definer.general_err1);

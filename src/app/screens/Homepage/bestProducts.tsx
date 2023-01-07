@@ -42,7 +42,7 @@ export function BestProducts() {
 
   // HANDLERS
   const chosenProductHandler = (id: string) => {
-    history.push(`/brand/keyboard/${id}`);
+    history.push(`/brand/product/${id}`);
   };
   return (
     <div className="best_dishes_frame">
