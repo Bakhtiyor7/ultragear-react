@@ -129,16 +129,10 @@ export function MemberFollowing(props: any) {
             {props.actions_enabled && (
               <Button
                 variant={"contained"}
-                startIcon={
-                  <img
-                    src={"/icons/follow_icon.svg"}
-                    style={{ width: "30px", marginLeft: "16px" }}
-                  />
-                }
                 className={"follow_cancel_btn"}
                 onClick={(e) => unsubscribeHandler(e, following?.follow_id)}
               >
-                Cancel
+                Unfollow
               </Button>
             )}
           </Box>

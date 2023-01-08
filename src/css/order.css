@@ -1,7 +1,7 @@
 .order_page {
   width: 100%;
   height: auto;
-  background: #0b0e11;
+  background: #f3f9fb;
 
   display: flex;
 }
@@ -37,10 +37,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: #8675a9;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
+}
+
+.order_page .order_right .order_payment_box {
+  padding: 20px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: #ffffff;
-  box-shadow: inset 0px 4px 4px rgb(0 0 0 / 25%),
-    inset 0px 4px 4px rgb(0 0 0 / 25%), inset 0px 4px 16px rgb(242 189 87 / 4%);
-  border-radius: 16px;
+
+  border-radius: 10px;
 }
 
 .order_page .order_info_box .order_user_img {
@@ -50,45 +61,29 @@
   align-items: center;
 }
 .order_page .order_info_box .order_user_img .order_user_avatar {
-  width: 117px;
-  height: 112px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  border-radius: 37px;
-}
-
-.order_page .order_info_box .order_user_icon_box {
-  position: absolute;
-  padding: 5px;
-  width: 30px;
-  height: 30px;
-  top: 81%;
-  right: 0;
-  display: flex;
-  background: rgba(0, 0, 0, 0.33);
-  border-radius: 37px;
-}
-
-.order_page .order_user_icon_box .order_user_prof_img {
-  filter: brightness(0) invert(1);
+  width: 100px;
+  height: 100px;
+  border: 1px solid #fff;
+  border-radius: 90px;
 }
 
 .order_page .order_info_box .order_user_name {
   margin-top: 10px;
-  font-family: "Commissioner";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 36px;
-  color: #08090d;
-}
-
-.order_page .order_info_box .order_user_prof {
-  font-family: "Commissioner";
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 36px;
-  color: #a1a1a1;
+  color: #f3f9fb;
+}
+
+.order_page .order_info_box .order_user_prof {
+  font-family: "Helvetica";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 36px;
+  color: #f3f9fb;
 }
 
 .order_page .order_info_box .order_user_address {
@@ -96,6 +91,7 @@
   width: 90%;
   display: flex;
   flex-direction: row;
+  color: #fff;
 }
 
 .order_page .order_info_box .card_input {
@@ -169,7 +165,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #616164;
+  color: #fff;
 }
 
 .order_page .css-1gsv261 {
@@ -188,21 +184,19 @@
 .order_page .order_main_content .order_main_box {
   position: relative;
   width: 100%;
-  max-height: 284px;
+  max-height: 300px;
   margin-bottom: 25px;
 
   background: #ffffff;
-  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25),
-    inset 0px 4px 4px rgba(0, 0, 0, 0.25),
-    inset 0px 4px 16px rgba(242, 189, 87, 0.04);
-  border-radius: 16px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
 }
 
 .order_page .order_main_content .order_main_box .order_box_scroll {
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-height: 203px;
+  max-height: 300px;
   margin-top: 15px;
 
   display: flex;
@@ -225,10 +219,10 @@
 
 .order_page .order_box_scroll .ordersName_price .orderDishImg {
   position: relative;
-  width: 50px;
-  height: 47px;
+  height: 45px;
+  width: 45px;
 
-  border-radius: 29px;
+  border-radius: 15px;
   background-size: cover;
 }
 
@@ -238,14 +232,14 @@
   height: 36px;
   margin-left: 20px;
 
-  font-family: "Commissioner";
+  font-family: "Helvetica";
   font-style: normal;
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 36px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
   /* identical to box height, or 164% */
 
-  color: #000000;
+  color: #144272;
 }
 
 .order_page .order_box_scroll .ordersName_price .priceBox {
@@ -260,49 +254,27 @@
   justify-content: space-between;
 }
 .order_page .order_box_scroll .ordersName_price .priceBox p {
-  font-family: "Poppins";
+  font-family: "Helvetica";
   font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
+  font-weight: 600;
+  font-size: 16px;
   line-height: 27px;
   /* identical to box height */
 
-  color: #262626;
+  color: gray;
 }
 
 .order_page .order_main_content .order_main_box .total_price_box {
   position: relative;
   width: 100%;
-  height: 41px;
+  height: 55px;
   margin-top: 15px;
+  margin-bottom: 5px;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  box-sizing: border-box;
-  border-radius: 5px;
-}
-
-.black_solid {
-  border-width: 1px 0px;
-  border-style: solid;
-  border-color: #000000;
-  background: #d9d9d9;
-}
-
-.blue_solid {
-  border-width: 1px 0px;
-  border-style: solid;
-  border-color: #00a9ff;
-  background: rgb(140 102 242 / 81%);
-}
-
-.red_solid {
-  border-width: 1px 0px;
-  border-style: solid;
-  border-color: #ff5757;
-  background: rgb(255 52 52);
 }
 
 .order_page .order_main_content .order_main_box .total_price_box .boxTotal {
@@ -317,13 +289,13 @@
 }
 
 .order_page .total_price_box .boxTotal p {
-  margin-left: 20px;
-  font-family: "Commissioner";
+  margin-left: 10px;
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  line-height: 36px;
-  color: #000000;
+  line-height: 24px;
+  color: #fd8a8a;
 }
 
 .order_page .total_price_box .boxTotal .data_compl {

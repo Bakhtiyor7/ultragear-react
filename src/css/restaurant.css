@@ -541,7 +541,7 @@
 .restaurant_page .single_restaurant .dish_box {
   margin-top: 60px;
   margin-right: 26px;
-  width: 273px;
+  width: 265px;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -550,8 +550,8 @@
 
 .restaurant_page .single_restaurant .dish_box .dish_img {
   position: relative;
-  width: 273px;
-  height: 275px;
+  width: 265px;
+  height: 265px;
   background-size: cover;
 }
 

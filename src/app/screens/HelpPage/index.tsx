@@ -28,14 +28,13 @@ export function HelpPage() {
 
   const FAQ = [
     {
-      question: "To'lov qanday amalga oshiriladi?",
-      answer:
-        "To'lovni Payme, click ilovalari orqali amalga oshirishingiz mumkin",
+      question: "How can I pay?",
+      answer: "You can pay through Payme, KakaoPay, or NaverPay",
     },
     {
-      question: "Buyurtmalar qancha vaqtda yetib keladi?",
+      question: "How long does the delivery take?",
       answer:
-        "Buyurtmalar harid qilgan narsangizga qarab har xil vaqtda yetkazilishi mumkin. Maximum 1 soat ichida!",
+        "Your item will be shipped in maximum 3 days. If you are a premium member, delivery lasts 1 day!",
     },
     {
       question:
@@ -44,9 +43,8 @@ export function HelpPage() {
         "albatta, bizning dasturchilamiz sizning ma'lumotlaringiz havfsizligiga kafolat berishadi",
     },
     {
-      question: "saytda muammo yuzaga kelsa kimga murojaat qilaman?",
-      answer:
-        "Hurmatli mijoz, iltimos adminga xat yo'llash bo'limidan foydalaning",
+      question: "Who should I contact if I have a problem?",
+      answer: "Our operators respond to your calls and messages 24/7",
     },
     {
       question:
@@ -57,10 +55,9 @@ export function HelpPage() {
   ];
 
   const rules = [
-    "Iltimos saytimizda odob-ahloq qoidalariga rioya qiling!",
-    "Buyurtmalaringizga to'lovni amalga oshirganingizdan so'ng bekor qilishning imkoni yo'q shu sababli to'lovlarni amalga oshirishdan avval tekshirib oling.",
-    "Jonli muloqot vaqtida bexayo so'zlarni ishlatish mutlaqo taqiqlanadi.",
-    "Shaxsiy reklamalarni adminning ruxsatisiz yozish va tarqatish mumkun emas.",
+    "Prevent abuse: With a Terms and Conditions page, you can outline the behaviors that you prohibit on your website, such as harassing and spamming other users or posting defamatory content.",
+    "Establish ownership of site content: A Terms and Conditions page can inform your users that you own the content on your site.",
+    "Limit liability: A well-written Terms and Conditions page can help prevent harmful lawsuits by establishing the conditions of the website. It can also help prevent your website from being held accountable for any errors or misinformation on your site.",
     "Maqolalaringiz odob doirasidan chiqib ketmasligi shart.",
     "Barcha xarakatlaringiz adminlarimiz nazorati ostida bo'lani sabab iltimos talablarimizni xurmat qiling.",
   ];
@@ -76,9 +73,9 @@ export function HelpPage() {
                 aria-label="simple tabs example"
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
-                <Tab label="Qoidalar" value="1" />
+                <Tab label="Rules" value="1" />
                 <Tab label="FAQ" value="2" />
-                <Tab label="Adminga xat" value="3" />
+                <Tab label="contact admin" value="3" />
               </TabList>
             </Box>
           </Box>
@@ -117,8 +114,8 @@ export function HelpPage() {
               <Stack className={"admin_letter_box"}>
                 <Stack className={"admin_letter_container"}>
                   <Box className={"admin_letter_frame"}>
-                    <span>Adminga Xabar Qoldirish</span>
-                    <p>Assalomu alaykum! {""}</p>
+                    <span>Leave a message to admin</span>
+                    <p>Hello! {""}</p>
                   </Box>
                   <form
                     action={"#"}
@@ -126,22 +123,26 @@ export function HelpPage() {
                     className={"admin_letter_frame"}
                   >
                     <div className="admin_input_box">
-                      <label>Ism</label>
-                      <input type={"text"} name={"mb_nick"} placeholder="ism" />
-                    </div>
-
-                    <div className="admin_input_box">
-                      <label>Elektron Manzil</label>
+                      <label>Name</label>
                       <input
                         type={"text"}
-                        name={"mb_email"}
-                        placeholder="Elektron manzil"
+                        name={"mb_nick"}
+                        placeholder="name"
                       />
                     </div>
 
                     <div className="admin_input_box">
-                      <label>Xabar</label>
-                      <textarea name="mb_msg" placeholder="Xabar"></textarea>
+                      <label>E-mail</label>
+                      <input
+                        type={"text"}
+                        name={"mb_email"}
+                        placeholder="email"
+                      />
+                    </div>
+
+                    <div className="admin_input_box">
+                      <label>Message</label>
+                      <textarea name="mb_msg" placeholder="text"></textarea>
                     </div>
                     <Box
                       style={{
@@ -151,7 +152,7 @@ export function HelpPage() {
                       }}
                     >
                       <Button variant="contained" type={"submit"}>
-                        Jo'natish
+                        Send
                       </Button>
                     </Box>
                   </form>

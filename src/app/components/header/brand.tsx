@@ -143,7 +143,7 @@ export function NavbarBrand(props: any) {
           </Stack>
         </Stack>
         <Stack className="head_information">
-          <img className="mouse_img" src="/icons/mouse.png" />
+          {/* <img className="mouse_img" src="/icons/mouse.png" /> */}
           <Box className="head_text">THE MOST POPULAR BRANDS</Box>
           <img className="keyboard_img" src="/icons/keyboard.png" />
         </Stack>

@@ -79,13 +79,13 @@ export function OrdersPage(props: any) {
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   <Tab
-                    label="Buyurtmalarim"
+                    label="My Orders"
                     value="1"
                     style={{ color: "#1976d2" }}
                   />
-                  <Tab label="Jarayon" value="2" style={{ color: "#1976d2" }} />
+                  <Tab label="Process" value="2" style={{ color: "#1976d2" }} />
                   <Tab
-                    label="Yakunlangan"
+                    label="Finished"
                     value="3"
                     style={{ color: "#1976d2" }}
                   />
@@ -104,9 +104,10 @@ export function OrdersPage(props: any) {
             <Box
               style={{
                 display: "flex",
-                flexDirection: "column",
+                flexDirection: "row",
                 alignItems: "center",
-                justifyContent: "center",
+                justifyContent: "space-evenly",
+                width: "100%",
               }}
             >
               <div className={"order_user_img"}>
@@ -114,13 +115,21 @@ export function OrdersPage(props: any) {
                   className={"order_user_avatar"}
                   src={verifiedMemberData?.mb_image}
                 />
-                <div className={"order_user_icon_box"}>
-                  <img src={"auth/profile.svg"} />
-                </div>
               </div>
               <span className={"order_user_name"}>
                 {verifiedMemberData?.mb_nick}
               </span>
+            </Box>
+            <Box
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                marginTop: "15px",
+              }}
+            >
               <span className={"order_user_prof"}>
                 {verifiedMemberData?.mb_type ?? "USER"}
               </span>
@@ -132,54 +141,58 @@ export function OrdersPage(props: any) {
                 width: "100%",
               }}
             ></div>
-            <Box className={"order_user_address"}>
-              <div style={{ display: "flex" }}>
-                <LocationOnIcon />
-              </div>
+            <Box
+              className={"order_user_address"}
+              display={"flex"}
+              justifyContent={"space-evenly"}
+            >
+              <div style={{ color: "#fff" }}>Address:</div>
+              <div style={{ display: "flex" }}></div>
               <div className={"spec_address_txt"}>
+                <LocationOnIcon />
                 {verifiedMemberData?.mb_address ?? "manzil kiritilmagan"}
               </div>
             </Box>
-          </Box>
-          <Box className={"order_info_box"} marginTop={"15px"}>
-            <input
-              type={"text"}
-              name={"card_number"}
-              placeholder={"Card number: 0000 1111 2222 3333"}
-              className={"card_input"}
-            />
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
+            <Box className={"order_payment_box"} marginTop={"15px"}>
               <input
                 type={"text"}
-                name={"card_period"}
-                placeholder={"07 / 25"}
-                className={"card_half_input"}
+                name={"card_number"}
+                placeholder={"Card number: 0000 1111 2222 3333"}
+                className={"card_input"}
               />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <input
+                  type={"text"}
+                  name={"card_period"}
+                  placeholder={"07 / 25"}
+                  className={"card_half_input"}
+                />
+                <input
+                  type={"text"}
+                  name={"card_period"}
+                  placeholder={"CVV : 007"}
+                  className={"card_half_input"}
+                />
+              </div>
               <input
                 type={"text"}
-                name={"card_period"}
-                placeholder={"CVV : 007"}
-                className={"card_half_input"}
+                name={"card_creator"}
+                placeholder={"John Doe"}
+                className={"card_input"}
               />
-            </div>
-            <input
-              type={"text"}
-              name={"card_creator"}
-              placeholder={"John Doe"}
-              className={"card_input"}
-            />
-            <div className={"cards_box"}>
-              <img src="/icons/western.svg" />
-              <img src="/icons/master.svg" />
-              <img src="/icons/paypal.svg" />
-              <img src="/icons/visa.svg" />
-            </div>
+              <div className={"cards_box"}>
+                <img src="/icons/western.svg" />
+                <img src="/icons/master.svg" />
+                <img src="/icons/paypal.svg" />
+                <img src="/icons/visa.svg" />
+              </div>
+            </Box>
           </Box>
         </Stack>
       </Container>

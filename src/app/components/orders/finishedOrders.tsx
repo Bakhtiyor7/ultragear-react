@@ -38,10 +38,12 @@ export default function FinishedOrders(props: any) {
                       <p className={"titleDish"}>{product.product_name}</p>
                       <Box className={"priceBox"}>
                         <p>{item.item_price}</p>
-                        <img src={"/icons/Close.svg"} />
-                        <p>{item.item_quantity}</p>
-                        <img src={"/icons/pause.svg"} />
-                        <p style={{ marginLeft: "15px" }}>
+                        <p style={{ marginLeft: "10px" }}>*</p>
+                        <p style={{ marginLeft: "10px" }}>
+                          {item.item_quantity}
+                        </p>
+
+                        <p style={{ marginLeft: "200px", color: "#000" }}>
                           ${item.item_price * item.item_quantity}
                         </p>
                       </Box>
@@ -52,17 +54,18 @@ export default function FinishedOrders(props: any) {
 
               <Box className={"total_price_box red_solid"}>
                 <Box className={"boxTotal"}>
-                  <p>mahsulot narxi</p>
-                  <p>${order.order_total_amount - order.order_delivery_cost}</p>
-                  <img src={"/icons/plus.svg"} style={{ marginLeft: "20px" }} />
-                  <p>yetkazish xizmati</p>
-                  <p>${order.order_delivery_cost} </p>
-                  <img
-                    src={"/icons/pause.svg"}
-                    style={{ marginLeft: "20px" }}
-                  />
-                  <p>jami narx</p>
-                  <p>${order.order_total_amount} </p>
+                  <p style={{ color: "#144272" }}>product price:</p>
+                  <p>
+                    ${order.order_total_amount - order.order_delivery_cost},
+                  </p>
+
+                  <p style={{ color: "#144272" }}>delivery cost:</p>
+                  <p>${order.order_delivery_cost}, </p>
+
+                  <p style={{ color: "#144272" }}>total:</p>
+                  <p style={{ color: "#000", fontWeight: "600" }}>
+                    ${order.order_total_amount}{" "}
+                  </p>
                 </Box>
               </Box>
             </Box>

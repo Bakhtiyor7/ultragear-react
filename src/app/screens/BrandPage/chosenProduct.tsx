@@ -150,6 +150,7 @@ export function ChosenProduct(props: any) {
                     style={{
                       borderRadius: "8px",
                       height: "80px",
+                      marginRight: "10px",
                     }}
                   />
                 </SwiperSlide>
