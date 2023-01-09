@@ -13,7 +13,10 @@ import {
 import Badge from "@mui/material/Badge";
 import Checkbox from "@mui/material/Checkbox";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+
 import StarIcon from "@mui/icons-material/Star";
 import { useHistory, useParams } from "react-router-dom";
 //REDUX
@@ -368,34 +371,184 @@ export function OneBrand(props: any) {
           <Stack
             flexDirection={"row"}
             display={"flex"}
-            justifyContent={"space-between"}
             width={"100%"}
+            style={{ marginTop: "20px", borderBottom: "0.5px solid gray" }}
           >
-            {Array.from(Array(4).keys()).map((ele, index) => {
-              return (
-                <Box className={"review_box"} key={index}>
-                  <Box display={"flex"} justifyContent={"center"}>
-                    <img
-                      src={"/community/girl.jpeg"}
-                      className={"review_img"}
-                    />
-                  </Box>
-                  <span className={"review_name"}>Kim Jeong Won</span>
-                  <span className={"review_prof"}>User</span>
-                  <p className={"review_desc"}>
-                    I really like the food by this restaurant and the atmosphere
-                    is very good.
-                  </p>
-                  <div className={"review_stars"}>
-                    <StarIcon style={{ color: "#F2BD57" }} />
-                    <StarIcon style={{ color: "#F2BD57" }} />
-                    <StarIcon style={{ color: "#F2BD57" }} />
-                    <StarIcon style={{ color: "whitesmoke" }} />
-                    <StarIcon style={{ color: "whitesmoke" }} />
-                  </div>
-                </Box>
-              );
-            })}
+            <Box className="review_left">
+              <Box display={"flex"} alignItems={"center"}>
+                <img src="/community/kazuha.jpeg" className="review_img" />
+              </Box>
+            </Box>
+            <Stack className="review_right">
+              <Box>
+                <p className="review_title">
+                  I am satisfied with the products but could be better
+                </p>
+                <div className={"review_stars"}>
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                </div>
+              </Box>
+              <Box className="review_text">
+                I am overall satisfied with the functionality of the products,
+                they almost do what I want and need for work. But some of the
+                products feel kind plasticy and low quality. But the product
+                works just fine if you are not obsessed with the build quality
+                like me. Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Deserunt, explicabo, sint, debitis quasi voluptatibus
+                voluptatem aspernatur dicta itaque enim facilis et incidunt
+                molestias ea at excepturi maxime dolore. Cupiditate, rem.
+              </Box>
+              <Box
+                display={"flex"}
+                flexDirection={"row"}
+                sx={{ mt: "20px", mb: "20px" }}
+              >
+                <FavoriteIcon
+                  className="review_icons"
+                  style={{ color: "red" }}
+                />
+                <ChatBubbleIcon className="review_icons" />
+                <MoreHorizIcon className="review_icons" />
+              </Box>
+            </Stack>
+          </Stack>
+
+          <Stack
+            flexDirection={"row"}
+            display={"flex"}
+            width={"100%"}
+            style={{ marginTop: "20px", borderBottom: "0.5px solid gray" }}
+          >
+            <Box className="review_left">
+              <Box display={"flex"} alignItems={"center"}>
+                <img src="/community/justin.webp" className="review_img" />
+              </Box>
+            </Box>
+            <Stack className="review_right">
+              <Box>
+                <p className="review_title">They are making changes finally</p>
+                <div className={"review_stars"}>
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                </div>
+              </Box>
+              <Box className="review_text">
+                Silent buttons and an 8,000dpi sensor bring Logitech's flagship
+                MX Master 3S Wireless Mouse just one or two clicks from
+                perfection. Logitech finally serves up office workers a
+                mechanical keyboard from its own stable. The wireless,
+                low-profile MX Mechanical is a winner, offered in two sizes with
+                three switch types.
+              </Box>
+              <Box
+                display={"flex"}
+                flexDirection={"row"}
+                sx={{ mt: "20px", mb: "20px" }}
+              >
+                <FavoriteIcon
+                  className="review_icons"
+                  style={{ color: "red" }}
+                />
+                <ChatBubbleIcon className="review_icons" />
+                <MoreHorizIcon className="review_icons" />
+              </Box>
+            </Stack>
+          </Stack>
+
+          <Stack
+            flexDirection={"row"}
+            display={"flex"}
+            width={"100%"}
+            style={{ marginTop: "20px", borderBottom: "0.5px solid gray" }}
+          >
+            <Box className="review_left">
+              <Box display={"flex"} alignItems={"center"}>
+                <img src="/community/guy.webp" className="review_img" />
+              </Box>
+            </Box>
+            <Stack className="review_right">
+              <Box>
+                <p className="review_title">I just love the design</p>
+                <div className={"review_stars"}>
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                </div>
+              </Box>
+              <Box className="review_text">
+                Smart illumination, fast charging, and recycled materials makes
+                for some tempting peripherals. A mechanical keyboard for the
+                TikTok generation, Logitech's POP Keys Mechanical Wireless
+                Keyboard has a lively look and unique emoji-specific keys,
+                though we wish it were a bit easier to type on.
+              </Box>
+              <Box
+                display={"flex"}
+                flexDirection={"row"}
+                sx={{ mt: "20px", mb: "20px" }}
+              >
+                <FavoriteIcon
+                  className="review_icons"
+                  style={{ color: "red" }}
+                />
+                <ChatBubbleIcon className="review_icons" />
+                <MoreHorizIcon className="review_icons" />
+              </Box>
+            </Stack>
+          </Stack>
+
+          <Stack
+            flexDirection={"row"}
+            display={"flex"}
+            width={"100%"}
+            style={{ marginTop: "20px", borderBottom: "0.5px solid gray" }}
+          >
+            <Box className="review_left">
+              <Box display={"flex"} alignItems={"center"}>
+                <img src="/community/suzy.webp" className="review_img" />
+              </Box>
+            </Box>
+            <Stack className="review_right">
+              <Box>
+                <p className="review_title">I was expecting more</p>
+                <div className={"review_stars"}>
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                </div>
+              </Box>
+              <Box className="review_text">
+                Qaulity and the design is a not for me I guess. If you love high
+                quality and comfortable products maybe you should go for another
+                one. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Deserunt, explicabo, sint, debitis quasi voluptatibus voluptatem
+                aspernatur dicta itaque enim facilis et incidunt molestias ea at
+                excepturi maxime dolore. Cupiditate, rem.
+              </Box>
+              <Box
+                display={"flex"}
+                flexDirection={"row"}
+                sx={{ mt: "20px", mb: "20px" }}
+              >
+                <FavoriteIcon
+                  className="review_icons"
+                  style={{ color: "red" }}
+                />
+                <ChatBubbleIcon className="review_icons" />
+                <MoreHorizIcon className="review_icons" />
+              </Box>
+            </Stack>
           </Stack>
         </Container>
       </div>

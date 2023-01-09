@@ -27,7 +27,12 @@ export function NavbarHome(props: any) {
           justifyContent={"space-between"}
         >
           <Box>
-            <NavLink to="/" style={{ color: "white" }}>
+            <NavLink
+              to="/"
+              style={{ color: "white" }}
+              activeClassName="underline"
+              onClick={props.setPath}
+            >
               <h2>OASIS</h2>
             </NavLink>
           </Box>

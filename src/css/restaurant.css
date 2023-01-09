@@ -525,7 +525,16 @@
   font-family: "Helvetica";
   font-size: 40px;
   font-weight: 600;
-  color: #1c315e;
+  width: 60%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: #8675a9;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .restaurant_page .single_restaurant .dish_wrapper {
@@ -553,6 +562,8 @@
   width: 265px;
   height: 265px;
   background-size: cover;
+  background-color: #eeeeee;
+  margin-left: 10px;
 }
 
 .restaurant_page .single_restaurant .dish_box .dish_img:before {
@@ -701,7 +712,7 @@
 .single_restaurant .restaurant_review {
   margin-top: 60px;
   width: 100%;
-  height: 630px;
+  height: auto;
 
   display: flex;
 }
@@ -710,10 +721,17 @@
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 36px;
+  font-size: 30px;
   line-height: 43px;
 
-  color: #1c315e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #fff;
+  background-color: #8675a9;
+  border-radius: 20px;
+  margin-bottom: 20px;
 }
 
 .restaurant_page .single_restaurant .review_box {
@@ -729,11 +747,39 @@
   border-radius: 16px;
 }
 
+.restaurant_page .single_restaurant .review_left {
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.restaurant_page .single_restaurant .review_right {
+  height: auto;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.restaurant_page .single_restaurant .review_title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.restaurant_page .single_restaurant .review_right .review_icons {
+  margin-right: 20px;
+}
+
+.restaurant_page .single_restaurant .review_right .review_text {
+  display: flex;
+  width: 80%;
+}
+
 .restaurant_page .single_restaurant .review_img {
   width: 110px;
   height: 110px;
-  border: 1px solid white;
-  border-radius: 20px;
+  border-radius: 90px;
 }
 
 .restaurant_page .single_restaurant .review_name {
