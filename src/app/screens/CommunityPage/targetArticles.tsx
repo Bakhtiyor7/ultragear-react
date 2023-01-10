@@ -66,9 +66,9 @@ export function TargetArticles(props: any) {
             </Box>
             <Button
               href={`/member-page/other?mb_id=${article.mb_id}&art_id=${article._id}`}
-              variant="text"
+              variant="outlined"
               size="large"
-              style={{ color: "#393E46" }}
+              style={{ color: "#393E46", borderColor: "gray" }}
             >
               READ MORE
             </Button>
