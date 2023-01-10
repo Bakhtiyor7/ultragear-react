@@ -82,11 +82,7 @@ export function CommunityPage(props: any) {
       <div className={"community_frame"}>
         <Container sx={{ mt: "50px", mb: "50px" }}>
           <Stack flexDirection={"row"} justifyContent={"space-between"}>
-            <Stack
-              className={"community_all_frame"}
-              inputMode={"text"}
-              style={{ border: "1px solid #fff" }}
-            >
+            <Stack className={"community_all_frame"} inputMode={"text"}>
               <TabContext value={value}>
                 <Box className={"article_tabs"}>
                   <Box sx={{ borderBottom: 1, borderColor: "divider" }}>

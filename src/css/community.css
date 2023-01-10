@@ -2,7 +2,7 @@
   display: flex;
   width: 100%;
   height: 100%;
-  background-color: #dddddd;
+  background-color: #fff;
 }
 
 .community_page .community_frame {
@@ -27,12 +27,7 @@
 
 .community_page .community_all_frame {
   width: 68%;
-  height: 1150px;
-
-  background: #dddddd;
-  border: 1px solid gray;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 10px;
+  height: auto;
 }
 
 .community_page .chat_frame .chat_top {
@@ -147,7 +142,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid gray;
 }
 
 .article_main {
@@ -238,15 +232,61 @@
 .community_page .article_share {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
 }
 
 .community_page .article_bott {
-  width: 100%;
   height: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: gray;
   border-top: 1px solid rgba(228, 228, 228, 0.83);
+}
+
+/* New article box */
+
+.community_page .article_box {
+  height: auto;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9f2ed;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  margin-bottom: 20px;
+  padding: 10px 0px 10px 0px;
+}
+
+.community_page .author_image {
+  height: 60px;
+  width: 60px;
+  border-radius: 90px;
+  margin-right: 20px;
+}
+
+.community_page .article_author {
+  margin-left: 10px;
+  font-family: "Helvetica";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: gray;
+  margin-righ: "40px";
+}
+
+.community_page .article_title {
+  font-family: "Poppins";
+  font-size: 25px;
+  font-weight: 600px;
+  color: #000;
+}
+
+.community_page .article_desc {
+  font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 400px;
+  color: gray;
 }

@@ -10,7 +10,10 @@ export const TViewer = (props: any) => {
   return (
     <Stack
       className="chosen_article"
-      sx={{ background: "#dddddd", mt: "30px" }}
+      sx={{ background: "#dddddd", mt: "30px", padding: "20px" }}
+      fontFamily="Poppins"
+      fontSize={"40px"}
+      fontWeight={"600"}
     >
       <Box sx={{ m: "40px" }}>
         <Viewer
