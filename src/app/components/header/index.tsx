@@ -26,14 +26,21 @@ export function NavbarHome(props: any) {
           className="navbar_config"
           justifyContent={"space-between"}
         >
-          <Box>
+          <Box
+            display={"flex"}
+            flexDirection={"column"}
+            justifyContent={"center"}
+          >
             <NavLink
               to="/"
               style={{ color: "white" }}
               activeClassName="underline"
               onClick={props.setPath}
             >
-              <h2>OASIS</h2>
+              <img
+                src={"/auth/logo-white.png"}
+                style={{ height: "60px", width: "100px" }}
+              />
             </NavLink>
           </Box>
           <Stack
@@ -175,9 +182,11 @@ export function NavbarHome(props: any) {
             </Box>
           </Stack>
           <Box className="big_img">
-            <Button className="shop_btn" size={"large"} variant="contained">
-              SHOP NOW
-            </Button>
+            <NavLink to={"/brand"} onClick={props.setPath}>
+              <Button className="shop_btn" size={"large"} variant="contained">
+                SHOP NOW
+              </Button>
+            </NavLink>
           </Box>
         </Stack>
       </Container>

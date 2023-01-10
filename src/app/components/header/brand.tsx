@@ -26,7 +26,10 @@ export function NavbarBrand(props: any) {
         >
           <Box>
             <NavLink to="/" style={{ color: "#000" }} onClick={props.setPath}>
-              <h2>OASIS</h2>
+              <img
+                src={"/auth/logo-white.png"}
+                style={{ height: "60px", width: "100px" }}
+              />
             </NavLink>
           </Box>
           <Stack

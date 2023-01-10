@@ -8,7 +8,7 @@ export function Footer() {
         <Stack className="main_footer_container">
           <Stack flexDirection={"row"} style={{ height: "242px" }}>
             <Stack className="info" flexDirection={"column"}>
-              <Box className="footer_title">OASIS</Box>
+              <Box className="footer_title">ULTRAGEAR</Box>
               <Box className="main_text">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor Sed ut perspiciatis unde omnis iste
@@ -46,13 +46,13 @@ export function Footer() {
               </Stack>
               <Stack className="details" sx={{ mt: "9px" }}>
                 <Box className="detail_first">E:</Box>
-                <Box className="detail_second">Oasis-tech.com</Box>
+                <Box className="detail_second">www.ultragear.uz</Box>
               </Stack>
             </Stack>
           </Stack>
           <Box className="liner" sx={{ mt: "86px" }}></Box>
           <Box className="copyrights">
-            Copyright Oasis 2022, All right reserved.
+            Copyright Ultragear 2022, All right reserved.
           </Box>
         </Stack>
       </Container>
