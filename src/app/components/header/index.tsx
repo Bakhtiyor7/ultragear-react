@@ -55,11 +55,6 @@ export function NavbarHome(props: any) {
                 Brands
               </NavLink>
             </Box>
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/community" activeClassName="underline">
-                Community
-              </NavLink>
-            </Box>
             {verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/orders" activeClassName="underline">
@@ -67,6 +62,12 @@ export function NavbarHome(props: any) {
                 </NavLink>
               </Box>
             ) : null}
+            <Box className="hover-line" onClick={props.setPath}>
+              <NavLink to="/community" activeClassName="underline">
+                Community
+              </NavLink>
+            </Box>
+
             {verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/member-page" activeClassName="underline">
