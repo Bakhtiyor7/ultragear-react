@@ -17,7 +17,7 @@
 
   display: flex;
   flex-direction: column;
-  background-color: #6c00ff;
+  background-color: #6d67e4;
   border: 0.5px solid gray;
   border-radius: 34px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
@@ -153,43 +153,23 @@
 
 .community_page .all_article_box {
   width: 90%;
-  height: 200px;
+  height: 170px;
   margin-top: 15px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #fff;
-  border: 0.5px solid gray;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-}
-
-.community_page .all_article_box .mb_name_holder {
-  margin-top: 10px;
-  display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  height: 30px;
-  width: 100%;
-}
-
-.community_page .all_article_box .mb_name_box {
-  height: 30px;
-  display: flex;
-  justify-content: space-between;
-
-  font-family: "Helvetica";
-  color: gray;
+  align-items: center;
+  background: #6d67e4;
+  box-shadow: 0px 4px 40px rgb(0 0 0 / 25%);
+  border-radius: 30px;
 }
 
 .community_page .all_article_box .all_article_img {
-  width: 130px;
-  height: 130px;
-  margin-top: 10px;
-  border-radius: 15px;
+  width: 155px;
+  height: 155px;
+  border-radius: 25px;
   /* background: url(https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3160&q=80); */
   background-size: cover;
-  overflow: hidden;
+  margin-left: 5px;
 }
 
 .community_page .all_article_box .all_article_container {
@@ -202,52 +182,52 @@
 
 .community_page .all_article_author_user {
   margin-left: 10px;
-  font-family: "Helvetica";
+  font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 26px;
-  color: gray;
+  color: #ffffff;
 }
 
 .community_page .all_article_title {
-  font-family: "Helvetica";
+  font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
   line-height: 33px;
-  color: #000;
+  color: #e3c08d;
 }
 
 .community_page .all_article_desc {
   margin-top: 5px;
-  font-family: "Helvetica";
+  font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 26px;
-  color: gray;
+  color: #ffffff;
 }
 
 .community_page .article_share {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
 }
 
 .community_page .article_bott {
+  width: 100%;
   height: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: gray;
+  color: white;
   border-top: 1px solid rgba(228, 228, 228, 0.83);
 }
 
 /* New article box */
 
-.community_page .article_box {
+/* .community_page .article_box {
   height: auto;
   width: 70%;
   display: flex;
@@ -289,4 +269,4 @@
   font-size: 20px;
   font-weight: 400px;
   color: gray;
-}
+} */
