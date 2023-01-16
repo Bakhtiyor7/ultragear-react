@@ -29,7 +29,7 @@ export function NavbarOthers(props: any) {
             <NavLink to="/" style={{ color: "#fff" }} onClick={props.setPath}>
               <img
                 src={"/auth/logo-white.png"}
-                style={{ height: "60px", width: "100px" }}
+                style={{ height: "90px", width: "140px" }}
               />
             </NavLink>
           </Box>
@@ -37,7 +37,7 @@ export function NavbarOthers(props: any) {
             flexDirection={"row"}
             alignItems={"center"}
             justifyContent={"space-evenly"}
-            className="nav_links"
+            className="navbar_links"
           >
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink
@@ -93,20 +93,20 @@ export function NavbarOthers(props: any) {
               </NavLink>
             </Box>
           </Stack>
+          <Basket
+            backgroundColor={"#000"}
+            cartItems={props.cartItems}
+            onAdd={props.onAdd}
+            onRemove={props.onRemove}
+            onDelete={props.onDelete}
+            onDeleteAll={props.onDeleteAll}
+            setOrderRebuild={props.setOrderRebuild}
+          />
           <Stack
             flexDirection={"row"}
             justifyContent="space-evenly"
             alignItems={"center"}
           >
-            <Basket
-              backgroundColor={"#000"}
-              cartItems={props.cartItems}
-              onAdd={props.onAdd}
-              onRemove={props.onRemove}
-              onDelete={props.onDelete}
-              onDeleteAll={props.onDeleteAll}
-              setOrderRebuild={props.setOrderRebuild}
-            />
             {!verifiedMemberData ? (
               <Box>
                 <Button

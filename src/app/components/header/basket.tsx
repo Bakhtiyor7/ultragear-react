@@ -145,14 +145,14 @@ export default function Basket(props: any) {
           {cartItems.length > 0 ? (
             <Box className={"to_order_box"}>
               <span className={"price_text"}>
-                Jami: ${totalPrice} ({itemsPrice} + {shippingPrice})
+                Total: ${totalPrice} ({itemsPrice} + {shippingPrice})
               </span>
               <Button
                 onClick={processOrderHandler}
                 startIcon={<ShoppingCartIcon />}
                 variant={"contained"}
               >
-                Buyurtma qilish
+                Order
               </Button>
             </Box>
           ) : (

@@ -28,7 +28,7 @@ export function NavbarBrand(props: any) {
             <NavLink to="/" style={{ color: "#000" }} onClick={props.setPath}>
               <img
                 src={"/auth/logo-white.png"}
-                style={{ height: "60px", width: "100px" }}
+                style={{ height: "90px", width: "140px" }}
               />
             </NavLink>
           </Box>
@@ -68,20 +68,20 @@ export function NavbarBrand(props: any) {
               </NavLink>
             </Box>
           </Stack>
+          <Basket
+            backgroundColor={"#000"}
+            cartItems={props.cartItems}
+            onAdd={props.onAdd}
+            onRemove={props.onRemove}
+            onDelete={props.onDelete}
+            onDeleteAll={props.onDeleteAll}
+            setOrderRebuild={props.setOrderRebuild}
+          />
           <Stack
             flexDirection={"row"}
             justifyContent="space-evenly"
             alignItems={"center"}
           >
-            <Basket
-              backgroundColor={"#000"}
-              cartItems={props.cartItems}
-              onAdd={props.onAdd}
-              onRemove={props.onRemove}
-              onDelete={props.onDelete}
-              onDeleteAll={props.onDeleteAll}
-              setOrderRebuild={props.setOrderRebuild}
-            />
             {!verifiedMemberData ? (
               <Box>
                 <Button

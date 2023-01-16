@@ -125,7 +125,7 @@ export function AllBrands() {
       <Container>
         <Stack>
           <Box className={"fill_search_box"}>
-            <Box className={"dropdown"}>
+            <Box className={"dropdown"} style={{ borderRadius: "20px" }}>
               <button className="dropbtn">SORT BY:</button>
               <div className="dropdown-content">
                 <a onClick={() => searchHandler("mb_point")}>Top</a>

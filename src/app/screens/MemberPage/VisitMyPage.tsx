@@ -312,14 +312,14 @@ export function VisitMyPage(props: any) {
                 </TabPanel>
 
                 <TabPanel value={"5"}>
-                  <Box className={"menu_name"}>Tanlangan Maqola</Box>
+                  <Box className={"menu_name"}>Chosen Article</Box>
                   <Box className={"menu_content"}>
                     <TViewer chosenSingleBoArticle={chosenSingleBoArticle} />
                   </Box>
                 </TabPanel>
 
                 <TabPanel value={"6"}>
-                  <Box className={"menu_name"}>Ma'lumotlarni o'zgartirish</Box>
+                  <Box className={"menu_name"}>Change Personal Information</Box>
                   <Box className={"menu_content"}>
                     <MySettings />
                   </Box>

@@ -15,6 +15,7 @@ import { Container } from "@mui/system";
 import { NavLink } from "react-router-dom";
 import { Logout } from "@mui/icons-material";
 import Basket from "./basket";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { verifiedMemberData } from "../../apiServices/verify";
 
 export function NavbarHome(props: any) {
@@ -39,7 +40,7 @@ export function NavbarHome(props: any) {
             >
               <img
                 src={"/auth/logo-white.png"}
-                style={{ height: "60px", width: "100px" }}
+                style={{ height: "90px", width: "140px" }}
               />
             </NavLink>
           </Box>
@@ -79,19 +80,20 @@ export function NavbarHome(props: any) {
               </NavLink>
             </Box>
           </Stack>
+          <Basket
+            cartItems={props.cartItems}
+            onAdd={props.onAdd}
+            onRemove={props.onRemove}
+            onDelete={props.onDelete}
+            onDeleteAll={props.onDeleteAll}
+            setOrderRebuild={props.setOrderRebuild}
+            style={{ color: "#000" }}
+          />
           <Stack
             flexDirection={"row"}
             justifyContent="space-evenly"
             alignItems={"center"}
           >
-            <Basket
-              cartItems={props.cartItems}
-              onAdd={props.onAdd}
-              onRemove={props.onRemove}
-              onDelete={props.onDelete}
-              onDeleteAll={props.onDeleteAll}
-              setOrderRebuild={props.setOrderRebuild}
-            />
             {!verifiedMemberData ? (
               <Box>
                 <Button

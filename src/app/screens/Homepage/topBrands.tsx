@@ -75,7 +75,7 @@ export function TopBrands() {
           alignItems={"center"}
           sx={{ mt: "45px" }}
         >
-          <Box className="category_title">Our Featured Brands</Box>
+          <Box className="category_title">Our Featured Top Brands</Box>
           <Stack
             sx={{ mt: "43px" }}
             flexDirection={"row"}

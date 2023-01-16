@@ -184,10 +184,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: #d9d9d9;
-  border-width: 1px 0px;
-  border-style: solid;
-  border-color: #939393;
+  border-bottom: 0.5px solid gray;
 }
 
 .basket_frame .basket_info_box {
@@ -211,22 +208,22 @@
 .basket_info_box .product_name {
   margin-left: 11px;
   width: 185px;
-  font-family: "Poppins";
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 14px;
+  line-height: 16px;
   color: #000000;
 }
 
 .basket_info_box .product_price {
   width: 80px;
-  font-family: "Poppins";
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 600;
   font-size: 15px;
   line-height: 22px;
-  color: #ae0000;
+  color: #000;
 }
 
 .basket_info_box
@@ -241,8 +238,9 @@
 .basket_frame .cancel_btn {
   position: absolute;
   top: 33%;
-  right: 5%;
+  right: 3%;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .basket_frame .to_order_box {
@@ -261,7 +259,7 @@
   margin-right: 10px;
   width: 200px;
   display: flex;
-  font-family: "Poppins";
+  font-family: "Helvetica";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;

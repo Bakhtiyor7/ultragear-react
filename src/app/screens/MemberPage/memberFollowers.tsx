@@ -122,22 +122,12 @@ export function MemberFollowers(props: any) {
             {props.actions_enabled &&
               (follower?.me_followed &&
               follower.me_followed[0]?.my_following ? (
-                <Button
-                  variant={"contained"}
-                  className={"following_already"}
-                  disabled
-                >
+                <Button variant={"contained"} className={"following_already"}>
                   FOLLOWING
                 </Button>
               ) : (
                 <Button
                   variant={"contained"}
-                  startIcon={
-                    <img
-                      src={"/icons/follow_icon.svg"}
-                      style={{ width: "40px" }}
-                    />
-                  }
                   className={"follow_btn"}
                   onClick={(e) => subscribeHandler(e, follower?.subscriber_id)}
                 >

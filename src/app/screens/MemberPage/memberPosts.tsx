@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useRef, useState } from "react";
-import { Box, Button, Container, Stack } from "@mui/material";
+import { Box, Button, Container, Link, Stack } from "@mui/material";
 import moment from "moment";
 import Checkbox from "@mui/material/Checkbox";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
@@ -51,71 +51,83 @@ export function MemberPosts(props: any) {
           ? `${serverApi}/${article.art_image}`
           : "/community/default_article.png";
         return (
-          <Stack className="article_box">
-            <Box display={"flex"} flexDirection={"row"} sx={{ mb: "20px" }}>
-              <img
-                src={
-                  article?.member_data?.mb_image
-                    ? `${serverApi}/${article.member_data.mb_image}`
-                    : "/auth/default_user.svg"
-                }
-                className="author_image"
-              />
-              <p className="article_author">{article?.member_data.mb_nick}</p>
-            </Box>
+          <Stack
+            className={"all_article_box"}
+            sx={{ cursor: "pointer" }}
+            onClick={() => renderChosenArticleHandler(article?._id)}
+          >
             <Box
-              display={"flex"}
-              flexDirection={"column"}
-              justifyContent="center"
-              alignItems={"center"}
-              sx={{ mb: "10px" }}
-            >
-              <span className="article_title"> {article?.bo_id}</span>
-              <span className="article_desc">{article?.art_subject}</span>
-            </Box>
-            <Button
-              href={`/member-page/other?mb_id=${article.mb_id}&art_id=${article._id}`}
-              variant="text"
-              size="large"
-              style={{ color: "#393E46" }}
-            >
-              READ MORE
-            </Button>
-            <Box
-              className={"article_share"}
-              style={{ height: "auto" }}
-              sx={{ mb: "10px" }}
-            >
-              <Box
-                className={"article_share_main"}
-                style={{
-                  color: "rgb(255, 255, 255)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <span style={{ color: "gray" }}></span>
-                <Checkbox
-                  icon={<FavoriteBorder />}
-                  checkedIcon={<Favorite style={{ color: "red" }} />}
-                  id={article?._id}
-                  /**@ts-ignore */
-                  onClick={targetLikeHandler}
-                  checked={
-                    article?.me_liked && article?.me_liked[0]?.my_favorite
-                      ? true
-                      : false
+              className={"all_article_img"}
+              sx={{
+                backgroundImage: `url(${image_path})`,
+              }}
+            ></Box>
+            <Box className={"all_article_container"}>
+              <Box alignItems={"center"} display={"flex"}>
+                <img
+                  src={
+                    article?.member_data?.mb_image
+                      ? `${serverApi}/${article.member_data.mb_image}`
+                      : "/auth/default_user.svg"
                   }
+                  width={"35px"}
+                  height={"35px"}
+                  style={{ borderRadius: "50%", backgroundSize: "cover" }}
                 />
-                <span style={{ marginRight: "18px", color: "#000" }}>
-                  {article?.art_likes}
+                <span className={"all_article_author_user"}>
+                  {article?.member_data?.mb_nick}
                 </span>
-                <span style={{ color: "gray" }}> </span>
-                <RemoveRedEyeIcon style={{ color: "#000" }} />
-                <span style={{ marginLeft: "15px", color: "#000" }}>
-                  {article?.art_views}
-                </span>
+              </Box>
+              <Box
+                display={"flex"}
+                flexDirection={"column"}
+                sx={{ mt: "15px" }}
+              >
+                <span className={"all_article_title"}>{article?.bo_id}</span>
+                <p className={"all_article_desc"}>{article?.art_subject}</p>
+              </Box>
+              <Box>
+                <Box
+                  className={"article_share"}
+                  style={{ width: "100%", height: "auto" }}
+                  sx={{ mb: "10px" }}
+                >
+                  <Box
+                    className={"article_share_main"}
+                    style={{
+                      color: "#fff",
+                      marginLeft: "150px",
+                      display: "flex",
+                      alignItems: "center",
+                      marginRight: "50px",
+                    }}
+                  >
+                    <span>
+                      {moment(article?.createdAt).format("YY-MM-DD HH:mm")}
+                    </span>
+                    <Checkbox
+                      sx={{ ml: "40px" }}
+                      icon={<FavoriteBorder />}
+                      id={article?._id}
+                      checkedIcon={<Favorite style={{ color: "red" }} />}
+                      checked={
+                        article?.me_liked && article.me_liked[0]?.my_favorite
+                          ? true
+                          : false
+                      }
+                      onClick={targetLikeHandler}
+                    />
+
+                    <span style={{ marginRight: "18px" }}>
+                      {article?.art_likes}
+                    </span>
+
+                    <RemoveRedEyeIcon />
+                    <span style={{ marginLeft: "18px" }}>
+                      {article?.art_views}
+                    </span>
+                  </Box>
+                </Box>
               </Box>
             </Box>
           </Stack>

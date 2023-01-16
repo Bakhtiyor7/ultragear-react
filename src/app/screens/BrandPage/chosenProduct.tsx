@@ -198,11 +198,11 @@ export function ChosenProduct(props: any) {
                 </div>
               </div>
             </Box>
-            <p className={"dish_desc_info"}>
+            <div className={"dish_desc_info"}>
               {chosenProduct?.product_description
                 ? chosenProduct?.product_description
                 : "no description"}{" "}
-            </p>
+            </div>
 
             <div className="button_box">
               <Button

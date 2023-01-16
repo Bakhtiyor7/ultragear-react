@@ -87,8 +87,8 @@ export function MySettings(props: any) {
           height={"100px"}
         />
         <div className={"media_change_box"}>
-          <span>Rasm Yuklash</span>
-          <p>JPG, JPEG, PNG rasmlarini yuklay olasiz!</p>
+          <span>Upload a photo</span>
+          <p>You should only upload in JPG, JPEG, PNG formats!</p>
           <div className={"up_del_box"}>
             <Button
               component="label"
