@@ -4,7 +4,7 @@ import React from "react";
 export function Advertisements() {
   return (
     <div className="ads_restaurant_frame">
-      <iframe
+      {/* <iframe
         className="ads_video"
         width="100%"
         height="100%"
@@ -13,7 +13,19 @@ export function Advertisements() {
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
-      ></iframe>
+      ></iframe> */}
+      <video
+        className="ads_video"
+        width="100%"
+        height="100%"
+        autoPlay={true}
+        loop
+        muted
+        playsInline
+        data-video-media=""
+      >
+        <source src="ad.mp4" type="video/mp4" />
+      </video>
     </div>
   );
 }
