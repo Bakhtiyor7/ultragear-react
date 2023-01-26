@@ -48,9 +48,9 @@ export function HomePage() {
   }, []);
   return (
     <div className="homepage">
-      <Events />
-      <BestProducts />
       <Advertisements />
+      <BestProducts />
+      <Events />
       <TopBrands />
       {/* <Recommendations /> */}
     </div>
