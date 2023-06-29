@@ -89,7 +89,7 @@ export function OneBrand(props: any) {
       limit: 8,
       order: "createdAt",
       brand_mb_id: brand_id,
-      product_collection: "keyboard",
+      product_collection: "laptop",
     });
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
@@ -198,6 +198,10 @@ export function OneBrand(props: any) {
                 <a onClick={() => searchCollectionHandler("earphone")}>
                   Earphone
                 </a>
+                <a onClick={() => searchCollectionHandler("monitor")}>
+                  Monitor
+                </a>
+                <a onClick={() => searchCollectionHandler("laptop")}>Laptop</a>
                 <a onClick={() => searchCollectionHandler("etc")}>Others</a>
               </div>
             </Box>

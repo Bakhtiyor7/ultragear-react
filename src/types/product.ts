@@ -16,6 +16,8 @@ export interface Product {
   product_images: string[];
   product_likes: number;
   product_views: number;
+  product_size: string;
+  memory_size: number;
   brand_mb_id: string;
   createdAt: Date;
   updatedAt: Date;

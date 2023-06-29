@@ -1,4 +1,14 @@
-import React, { useEffect, useState, useRef } from "react";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import SearchIcon from "@mui/icons-material/Search";
+import {
+  AspectRatio,
+  Card,
+  CardOverflow,
+  CssVarsProvider,
+  Divider,
+  Typography,
+} from "@mui/joy";
 import {
   Box,
   Button,
@@ -7,42 +17,26 @@ import {
   PaginationItem,
   Stack,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import {
-  AspectRatio,
-  Card,
-  CardOverflow,
-  CssVarsProvider,
-  Divider,
-  IconButton,
-  Link,
-  Typography,
-} from "@mui/joy";
-import Favorite from "@mui/icons-material/Favorite";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import CallIcon from "@mui/icons-material/Call";
-import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useEffect, useRef, useState } from "react";
 import { serverApi } from "../../../lib/config";
 //REDUX
-import { useDispatch, useSelector } from "react-redux";
-import { createSelector } from "reselect";
-import { retrieveTargetBrands } from "./selector";
-import { Brand } from "../../../types/user";
 import { Dispatch } from "@reduxjs/toolkit";
-import BrandApiService from "../../apiServices/brandApiService";
-import { SearchObj } from "../../../types/others";
 import assert from "assert";
-import MemberApiService from "../../apiServices/memberApiService";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { createSelector } from "reselect";
 import { Definer } from "../../../lib/Definer";
 import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
-import { setTargetBrands } from "./slice";
-import { useHistory } from "react-router-dom";
+import { SearchObj } from "../../../types/others";
+import { Brand } from "../../../types/user";
+import BrandApiService from "../../apiServices/brandApiService";
+import MemberApiService from "../../apiServices/memberApiService";
 import { verifiedMemberData } from "../../apiServices/verify";
+import { retrieveTargetBrands } from "./selector";
+import { setTargetBrands } from "./slice";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({

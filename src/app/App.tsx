@@ -1,36 +1,30 @@
-import { Box, Typography, Container, Stack, Button } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import "../css/App.css";
-import "../css/navbar.css";
 import "../css/footer.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import "../css/navbar.css";
 
-import { BrandPage } from "./screens/BrandPage";
-import { CommunityPage } from "./screens/CommunityPage";
-import { OrdersPage } from "./screens/OrdersPage";
-import { MemberPage } from "./screens/MemberPage";
-import { HelpPage } from "./screens/HelpPage";
-import { LoginPage } from "./screens/LoginPage/indes";
-import { HomePage } from "./screens/Homepage";
-import { NavbarHome } from "./components/header/index";
-import { NavbarBrand } from "./components/header/brand";
-import { NavbarOthers } from "./components/header/others";
-import { Footer } from "./components/footer";
-import Car from "./screens/testCar";
-import AuthenticationModal from "./components/auth";
-import { SettingsSharp } from "@mui/icons-material";
-import { Member } from "../types/user";
-import { serverApi } from "../lib/config";
+import "../app/apiServices/verify";
+import { Definer } from "../lib/Definer";
 import {
-  sweetErrorHandling,
   sweetFailureProvider,
   sweetTopSmallSuccessAlert,
 } from "../lib/sweetAlert";
-import { Definer } from "../lib/Definer";
-import MemberApiService from "./apiServices/memberApiService";
-import "../app/apiServices/verify";
 import { CartItem } from "../types/others";
 import { Product } from "../types/product";
+import MemberApiService from "./apiServices/memberApiService";
+import AuthenticationModal from "./components/auth";
+import { Footer } from "./components/footer";
+import { NavbarBrand } from "./components/header/brand";
+import { NavbarHome } from "./components/header/index";
+import { NavbarOthers } from "./components/header/others";
+import { BrandPage } from "./screens/BrandPage";
+import { CommunityPage } from "./screens/CommunityPage";
+import { HelpPage } from "./screens/HelpPage";
+import { HomePage } from "./screens/Homepage";
+import { LoginPage } from "./screens/LoginPage/indes";
+import { MemberPage } from "./screens/MemberPage";
+import { OrdersPage } from "./screens/OrdersPage";
 
 function App() {
   //** INITIALIZATIONS */
