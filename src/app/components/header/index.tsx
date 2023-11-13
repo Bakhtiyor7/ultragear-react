@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
-  Badge,
   Box,
   Button,
-  Icon,
-  IconButton,
-  ListItem,
   ListItemIcon,
   Menu,
   MenuItem,
@@ -21,7 +17,7 @@ import { verifiedMemberData } from "../../apiServices/verify";
 export function NavbarHome(props: any) {
   return (
     <div className="format home_navbar">
-      <Container>
+      <Container className="navlinks_container">
         <Stack
           flexDirection={"row"}
           className="navbar_config"
@@ -35,11 +31,11 @@ export function NavbarHome(props: any) {
             <NavLink
               to="/"
               style={{ color: "white" }}
-              activeClassName="underline"
+              activeClassName="none"
               onClick={props.setPath}
             >
               <img
-                src={"/auth/logo-white.png"}
+                src={"/home/ultragear.svg"}
                 style={{ height: "90px", width: "140px" }}
               />
             </NavLink>
@@ -81,20 +77,20 @@ export function NavbarHome(props: any) {
               </NavLink>
             </Box>
           </Stack>
-          <Basket
-            cartItems={props.cartItems}
-            onAdd={props.onAdd}
-            onRemove={props.onRemove}
-            onDelete={props.onDelete}
-            onDeleteAll={props.onDeleteAll}
-            setOrderRebuild={props.setOrderRebuild}
-            style={{ color: "#000" }}
-          />
           <Stack
             flexDirection={"row"}
             justifyContent="space-evenly"
             alignItems={"center"}
           >
+            <Basket
+              cartItems={props.cartItems}
+              onAdd={props.onAdd}
+              onRemove={props.onRemove}
+              onDelete={props.onDelete}
+              onDeleteAll={props.onDeleteAll}
+              setOrderRebuild={props.setOrderRebuild}
+              style={{ color: "#000" }}
+            />
             {!verifiedMemberData ? (
               <Box>
                 <Button
@@ -183,14 +179,13 @@ export function NavbarHome(props: any) {
               Hub for unlimited devices of your desire. <br />
               Find out by checking among all of our brands
             </Box>
-          </Stack>
-          <Box className="big_img">
             <NavLink to={"/brand"} onClick={props.setPath}>
               <Button className="shop_btn" size={"large"} variant="contained">
                 SHOP NOW
               </Button>
             </NavLink>
-          </Box>
+          </Stack>
+          <Box className="big_img"></Box>
         </Stack>
       </Container>
     </div>
