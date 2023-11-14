@@ -16,8 +16,8 @@ import { verifiedMemberData } from "../../apiServices/verify";
 
 export function NavbarHome(props: any) {
   return (
-    <div className="format home_navbar">
-      <Container className="navlinks_container">
+    <div className="format home_wrapper">
+      <Stack className="navbar_config_wrapper">
         <Stack
           flexDirection={"row"}
           className="navbar_config"
@@ -105,7 +105,11 @@ export function NavbarHome(props: any) {
               </Box>
             ) : (
               <img
-                style={{ width: "48px", height: "48px", borderRadius: "24px" }}
+                style={{
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "24px",
+                }}
                 src={verifiedMemberData.mb_image}
                 onClick={props.handleLogoutClick}
               />
@@ -167,27 +171,32 @@ export function NavbarHome(props: any) {
             </Box>
           </Stack>
         </Stack>
-        <Stack className="head_information">
-          <Stack
-            justifyContent={"column"}
-            style={{ marginTop: "86px", marginLeft: "24px" }}
-          >
-            <Box className="define_restaurant">
-              Find the right device for yourself
+      </Stack>
+
+      {/* ========================================== */}
+      <Stack className="home_navbar">
+        <Container className="navlinks_container">
+          <Stack className="head_information">
+            <Stack justifyContent={"column"} className="head_items">
+              <Box className="define_restaurant">
+                Find the right device for yourself
+              </Box>
+              <Box className="timeline_service">
+                Hub for unlimited devices of your desire. <br />
+                Find out by checking among all of our brands
+              </Box>
+              <NavLink to={"/brand"} onClick={props.setPath}>
+                <Button className="shop_btn" size={"large"} variant="contained">
+                  SHOP NOW
+                </Button>
+              </NavLink>
+            </Stack>
+            <Box className="big_img">
+              <img src="/home/airpods_img.svg" />
             </Box>
-            <Box className="timeline_service">
-              Hub for unlimited devices of your desire. <br />
-              Find out by checking among all of our brands
-            </Box>
-            <NavLink to={"/brand"} onClick={props.setPath}>
-              <Button className="shop_btn" size={"large"} variant="contained">
-                SHOP NOW
-              </Button>
-            </NavLink>
           </Stack>
-          <Box className="big_img"></Box>
-        </Stack>
-      </Container>
+        </Container>
+      </Stack>
     </div>
   );
 }
