@@ -33,7 +33,9 @@
     "react-redux": "^8.0.4",
     "react-router-dom": "^5.1.9",
     "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
     "redux-logger": "^3.0.6",
+    "slick-carousel": "^1.8.1",
     "socket.io-client": "^2.3.0",
     "styled-components": "^5.3.6",
     "sweetalert2": "^11.6.15",
@@ -67,5 +69,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-slick": "^0.23.12"
   }
 }
