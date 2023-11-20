@@ -47,7 +47,7 @@ export function HomePage() {
         setBestBrands(data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [setBestBrands, setTopBrands]);
   return (
     <div className="homepage">
       <Categories />

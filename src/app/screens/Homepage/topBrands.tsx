@@ -69,7 +69,7 @@ export function TopBrands() {
 
   return (
     <div className="top_brand_frame">
-      <Container>
+      <Container sx={{ mb: "45px" }}>
         <Stack
           flexDirection={"column"}
           alignItems={"center"}
