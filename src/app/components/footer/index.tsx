@@ -1,15 +1,34 @@
 import { Box, Container, Stack } from "@mui/material";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-export function Footer() {
+export function Footer(props: any) {
   return (
     <div className="footer_config">
       <Container style={{ display: "flex", justifyContent: "center" }}>
         <Stack className="main_footer_container">
           <Stack className="footer_nav">
-            <h1>Brands</h1>
-            <h1>Community</h1>
-            <h1>Help</h1>
+            <NavLink
+              to={"/brand"}
+              onClick={props.setPath}
+              className={"footer_navlinks"}
+            >
+              Brands
+            </NavLink>
+            <NavLink
+              to={"/community"}
+              onClick={props.setPath}
+              className={"footer_navlinks"}
+            >
+              Community
+            </NavLink>
+            <NavLink
+              to={"/help"}
+              onClick={props.setPath}
+              className={"footer_navlinks"}
+            >
+              Help
+            </NavLink>
           </Stack>
           <Stack className="footer_info_container">
             <Stack
@@ -17,9 +36,15 @@ export function Footer() {
               flexDirection={"row"}
               justifyContent={"space-between"}
             >
-              <Box className="footer_title">
+              <NavLink
+                to={"/"}
+                style={{ color: "white" }}
+                activeClassName="none"
+                onClick={props.setPath}
+                className="footer_title"
+              >
                 <img src="/others/Logo.svg" />
-              </Box>
+              </NavLink>
               <Box className="main_text">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor Sed ut perspiciatis unde omnis iste
@@ -29,16 +54,16 @@ export function Footer() {
               </Box>
               <Stack className="contact_links">
                 <Box>
-                  <img src={"/icons/facebook.svg"} />
+                  <img src={"/home/facebook.svg"} alt="" />
                 </Box>
                 <Box>
-                  <img src={"/icons/twitter.svg"} />
+                  <img src={"/home/twitter.svg"} alt="" />
                 </Box>
                 <Box>
-                  <img src={"/icons/instagram.svg"} />
+                  <img src={"/home/linkedin.svg"} alt="" />
                 </Box>
                 <Box>
-                  <img src={"/icons/youtube.svg"} />
+                  <img src={"/home/instagram.svg"} alt="" />
                 </Box>
               </Stack>
             </Stack>
