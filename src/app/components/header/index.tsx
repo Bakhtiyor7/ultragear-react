@@ -52,7 +52,7 @@ export function NavbarHome(props: any) {
                 Brands
               </NavLink>
             </Box>
-            {verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
+            {verifiedMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/orders" activeClassName="underline">
                   My Orders
@@ -65,7 +65,7 @@ export function NavbarHome(props: any) {
               </NavLink>
             </Box>
 
-            {verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
+            {verifiedMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/member-page" activeClassName="underline">
                   My Page
@@ -113,6 +113,7 @@ export function NavbarHome(props: any) {
                 }}
                 src={verifiedMemberData.mb_image}
                 onClick={props.handleLogoutClick}
+                alt=""
               />
             )}
 
@@ -177,7 +178,7 @@ export function NavbarHome(props: any) {
       {/* ========================================== */}
       <Stack className="home_navbar">
         <Container className="navlinks_container">
-          <Stack className="head_information">
+          <Stack className="head_info">
             <Stack justifyContent={"column"} className="head_items">
               <Box className="define_restaurant">
                 Find the right device for yourself
