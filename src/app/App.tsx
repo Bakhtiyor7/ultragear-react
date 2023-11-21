@@ -201,7 +201,7 @@ function App() {
           <HomePage />
         </Route>
       </Switch>
-      <Footer />
+      <Footer setPath={setPath} />
       <AuthenticationModal
         loginOpen={loginOpen}
         handleLoginOpen={handleLoginOpen}

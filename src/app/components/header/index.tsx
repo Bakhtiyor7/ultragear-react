@@ -37,6 +37,7 @@ export function NavbarHome(props: any) {
               <img
                 src={"/home/ultragear.svg"}
                 style={{ height: "90px", width: "140px" }}
+                alt=""
               />
             </NavLink>
           </Box>
