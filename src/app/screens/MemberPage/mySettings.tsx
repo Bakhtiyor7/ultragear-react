@@ -43,11 +43,17 @@ export function MySettings(props: any) {
 
   const handleImagePreviewer = (e: any) => {
     try {
-      console.log(e.target.files);
       const file = e.target.files[0];
 
       const fileType = file["type"],
-        validTypes = ["image/jpg", "image/jpeg", "image/png"];
+        validTypes = [
+          "image/jpg",
+          "image/jpeg",
+          "image/png",
+          "image/svg",
+          "image/webp",
+          "image/",
+        ];
       assert.ok(validTypes.includes(fileType) && file, Definer.input_err2);
 
       memberUpdate.mb_image = file;
@@ -88,7 +94,7 @@ export function MySettings(props: any) {
         />
         <div className={"media_change_box"}>
           <span>Upload a photo</span>
-          <p>You should only upload in JPG, JPEG, PNG formats!</p>
+          <p>You should only upload in JPG, JPEG, PNG, SVG, WEBP formats!</p>
           <div className={"up_del_box"}>
             <Button
               component="label"

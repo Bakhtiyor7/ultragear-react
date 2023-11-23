@@ -17,6 +17,8 @@ import { setBestBrands, setTopBrands } from "../../screens/Homepage/slice";
 import { retrieveTopBrands } from "../../screens/Homepage/selector";
 import { Brand } from "../../../types/user";
 import BrandApiService from "../../apiServices/brandApiService";
+import { Advertisement } from "./advs";
+import { Categories } from "./categories";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -45,13 +47,15 @@ export function HomePage() {
         setBestBrands(data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [setBestBrands, setTopBrands]);
   return (
     <div className="homepage">
-      <Advertisements />
-      <BestProducts />
+      <Categories />
+      <Advertisement />
       <Events />
+      <BestProducts />
       <TopBrands />
+      {/* <Advertisements /> */}
       {/* <Recommendations /> */}
     </div>
   );

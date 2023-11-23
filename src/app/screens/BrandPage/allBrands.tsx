@@ -1,12 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
-import {
-  Box,
-  Button,
-  Container,
-  Pagination,
-  PaginationItem,
-  Stack,
-} from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import SearchIcon from "@mui/icons-material/Search";
 import {
   AspectRatio,
@@ -15,34 +8,37 @@ import {
   CssVarsProvider,
   Divider,
   IconButton,
-  Link,
   Typography,
 } from "@mui/joy";
-import Favorite from "@mui/icons-material/Favorite";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import CallIcon from "@mui/icons-material/Call";
-import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import {
+  Box,
+  Button,
+  Container,
+  Pagination,
+  PaginationItem,
+  Stack,
+} from "@mui/material";
+import { useEffect, useRef, useState } from "react";
 import { serverApi } from "../../../lib/config";
 //REDUX
-import { useDispatch, useSelector } from "react-redux";
-import { createSelector } from "reselect";
-import { retrieveTargetBrands } from "./selector";
-import { Brand } from "../../../types/user";
 import { Dispatch } from "@reduxjs/toolkit";
-import BrandApiService from "../../apiServices/brandApiService";
-import { SearchObj } from "../../../types/others";
 import assert from "assert";
-import MemberApiService from "../../apiServices/memberApiService";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { createSelector } from "reselect";
 import { Definer } from "../../../lib/Definer";
 import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
-import { setTargetBrands } from "./slice";
-import { useHistory } from "react-router-dom";
+import { SearchObj } from "../../../types/others";
+import { Brand } from "../../../types/user";
+import BrandApiService from "../../apiServices/brandApiService";
+import MemberApiService from "../../apiServices/memberApiService";
 import { verifiedMemberData } from "../../apiServices/verify";
+import { retrieveTargetBrands } from "./selector";
+import { setTargetBrands } from "./slice";
+import Favorite from "@mui/icons-material/Favorite";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -121,11 +117,65 @@ export function AllBrands() {
   };
 
   return (
-    <div className="all_restaurant">
+    <div className="all_brand">
       <Container>
         <Stack>
+          <Stack className="category_holder">
+            <Button
+              className="category_button"
+              onClick={() => searchHandler("mb_point")}
+              sx={{
+                "&:focus": {
+                  color: "#fff",
+                  bgcolor: "#000",
+                  borderRadius: "99px",
+                },
+              }}
+            >
+              Top
+            </Button>
+            <Button
+              className="category_button"
+              onClick={() => searchHandler("mb_views")}
+              sx={{
+                "&:focus": {
+                  color: "#fff",
+                  bgcolor: "#000",
+                  borderRadius: "99px",
+                },
+              }}
+            >
+              Most Visited
+            </Button>
+            <Button
+              className="category_button"
+              onClick={() => searchHandler("mb_likes")}
+              sx={{
+                "&:focus": {
+                  color: "#fff",
+                  bgcolor: "#000",
+                  borderRadius: "99px",
+                },
+              }}
+            >
+              Most Liked
+            </Button>
+            <Button
+              className="category_button"
+              onClick={() => searchHandler("createdAt")}
+              sx={{
+                "&:focus": {
+                  color: "white",
+                  backgroundColor: "#000",
+                  borderRadius: "99px",
+                },
+              }}
+            >
+              New
+            </Button>
+          </Stack>
           <Box className={"fill_search_box"}>
-            <Box className={"dropdown"} style={{ borderRadius: "20px" }}>
+            {/* <Box className={"dropdown"} style={{ borderRadius: "20px" }}>
               <button className="dropbtn">SORT BY:</button>
               <div className="dropdown-content">
                 <a onClick={() => searchHandler("mb_point")}>Top</a>
@@ -133,21 +183,28 @@ export function AllBrands() {
                 <a onClick={() => searchHandler("mb_likes")}>Most liked</a>
                 <a onClick={() => searchHandler("createdAt")}>New</a>
               </div>
-            </Box>
+            </Box> */}
+
             <Box className={"search_big_box"}>
               <form className={"search_form"} action={""} method={""}>
                 <input
                   type={"search"}
                   className={"searchInput"}
                   name={"resSearch"}
-                  placeholder={"Qidiruv"}
+                  placeholder={"search"}
+                  style={{ border: "none" }}
                 />
                 <Button
                   className={"button_search"}
                   variant="contained"
-                  endIcon={<SearchIcon />}
+                  sx={{
+                    color: "black",
+                    "&:hover": {
+                      backgroundColor: "#edf3fc",
+                    },
+                  }}
                 >
-                  Search
+                  <SearchIcon />
                 </Button>
               </form>
             </Box>
@@ -169,11 +226,13 @@ export function AllBrands() {
                   >
                     <CardOverflow>
                       <AspectRatio ratio="1">
-                        <img
-                          src={image_path}
-                          loading="lazy"
-                          alt="brand_image"
-                        />
+                        <Box className="brand_image_wrapper">
+                          <img
+                            src={image_path}
+                            loading="lazy"
+                            alt="brand_image"
+                          />
+                        </Box>
                       </AspectRatio>
                     </CardOverflow>
                     <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
@@ -202,8 +261,36 @@ export function AllBrands() {
                         level="body3"
                         sx={{ fontWeight: "md", color: "text.secondary" }}
                       >
-                        {ele.mb_subscriber_cnt} subscribers
+                        {ele.mb_likes} likes
                       </Typography>
+                      <IconButton
+                        aria-label="Like minimal photography"
+                        size="sm"
+                        variant="solid"
+                        color="neutral"
+                        sx={{
+                          position: "absolute",
+                          zIndex: 2,
+                          borderRadius: "50%",
+                          right: "1rem",
+                          bottom: "2.5rem",
+                          transform: "translateY(50%)",
+                          color: "rgba(0,0,0,.4)",
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
+                        <Favorite
+                          onClick={(e) => targetLikeHandler(e, ele._id)}
+                          style={{
+                            fill:
+                              ele?.me_liked && ele?.me_liked[0]?.my_favorite
+                                ? "#00FFFF"
+                                : "white",
+                          }}
+                        />
+                      </IconButton>
                     </CardOverflow>
                   </Card>
                 );
@@ -224,7 +311,7 @@ export function AllBrands() {
                     next: ArrowForwardIcon,
                   }}
                   {...item}
-                  color={"secondary"}
+                  color={"primary"}
                 />
               )}
               onChange={handlePaginationChange}

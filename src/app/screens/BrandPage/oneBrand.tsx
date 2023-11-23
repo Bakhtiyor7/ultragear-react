@@ -110,7 +110,14 @@ export function OneBrand(props: any) {
       .getTargetProducts(targetProductSearchObject)
       .then((data) => setTargetProducts(data))
       .catch((err) => console.log(err));
-  }, [chosenBrandId, targetProductSearchObject, productRebuild]);
+  }, [
+    chosenBrandId,
+    targetProductSearchObject,
+    productRebuild,
+    setRandomBrands,
+    setChosenBrand,
+    setTargetProducts,
+  ]);
   /** HANDLERS */
   const chosenBrandHandler = (id: string) => {
     setChosenBrandId(id);
@@ -198,6 +205,10 @@ export function OneBrand(props: any) {
                 <a onClick={() => searchCollectionHandler("earphone")}>
                   Earphone
                 </a>
+                <a onClick={() => searchCollectionHandler("monitor")}>
+                  Monitor
+                </a>
+                <a onClick={() => searchCollectionHandler("laptop")}>Laptop</a>
                 <a onClick={() => searchCollectionHandler("etc")}>Others</a>
               </div>
             </Box>

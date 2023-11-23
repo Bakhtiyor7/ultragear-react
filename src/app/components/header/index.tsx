@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
-  Badge,
   Box,
   Button,
-  Icon,
-  IconButton,
-  ListItem,
   ListItemIcon,
   Menu,
   MenuItem,
@@ -20,8 +16,8 @@ import { verifiedMemberData } from "../../apiServices/verify";
 
 export function NavbarHome(props: any) {
   return (
-    <div className="format home_navbar">
-      <Container>
+    <div className="format home_wrapper">
+      <Stack className="navbar_config_wrapper">
         <Stack
           flexDirection={"row"}
           className="navbar_config"
@@ -35,12 +31,13 @@ export function NavbarHome(props: any) {
             <NavLink
               to="/"
               style={{ color: "white" }}
-              activeClassName="underline"
+              activeClassName="none"
               onClick={props.setPath}
             >
               <img
-                src={"/auth/logo-white.png"}
+                src={"/home/ultragear.svg"}
                 style={{ height: "90px", width: "140px" }}
+                alt=""
               />
             </NavLink>
           </Box>
@@ -55,7 +52,7 @@ export function NavbarHome(props: any) {
                 Brands
               </NavLink>
             </Box>
-            {verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
+            {verifiedMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/orders" activeClassName="underline">
                   My Orders
@@ -68,7 +65,7 @@ export function NavbarHome(props: any) {
               </NavLink>
             </Box>
 
-            {verifiedMemberData ? ( //** verified bosa sahifamga pageni korsat */
+            {verifiedMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/member-page" activeClassName="underline">
                   My Page
@@ -81,20 +78,20 @@ export function NavbarHome(props: any) {
               </NavLink>
             </Box>
           </Stack>
-          <Basket
-            cartItems={props.cartItems}
-            onAdd={props.onAdd}
-            onRemove={props.onRemove}
-            onDelete={props.onDelete}
-            onDeleteAll={props.onDeleteAll}
-            setOrderRebuild={props.setOrderRebuild}
-            style={{ color: "#000" }}
-          />
           <Stack
             flexDirection={"row"}
             justifyContent="space-evenly"
             alignItems={"center"}
           >
+            <Basket
+              cartItems={props.cartItems}
+              onAdd={props.onAdd}
+              onRemove={props.onRemove}
+              onDelete={props.onDelete}
+              onDeleteAll={props.onDeleteAll}
+              setOrderRebuild={props.setOrderRebuild}
+              style={{ color: "#000" }}
+            />
             {!verifiedMemberData ? (
               <Box>
                 <Button
@@ -109,9 +106,14 @@ export function NavbarHome(props: any) {
               </Box>
             ) : (
               <img
-                style={{ width: "48px", height: "48px", borderRadius: "24px" }}
+                style={{
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "24px",
+                }}
                 src={verifiedMemberData.mb_image}
                 onClick={props.handleLogoutClick}
+                alt=""
               />
             )}
 
@@ -171,28 +173,32 @@ export function NavbarHome(props: any) {
             </Box>
           </Stack>
         </Stack>
-        <Stack className="head_information">
-          <Stack
-            justifyContent={"column"}
-            style={{ marginTop: "86px", marginLeft: "24px" }}
-          >
-            <Box className="define_restaurant">
-              Find the right device for yourself
-            </Box>
-            <Box className="timeline_service">
-              Hub for unlimited devices of your desire. <br />
-              Find out by checking among all of our brands
+      </Stack>
+
+      {/* ========================================== */}
+      <Stack className="home_navbar">
+        <Container className="navlinks_container">
+          <Stack className="head_info">
+            <Stack justifyContent={"column"} className="head_items">
+              <Box className="define_restaurant">
+                Find the right device for yourself
+              </Box>
+              <Box className="timeline_service">
+                Hub for unlimited devices of your desire. <br />
+                Find out by checking among all of our brands
+              </Box>
+              <NavLink to={"/brand"} onClick={props.setPath}>
+                <Button className="shop_btn" size={"large"} variant="contained">
+                  SHOP NOW
+                </Button>
+              </NavLink>
+            </Stack>
+            <Box className="big_img">
+              <img src="/home/airpods_img.svg" alt="" />
             </Box>
           </Stack>
-          <Box className="big_img">
-            <NavLink to={"/brand"} onClick={props.setPath}>
-              <Button className="shop_btn" size={"large"} variant="contained">
-                SHOP NOW
-              </Button>
-            </NavLink>
-          </Box>
-        </Stack>
-      </Container>
+        </Container>
+      </Stack>
     </div>
   );
 }

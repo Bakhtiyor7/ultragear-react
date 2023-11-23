@@ -17,27 +17,23 @@ import Basket from "./basket";
 
 export function NavbarBrand(props: any) {
   return (
-    <div className="format_restaurant home_navbar">
+    <div className="format_brand home_navbar">
       <Container>
         <Stack
           flexDirection={"row"}
-          className="navbar_config"
+          className="navbar_config_brand"
           justifyContent={"space-between"}
         >
           <Box>
             <NavLink to="/" style={{ color: "#000" }} onClick={props.setPath}>
               <img
-                src={"/auth/logo-white.png"}
+                src={"/home/ultragear_black.svg"}
                 style={{ height: "90px", width: "140px" }}
+                alt=""
               />
             </NavLink>
           </Box>
-          <Stack
-            flexDirection={"row"}
-            alignItems={"center"}
-            justifyContent={"space-evenly"}
-            className="navbar_links"
-          >
+          <Stack className="navbar_links">
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/brand" activeClassName="underline">
                 Brands
@@ -69,20 +65,23 @@ export function NavbarBrand(props: any) {
               </NavLink>
             </Box>
           </Stack>
-          <Basket
-            backgroundColor={"#000"}
-            cartItems={props.cartItems}
-            onAdd={props.onAdd}
-            onRemove={props.onRemove}
-            onDelete={props.onDelete}
-            onDeleteAll={props.onDeleteAll}
-            setOrderRebuild={props.setOrderRebuild}
-          />
           <Stack
             flexDirection={"row"}
             justifyContent="space-evenly"
             alignItems={"center"}
+            gap={"15px"}
           >
+            <Box className="basket_wrapper">
+              <Basket
+                backgroundColor={"#000"}
+                cartItems={props.cartItems}
+                onAdd={props.onAdd}
+                onRemove={props.onRemove}
+                onDelete={props.onDelete}
+                onDeleteAll={props.onDeleteAll}
+                setOrderRebuild={props.setOrderRebuild}
+              />
+            </Box>
             {!verifiedMemberData ? (
               <Box>
                 <Button
@@ -97,9 +96,16 @@ export function NavbarBrand(props: any) {
               </Box>
             ) : (
               <img
-                style={{ width: "48px", height: "48px", borderRadius: "24px" }}
+                style={{
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "24px",
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+                }}
                 src={verifiedMemberData.mb_image}
                 onClick={props.handleLogoutClick}
+                alt=""
               />
             )}
 
@@ -146,10 +152,15 @@ export function NavbarBrand(props: any) {
             </Menu>
           </Stack>
         </Stack>
-        <Stack className="head_information">
-          {/* <img className="mouse_img" src="/icons/mouse.png" /> */}
-          <Box className="head_text">THE MOST POPULAR BRANDS</Box>
-          <img className="keyboard_img" src="/icons/keyboard.png" />
+        <Stack className="head_information_brand">
+          <img src="/home/rectangle.png" alt="" className="rectangle" />
+          <Box className="header_title">
+            <h1>Featured Brands</h1>
+          </Box>
+
+          <Box className="head_info_box">
+            <Box className="category_box"></Box>
+          </Box>
         </Stack>
       </Container>
     </div>

@@ -22,7 +22,6 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveTopBrands } from "./selector";
-import { Brand } from "../../../types/user";
 import { verifiedMemberData } from "../../apiServices/verify";
 
 //** REDUX SELECTOR */
@@ -67,78 +66,83 @@ export function TopBrands() {
       sweetErrorHandling(err).then();
     }
   };
+
   return (
     <div className="top_brand_frame">
-      <Container>
+      <Container sx={{ mb: "45px" }}>
         <Stack
           flexDirection={"column"}
           alignItems={"center"}
           sx={{ mt: "45px" }}
+          gap="16px"
         >
-          <Box className="category_title">Our Featured Top Brands</Box>
-          <Stack
-            sx={{ mt: "43px" }}
-            flexDirection={"row"}
-            justifyContent={"space-between"}
-            m={"16px"}
-          >
-            {topBrands.map((ele: Brand) => {
-              const image_path = `${serverApi}/${ele.mb_image}`;
-              return (
-                <CssVarsProvider key={ele._id}>
-                  {" "}
-                  <Card
-                    onClick={() => chosenBrandHandler(ele._id)}
-                    variant="outlined"
+          <Box className="top_brands_title">Featured Top Brands</Box>
+
+          <Stack className="brands_frame">
+            {topBrands[0] && (
+              <>
+                <Box
+                  className="brands_left"
+                  onClick={() => chosenBrandHandler(topBrands[0]._id)}
+                  sx={{ cursor: "pointer" }}
+                >
+                  <div style={{ width: "215px", height: "200px" }}>
+                    <img
+                      src={`${serverApi}/${topBrands[0].mb_image}`}
+                      alt={topBrands[0].mb_nick}
+                    />
+                  </div>
+                </Box>
+                <Stack className="brands_right">
+                  <Stack
                     sx={{
-                      minWidth: 320,
-                      width: 320,
-                      mr: "20px",
-                      cursor: "pointer",
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      gap: "30px",
                     }}
                   >
-                    <CardOverflow>
-                      <AspectRatio ratio="1">
-                        <img
-                          src={image_path}
-                          loading="lazy"
-                          alt="brand_image"
-                        />
-                      </AspectRatio>
-                    </CardOverflow>
-                    <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
-                      {ele.mb_nick}
-                    </Typography>
-
-                    <Divider />
-                    <CardOverflow
-                      variant="soft"
-                      sx={{
-                        display: "flex",
-                        gap: 1.5,
-                        py: 1.5,
-                        px: "var(--Card-padding)",
-                        bgcolor: "background.level1",
-                      }}
+                    <Box
+                      className="brands_right_top"
+                      onClick={() => chosenBrandHandler(topBrands[1]._id)}
+                      sx={{ cursor: "pointer" }}
                     >
-                      <Typography
-                        level="body3"
-                        sx={{ fontWeight: "md", color: "text.secondary" }}
-                      >
-                        {ele.mb_views} views
-                      </Typography>
-                      <Divider orientation="vertical" />
-                      <Typography
-                        level="body3"
-                        sx={{ fontWeight: "md", color: "text.secondary" }}
-                      >
-                        {ele.mb_subscriber_cnt} subscribers
-                      </Typography>
-                    </CardOverflow>
-                  </Card>
-                </CssVarsProvider>
-              );
-            })}
+                      <div style={{ width: "215px", height: "200px" }}>
+                        {" "}
+                        <img
+                          src={`${serverApi}/${topBrands[1].mb_image}`}
+                          alt={topBrands[1].mb_nick}
+                        />
+                      </div>
+                    </Box>
+                    <Box
+                      className="brands_right_top"
+                      onClick={() => chosenBrandHandler(topBrands[2]._id)}
+                      sx={{ cursor: "pointer" }}
+                    >
+                      <div style={{ width: "215px", height: "200px" }}>
+                        <img
+                          src={`${serverApi}/${topBrands[2].mb_image}`}
+                          alt={topBrands[2].mb_nick}
+                        />
+                      </div>
+                    </Box>
+                  </Stack>
+                  <Box
+                    className="brands_right_bottom"
+                    onClick={() => chosenBrandHandler(topBrands[3]._id)}
+                    sx={{ cursor: "pointer" }}
+                  >
+                    <div style={{ width: "215px", height: "200px" }}>
+                      <img
+                        src={`${serverApi}/${topBrands[3].mb_image}`}
+                        alt={topBrands[3].mb_nick}
+                      />
+                    </div>
+                  </Box>
+                </Stack>
+              </>
+            )}
           </Stack>
         </Stack>
       </Container>

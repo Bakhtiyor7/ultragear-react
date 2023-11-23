@@ -1,17 +1,29 @@
-.format.home_navbar {
+.format.home_wrapper {
   width: 100%;
-  height: 800px;
   display: flex;
-  background: url("/public/home/main-header.jpg");
-  background-size: cover;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #222;
 }
 
-.format_restaurant.home_navbar {
+.format .home_navbar {
   width: 100%;
   height: 600px;
   display: flex;
-  background: url("/public/home/others-main.jpg");
+  background: url("../../public/home/navbar-bg.svg");
+  background-color: #222;
   background-size: cover;
+  padding: 100px 0 100px 0;
+}
+
+.format_brand.home_navbar {
+  width: 100%;
+  /* height: 600px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
 }
 
 .format_others.home_navbar {
@@ -22,10 +34,20 @@
   background-size: cover;
 }
 
-.format_restaurant.home_navbar .head_information {
+.format_brand.home_navbar .head_information {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url("../../public/home/navbar-bg.svg");
+}
+
+.format .head_info {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
 }
 
 .format_others.home_navbar .head_information {
@@ -34,19 +56,19 @@
   justify-content: center;
 }
 
-.format_restaurant.home_navbar .head_information .mouse_img {
+.format_brand.home_navbar .head_information .mouse_img {
   height: 450px;
   margin-top: 200px;
   margin-right: 80px;
 }
 
-.format_restaurant.home_navbar .head_information .keyboard_img {
+.format_brand.home_navbar .head_information .keyboard_img {
   height: 350px;
 
   margin-left: 100px;
 }
 
-.format_restaurant.home_navbar .head_information .head_text {
+.format_brand.home_navbar .head_information .head_text {
   position: absolute;
   color: #fff;
   font-size: 40px;
@@ -61,19 +83,65 @@
   text-shadow: 1px 0 #000;
 }
 
-.home_navbar .navbar_config {
-  width: 1244.69px;
-  height: 50px;
-  margin-left: 26px;
-  margin-top: 55px;
+.home_wrapper .navbar_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
-.home_navbar .navbar_links {
-  width: 752px;
+.format.home_wrapper .navbar_config_wrapper {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #656565;
+  color: #fff;
+}
+
+.format.home_wrapper .navbar_config {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1244.69px;
+  height: 80px;
+  margin-left: 26px;
+  background: #222;
+  color: #ffffff;
+  /* background-color: #222; */
+}
+
+.format_brand.home_navbar .navbar_config_brand {
+  display: flex;
+  width: 1280px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.format_brand .basket_wrapper {
+  background-color: #656565;
+  border-radius: 90px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.format_brand.home_navbar .navbar_links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.format.home_wrapper .navbar_config .navbar_links {
+  display: flex;
+  align-items: center;
+  gap: 45px;
   height: 46px;
-  background-color: #000000;
-  opacity: 0.5;
   border-radius: 15px;
+  color: #fff;
 }
 
 .format_others .nav_links {
@@ -81,21 +149,25 @@
   height: 46px;
 }
 
+.home_wrapper a {
+  text-decoration: none;
+}
+
 .home_navbar a {
   text-decoration: none;
 }
 
-.home_navbar .hover-line a {
+.home_wrapper .navbar_links .hover-line a {
   color: #ffffff;
 }
 
-.home_navbar .underline {
+.home_wrapper .underline {
   display: block;
   content: "";
   border-bottom: solid 2px #d7b686;
 }
 
-.home_navbar .hover-line:after {
+.home_wrapper .hover-line:after {
   display: block;
 
   content: "";
@@ -104,15 +176,105 @@
   transition: transform 250ms ease-in-out;
 }
 
+.home_wrapper .hover-line:hover::after {
+  transform: scaleX(1);
+}
+
+/* ----- */
+.home_navbar .navbar_links .hover-line a {
+  color: #1f1f1d;
+
+  text-align: center;
+  font-family: Pretendard, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+}
+
+.home_navbar .underline {
+  display: block;
+  content: "";
+  border-bottom: solid 2px #007fff;
+}
+
+.home_navbar .hover-line:after {
+  display: block;
+
+  content: "";
+  border-bottom: solid 2px #007fff;
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+
 .home_navbar .hover-line:hover::after {
   transform: scaleX(1);
 }
 
-.home_navbar .head_information {
-  display: flex;
-  flex-direction: row;
+.home_navbar .head_information_brand {
   width: 1290px;
-  height: 477px;
+  height: 311px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.home_navbar .head_information_brand .header_title {
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home_navbar .head_information_brand .header_title h1 {
+  color: #fff;
+  font-family: Pretendard, sans-serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 50% */
+  letter-spacing: -0.96px;
+}
+
+.home_navbar .head_information_brand .rectangle {
+  width: 1200px;
+  height: 270px;
+  flex-shrink: 0;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  position: absolute;
+}
+
+.home_navbar .head_information_brand .head_info_box {
+  bottom: 0;
+  right: 0;
+  position: absolute;
+
+  width: 1200px;
+  height: 270px;
+  flex-shrink: 0;
+
+  border-radius: 0px 0px 0px 96px;
+  background: #edf3fc;
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.home_navbar .head_information_brand .head_info_box .category_box {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.home_navbar .head_items {
+  display: flex;
+  flex-direction: column;
 }
 
 .home_navbar .define_restaurant {
@@ -121,46 +283,62 @@
   height: 143px;
   margin-top: 40px;
 
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
+  font-size: 54px;
   font-style: normal;
-  font-weight: 600;
-  font-size: 50px;
+  font-weight: 500;
   line-height: 75px;
   color: #ffffff;
+  letter-spacing: -1.08px;
 }
 
 .home_navbar .timeline_service {
   position: relative;
   width: 466px;
   height: 28px;
-  margin-top: 70px;
+  margin-top: 12px;
 
-  font-family: "Poppins";
+  color: #e4e4e4;
+
+  font-family: "Pretendard", sans-serif;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  font-size: 25px;
-  line-height: 30px;
-  color: #fff;
+  letter-spacing: -0.36px;
 }
 
 .home_navbar .big_img {
-  position: relative;
-  width: 277px;
-  height: 277px;
-  margin-top: 250px;
-  margin-left: 494px;
-  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 100px;
 }
 
 .home_navbar .shop_btn {
-  background-color: #2f3132;
+  margin-top: 59px;
+  display: flex;
+  flex-direction: row;
+  width: 128px;
+  height: 44px;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: var(--base-white, #fff);
+  font-family: "Pretendard", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  border-radius: 99px;
+  background: linear-gradient(270deg, #5912ff 0%, #9c1fff 100%);
+  box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.08);
 }
 
-.home_navbar .shop_btn:hover {
+/* .home_navbar .shop_btn:hover {
   border: 1px, solid #2f3132;
   background-color: pink;
   color: #000;
-}
+} */
 
 /* START BASKET */
 
