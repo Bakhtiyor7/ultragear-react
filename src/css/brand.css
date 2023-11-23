@@ -1,11 +1,40 @@
-.restaurant_page {
+.brand_page {
   position: relative;
   width: 100%;
   height: auto;
   background: #fff;
 }
 
-.restaurant_page .all_restaurant .fill_search_box {
+.brand_page .all_brand .category_holder {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.brand_page .all_brand .category_holder .category_button {
+  display: flex;
+  width: 128px;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border-radius: 4px;
+
+  color: var(--text-basic-400, #667084);
+  font-family: Pretendard, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: -1px;
+  text-transform: capitalize;
+}
+
+.brand_page .all_brand .fill_search_box {
   position: relative;
   width: 100%;
   height: 33px;
@@ -14,10 +43,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
-.restaurant_page .all_restaurant .fil_box {
+.brand_page .all_brand .fil_box {
   position: relative;
   width: 420px;
   height: 45px;
@@ -27,7 +56,7 @@
   justify-content: space-between;
 }
 
-/* .restaurant_page .all_restaurant .fill_search_box .fil_box a {
+/* .brand_page .all_brand .fill_search_box .fil_box a {
   position: relative;
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
@@ -38,7 +67,7 @@
 } */
 
 /* Dropdown Button */
-.restaurant_page .all_restaurant .dropbtn {
+.brand_page .all_brand .dropbtn {
   background-color: #616164;
   color: #fff;
   padding: 16px;
@@ -51,18 +80,18 @@
   justify-content: center;
 }
 
-.restaurant_page .all_restaurant .dropbtn img {
+.brand_page .all_brand .dropbtn img {
   height: 50px;
 }
 
 /* The container <div> - needed to position the dropdown content */
-.restaurant_page .all_restaurant .dropdown {
+.brand_page .all_brand .dropdown {
   position: relative;
   display: inline-block;
 }
 
 /* Dropdown Content (Hidden by Default) */
-.restaurant_page .all_restaurant .dropdown-content {
+.brand_page .all_brand .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
@@ -72,7 +101,7 @@
 }
 
 /* Links inside the dropdown */
-.restaurant_page .all_restaurant .dropdown-content a {
+.brand_page .all_brand .dropdown-content a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -81,27 +110,27 @@
 }
 
 /* Change color of dropdown links on hover */
-.restaurant_page .all_restaurant .dropdown-content a:hover {
+.brand_page .all_brand .dropdown-content a:hover {
   background-color: #ddd;
 }
 
 /* Show the dropdown menu on hover */
-.restaurant_page .all_restaurant .dropdown:hover .dropdown-content {
+.brand_page .all_brand .dropdown:hover .dropdown-content {
   display: block;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.restaurant_page .all_restaurant .dropdown:hover .dropbtn {
+.brand_page .all_brand .dropdown:hover .dropbtn {
   background-color: #fff;
   color: #616164;
 }
 
-/* .restaurant_page .all_restaurant .fil_box a {
+/* .brand_page .all_brand .fil_box a {
   overflow: hidden;
   display: inline-block;
 } */
 
-.restaurant_page .all_restaurant .fil_box a::before,
+.brand_page .all_brand .fil_box a::before,
 .fil_box a::after {
   content: "";
   position: absolute;
@@ -109,7 +138,7 @@
   left: 0;
 }
 
-.restaurant_page .all_restaurant .fil_box a::before {
+.brand_page .all_brand .fil_box a::before {
   background-color: #d7b686;
   height: 2px;
   bottom: 0;
@@ -118,7 +147,7 @@
   transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-.restaurant_page .all_restaurant .fil_box a::after {
+.brand_page .all_brand .fil_box a::after {
   content: attr(data-replace);
   height: 2px;
   top: 0;
@@ -127,84 +156,73 @@
   transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-.restaurant_page .all_restaurant .fil_box a:hover::before {
+.brand_page .all_brand .fil_box a:hover::before {
   transform-origin: 0% 50%;
   transform: scaleX(1);
 }
 
-.restaurant_page .all_restaurant .fil_box a:hover::after {
+.brand_page .all_brand .fil_box a:hover::after {
   transform: translate3d(0, 0, 0);
 }
 
-.restaurant_page .all_restaurant .fil_box a span {
+.brand_page .all_brand .fil_box a span {
   display: inline-block;
   transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-.restaurant_page .all_restaurant .fil_box a:hover span {
+.brand_page .all_brand .fil_box a:hover span {
   transform: translate3d(-200%, 0, 0);
 }
 
-.restaurant_page .all_restaurant .fil_box a {
+.brand_page .all_brand .fil_box a {
   text-decoration: none;
   color: #ffffff;
   font-weight: 700;
   vertical-align: top;
 }
 
-.restaurant_page .all_restaurant .search_big_box {
-  position: relative;
-  width: 500px;
-  height: 33px;
-
+.brand_page .all_brand .search_big_box {
   display: flex;
-  align-items: center;
-  background: #fffcfc;
-  border: 1px solid #434242;
-  box-shadow: 0px 4px 4px rgba(213, 213, 213, 0.25);
-  border-radius: 10.5px;
-  box-sizing: border-box;
-  margin-right: 400px;
+  width: 213px;
+  height: 48px;
+  padding: 14px 16px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 8px;
+
+  border-radius: 4px;
+  background: #edf3fc;
 }
 
-.restaurant_page .all_restaurant .search_form {
-  position: relative;
-  width: 100%;
+.brand_page .all_brand .search_form {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  width: 100%;
 }
 
-.restaurant_page .all_restaurant .searchInput {
-  position: relative;
-  width: 245px;
-  height: 29px;
-  margin-left: 10px;
-
-  display: flex;
+.brand_page .all_brand .searchInput {
+  width: 90%;
+  border-radius: 4px;
+  background: #edf3fc;
   border: none;
-  border-radius: 10px 0px 0px 10px;
-  font-family: "GT Walsheim Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 26px;
-
-  color: #4f547b;
 }
 
-.restaurant_page .all_restaurant .button_search {
+.brand_page .all_brand .button_search {
+  box-shadow: none;
+  width: 10%;
+  background: #edf3fc;
+  /* width: 20%;
+  height: 100%;
   position: relative;
-  width: 100px;
-  height: 33px;
+
   display: flex;
 
   border-radius: 10.5px;
-  background: #434242;
+  */
 }
 
-.restaurant_page .all_restaurant .all_res_box {
+.brand_page .all_brand .all_res_box {
   position: relative;
   width: 1305px;
   height: auto;
@@ -215,7 +233,21 @@
   flex-wrap: wrap;
 }
 
-.restaurant_page .all_restaurant .restaurant_box {
+.brand_page .all_brand .all_res_box .brand_image_wrapper {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand_page .all_brand .all_res_box .brand_image_wrapper img {
+  width: 100%;
+  height: auto;
+}
+
+.brand_page .all_brand .restaurant_box {
   margin: 13px;
   padding: 5px;
   width: 300px;
@@ -230,7 +262,7 @@
   border-radius: 8px;
 }
 
-.restaurant_page .all_restaurant .restaurant_img {
+.brand_page .all_brand .restaurant_img {
   width: 280px;
   height: 330px;
 
@@ -238,14 +270,14 @@
   background-size: cover;
 }
 
-.restaurant_page .all_restaurant .restaurant_desc {
+.brand_page .all_brand .restaurant_desc {
   width: 280px;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
 }
 
-.restaurant_page .all_restaurant .restaurant_title_text {
+.brand_page .all_brand .restaurant_title_text {
   font-family: "GT Walsheim Pro";
   font-style: normal;
   font-weight: 400;
@@ -255,7 +287,7 @@
   color: #000000;
 }
 
-.restaurant_page .all_restaurant .restaurant_desc_text {
+.brand_page .all_brand .restaurant_desc_text {
   margin-top: 6px;
   font-style: normal;
   font-weight: 400;
@@ -265,7 +297,7 @@
   color: rgba(56, 55, 55, 0.9);
 }
 
-.restaurant_page .all_restaurant .bottom_box {
+.brand_page .all_brand .bottom_box {
   position: relative;
   width: 100%;
   height: 168px;
@@ -277,7 +309,7 @@
   justify-content: space-between;
 }
 
-.restaurant_page .single_restaurant {
+.brand_page .single_restaurant {
   width: 100%;
   height: auto;
   display: flex;
@@ -285,7 +317,7 @@
   background: #fff;
 }
 
-.restaurant_page .single_restaurant .avatar_big_box {
+.brand_page .single_restaurant .avatar_big_box {
   position: relative;
   width: 100%;
   height: auto;
@@ -294,7 +326,7 @@
   align-items: center;
 }
 
-.restaurant_page .single_restaurant .top_text {
+.brand_page .single_restaurant .top_text {
   position: relative;
   width: 100%;
   height: 43px;
@@ -304,7 +336,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.restaurant_page .single_restaurant .brandName {
+.brand_page .single_restaurant .brandName {
   position: relative;
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
@@ -314,7 +346,7 @@
   color: #000;
 }
 
-.restaurant_page .single_restaurant .single_search_big_box {
+.brand_page .single_restaurant .single_search_big_box {
   position: relative;
   width: 500px;
   height: 33px;
@@ -330,7 +362,7 @@
   margin-left: 400px;
 }
 
-.restaurant_page .single_restaurant .single_search_form {
+.brand_page .single_restaurant .single_search_form {
   position: relative;
   width: 100%;
   display: flex;
@@ -339,7 +371,7 @@
   justify-content: space-between;
 }
 
-.restaurant_page .single_restaurant .Single_searchInput {
+.brand_page .single_restaurant .Single_searchInput {
   position: relative;
   width: 245px;
   height: 29px;
@@ -355,7 +387,7 @@
   color: #4f547b;
 }
 
-.restaurant_page .single_restaurant .Single_button_search {
+.brand_page .single_restaurant .Single_button_search {
   position: relative;
   width: 100px;
   height: 33px;
@@ -364,7 +396,7 @@
   border-radius: 10.5px;
   background: #434242;
 }
-.restaurant_page .single_restaurant .prev_btn {
+.brand_page .single_restaurant .prev_btn {
   width: 10%;
   height: 147px;
   display: flex;
@@ -372,7 +404,7 @@
   align-items: center;
 }
 
-.restaurant_page .single_restaurant .restaurant_avatars_wrapper {
+.brand_page .single_restaurant .restaurant_avatars_wrapper {
   width: 90%;
   height: 147px;
   display: flex;
@@ -383,16 +415,13 @@
   margin-top: 20px;
 }
 
-.restaurant_page .single_restaurant .swiper-wrapper {
+.brand_page .single_restaurant .swiper-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.restaurant_page
-  .single_restaurant
-  .restaurant_avatars_wrapper
-  .restaurant_avatars {
+.brand_page .single_restaurant .restaurant_avatars_wrapper .restaurant_avatars {
   width: 108px;
   height: 100%;
   display: flex;
@@ -401,13 +430,13 @@
   justify-content: center;
 }
 
-.restaurant_page .single_restaurant .restaurant_avatars img {
+.brand_page .single_restaurant .restaurant_avatars img {
   width: 108px;
   height: 108px;
   border-radius: 50%;
 }
 
-.restaurant_page .single_restaurant .restaurant_avatars span {
+.brand_page .single_restaurant .restaurant_avatars span {
   margin-top: 14px;
   font-family: "Solway";
   font-style: normal;
@@ -522,7 +551,7 @@
   margin-right: 10px;
 }
 
-.restaurant_page .single_restaurant .brand_name {
+.brand_page .single_restaurant .brand_name {
   font-family: "Helvetica";
   font-size: 40px;
   font-weight: 600;
@@ -538,7 +567,7 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.restaurant_page .single_restaurant .dish_wrapper {
+.brand_page .single_restaurant .dish_wrapper {
   margin-left: 20px;
   width: 100%;
   height: auto;
@@ -548,7 +577,7 @@
   flex-wrap: wrap;
 }
 
-.restaurant_page .single_restaurant .dish_box {
+.brand_page .single_restaurant .dish_box {
   margin-top: 60px;
   margin-right: 26px;
   width: 265px;
@@ -558,7 +587,7 @@
   align-items: center;
 }
 
-.restaurant_page .single_restaurant .dish_box .dish_img {
+.brand_page .single_restaurant .dish_box .dish_img {
   position: relative;
   width: 265px;
   height: 265px;
@@ -567,7 +596,7 @@
   margin-left: 10px;
 }
 
-.restaurant_page .single_restaurant .dish_box .dish_img:before {
+.brand_page .single_restaurant .dish_box .dish_img:before {
   content: "";
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -580,11 +609,11 @@
   z-index: 2;
 }
 
-.restaurant_page .single_restaurant .dish_img:hover:before {
+.brand_page .single_restaurant .dish_img:hover:before {
   opacity: 1;
 }
 
-.restaurant_page .single_restaurant .dish_img img {
+.brand_page .single_restaurant .dish_img img {
   position: absolute;
   display: block;
   max-width: 100%;
@@ -592,15 +621,15 @@
   z-index: 1;
 }
 
-.restaurant_page .single_restaurant .dish_box .dish_img:hover .view_btn {
+.brand_page .single_restaurant .dish_box .dish_img:hover .view_btn {
   opacity: 1;
 }
 
-.restaurant_page .single_restaurant .dish_box .dish_img:hover .like_view_btn {
+.brand_page .single_restaurant .dish_box .dish_img:hover .like_view_btn {
   opacity: 1;
 }
 
-.restaurant_page .single_restaurant .dish_img .dish_sale {
+.brand_page .single_restaurant .dish_img .dish_sale {
   margin-top: 43px;
   width: 84px;
   height: 39px;
@@ -618,7 +647,7 @@
   color: #c50a09;
 }
 
-.restaurant_page .single_restaurant .like_view_btn {
+.brand_page .single_restaurant .like_view_btn {
   position: absolute;
   top: 223px;
   padding: 5px;
@@ -636,7 +665,7 @@
   border-radius: 50%;
 }
 
-.restaurant_page .single_restaurant .view_btn {
+.brand_page .single_restaurant .view_btn {
   position: absolute;
   padding: 20px;
   top: 217px;
@@ -661,7 +690,7 @@
   color: #ffffff;
 }
 
-.restaurant_page .single_restaurant .like_view_btn {
+.brand_page .single_restaurant .like_view_btn {
   position: absolute;
   top: 223px;
   padding: 5px;
@@ -679,7 +708,7 @@
   border-radius: 50%;
 }
 
-.restaurant_page .single_restaurant .dish_box .dish_desc {
+.brand_page .single_restaurant .dish_box .dish_desc {
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -688,7 +717,7 @@
   cursor: pointer;
 }
 
-.restaurant_page .single_restaurant .dish_desc .dish_title_text {
+.brand_page .single_restaurant .dish_desc .dish_title_text {
   margin-top: 18px;
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
@@ -699,7 +728,7 @@
   color: #000000;
 }
 
-.restaurant_page .single_restaurant .dish_desc .dish_desc_text {
+.brand_page .single_restaurant .dish_desc .dish_desc_text {
   margin-top: 15px;
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
@@ -718,7 +747,7 @@
   display: flex;
 }
 
-.restaurant_page .single_restaurant .restaurant_review .category_title {
+.brand_page .single_restaurant .restaurant_review .category_title {
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 700;
@@ -735,7 +764,7 @@
   margin-bottom: 20px;
 }
 
-.restaurant_page .single_restaurant .review_box {
+.brand_page .single_restaurant .review_box {
   margin-top: 40px;
   padding: 20px;
   width: 249px;
@@ -748,42 +777,42 @@
   border-radius: 16px;
 }
 
-.restaurant_page .single_restaurant .review_left {
+.brand_page .single_restaurant .review_left {
   width: 10%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.restaurant_page .single_restaurant .review_right {
+.brand_page .single_restaurant .review_right {
   height: auto;
   width: 90%;
   display: flex;
   flex-direction: column;
 }
 
-.restaurant_page .single_restaurant .review_title {
+.brand_page .single_restaurant .review_title {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: 16px;
 }
 
-.restaurant_page .single_restaurant .review_right .review_icons {
+.brand_page .single_restaurant .review_right .review_icons {
   margin-right: 20px;
 }
 
-.restaurant_page .single_restaurant .review_right .review_text {
+.brand_page .single_restaurant .review_right .review_text {
   display: flex;
   width: 80%;
 }
 
-.restaurant_page .single_restaurant .review_img {
+.brand_page .single_restaurant .review_img {
   width: 110px;
   height: 110px;
   border-radius: 90px;
 }
 
-.restaurant_page .single_restaurant .review_name {
+.brand_page .single_restaurant .review_name {
   margin-top: 10px;
   font-family: "Commissioner";
   font-style: normal;
@@ -795,7 +824,7 @@
   color: #fff;
 }
 
-.restaurant_page .single_restaurant .review_for_restaurant .review_stars {
+.brand_page .single_restaurant .review_for_restaurant .review_stars {
   margin-top: 10px;
   width: 149px;
   height: 24px;
@@ -806,7 +835,7 @@
   align-items: center;
 }
 
-.restaurant_page .single_restaurant .restaurant_review .review_prof {
+.brand_page .single_restaurant .restaurant_review .review_prof {
   font-family: "Commissioner";
   font-style: normal;
   font-weight: 500;
@@ -815,7 +844,7 @@
   color: #f1f7b5;
 }
 
-.restaurant_page .single_restaurant .restaurant_review .review_desc {
+.brand_page .single_restaurant .restaurant_review .review_desc {
   margin-top: 10px;
   font-family: "DM Sans";
   font-style: normal;
@@ -825,7 +854,7 @@
   color: #faf8f1;
 }
 
-.restaurant_page .single_restaurant .category_title {
+.brand_page .single_restaurant .category_title {
   font-family: "Dancing Script";
   font-style: normal;
   font-weight: 700;
@@ -834,7 +863,7 @@
   color: #e3c08d;
 }
 
-.restaurant_page .single_restaurant .member_reviews {
+.brand_page .single_restaurant .member_reviews {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -842,7 +871,7 @@
   margin-bottom: 60px;
 }
 
-.restaurant_page .single_restaurant .review_for_restaurant {
+.brand_page .single_restaurant .review_for_restaurant {
   margin-top: 60px;
   width: 100%;
   height: 630px;
@@ -850,7 +879,7 @@
   background-color: #0d1518;
 }
 
-.restaurant_page .single_restaurant .about_left {
+.brand_page .single_restaurant .about_left {
   width: 50%;
   height: auto;
   display: flex;
@@ -860,7 +889,7 @@
   background-position: center;
 }
 
-.restaurant_page .single_restaurant .about_left .about_left_desc {
+.brand_page .single_restaurant .about_left .about_left_desc {
   padding: 20px;
   width: 100%;
   height: 329px;
@@ -870,7 +899,7 @@
   background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 90.88%);
 }
 
-.restaurant_page .single_restaurant .about_left_desc span {
+.brand_page .single_restaurant .about_left_desc span {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
@@ -879,7 +908,7 @@
   color: #ffffff;
 }
 
-.restaurant_page .single_restaurant .about_left_desc p {
+.brand_page .single_restaurant .about_left_desc p {
   margin-top: 10px;
   font-family: "Poppins";
   font-style: normal;
@@ -889,7 +918,7 @@
   color: #d4d4d4;
 }
 
-.restaurant_page .single_restaurant .about_right {
+.brand_page .single_restaurant .about_right {
   margin-left: 20px;
   width: 50%;
   height: 480px;
@@ -898,7 +927,7 @@
   justify-content: space-between;
 }
 
-.restaurant_page .single_restaurant .about_right .about_right_img {
+.brand_page .single_restaurant .about_right .about_right_img {
   width: 160px;
   height: 140px;
   left: 763px;
@@ -910,7 +939,7 @@
   background-position: center;
 }
 
-.restaurant_page .single_restaurant .about_right .about_right_desc {
+.brand_page .single_restaurant .about_right .about_right_desc {
   padding-bottom: 5px;
   margin-left: 20px;
   display: flex;
@@ -918,7 +947,7 @@
   justify-content: flex-end;
 }
 
-.restaurant_page .single_restaurant .about_right_desc span {
+.brand_page .single_restaurant .about_right_desc span {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
@@ -927,7 +956,7 @@
   color: #ffffff;
 }
 
-.restaurant_page .single_restaurant .about_right_desc p {
+.brand_page .single_restaurant .about_right_desc p {
   margin-top: 10px;
   font-family: "Poppins";
   font-style: normal;
@@ -940,7 +969,7 @@
 
 /* Start of Chosedn dish page */
 
-.restaurant_page .chosen_dish_page {
+.brand_page .chosen_dish_page {
   position: relative;
   width: 100%;
   height: auto;

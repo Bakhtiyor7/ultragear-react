@@ -89,7 +89,7 @@ export function OneBrand(props: any) {
       limit: 8,
       order: "createdAt",
       brand_mb_id: brand_id,
-      product_collection: "laptop",
+      product_collection: "keyboard",
     });
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
 
@@ -110,7 +110,14 @@ export function OneBrand(props: any) {
       .getTargetProducts(targetProductSearchObject)
       .then((data) => setTargetProducts(data))
       .catch((err) => console.log(err));
-  }, [chosenBrandId, targetProductSearchObject, productRebuild]);
+  }, [
+    chosenBrandId,
+    targetProductSearchObject,
+    productRebuild,
+    setRandomBrands,
+    setChosenBrand,
+    setTargetProducts,
+  ]);
   /** HANDLERS */
   const chosenBrandHandler = (id: string) => {
     setChosenBrandId(id);

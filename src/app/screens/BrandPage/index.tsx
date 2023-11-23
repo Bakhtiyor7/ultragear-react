@@ -4,13 +4,13 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { ChosenProduct } from "./chosenProduct";
 import { OneBrand } from "./oneBrand";
 import { AllBrands } from "./allBrands";
-import "../../../css/restaurant.css";
+import "../../../css/brand.css";
 
 export function BrandPage(props: any) {
   let brand = useRouteMatch();
   console.log(brand);
   return (
-    <div className="restaurant_page">
+    <div className="brand_page">
       <Switch>
         <Route path={`${brand.path}/products/:product_id`}>
           <ChosenProduct onAdd={props.onAdd} />

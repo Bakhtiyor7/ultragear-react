@@ -195,14 +195,14 @@
 .home_navbar .underline {
   display: block;
   content: "";
-  border-bottom: solid 2px #1f1f1d;
+  border-bottom: solid 2px #007fff;
 }
 
 .home_navbar .hover-line:after {
   display: block;
 
   content: "";
-  border-bottom: solid 2px #1f1f1d;
+  border-bottom: solid 2px #007fff;
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
 }

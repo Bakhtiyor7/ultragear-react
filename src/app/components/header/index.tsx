@@ -194,7 +194,7 @@ export function NavbarHome(props: any) {
               </NavLink>
             </Stack>
             <Box className="big_img">
-              <img src="/home/airpods_img.svg" />
+              <img src="/home/airpods_img.svg" alt="" />
             </Box>
           </Stack>
         </Container>
