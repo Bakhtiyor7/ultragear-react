@@ -114,7 +114,7 @@ export function AllBrands() {
       console.log("targetLikeTop, ERROR:", err);
       sweetErrorHandling(err).then();
     }
-  };
+  }; //test
 
   return (
     <div className="all_brand">
