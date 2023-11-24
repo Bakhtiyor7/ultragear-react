@@ -119,7 +119,7 @@ function App() {
   const onDeleteAll = () => {
     setCartItems([]);
     localStorage.removeItem("cart_data");
-  };
+  }; //test
 
   return (
     <Router>
