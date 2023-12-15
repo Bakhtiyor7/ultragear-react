@@ -356,7 +356,6 @@ export function OneBrand(props: any) {
               </form>
             </Box>
           </Box>
-          {/* <Box className="liner"></Box> */}
 
           <Stack
             style={{ width: "100%", display: "flex", minHeight: "60px" }}

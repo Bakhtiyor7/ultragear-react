@@ -669,16 +669,6 @@
   align-items: center;
 }
 
-.single_brand .liner {
-  position: relative;
-  width: 1064px;
-  height: 0px;
-  margin-top: 86px;
-
-  opacity: 0.2;
-  border: 1px solid #000;
-}
-
 .single_brand label {
   margin-right: 10px;
 }
