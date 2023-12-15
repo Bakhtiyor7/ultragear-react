@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from "react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import SearchIcon from "@mui/icons-material/Search";
-import { Box, Button, Container, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Stack,
+} from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {
@@ -114,9 +124,9 @@ export function OneBrand(props: any) {
     chosenBrandId,
     targetProductSearchObject,
     productRebuild,
-    setRandomBrands,
-    setChosenBrand,
-    setTargetProducts,
+    // setRandomBrands,
+    // setChosenBrand,
+    // setTargetProducts,
   ]);
   /** HANDLERS */
   const chosenBrandHandler = (id: string) => {
@@ -124,6 +134,16 @@ export function OneBrand(props: any) {
     targetProductSearchObject.brand_mb_id = id;
     setTargetProductSearchObject({ ...targetProductSearchObject });
     history.push(`/brand/${id}`);
+  };
+
+  const [sortValue, setSortValue] = useState("");
+
+  const handleChange = (event: { target: { value: any } }) => {
+    const selectedValue = event.target.value;
+    setSortValue(selectedValue);
+
+    // Call searchOrderHandler with the selected sorting criteria
+    searchOrderHandler(selectedValue);
   };
 
   const searchCollectionHandler = (collection: string) => {
@@ -160,10 +180,20 @@ export function OneBrand(props: any) {
   };
 
   return (
-    <div className="single_restaurant">
+    <div className="single_brand">
       <Container>
+        <Stack className="head_information_brand">
+          <img src="/home/rectangle.png" alt="" className="rectangle" />
+          <Box className="header_title">
+            <h1>{chosenBrand?.mb_nick} Products Menu</h1>
+          </Box>
+
+          <Box className="head_info_box">
+            <Box className="category_box"></Box>
+          </Box>
+        </Stack>
         <Stack flexDirection={"column"} alignItems={"center"}>
-          <Stack className={"avatar_big_box"}>
+          {/* <Stack className={"avatar_big_box"}>
             <Box className={"top_text"}>
               <Box className={"single_search_big_box"}>
                 <form className={"single_search_form"} action={""} method={""}>
@@ -183,7 +213,7 @@ export function OneBrand(props: any) {
                 </form>
               </Box>
             </Box>
-          </Stack>
+          </Stack> */}
 
           <Stack
             display={"flex"}
@@ -192,30 +222,113 @@ export function OneBrand(props: any) {
             width={"90%"}
             style={{ marginTop: "65px" }}
           >
-            <Box className={"dropup"}>
-              <button className="dropbtn">ITEMS LIST:</button>
-              <div className="dropup-content">
-                <a onClick={() => searchCollectionHandler("keyboard")}>
-                  Keyboards
-                </a>
-                <a onClick={() => searchCollectionHandler("mouse")}>Mouse</a>
-                <a onClick={() => searchCollectionHandler("headset")}>
-                  Headset
-                </a>
-                <a onClick={() => searchCollectionHandler("earphone")}>
-                  Earphone
-                </a>
-                <a onClick={() => searchCollectionHandler("monitor")}>
-                  Monitor
-                </a>
-                <a onClick={() => searchCollectionHandler("laptop")}>Laptop</a>
-                <a onClick={() => searchCollectionHandler("etc")}>Others</a>
+            <Stack className={"category_holder"}>
+              <Button
+                className="category_button"
+                onClick={() => searchCollectionHandler("keyboard")}
+                sx={{
+                  "&:focus": {
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "99px",
+                  },
+                }}
+              >
+                Keyboards
+              </Button>
+              <Button
+                className="category_button"
+                onClick={() => searchCollectionHandler("mouse")}
+                sx={{
+                  "&:focus": {
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "99px",
+                  },
+                }}
+              >
+                Mouse
+              </Button>
+              <Button
+                className="category_button"
+                onClick={() => searchCollectionHandler("headset")}
+                sx={{
+                  "&:focus": {
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "99px",
+                  },
+                }}
+              >
+                Headsets
+              </Button>
+              <Button
+                className="category_button"
+                onClick={() => searchCollectionHandler("earphone")}
+                sx={{
+                  "&:focus": {
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "99px",
+                  },
+                }}
+              >
+                Earphones
+              </Button>
+              <Button
+                className="category_button"
+                onClick={() => searchCollectionHandler("monitor")}
+                sx={{
+                  "&:focus": {
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "99px",
+                  },
+                }}
+              >
+                Monitor
+              </Button>
+              <Button
+                className="category_button"
+                onClick={() => searchCollectionHandler("laptop")}
+                sx={{
+                  "&:focus": {
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "99px",
+                  },
+                }}
+              >
+                Laptop
+              </Button>
+              <Button
+                className="category_button"
+                onClick={() => searchCollectionHandler("etc")}
+                sx={{
+                  "&:focus": {
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "99px",
+                  },
+                }}
+              >
+                Others
+              </Button>
+            </Stack>
+          </Stack>
+
+          <Box className={"fill_search_box"}>
+            {/* <Box className={"dropdown"} style={{ borderRadius: "20px" }}>
+              <button className="dropbtn">SORT BY:</button>
+              <div className="dropdown-content">
+                <a onClick={() => searchHandler("mb_point")}>Top</a>
+                <a onClick={() => searchHandler("mb_views")}>Most visited</a>
+                <a onClick={() => searchHandler("mb_likes")}>Most liked</a>
+                <a onClick={() => searchHandler("createdAt")}>New</a>
               </div>
-            </Box>
-            <Box className="brand_name">
-              {chosenBrand?.mb_nick} Products Menu
-            </Box>
-            <Box className={"dropup"}>
+            </Box> */}
+
+            {/* <Box className={"dropup"}>
               <button className="dropbtn">SORT BY:</button>
               <div className="dropup-content">
                 <a onClick={() => searchOrderHandler("createdAt")}>New</a>
@@ -229,8 +342,68 @@ export function OneBrand(props: any) {
                   Most viewed
                 </a>
               </div>
+            </Box> */}
+
+            <FormControl style={{ width: "138px", height: "45px" }}>
+              <InputLabel id="sort-by-label">SORT BY:</InputLabel>
+              <Select
+                labelId="sort-by-label"
+                id="sort-by"
+                value={sortValue}
+                label="SORT BY:"
+                onChange={handleChange}
+              >
+                <MenuItem
+                  value="createdAt"
+                  onClick={() => searchOrderHandler("createdAt")}
+                >
+                  New
+                </MenuItem>
+                <MenuItem
+                  value="product_price"
+                  onClick={() => searchOrderHandler("product_price")}
+                >
+                  Price: Low to high
+                </MenuItem>
+                <MenuItem
+                  value="product_likes"
+                  onClick={() => searchOrderHandler("product_likes")}
+                >
+                  Most Liked
+                </MenuItem>
+                <MenuItem
+                  value="product_views"
+                  onClick={() => searchOrderHandler("product_views")}
+                >
+                  Most viewed
+                </MenuItem>
+              </Select>
+            </FormControl>
+
+            <Box className={"search_big_box"}>
+              <form className={"search_form"} action={""} method={""}>
+                <input
+                  type={"search"}
+                  className={"searchInput"}
+                  name={"resSearch"}
+                  placeholder={"search"}
+                  style={{ border: "none" }}
+                />
+                <Button
+                  className={"button_search"}
+                  variant="contained"
+                  sx={{
+                    color: "black",
+                    "&:hover": {
+                      backgroundColor: "#edf3fc",
+                    },
+                  }}
+                >
+                  <SearchIcon />
+                </Button>
+              </form>
             </Box>
-          </Stack>
+          </Box>
           <Box className="liner"></Box>
 
           <Stack

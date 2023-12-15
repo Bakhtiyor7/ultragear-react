@@ -119,6 +119,16 @@ export function AllBrands() {
   return (
     <div className="all_brand">
       <Container>
+        <Stack className="head_information_brand">
+          <img src="/home/rectangle.png" alt="" className="rectangle" />
+          <Box className="header_title">
+            <h1>Featured Brands</h1>
+          </Box>
+
+          <Box className="head_info_box">
+            <Box className="category_box"></Box>
+          </Box>
+        </Stack>
         <Stack>
           <Stack className="category_holder">
             <Button
