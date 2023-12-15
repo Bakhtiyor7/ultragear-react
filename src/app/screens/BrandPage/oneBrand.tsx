@@ -193,34 +193,12 @@ export function OneBrand(props: any) {
           </Box>
         </Stack>
         <Stack flexDirection={"column"} alignItems={"center"}>
-          {/* <Stack className={"avatar_big_box"}>
-            <Box className={"top_text"}>
-              <Box className={"single_search_big_box"}>
-                <form className={"single_search_form"} action={""} method={""}>
-                  <input
-                    type={"search"}
-                    className={"Single_searchInput"}
-                    name={"Single_reSearch"}
-                    placeholder={"Search"}
-                  />
-                  <Button
-                    className={"Single_button_search"}
-                    variant={"contained"}
-                    endIcon={<SearchIcon />}
-                  >
-                    Search
-                  </Button>
-                </form>
-              </Box>
-            </Box>
-          </Stack> */}
-
           <Stack
             display={"flex"}
             flexDirection={"row"}
             justifyContent={"space-between"}
             width={"90%"}
-            style={{ marginTop: "65px" }}
+            style={{ marginTop: "20px" }}
           >
             <Stack className={"category_holder"}>
               <Button
@@ -318,34 +296,8 @@ export function OneBrand(props: any) {
           </Stack>
 
           <Box className={"fill_search_box"}>
-            {/* <Box className={"dropdown"} style={{ borderRadius: "20px" }}>
-              <button className="dropbtn">SORT BY:</button>
-              <div className="dropdown-content">
-                <a onClick={() => searchHandler("mb_point")}>Top</a>
-                <a onClick={() => searchHandler("mb_views")}>Most visited</a>
-                <a onClick={() => searchHandler("mb_likes")}>Most liked</a>
-                <a onClick={() => searchHandler("createdAt")}>New</a>
-              </div>
-            </Box> */}
-
-            {/* <Box className={"dropup"}>
-              <button className="dropbtn">SORT BY:</button>
-              <div className="dropup-content">
-                <a onClick={() => searchOrderHandler("createdAt")}>New</a>
-                <a onClick={() => searchOrderHandler("product_price")}>
-                  Price: Low to high
-                </a>
-                <a onClick={() => searchOrderHandler("product_likes")}>
-                  Most Liked
-                </a>
-                <a onClick={() => searchOrderHandler("product_views")}>
-                  Most viewed
-                </a>
-              </div>
-            </Box> */}
-
             <FormControl style={{ width: "138px", height: "45px" }}>
-              <InputLabel id="sort-by-label">SORT BY:</InputLabel>
+              <InputLabel id="sort-by-label">SORT BY :</InputLabel>
               <Select
                 labelId="sort-by-label"
                 id="sort-by"
@@ -404,27 +356,30 @@ export function OneBrand(props: any) {
               </form>
             </Box>
           </Box>
-          <Box className="liner"></Box>
+          {/* <Box className="liner"></Box> */}
 
           <Stack
             style={{ width: "100%", display: "flex", minHeight: "60px" }}
             flexDirection={"row"}
           >
-            <Stack className={"dish_wrapper"}>
+            <Stack className={"products_wrapper"}>
               {targetProducts.map((product: Product) => {
                 const image_path = `${serverApi}/${product.product_images[0]}`;
                 return (
                   <Box
-                    className="dish_box"
+                    className="product_box"
                     key={product._id}
                     onClick={() => chosenProductHandler(product._id)}
                   >
-                    <Box
-                      className="dish_img"
-                      sx={{
-                        backgroundImage: `url(${image_path} )`,
-                      }}
-                    >
+                    <Box className="product_img">
+                      <Box
+                        className="product_img_holder"
+                        sx={{
+                          backgroundImage: `url(${image_path})`,
+                          cursor: "pointer",
+                        }}
+                        onClick={() => chosenProductHandler(product._id)}
+                      ></Box>
                       <Button
                         className={"like_view_btn"}
                         style={{ left: "36px" }}
@@ -478,12 +433,24 @@ export function OneBrand(props: any) {
                         </Badge>
                       </Button>
                     </Box>
-                    <Stack className={"dish_desc"}>
-                      <span className={"dish_title_text"}>
+                    <Stack className={"product_desc"}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "flex-start",
+                          width: "100%",
+                        }}
+                      >
+                        <span className="product_collection">
+                          {product.product_collection}
+                        </span>
+                        <span className={"product_desc_text"}>
+                          ${product.product_price}
+                        </span>
+                      </div>
+                      <span className={"porduct_title_text"}>
                         {product.product_name}
-                      </span>
-                      <span className={"dish_desc_text"}>
-                        ${product.product_price}
                       </span>
                     </Stack>
                   </Box>
@@ -495,26 +462,25 @@ export function OneBrand(props: any) {
             style={{
               width: "100%",
               display: "flex",
-              borderTop: "1px solid #2980b9",
-              borderBottom: "1px solid #2980b9",
+              backgroundColor: "#E9EFFF",
             }}
             flexDirection={"row"}
             sx={{ mt: "35px" }}
           >
-            <Box className={"prev_btn restaurant-prev"}>
+            <Box className={"prev_btn brand-prev"}>
               <ArrowBackIosNewIcon
                 sx={{ fontSize: 40 }}
                 style={{ color: "black" }}
               />
             </Box>
             <Swiper
-              className={"restaurant_avatars_wrapper"}
-              slidesPerView={7}
+              className={"brand_avatars_wrapper"}
+              slidesPerView={6}
               centeredSlides={false}
-              spaceBetween={30}
+              spaceBetween={50}
               navigation={{
-                nextEl: ".restaurant-next",
-                prevEl: ".restaurant-prev",
+                nextEl: ".brand-next",
+                prevEl: ".brand-prev",
               }}
             >
               {randomBrands.map((ele: Brand) => {
@@ -524,10 +490,10 @@ export function OneBrand(props: any) {
                     onClick={() => chosenBrandHandler(ele._id)}
                     style={{ cursor: "pointer" }}
                     key={ele._id}
-                    className={"restaurant_avatars"}
+                    className={"brand_avatars"}
                   >
                     <img src={image_path} />
-                    <span>{ele.mb_nick}</span>
+                    {/* <span>{ele.mb_nick}</span> */}
                   </SwiperSlide>
                 );
               })}
@@ -542,7 +508,7 @@ export function OneBrand(props: any) {
         </Stack>
       </Container>
 
-      <div className="restaurant_review">
+      <div className="brand_review">
         <Container
           sx={{ mt: "100px" }}
           style={{

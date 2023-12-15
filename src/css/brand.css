@@ -619,7 +619,7 @@
   align-items: center;
 }
 
-.brand_page .single_brand .restaurant_avatars_wrapper {
+.brand_page .single_brand .brand_avatars_wrapper {
   width: 90%;
   height: 147px;
   display: flex;
@@ -636,7 +636,7 @@
   justify-content: space-between;
 }
 
-.brand_page .single_brand .restaurant_avatars_wrapper .restaurant_avatars {
+.brand_page .single_brand .brand_avatars_wrapper .brand_avatars {
   width: 108px;
   height: 100%;
   display: flex;
@@ -645,13 +645,13 @@
   justify-content: center;
 }
 
-.brand_page .single_brand .restaurant_avatars img {
-  width: 108px;
+.brand_page .single_brand .brand_avatars img {
+  width: 120px;
   height: 108px;
-  border-radius: 50%;
+  /* border-radius: 50%; */
 }
 
-.brand_page .single_brand .restaurant_avatars span {
+.brand_page .single_brand .brand_avatars span {
   margin-top: 14px;
   font-family: "Solway";
   font-style: normal;
@@ -677,56 +677,6 @@
 
   opacity: 0.2;
   border: 1px solid #000;
-}
-
-/* Dropup Button */
-.single_brand .dropbtn {
-  background-color: #2980b9;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  border-radius: 12px;
-}
-
-/* The container <div> - needed to position the dropup content */
-.single_brand .dropup {
-  position: relative;
-  display: inline-block;
-}
-
-/* Dropup content (Hidden by Default) */
-.single_brand .dropup-content {
-  display: none;
-  position: absolute;
-  bottom: 50px;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropup */
-.single_brand .dropup-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropup links on hover */
-.single_brand .dropup-content a:hover {
-  background-color: #ddd;
-}
-
-/* Show the dropup menu on hover */
-.single_brand .dropup:hover .dropup-content {
-  display: block;
-}
-
-/* Change the background color of the dropup button when the dropup content is shown */
-.single_brand .dropup:hover .dropbtn {
-  background-color: #2980b9;
 }
 
 .single_brand label {
@@ -782,38 +732,49 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.brand_page .single_brand .dish_wrapper {
+.brand_page .single_brand .products_wrapper {
   margin-left: 20px;
   width: 100%;
   height: auto;
-  min-height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 30px;
 }
 
-.brand_page .single_brand .dish_box {
-  margin-top: 60px;
+.brand_page .single_brand .product_box {
   margin-right: 26px;
-  width: 265px;
-  height: auto;
+  width: 280px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 12px;
 }
 
-.brand_page .single_brand .dish_box .dish_img {
+.brand_page .single_brand .product_box .product_img {
   position: relative;
-  width: 265px;
-  height: 265px;
-  background-size: cover;
-  background-color: #eeeeee;
-  margin-left: 10px;
+  width: 275px;
+  height: 275px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f8fc;
 }
 
-.brand_page .single_brand .dish_box .dish_img:before {
+.brand_page .single_brand .product_box .product_img .product_img_holder {
+  position: relative;
+  width: 230px;
+  height: 230px;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f8fc;
+}
+
+.brand_page .single_brand .product_box .product_img:before {
   content: "";
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -826,11 +787,11 @@
   z-index: 2;
 }
 
-.brand_page .single_brand .dish_img:hover:before {
+.brand_page .single_brand .product_img:hover:before {
   opacity: 1;
 }
 
-.brand_page .single_brand .dish_img img {
+.brand_page .single_brand .product_img img {
   position: absolute;
   display: block;
   max-width: 100%;
@@ -838,15 +799,15 @@
   z-index: 1;
 }
 
-.brand_page .single_brand .dish_box .dish_img:hover .view_btn {
+.brand_page .single_brand .product_box .product_img:hover .view_btn {
   opacity: 1;
 }
 
-.brand_page .single_brand .dish_box .dish_img:hover .like_view_btn {
+.brand_page .single_brand .product_box .product_img:hover .like_view_btn {
   opacity: 1;
 }
 
-.brand_page .single_brand .dish_img .dish_sale {
+.brand_page .single_brand .product_img .dish_sale {
   margin-top: 43px;
   width: 84px;
   height: 39px;
@@ -925,38 +886,57 @@
   border-radius: 50%;
 }
 
-.brand_page .single_brand .dish_box .dish_desc {
-  width: 90%;
+.brand_page .single_brand .product_box .product_desc {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
+  gap: 12px;
   cursor: pointer;
 }
 
-.brand_page .single_brand .dish_desc .dish_title_text {
-  margin-top: 18px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 30px;
+.brand_page .single_brand .product_desc .porduct_title_text {
+  width: 90%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #1d1d1f;
 
-  color: #000000;
-}
-
-.brand_page .single_brand .dish_desc .dish_desc_text {
-  margin-top: 15px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: 200;
+  font-family: "Pretendard", sans-serif;
   font-size: 16px;
-  line-height: 36px;
-  color: #000000;
-  display: flex;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 136%; /* 21.76px */
+  letter-spacing: -0.32px;
+  text-transform: capitalize;
 }
 
-.single_brand .restaurant_review {
+.brand_page .single_brand .product_desc .product_desc_text {
+  color: #033afd;
+
+  font-family: "Pretendard", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 136%; /* 19.04px */
+  letter-spacing: -0.28px;
+  text-transform: capitalize;
+  margin-right: 10px;
+}
+
+.brand_page .single_brand .product_desc .product_collection {
+  color: #1d1d1f;
+
+  font-family: "Pretendard", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 136%; /* 32.64px */
+  letter-spacing: -0.48px;
+  text-transform: uppercase;
+}
+
+.single_brand .brand_review {
   margin-top: 60px;
   width: 100%;
   height: auto;
@@ -964,7 +944,7 @@
   display: flex;
 }
 
-.brand_page .single_brand .restaurant_review .category_title {
+.brand_page .single_brand .brand_review .category_title {
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 700;
@@ -975,8 +955,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  color: #fff;
-  background-color: #8675a9;
+  color: #000;
+  /* background-color: #8675a9; */
   border-radius: 20px;
   margin-bottom: 20px;
 }
@@ -1052,7 +1032,7 @@
   align-items: center;
 }
 
-.brand_page .single_brand .restaurant_review .review_prof {
+.brand_page .single_brand .brand_review .review_prof {
   font-family: "Commissioner";
   font-style: normal;
   font-weight: 500;
@@ -1061,7 +1041,7 @@
   color: #f1f7b5;
 }
 
-.brand_page .single_brand .restaurant_review .review_desc {
+.brand_page .single_brand .brand_review .review_desc {
   margin-top: 10px;
   font-family: "DM Sans";
   font-style: normal;
@@ -1300,7 +1280,7 @@
   align-items: center;
 }
 
-.chosen_dish_page .chosen_dish_info_box .dish_desc_info {
+.chosen_dish_page .chosen_dish_info_box .product_desc_info {
   height: auto;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -1352,6 +1332,11 @@
   font-size: 15px;
   line-height: 22px;
   color: #ffffff;
+}
+
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  padding-right: 32px;
+  padding: 11px;
 }
 
 /*End ChosenDish*/
