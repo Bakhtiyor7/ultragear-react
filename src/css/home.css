@@ -227,9 +227,8 @@
 
 .homepage .product_box .product_img .product_img_holder {
   position: relative;
-  width: 270px;
-  height: 250px;
-  background-size: cover;
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   background-color: #eff5fc;
@@ -244,8 +243,8 @@
   justify-content: center;
   background: #f8be69;
   box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 0px 50px 50px 0px;
-  font-family: "Poppins";
+  border-radius: 0 50px 50px 0;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
