@@ -87,11 +87,13 @@ export function BestProducts() {
                       <Box
                         className="product_img_holder"
                         sx={{
-                          backgroundImage: `url(${image_path})`,
+                          // backgroundImage: `url(${image_path})`,
                           cursor: "pointer",
                         }}
                         onClick={() => chosenProductHandler(product._id)}
-                      ></Box>
+                      >
+                        <img src={image_path} alt={"product image"}/>
+                      </Box>
                     </Stack>
 
                     <Stack className={"product_desc"}>

@@ -374,11 +374,13 @@ export function OneBrand(props: any) {
                       <Box
                         className="product_img_holder"
                         sx={{
-                          backgroundImage: `url(${image_path})`,
+                          // backgroundImage: `url(${image_path})`,
                           cursor: "pointer",
                         }}
                         onClick={() => chosenProductHandler(product._id)}
-                      ></Box>
+                      >
+                        <img src={image_path} alt={"product image"}/>
+                      </Box>
                       <Button
                         className={"like_view_btn"}
                         style={{ left: "36px" }}

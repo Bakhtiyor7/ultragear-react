@@ -756,10 +756,11 @@
 
 .brand_page .single_brand .product_box .product_img .product_img_holder {
   position: relative;
-  width: 230px;
-  height: 230px;
-  background-size: cover;
+  width: 100%;
+  height: auto;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   background-color: #f5f8fc;
 }
