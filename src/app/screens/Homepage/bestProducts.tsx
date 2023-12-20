@@ -1,7 +1,6 @@
 import { Box, Container, Stack } from "@mui/material";
 import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 //REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
@@ -56,11 +55,13 @@ export function BestProducts() {
                 src={"/home/arr_left.svg"}
                 className={"swiper-button-prev-top"}
                 style={{ cursor: "pointer" }}
+                alt={"arrow_image"}
               />
               <img
                 src={"/home/arr_right.svg"}
                 className={"swiper-button-next-top"}
                 style={{ cursor: "pointer" }}
+                alt={"arrow_image"}
               />
             </Box>
           </Box>

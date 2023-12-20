@@ -198,7 +198,7 @@ function App() {
           <LoginPage />
         </Route>
         <Route path="/">
-          <HomePage />
+          <HomePage setPath={setPath} />
         </Route>
       </Switch>
       <Footer setPath={setPath} />
