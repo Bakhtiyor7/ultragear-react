@@ -152,7 +152,7 @@ export function NavbarBrand(props: any) {
             </Menu>
           </Stack>
         </Stack>
-        <Stack className="head_information_brand">
+        {/* <Stack className="head_information_brand">
           <img src="/home/rectangle.png" alt="" className="rectangle" />
           <Box className="header_title">
             <h1>Featured Brands</h1>
@@ -161,7 +161,7 @@ export function NavbarBrand(props: any) {
           <Box className="head_info_box">
             <Box className="category_box"></Box>
           </Box>
-        </Stack>
+        </Stack> */}
       </Container>
     </div>
   );

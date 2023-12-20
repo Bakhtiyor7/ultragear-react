@@ -26,7 +26,7 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setBestBrands: (data: Brand[]) => dispatch(setBestBrands(data)),
 });
 
-export function HomePage() {
+export function HomePage(props: any) {
   // selector: store => data
   // INITIALIZATIONS
   const { setTopBrands, setBestBrands } = actionDispatch(useDispatch());

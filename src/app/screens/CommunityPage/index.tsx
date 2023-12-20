@@ -50,7 +50,7 @@ export function CommunityPage(props: any) {
       .getTargetArticles(searchArticlesObj)
       .then((data) => setTargetBoArticles(data))
       .catch((err) => console.log(err));
-  }, [searchArticlesObj, articleRebuild, setTargetBoArticles]);
+  }, [searchArticlesObj, articleRebuild]);
 
   /** HANDLERS **/
   const handleChange = (event: any, newValue: string) => {

@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from "react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import SearchIcon from "@mui/icons-material/Search";
-import { Box, Button, Container, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Stack,
+} from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {
@@ -114,9 +124,9 @@ export function OneBrand(props: any) {
     chosenBrandId,
     targetProductSearchObject,
     productRebuild,
-    setRandomBrands,
-    setChosenBrand,
-    setTargetProducts,
+    // setRandomBrands,
+    // setChosenBrand,
+    // setTargetProducts,
   ]);
   /** HANDLERS */
   const chosenBrandHandler = (id: string) => {
@@ -124,6 +134,16 @@ export function OneBrand(props: any) {
     targetProductSearchObject.brand_mb_id = id;
     setTargetProductSearchObject({ ...targetProductSearchObject });
     history.push(`/brand/${id}`);
+  };
+
+  const [sortValue, setSortValue] = useState("");
+
+  const handleChange = (event: { target: { value: any } }) => {
+    const selectedValue = event.target.value;
+    setSortValue(selectedValue);
+
+    // Call searchOrderHandler with the selected sorting criteria
+    searchOrderHandler(selectedValue);
   };
 
   const searchCollectionHandler = (collection: string) => {
@@ -160,98 +180,207 @@ export function OneBrand(props: any) {
   };
 
   return (
-    <div className="single_restaurant">
+    <div className="single_brand">
       <Container>
-        <Stack flexDirection={"column"} alignItems={"center"}>
-          <Stack className={"avatar_big_box"}>
-            <Box className={"top_text"}>
-              <Box className={"single_search_big_box"}>
-                <form className={"single_search_form"} action={""} method={""}>
-                  <input
-                    type={"search"}
-                    className={"Single_searchInput"}
-                    name={"Single_reSearch"}
-                    placeholder={"Search"}
-                  />
-                  <Button
-                    className={"Single_button_search"}
-                    variant={"contained"}
-                    endIcon={<SearchIcon />}
-                  >
-                    Search
-                  </Button>
-                </form>
-              </Box>
-            </Box>
-          </Stack>
+        <Stack className="head_information_brand">
+          <img src="/home/rectangle.png" alt="" className="rectangle" />
+          <Box className="header_title">
+            <h1>{chosenBrand?.mb_nick} Products Menu</h1>
+          </Box>
 
+          <Box className="head_info_box">
+            <Box className="category_box"></Box>
+          </Box>
+        </Stack>
+        <Stack flexDirection={"column"} alignItems={"center"}>
           <Stack
             display={"flex"}
             flexDirection={"row"}
             justifyContent={"space-between"}
             width={"90%"}
-            style={{ marginTop: "65px" }}
+            style={{ marginTop: "20px" }}
           >
-            <Box className={"dropup"}>
-              <button className="dropbtn">ITEMS LIST:</button>
-              <div className="dropup-content">
-                <a onClick={() => searchCollectionHandler("keyboard")}>
-                  Keyboards
-                </a>
-                <a onClick={() => searchCollectionHandler("mouse")}>Mouse</a>
-                <a onClick={() => searchCollectionHandler("headset")}>
-                  Headset
-                </a>
-                <a onClick={() => searchCollectionHandler("earphone")}>
-                  Earphone
-                </a>
-                <a onClick={() => searchCollectionHandler("monitor")}>
-                  Monitor
-                </a>
-                <a onClick={() => searchCollectionHandler("laptop")}>Laptop</a>
-                <a onClick={() => searchCollectionHandler("etc")}>Others</a>
-              </div>
-            </Box>
-            <Box className="brand_name">
-              {chosenBrand?.mb_nick} Products Menu
-            </Box>
-            <Box className={"dropup"}>
-              <button className="dropbtn">SORT BY:</button>
-              <div className="dropup-content">
-                <a onClick={() => searchOrderHandler("createdAt")}>New</a>
-                <a onClick={() => searchOrderHandler("product_price")}>
-                  Price: Low to high
-                </a>
-                <a onClick={() => searchOrderHandler("product_likes")}>
-                  Most Liked
-                </a>
-                <a onClick={() => searchOrderHandler("product_views")}>
-                  Most viewed
-                </a>
-              </div>
-            </Box>
+            <Stack className={"category_holder"}>
+              <Button
+                className="category_button"
+                onClick={() => searchCollectionHandler("keyboard")}
+                sx={{
+                  "&:focus": {
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "99px",
+                  },
+                }}
+              >
+                Keyboards
+              </Button>
+              <Button
+                className="category_button"
+                onClick={() => searchCollectionHandler("mouse")}
+                sx={{
+                  "&:focus": {
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "99px",
+                  },
+                }}
+              >
+                Mouse
+              </Button>
+              <Button
+                className="category_button"
+                onClick={() => searchCollectionHandler("headset")}
+                sx={{
+                  "&:focus": {
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "99px",
+                  },
+                }}
+              >
+                Headsets
+              </Button>
+              <Button
+                className="category_button"
+                onClick={() => searchCollectionHandler("earphone")}
+                sx={{
+                  "&:focus": {
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "99px",
+                  },
+                }}
+              >
+                Earphones
+              </Button>
+              <Button
+                className="category_button"
+                onClick={() => searchCollectionHandler("monitor")}
+                sx={{
+                  "&:focus": {
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "99px",
+                  },
+                }}
+              >
+                Monitor
+              </Button>
+              <Button
+                className="category_button"
+                onClick={() => searchCollectionHandler("laptop")}
+                sx={{
+                  "&:focus": {
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "99px",
+                  },
+                }}
+              >
+                Laptop
+              </Button>
+              <Button
+                className="category_button"
+                onClick={() => searchCollectionHandler("etc")}
+                sx={{
+                  "&:focus": {
+                    color: "#fff",
+                    bgcolor: "#000",
+                    borderRadius: "99px",
+                  },
+                }}
+              >
+                Others
+              </Button>
+            </Stack>
           </Stack>
-          <Box className="liner"></Box>
+
+          <Box className={"fill_search_box"}>
+            <FormControl style={{ width: "138px", height: "45px" }}>
+              <InputLabel id="sort-by-label">SORT BY :</InputLabel>
+              <Select
+                labelId="sort-by-label"
+                id="sort-by"
+                value={sortValue}
+                label="SORT BY:"
+                onChange={handleChange}
+              >
+                <MenuItem
+                  value="createdAt"
+                  onClick={() => searchOrderHandler("createdAt")}
+                >
+                  New
+                </MenuItem>
+                <MenuItem
+                  value="product_price"
+                  onClick={() => searchOrderHandler("product_price")}
+                >
+                  Price: Low to high
+                </MenuItem>
+                <MenuItem
+                  value="product_likes"
+                  onClick={() => searchOrderHandler("product_likes")}
+                >
+                  Most Liked
+                </MenuItem>
+                <MenuItem
+                  value="product_views"
+                  onClick={() => searchOrderHandler("product_views")}
+                >
+                  Most viewed
+                </MenuItem>
+              </Select>
+            </FormControl>
+
+            <Box className={"search_big_box"}>
+              <form className={"search_form"} action={""} method={""}>
+                <input
+                  type={"search"}
+                  className={"searchInput"}
+                  name={"resSearch"}
+                  placeholder={"search"}
+                  style={{ border: "none" }}
+                />
+                <Button
+                  className={"button_search"}
+                  variant="contained"
+                  sx={{
+                    color: "black",
+                    "&:hover": {
+                      backgroundColor: "#edf3fc",
+                    },
+                  }}
+                >
+                  <SearchIcon />
+                </Button>
+              </form>
+            </Box>
+          </Box>
 
           <Stack
             style={{ width: "100%", display: "flex", minHeight: "60px" }}
             flexDirection={"row"}
           >
-            <Stack className={"dish_wrapper"}>
+            <Stack className={"products_wrapper"}>
               {targetProducts.map((product: Product) => {
                 const image_path = `${serverApi}/${product.product_images[0]}`;
                 return (
                   <Box
-                    className="dish_box"
+                    className="product_box"
                     key={product._id}
                     onClick={() => chosenProductHandler(product._id)}
                   >
-                    <Box
-                      className="dish_img"
-                      sx={{
-                        backgroundImage: `url(${image_path} )`,
-                      }}
-                    >
+                    <Box className="product_img">
+                      <Box
+                        className="product_img_holder"
+                        sx={{
+                          // backgroundImage: `url(${image_path})`,
+                          cursor: "pointer",
+                        }}
+                        onClick={() => chosenProductHandler(product._id)}
+                      >
+                        <img src={image_path} alt={"product image"}/>
+                      </Box>
                       <Button
                         className={"like_view_btn"}
                         style={{ left: "36px" }}
@@ -305,12 +434,24 @@ export function OneBrand(props: any) {
                         </Badge>
                       </Button>
                     </Box>
-                    <Stack className={"dish_desc"}>
-                      <span className={"dish_title_text"}>
+                    <Stack className={"product_desc"}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "flex-start",
+                          width: "100%",
+                        }}
+                      >
+                        <span className="product_collection">
+                          {product.product_collection}
+                        </span>
+                        <span className={"product_desc_text"}>
+                          ${product.product_price}
+                        </span>
+                      </div>
+                      <span className={"porduct_title_text"}>
                         {product.product_name}
-                      </span>
-                      <span className={"dish_desc_text"}>
-                        ${product.product_price}
                       </span>
                     </Stack>
                   </Box>
@@ -322,26 +463,25 @@ export function OneBrand(props: any) {
             style={{
               width: "100%",
               display: "flex",
-              borderTop: "1px solid #2980b9",
-              borderBottom: "1px solid #2980b9",
+              backgroundColor: "#E9EFFF",
             }}
             flexDirection={"row"}
             sx={{ mt: "35px" }}
           >
-            <Box className={"prev_btn restaurant-prev"}>
+            <Box className={"prev_btn brand-prev"}>
               <ArrowBackIosNewIcon
                 sx={{ fontSize: 40 }}
                 style={{ color: "black" }}
               />
             </Box>
             <Swiper
-              className={"restaurant_avatars_wrapper"}
-              slidesPerView={7}
+              className={"brand_avatars_wrapper"}
+              slidesPerView={6}
               centeredSlides={false}
-              spaceBetween={30}
+              spaceBetween={50}
               navigation={{
-                nextEl: ".restaurant-next",
-                prevEl: ".restaurant-prev",
+                nextEl: ".brand-next",
+                prevEl: ".brand-prev",
               }}
             >
               {randomBrands.map((ele: Brand) => {
@@ -351,10 +491,10 @@ export function OneBrand(props: any) {
                     onClick={() => chosenBrandHandler(ele._id)}
                     style={{ cursor: "pointer" }}
                     key={ele._id}
-                    className={"restaurant_avatars"}
+                    className={"brand_avatars"}
                   >
                     <img src={image_path} />
-                    <span>{ele.mb_nick}</span>
+                    {/* <span>{ele.mb_nick}</span> */}
                   </SwiperSlide>
                 );
               })}
@@ -369,7 +509,7 @@ export function OneBrand(props: any) {
         </Stack>
       </Container>
 
-      <div className="restaurant_review">
+      <div className="brand_review">
         <Container
           sx={{ mt: "100px" }}
           style={{

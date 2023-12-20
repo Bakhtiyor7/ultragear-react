@@ -76,3 +76,14 @@ export const sweetFailureProvider = (
     }
   });
 };
+
+export const sweetComingSoonAlert = ()  => {
+  Swal.fire({
+    title: 'Coming Soon!',
+    text: 'Please use Brands page or product links for shopping! Stay Tuned!',
+    icon: "info",
+    confirmButtonText: 'OK'
+  })
+}
+
+
