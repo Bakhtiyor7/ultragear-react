@@ -25,6 +25,7 @@ import { HomePage } from "./screens/Homepage";
 import { LoginPage } from "./screens/LoginPage/indes";
 import { MemberPage } from "./screens/MemberPage";
 import { OrdersPage } from "./screens/OrdersPage";
+import MobileUi from "./components/responsive_ui/responsive";
 
 function App() {
   //** INITIALIZATIONS */
@@ -121,10 +122,15 @@ function App() {
     localStorage.removeItem("cart_data");
   };
 
+  const mobileSize = 768;
+  const isMobile = window.innerWidth <= mobileSize;
+
   return (
     <Router>
-      {main_path == "/" ? (
-        <NavbarHome
+      {isMobile ? (<MobileUi/>) : (
+<>
+  {main_path == "/" ? (
+      <NavbarHome
           setPath={setPath}
           handleLoginOpen={handleLoginOpen}
           handleSignupOpen={handleSignUpOpen}
@@ -139,77 +145,79 @@ function App() {
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
           setOrderRebuild={setOrderRebuild}
-        />
-      ) : main_path.includes("/brand") ? (
-        <NavbarBrand
-          setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
-          handleSignupOpen={handleSignUpOpen}
-          anchorEl={anchorEl}
-          open={open}
-          handleLogoutClick={handleLogoutClick}
-          handleCloseLogOut={handleCloseLogOut}
-          handleLogOutRequest={handleLogOutRequest}
-          cartItems={cartItems}
-          onAdd={onAdd}
-          onRemove={onRemove}
-          onDelete={onDelete}
-          onDeleteAll={onDeleteAll}
-          setOrderRebuild={setOrderRebuild}
-        />
-      ) : (
-        <NavbarOthers
-          setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
-          handleSignupOpen={handleSignUpOpen}
-          anchorEl={anchorEl}
-          open={open}
-          handleLogoutClick={handleLogoutClick}
-          handleCloseLogOut={handleCloseLogOut}
-          handleLogOutRequest={handleLogOutRequest}
-          cartItems={cartItems}
-          onAdd={onAdd}
-          onRemove={onRemove}
-          onDelete={onDelete}
-          onDeleteAll={onDeleteAll}
-          setOrderRebuild={setOrderRebuild}
-        />
-      )}
-      <Switch>
-        <Route path="/brand">
-          <BrandPage onAdd={onAdd} />
-        </Route>
-        <Route path="/community">
-          <CommunityPage />
-        </Route>
-        <Route path="/orders">
-          <OrdersPage
-            orderRebuild={orderRebuild}
-            setOrderRebuild={setOrderRebuild}
-          />
-        </Route>
-        <Route path="/member-page">
-          <MemberPage />
-        </Route>
-        <Route path="/help">
-          <HelpPage />
-        </Route>
-        <Route path="/login">
-          <LoginPage />
-        </Route>
-        <Route path="/">
-          <HomePage setPath={setPath} />
-        </Route>
-      </Switch>
-      <Footer setPath={setPath} />
-      <AuthenticationModal
-        loginOpen={loginOpen}
-        handleLoginOpen={handleLoginOpen}
-        handleLoginClose={handleLoginClose}
-        signUpOpen={signUpOpen}
-        handleSignUpOpen={handleSignUpOpen}
-        handleSignUpClose={handleSignUpClose}
       />
+  ) : main_path.includes("/brand") ? (
+      <NavbarBrand
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignupOpen={handleSignUpOpen}
+          anchorEl={anchorEl}
+          open={open}
+          handleLogoutClick={handleLogoutClick}
+          handleCloseLogOut={handleCloseLogOut}
+          handleLogOutRequest={handleLogOutRequest}
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
+          setOrderRebuild={setOrderRebuild}
+      />
+  ) : (
+      <NavbarOthers
+          setPath={setPath}
+          handleLoginOpen={handleLoginOpen}
+          handleSignupOpen={handleSignUpOpen}
+          anchorEl={anchorEl}
+          open={open}
+          handleLogoutClick={handleLogoutClick}
+          handleCloseLogOut={handleCloseLogOut}
+          handleLogOutRequest={handleLogOutRequest}
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
+          setOrderRebuild={setOrderRebuild}
+      />
+  )}
+  <Switch>
+    <Route path="/brand">
+      <BrandPage onAdd={onAdd} />
+    </Route>
+    <Route path="/community">
+      <CommunityPage />
+    </Route>
+    <Route path="/orders">
+      <OrdersPage
+          orderRebuild={orderRebuild}
+          setOrderRebuild={setOrderRebuild}
+      />
+    </Route>
+    <Route path="/member-page">
+      <MemberPage />
+    </Route>
+    <Route path="/help">
+      <HelpPage />
+    </Route>
+    <Route path="/login">
+      <LoginPage />
+    </Route>
+    <Route path="/">
+      <HomePage setPath={setPath} />
+    </Route>
+  </Switch>
+  <Footer setPath={setPath} />
+  <AuthenticationModal
+      loginOpen={loginOpen}
+      handleLoginOpen={handleLoginOpen}
+      handleLoginClose={handleLoginClose}
+      signUpOpen={signUpOpen}
+      handleSignUpOpen={handleSignUpOpen}
+      handleSignUpClose={handleSignUpClose}
+  />
+        </>
+      )}
     </Router>
   );
 }
