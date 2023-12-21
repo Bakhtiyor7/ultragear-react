@@ -1342,9 +1342,11 @@
   color: #000000;
 }
 
-.chosen_product_page .chosen_product_info_box .dish_desc_info {
-  max-height: 400px;
-  margin: 20px 0 20px 0;
+.chosen_product_page .chosen_product_info_box .product_desc_info {
+  width: 500px;
+  padding: 20px 0;
+
+
 }
 
 .chosen_product_page .button_box {
