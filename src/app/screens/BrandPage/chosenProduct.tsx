@@ -116,7 +116,6 @@ export function ChosenProduct(props: any) {
                 <SwiperSlide className={"swiper-slide"}>
                   <Box className={"image_wrapper"}>
                   <img
-                    style={{ width: "100%", height: "100%" }}
                     src={image_path}
                     alt={"product_image"}
                   />
@@ -140,6 +139,7 @@ export function ChosenProduct(props: any) {
               const image_path = `${serverApi}/${ele}`;
               return (
                 <SwiperSlide
+
                   style={{
                     height: "107px",
                     display: "flex",
