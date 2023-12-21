@@ -1,35 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { Favorite, FavoriteBorder } from "@mui/icons-material";
-import { Box, Button, Container, Rating, Stack } from "@mui/material";
-import { FreeMode, Navigation, Thumbs } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, {useEffect, useState} from "react";
+import {Favorite, FavoriteBorder} from "@mui/icons-material";
+import {Box, Button, Container, Rating, Stack} from "@mui/material";
+import {FreeMode, Navigation, Thumbs} from "swiper";
+import {Swiper, SwiperSlide} from "swiper/react";
 import CheckBox from "@mui/material/Checkbox";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import Marginer from "../../components/marginer";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 //REDUX
-import { useDispatch, useSelector } from "react-redux";
-import { createSelector } from "reselect";
-import { retrieveChosenProduct, retrieveChosenBrand } from "./selector";
-import { Brand } from "../../../types/user";
-import { Dispatch } from "@reduxjs/toolkit";
-import { setChosenProduct, setChosenBrand } from "./slice";
-import { Product } from "../../../types/product";
+import {useDispatch, useSelector} from "react-redux";
+import {createSelector} from "reselect";
+import {retrieveChosenBrand, retrieveChosenProduct} from "./selector";
+import {Brand} from "../../../types/user";
+import {Dispatch} from "@reduxjs/toolkit";
+import {setChosenBrand, setChosenProduct} from "./slice";
+import {Product} from "../../../types/product";
 import ProductApiService from "../../apiServices/productApiService";
 import BrandApiService from "../../apiServices/brandApiService";
-import { serverApi } from "../../../lib/config";
+import {serverApi} from "../../../lib/config";
 import assert from "assert";
 import MemberApiService from "../../apiServices/memberApiService";
-import { Definer } from "../../../lib/Definer";
-import {
-  sweetErrorHandling,
-  sweetTopSmallSuccessAlert,
-} from "../../../lib/sweetAlert";
-import { verifiedMemberData } from "../../apiServices/verify";
+import {Definer} from "../../../lib/Definer";
+import {sweetErrorHandling, sweetTopSmallSuccessAlert,} from "../../../lib/sweetAlert";
+import {verifiedMemberData} from "../../apiServices/verify";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -102,25 +98,29 @@ export function ChosenProduct(props: any) {
   };
 
   return (
-    <div className="chosen_dish_page">
-      <Container className="dish_container">
-        <Stack className={"chosen_dish_slider"}>
+    <div className="chosen_product_page">
+      <Container className="product_container">
+        <Stack className={"chosen_product_slider"}>
           <Swiper
             loop={true}
             spaceBetween={10}
             navigation={true}
             // thumbs={{ swiper: thumbsSwiper }}
             modules={[FreeMode, Navigation, Thumbs]}
+            autoplay={{delay: 3000, disableOnInteraction: true}}
             className="dish_swiper"
           >
             {chosenProduct?.product_images.map((ele: string) => {
               const image_path = `${serverApi}/${ele}`;
               return (
-                <SwiperSlide>
+                <SwiperSlide className={"swiper-slide"}>
+                  <Box className={"image_wrapper"}>
                   <img
                     style={{ width: "100%", height: "100%" }}
                     src={image_path}
+                    alt={"product_image"}
                   />
+                  </Box>
                 </SwiperSlide>
               );
             })}
@@ -159,8 +159,8 @@ export function ChosenProduct(props: any) {
           </Swiper>
         </Stack>
 
-        <Stack className={"chosen_dish_info_container"}>
-          <Box className={"chosen_dish_info_box"}>
+        <Stack className={"chosen_product_info_container"}>
+          <Box className={"chosen_product_info_box"}>
             <strong className={"dish_txt"}>
               {chosenProduct?.product_name}
             </strong>
@@ -181,12 +181,12 @@ export function ChosenProduct(props: any) {
                   <CheckBox
                     {...label}
                     icon={<FavoriteBorder />}
-                    checkedIcon={<Favorite style={{ color: "red" }} />}
+                    checkedIcon={<Favorite style={{color: "red"}} />}
                     id={chosenProduct?._id}
                     onClick={targetLikeProduct}
                     checked={
-                      chosenProduct?.me_liked &&
-                      !!chosenProduct?.me_liked[0]?.my_favorite
+                      !!(chosenProduct?.me_liked &&
+                          chosenProduct?.me_liked[0]?.my_favorite)
                     }
                   />
 
