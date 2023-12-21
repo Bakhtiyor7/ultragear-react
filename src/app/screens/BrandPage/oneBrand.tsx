@@ -1,25 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import SearchIcon from "@mui/icons-material/Search";
-import {
-  Box,
-  Button,
-  Container,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  Stack,
-} from "@mui/material";
-import { Swiper, SwiperSlide } from "swiper/react";
+import {Box, Button, Container, FormControl, InputLabel, MenuItem, Select, Stack,} from "@mui/material";
+import {Swiper, SwiperSlide} from "swiper/react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import {
-  Collections,
-  Favorite,
-  FavoriteBorder,
-  MonetizationOn,
-} from "@mui/icons-material";
+import {Favorite, FavoriteBorder,} from "@mui/icons-material";
 import Badge from "@mui/material/Badge";
 import Checkbox from "@mui/material/Checkbox";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
@@ -28,32 +13,25 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 import StarIcon from "@mui/icons-material/Star";
-import { useHistory, useParams } from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 //REDUX
-import { useDispatch, useSelector } from "react-redux";
-import { createSelector } from "reselect";
-import {
-  retrieveChosenBrand,
-  retrieveRandomBrands,
-  retrieveTargetProducts,
-} from "./selector";
-import { Brand } from "../../../types/user";
-import { Dispatch } from "@reduxjs/toolkit";
-import { setChosenBrand, setRandomBrands, setTargetProducts } from "./slice";
+import {useDispatch, useSelector} from "react-redux";
+import {createSelector} from "reselect";
+import {retrieveChosenBrand, retrieveRandomBrands, retrieveTargetProducts,} from "./selector";
+import {Brand} from "../../../types/user";
+import {Dispatch} from "@reduxjs/toolkit";
+import {setChosenBrand, setRandomBrands, setTargetProducts} from "./slice";
 
-import { ProductSearchObj } from "../../../types/others";
+import {ProductSearchObj} from "../../../types/others";
 import ProductApiService from "../../apiServices/productApiService";
-import { Product } from "../../../types/product";
-import { serverApi } from "../../../lib/config";
+import {Product} from "../../../types/product";
+import {serverApi} from "../../../lib/config";
 import BrandApiService from "../../apiServices/brandApiService";
 import assert from "assert";
 import MemberApiService from "../../apiServices/memberApiService";
-import { Definer } from "../../../lib/Definer";
-import {
-  sweetErrorHandling,
-  sweetTopSmallSuccessAlert,
-} from "../../../lib/sweetAlert";
-import { verifiedMemberData } from "../../apiServices/verify";
+import {Definer} from "../../../lib/Definer";
+import {sweetErrorHandling, sweetTopSmallSuccessAlert,} from "../../../lib/sweetAlert";
+import {verifiedMemberData} from "../../apiServices/verify";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -398,10 +376,8 @@ export function OneBrand(props: any) {
                             checkedIcon={<Favorite style={{ color: "red" }} />}
                             onClick={targetLikeProduct}
                             checked={
-                              product?.me_liked &&
-                              product?.me_liked[0]?.my_favorite
-                                ? true
-                                : false
+                              !!(product?.me_liked &&
+                                  product?.me_liked[0]?.my_favorite)
                             }
                           />
                         </Badge>
