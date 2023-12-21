@@ -103,7 +103,8 @@ export function ChosenProduct(props: any) {
         <Stack className={"chosen_product_slider"}>
           <Swiper
             loop={true}
-            spaceBetween={10}
+            spaceBetween={20}
+            slidesPerView={1}
             navigation={true}
             // thumbs={{ swiper: thumbsSwiper }}
             modules={[FreeMode, Navigation, Thumbs]}
@@ -198,7 +199,7 @@ export function ChosenProduct(props: any) {
                 </div>
               </div>
             </Box>
-            <div className={"dish_desc_info"}>
+            <div className={"product_desc_info"}>
               {chosenProduct?.product_description
                 ? chosenProduct?.product_description
                 : "no description"}{" "}
