@@ -1181,6 +1181,9 @@
 .chosen_product_page .chosen_product_slider {
   width: 48%;
   height: 581px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .chosen_product_page .chosen_product_slider .swiper-slide {
@@ -1190,8 +1193,8 @@
 }
 
 .chosen_product_page .chosen_product_slider .image_wrapper {
-  height: 85%;
-  width: 85%;
+  height: 100%;
+  width: 100%;
 
   display: flex;
   align-items: center;
