@@ -31,6 +31,14 @@ import ReactGA from 'react-ga';
 ReactGA.initialize('G-2VPWGWJL2G');
 function App() {
   //** INITIALIZATIONS */
+  // ==== Google Analytics related
+
+
+  useEffect(() => {
+    // Track the page view
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
   const [signUpOpen, setSignUpOpen] = useState(false);
@@ -44,12 +52,7 @@ function App() {
   const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
 
-  // ==== Google Analytics related
-  const location = useLocation();
 
-  useEffect(() => {
-    ReactGA.pageview(location.pathname + location.search);
-  }, [location]);
   /**  HANDLERS */
   const handleSignUpOpen = () => setSignUpOpen(true);
   const handleSignUpClose = () => setSignUpOpen(false);
