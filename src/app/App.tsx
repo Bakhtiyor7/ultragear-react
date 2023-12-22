@@ -1,44 +1,64 @@
 import React, {useEffect, useState} from "react";
-import {Route, BrowserRouter as Router, Switch, useLocation} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import "../css/App.css";
 import "../css/footer.css";
 import "../css/navbar.css";
 
 import "../app/apiServices/verify";
-import { Definer } from "../lib/Definer";
-import {
-  sweetFailureProvider,
-  sweetTopSmallSuccessAlert,
-} from "../lib/sweetAlert";
-import { CartItem } from "../types/others";
-import { Product } from "../types/product";
+import {Definer} from "../lib/Definer";
+import {sweetFailureProvider, sweetTopSmallSuccessAlert,} from "../lib/sweetAlert";
+import {CartItem} from "../types/others";
+import {Product} from "../types/product";
 import MemberApiService from "./apiServices/memberApiService";
 import AuthenticationModal from "./components/auth";
-import { Footer } from "./components/footer";
-import { NavbarBrand } from "./components/header/brand";
-import { NavbarHome } from "./components/header";
-import { NavbarOthers } from "./components/header/others";
-import { BrandPage } from "./screens/BrandPage";
-import { CommunityPage } from "./screens/CommunityPage";
-import { HelpPage } from "./screens/HelpPage";
-import { HomePage } from "./screens/Homepage";
-import { LoginPage } from "./screens/LoginPage/indes";
-import { MemberPage } from "./screens/MemberPage";
-import { OrdersPage } from "./screens/OrdersPage";
+import {Footer} from "./components/footer";
+import {NavbarBrand} from "./components/header/brand";
+import {NavbarHome} from "./components/header";
+import {NavbarOthers} from "./components/header/others";
+import {BrandPage} from "./screens/BrandPage";
+import {CommunityPage} from "./screens/CommunityPage";
+import {HelpPage} from "./screens/HelpPage";
+import {HomePage} from "./screens/Homepage";
+import {LoginPage} from "./screens/LoginPage/indes";
+import {MemberPage} from "./screens/MemberPage";
+import {OrdersPage} from "./screens/OrdersPage";
 import MobileUi from "./components/responsive_ui/responsive";
-import ReactGA from 'react-ga';
-import {Helmet} from "react-helmet-async";
 
-const TRACKING_ID = "UA-255555229-1"
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+  }
+}
 
-ReactGA.initialize(TRACKING_ID);
+// const TRACKING_ID = "UA-255555229-1"
+//
+// ReactGA.initialize(TRACKING_ID);
 
 
 function App() {
   //** INITIALIZATIONS */
   // ==== Google Analytics related
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    const script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SX57ZPFQZ';
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    script.onload = () => {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function gtag() {
+        window.dataLayer.push(arguments);
+      };
+
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-7SX57ZPFQZ');
+    };
+
+    return () => {
+      document.body.removeChild(script);
+    };
   }, []);
 
   const [path, setPath] = useState();
