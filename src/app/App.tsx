@@ -29,7 +29,7 @@ import MobileUi from "./components/responsive_ui/responsive";
 import ReactGA from 'react-ga';
 import {Helmet} from "react-helmet-async";
 
-const TRACKING_ID = "UA-255425301-1"
+const TRACKING_ID = "UA-255555229-1"
 
 ReactGA.initialize(TRACKING_ID);
 
