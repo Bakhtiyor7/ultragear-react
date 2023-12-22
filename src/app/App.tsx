@@ -27,15 +27,17 @@ import { MemberPage } from "./screens/MemberPage";
 import { OrdersPage } from "./screens/OrdersPage";
 import MobileUi from "./components/responsive_ui/responsive";
 import ReactGA from 'react-ga';
+import {Helmet} from "react-helmet-async";
 
-ReactGA.initialize('G-2VPWGWJL2G');
+const TRACKING_ID = "UA-255425301-1"
+
+ReactGA.initialize(TRACKING_ID);
+
+
 function App() {
   //** INITIALIZATIONS */
   // ==== Google Analytics related
-
-
   useEffect(() => {
-    // Track the page view
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
 
