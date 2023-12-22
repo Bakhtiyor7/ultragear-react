@@ -1361,7 +1361,7 @@
 .chosen_product_page .button_box button {
   width: 230px;
   height: 44px;
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 15px;
