@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Route, BrowserRouter as Router, Switch, useLocation} from "react-router-dom";
 import "../css/App.css";
 import "../css/footer.css";
 import "../css/navbar.css";
@@ -16,7 +16,7 @@ import MemberApiService from "./apiServices/memberApiService";
 import AuthenticationModal from "./components/auth";
 import { Footer } from "./components/footer";
 import { NavbarBrand } from "./components/header/brand";
-import { NavbarHome } from "./components/header/index";
+import { NavbarHome } from "./components/header";
 import { NavbarOthers } from "./components/header/others";
 import { BrandPage } from "./screens/BrandPage";
 import { CommunityPage } from "./screens/CommunityPage";
@@ -26,7 +26,9 @@ import { LoginPage } from "./screens/LoginPage/indes";
 import { MemberPage } from "./screens/MemberPage";
 import { OrdersPage } from "./screens/OrdersPage";
 import MobileUi from "./components/responsive_ui/responsive";
+import ReactGA from 'react-ga';
 
+ReactGA.initialize('G-2VPWGWJL2G');
 function App() {
   //** INITIALIZATIONS */
   const [path, setPath] = useState();
@@ -42,6 +44,12 @@ function App() {
   const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
 
+  // ==== Google Analytics related
+  const location = useLocation();
+
+  useEffect(() => {
+    ReactGA.pageview(location.pathname + location.search);
+  }, [location]);
   /**  HANDLERS */
   const handleSignUpOpen = () => setSignUpOpen(true);
   const handleSignUpClose = () => setSignUpOpen(false);
