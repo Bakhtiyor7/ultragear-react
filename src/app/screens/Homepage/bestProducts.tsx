@@ -88,7 +88,6 @@ export function BestProducts() {
                       <Box
                         className="product_img_holder"
                         sx={{
-                          // backgroundImage: `url(${image_path})`,
                           cursor: "pointer",
                         }}
                         onClick={() => chosenProductHandler(product._id)}

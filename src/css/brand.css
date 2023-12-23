@@ -848,9 +848,9 @@
   z-index: 3;
   opacity: 0;
   transition: opacity 0.5s ease;
-  background: rgb(198 0 255 / 66%);
-  border: 2px solid #d7b686;
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.54);
+  border: 1px solid rgba(255, 255, 255, 0.54);
+  border-radius: 99px;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
@@ -1155,20 +1155,20 @@
 }
 /* End of chosen restaurant page */
 
-/* Start of Chosedn dish page */
+/* Start of ChosenProduct page */
 
-.brand_page .chosen_dish_page {
+.brand_page .chosen_product_page {
   position: relative;
   width: 100%;
   height: auto;
-  background: #dddddd;
+  background: #EFF5FC;
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.chosen_dish_page .dish_container {
+.chosen_product_page .product_container {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -1178,19 +1178,50 @@
   margin-bottom: 60px;
 }
 
-.chosen_dish_page .chosen_dish_slider {
+.chosen_product_page .chosen_product_slider {
   width: 48%;
   height: 581px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.chosen_dish_page .dish_swiper {
+.chosen_product_page .chosen_product_slider .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chosen_product_page .chosen_product_slider .image_wrapper {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chosen_product_page .chosen_product_slider .image_wrapper img {
+  width: 100%;
+  height: auto;
+}
+
+.chosen_product_page .dish_swiper {
   --swiper-navigation-color: #ffffff;
   --swiper-pagination-color: #ffffff;
   width: 100%;
   height: 1020px;
 }
 
-.chosen_dish_page .swiper-wrapper {
+.chosen_product_page  .swiper-button-next {
+  color: #0b0e11;
+}
+
+.chosen_product_page  .swiper-button-prev {
+  color: #0b0e11
+}
+
+.chosen_product_page .swiper-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
@@ -1200,7 +1231,7 @@
   box-sizing: content-box;
 }
 
-.chosen_dish_page .chosen_dish_info_container {
+.chosen_product_page .chosen_dish_info_container {
   padding: 30px 40px;
   width: 49%;
   height: auto;
@@ -1208,7 +1239,7 @@
   /*align-items: center;*/
 }
 
-.chosen_dish_page .chosen_dish_info_container .chosen_dish_info_box {
+.chosen_product_page .chosen_product_info_container .chosen_product_info_box {
   /*margin-top: 30px;*/
   width: 100%;
   height: auto;
@@ -1216,7 +1247,7 @@
   flex-direction: column;
 }
 
-.chosen_dish_page .chosen_dish_info_box .dish_txt {
+.chosen_product_page .chosen_product_info_box .dish_txt {
   font-family: "Helvetica";
   font-style: normal;
   font-weight: 600;
@@ -1225,7 +1256,7 @@
   color: #000000;
 }
 
-.chosen_dish_page .chosen_dish_info_box .resto_name {
+.chosen_product_page .chosen_product_info_box .resto_name {
   margin-top: 16px;
   font-family: "Helvetica";
   font-style: normal;
@@ -1235,14 +1266,20 @@
   color: #979797;
 }
 
-.chosen_dish_page .chosen_dish_info_box .product_price {
+.chosen_product_page .chosen_product_info_box .product_price {
+  color: #033afd;
+
   margin-top: 16px;
-  font-family: "Helvetica";
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
   font-style: normal;
   font-size: 16px;
+  line-height: 136%; /* 19.04px */
+  letter-spacing: -0.28px;
+  text-transform: capitalize;
 }
 
-.chosen_dish_page .chosen_dish_info_box .rating_box {
+.chosen_product_page .chosen_product_info_box .rating_box {
   margin-top: 20px;
   width: 100%;
   height: auto;
@@ -1253,7 +1290,7 @@
   align-items: center;
 }
 
-.chosen_dish_page .rating_box .star_box {
+.chosen_product_page .rating_box .star_box {
   width: auto;
   height: auto;
 
@@ -1262,7 +1299,7 @@
   align-items: center;
 }
 
-.chosen_dish_page .rating_box .evaluation_box {
+.chosen_product_page .rating_box .evaluation_box {
   width: auto;
   height: auto;
 
@@ -1271,7 +1308,7 @@
   align-items: center;
 }
 
-.chosen_dish_page .chosen_dish_info_box .product_desc_info {
+.chosen_product_page .chosen_product_info_box .product_desc_info {
   height: auto;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -1284,7 +1321,7 @@
   color: #000000;
 }
 
-.chosen_dish_page .chosen_dish_info_box .dish_price_box {
+.chosen_product_page .chosen_product_info_box .dish_price_box {
   margin-top: 20px;
   margin-bottom: 20px;
   width: 100%;
@@ -1296,8 +1333,8 @@
   align-items: center;
 }
 
-.chosen_dish_page .dish_price_box span {
-  font-family: "Poppins";
+.chosen_product_page .dish_price_box span {
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 25px;
@@ -1305,7 +1342,14 @@
   color: #000000;
 }
 
-.chosen_dish_page .button_box {
+.chosen_product_page .chosen_product_info_box .product_desc_info {
+  width: 500px;
+  padding: 20px 0;
+
+
+}
+
+.chosen_product_page .button_box {
   width: 100%;
   height: auto;
 
@@ -1314,10 +1358,10 @@
   justify-content: center;
 }
 
-.chosen_dish_page .button_box button {
+.chosen_product_page .button_box button {
   width: 230px;
   height: 44px;
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 15px;

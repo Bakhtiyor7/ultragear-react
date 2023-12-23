@@ -1,34 +1,66 @@
-import React, { useState } from "react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import "../css/App.css";
 import "../css/footer.css";
 import "../css/navbar.css";
 
 import "../app/apiServices/verify";
-import { Definer } from "../lib/Definer";
-import {
-  sweetFailureProvider,
-  sweetTopSmallSuccessAlert,
-} from "../lib/sweetAlert";
-import { CartItem } from "../types/others";
-import { Product } from "../types/product";
+import {Definer} from "../lib/Definer";
+import {sweetFailureProvider, sweetTopSmallSuccessAlert,} from "../lib/sweetAlert";
+import {CartItem} from "../types/others";
+import {Product} from "../types/product";
 import MemberApiService from "./apiServices/memberApiService";
 import AuthenticationModal from "./components/auth";
-import { Footer } from "./components/footer";
-import { NavbarBrand } from "./components/header/brand";
-import { NavbarHome } from "./components/header/index";
-import { NavbarOthers } from "./components/header/others";
-import { BrandPage } from "./screens/BrandPage";
-import { CommunityPage } from "./screens/CommunityPage";
-import { HelpPage } from "./screens/HelpPage";
-import { HomePage } from "./screens/Homepage";
-import { LoginPage } from "./screens/LoginPage/indes";
-import { MemberPage } from "./screens/MemberPage";
-import { OrdersPage } from "./screens/OrdersPage";
+import {Footer} from "./components/footer";
+import {NavbarBrand} from "./components/header/brand";
+import {NavbarHome} from "./components/header";
+import {NavbarOthers} from "./components/header/others";
+import {BrandPage} from "./screens/BrandPage";
+import {CommunityPage} from "./screens/CommunityPage";
+import {HelpPage} from "./screens/HelpPage";
+import {HomePage} from "./screens/Homepage";
+import {LoginPage} from "./screens/LoginPage/indes";
+import {MemberPage} from "./screens/MemberPage";
+import {OrdersPage} from "./screens/OrdersPage";
 import MobileUi from "./components/responsive_ui/responsive";
+
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+  }
+}
+
+// const TRACKING_ID = "UA-255555229-1"
+//
+// ReactGA.initialize(TRACKING_ID);
+
 
 function App() {
   //** INITIALIZATIONS */
+  // ==== Google Analytics related
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SX57ZPFQZ';
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    script.onload = () => {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function gtag() {
+        window.dataLayer.push(arguments);
+      };
+
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-7SX57ZPFQZ');
+    };
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
   const [signUpOpen, setSignUpOpen] = useState(false);
@@ -41,6 +73,7 @@ function App() {
   const cartJson: any = localStorage.getItem("cart_data");
   const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
+
 
   /**  HANDLERS */
   const handleSignUpOpen = () => setSignUpOpen(true);
