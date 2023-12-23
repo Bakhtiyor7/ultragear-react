@@ -24,42 +24,37 @@ import {MemberPage} from "./screens/MemberPage";
 import {OrdersPage} from "./screens/OrdersPage";
 import MobileUi from "./components/responsive_ui/responsive";
 
-declare global {
-  interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
-  }
-}
-
-// const TRACKING_ID = "UA-255555229-1"
-//
-// ReactGA.initialize(TRACKING_ID);
-
+// declare global {
+//   interface Window {
+//     dataLayer: any[];
+//     gtag: (...args: any[]) => void;
+//   }
+// }
 
 function App() {
   //** INITIALIZATIONS */
   // ==== Google Analytics related
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SX57ZPFQZ';
-    script.async = true;
-
-    document.body.appendChild(script);
-
-    script.onload = () => {
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function gtag() {
-        window.dataLayer.push(arguments);
-      };
-
-      window.gtag('js', new Date());
-      window.gtag('config', 'G-7SX57ZPFQZ');
-    };
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const script = document.createElement('script');
+  //   script.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SX57ZPFQZ';
+  //   script.async = true;
+  //
+  //   document.body.appendChild(script);
+  //
+  //   script.onload = () => {
+  //     window.dataLayer = window.dataLayer || [];
+  //     window.gtag = function gtag() {
+  //       window.dataLayer.push(arguments);
+  //     };
+  //
+  //     window.gtag('js', new Date());
+  //     window.gtag('config', 'G-7SX57ZPFQZ');
+  //   };
+  //
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
 
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
