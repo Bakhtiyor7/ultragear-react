@@ -126,7 +126,7 @@ export function OneBrand(props: any) {
       }
     };
 
-    fetchData();
+    fetchData().then((r) => console.log(r));
   }, [chosenBrandId, targetProductSearchObject, productRebuild]);
   /** HANDLERS */
   const chosenBrandHandler = (id: string) => {
@@ -432,6 +432,7 @@ export function OneBrand(props: any) {
                             <img
                               src={"/icons/shopping_cart.svg"}
                               style={{ display: "flex" }}
+                              alt={"cart_icon"}
                             />
                           </Button>
                           <Button
@@ -511,7 +512,8 @@ export function OneBrand(props: any) {
                         key={ele._id}
                         className={"brand_avatars"}
                       >
-                        <img src={image_path} />
+                        <img src={image_path} alt={"brand_image"} />
+
                         {/* <span>{ele.mb_nick}</span> */}
                       </SwiperSlide>
                     );
@@ -545,7 +547,11 @@ export function OneBrand(props: any) {
               >
                 <Box className="review_left">
                   <Box display={"flex"} alignItems={"center"}>
-                    <img src="/community/kazuha.jpeg" className="review_img" />
+                    <img
+                      src="/community/kazuha.jpeg"
+                      className="review_img"
+                      alt={"author_image"}
+                    />
                   </Box>
                 </Box>
                 <Stack className="review_right">
@@ -595,7 +601,11 @@ export function OneBrand(props: any) {
               >
                 <Box className="review_left">
                   <Box display={"flex"} alignItems={"center"}>
-                    <img src="/community/justin.webp" className="review_img" />
+                    <img
+                      src="/community/justin.webp"
+                      className="review_img"
+                      alt={"author_image"}
+                    />
                   </Box>
                 </Box>
                 <Stack className="review_right">
@@ -642,7 +652,11 @@ export function OneBrand(props: any) {
               >
                 <Box className="review_left">
                   <Box display={"flex"} alignItems={"center"}>
-                    <img src="/community/guy.webp" className="review_img" />
+                    <img
+                      src="/community/guy.webp"
+                      className="review_img"
+                      alt={"author_image"}
+                    />
                   </Box>
                 </Box>
                 <Stack className="review_right">
@@ -687,7 +701,11 @@ export function OneBrand(props: any) {
               >
                 <Box className="review_left">
                   <Box display={"flex"} alignItems={"center"}>
-                    <img src="/community/suzy.webp" className="review_img" />
+                    <img
+                      src="/community/suzy.webp"
+                      className="review_img"
+                      alt={"author_image"}
+                    />
                   </Box>
                 </Box>
                 <Stack className="review_right">
