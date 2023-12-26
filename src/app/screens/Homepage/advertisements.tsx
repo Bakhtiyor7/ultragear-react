@@ -13,8 +13,9 @@ export function Advertisements() {
         muted
         playsInline
         data-video-media=""
+        onError={(e) => console.error("Video error:", e)}
       >
-        <source src="ad.mp4" type="video/mp4" />
+        <source src="/public/ad.mp4" type="video/mp4" />
       </video>
     </div>
   );
