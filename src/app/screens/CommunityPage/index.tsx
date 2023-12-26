@@ -47,11 +47,11 @@ export function CommunityPage(props: any) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       try {
         setLoading(true);
         const communityService = new CommunityApiService();
-        await communityService
+        communityService
           .getTargetArticles(searchArticlesObj)
           .then((data) => setTargetBoArticles(data))
           .catch((err) => console.log(err));
@@ -61,7 +61,7 @@ export function CommunityPage(props: any) {
         setLoading(false);
       }
     };
-    fetchData().then((r) => console.log("r:", r));
+    fetchData();
   }, [searchArticlesObj, articleRebuild]);
 
   /** HANDLERS **/

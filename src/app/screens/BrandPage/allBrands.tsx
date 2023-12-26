@@ -70,11 +70,11 @@ export function AllBrands() {
   const refs: any = useRef([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       try {
         setLoading(true);
         const brandService = new BrandApiService();
-        await brandService
+        brandService
           .getBrands(targetSearchObject)
           .then((data) => setTargetBrands(data))
           .catch((err) => console.log(err));
@@ -84,7 +84,7 @@ export function AllBrands() {
         setLoading(false);
       }
     };
-    fetchData().then((r) => console.log("r:", r));
+    fetchData();
   }, [targetSearchObject]);
 
   /** HANDLERS */

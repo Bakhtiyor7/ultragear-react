@@ -7,16 +7,6 @@ SwiperCore.use([Autoplay, Navigation, Pagination]);
 export function Events() {
   const events_list = [
     {
-      title: "MSI TOKYO GAME SHOW",
-      desc: "Attend in our Game Show in Tokyo and win prizes. Order tickets through www.msi.com",
-      detail:
-        "This is the service detail This is the service detail This is the service detail",
-      author: "MSI",
-      date: "2023/12/30",
-      location: "Toshkent, Chilonzor",
-      img: "/home/game_mask.svg",
-    },
-    {
       title: "Special event from Razer",
       desc: "Buy any product by Razer and get 80% off coupons for your next choice",
       detail:
@@ -25,6 +15,16 @@ export function Events() {
       date: "2023/01/15 - 2023/02/15",
       location: "Toshkent, Uchtepa",
       img: "/home/razer_mask.svg",
+    },
+    {
+      title: "MSI TOKYO GAME SHOW",
+      desc: "Attend in our Game Show in Tokyo and win prizes. Order tickets through www.msi.com",
+      detail:
+        "This is the service detail This is the service detail This is the service detail",
+      author: "MSI",
+      date: "2023/12/30",
+      location: "Toshkent, Chilonzor",
+      img: "/home/game_mask.svg",
     },
     {
       title: "Logi Sales 🥳",

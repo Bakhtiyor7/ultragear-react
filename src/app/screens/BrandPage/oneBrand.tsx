@@ -99,22 +99,22 @@ export function OneBrand(props: any) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       try {
         setLoading(true);
         const brandService = new BrandApiService();
-        await brandService
+        brandService
           .getBrands({ page: 1, limit: 10, order: "random" })
           .then((data) => setRandomBrands(data))
           .catch((err) => console.log(err));
 
-        await brandService
+        brandService
           .getChosenBrand(chosenBrandId)
           .then((data) => setChosenBrand(data))
           .catch((err) => console.log(err));
 
         const productService = new ProductApiService();
-        await productService
+        productService
           .getTargetProducts(targetProductSearchObject)
           .then((data) => setTargetProducts(data))
           .catch((err) => console.log(err));
@@ -126,7 +126,7 @@ export function OneBrand(props: any) {
       }
     };
 
-    fetchData().then((r) => console.log(r));
+    fetchData();
   }, [chosenBrandId, targetProductSearchObject, productRebuild]);
   /** HANDLERS */
   const chosenBrandHandler = (id: string) => {

@@ -7,7 +7,7 @@ export function Advertisements() {
       <iframe
         width="1280px"
         height="100%"
-        src="https://www.youtube.com/embed/qbpkm_S1gQc?si=YWrPNKt_H67L-3DJ&autoplay=1&loop=1"
+        src="https://www.youtube.com/embed/qbpkm_S1gQc?si=YWrPNKt_H67L-3DJ?autoplay=1&loop=1"
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
