@@ -1,24 +1,19 @@
-import React, { useEffect } from "react";
-import { Container } from "@mui/system";
-import { Statistics } from "./statistics";
+import React, { useEffect, useState } from "react";
 import { TopBrands } from "./topBrands";
-import { BestBrands } from "./bestBrands";
 import { BestProducts } from "./bestProducts";
-import { Advertisements } from "./advertisements";
 import { Events } from "./events";
-import { Recommendations } from "./recommendations";
 import "../../../css/home.css";
 
 //REDUX
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { createSelector } from "reselect";
-import { setBestBrands, setTopBrands } from "../../screens/Homepage/slice";
-import { retrieveTopBrands } from "../../screens/Homepage/selector";
+import { setBestBrands, setTopBrands } from "./slice";
 import { Brand } from "../../../types/user";
 import BrandApiService from "../../apiServices/brandApiService";
 import { Advertisement } from "./advs";
 import { Categories } from "./categories";
+import ClipLoader from "react-spinners/ClipLoader";
+import { Advertisements } from "./advertisements";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -27,35 +22,55 @@ const actionDispatch = (dispatch: Dispatch) => ({
 });
 
 export function HomePage(props: any) {
-  // selector: store => data
   // INITIALIZATIONS
   const { setTopBrands, setBestBrands } = actionDispatch(useDispatch());
 
-  useEffect(() => {
-    // backend data request => data
-    const brandService = new BrandApiService();
-    brandService
-      .getTopBrands()
-      .then((data) => {
-        setTopBrands(data);
-      })
-      .catch((err) => console.log(err));
+  const [loading, setLoading] = useState(true);
 
-    brandService
-      .getBrands({ page: 1, limit: 4, order: "mb_point" })
-      .then((data) => {
-        setBestBrands(data);
-      })
-      .catch((err) => console.log(err));
+  useEffect(() => {
+    const fetchData = () => {
+      try {
+        setLoading(true);
+        const brandService = new BrandApiService();
+        brandService
+          .getTopBrands()
+          .then((data) => {
+            setTopBrands(data);
+          })
+          .catch((err) => console.log(err));
+
+        brandService
+          .getBrands({ page: 1, limit: 4, order: "mb_point" })
+          .then((data) => {
+            setBestBrands(data);
+          })
+          .catch((err) => console.log(err));
+        setLoading(false);
+      } catch (err) {
+        console.log("Error fetching data", err);
+        setLoading(false);
+      }
+    };
+    fetchData();
   }, [setBestBrands, setTopBrands]);
-  return (
+  return loading ? (
+    <div className={"loader_wrapper"}>
+      <ClipLoader
+        color={"#00BFFF"}
+        loading={loading}
+        size={100}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    </div>
+  ) : (
     <div className="homepage">
+      <Advertisements />
       <Categories />
       <Advertisement />
       <Events />
       <BestProducts />
       <TopBrands />
-      {/* <Advertisements /> */}
       {/* <Recommendations /> */}
     </div>
   );

@@ -18,7 +18,7 @@ import {
   PaginationItem,
   Stack,
 } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { serverApi } from "../../../lib/config";
 //REDUX
 import { Dispatch } from "@reduxjs/toolkit";
@@ -39,6 +39,7 @@ import { verifiedMemberData } from "../../apiServices/verify";
 import { retrieveTargetBrands } from "./selector";
 import { setTargetBrands } from "./slice";
 import Favorite from "@mui/icons-material/Favorite";
+import ClipLoader from "react-spinners/ClipLoader";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -50,7 +51,7 @@ const targetBrandsRetriever = createSelector(
   retrieveTargetBrands,
   (targetBrands) => ({
     targetBrands,
-  })
+  }),
 );
 
 export function AllBrands() {
@@ -64,16 +65,26 @@ export function AllBrands() {
     limit: 8,
     order: "mb_point",
   });
+  const [loading, setLoading] = useState(true);
 
   const refs: any = useRef([]);
 
   useEffect(() => {
-    // TODO: retrieve target brands data
-    const brandService = new BrandApiService();
-    brandService
-      .getBrands(targetSearchObject)
-      .then((data) => setTargetBrands(data))
-      .catch((err) => console.log(err));
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const brandService = new BrandApiService();
+        await brandService
+          .getBrands(targetSearchObject)
+          .then((data) => setTargetBrands(data))
+          .catch((err) => console.log(err));
+        setLoading(false);
+      } catch (error) {
+        console.log("Error loading data", error);
+        setLoading(false);
+      }
+    };
+    fetchData().then((r) => console.log("r:", r));
   }, [targetSearchObject]);
 
   /** HANDLERS */
@@ -118,74 +129,86 @@ export function AllBrands() {
 
   return (
     <div className="all_brand">
-      <Container>
-        <Stack className="head_information_brand">
-          <img src="/home/rectangle.png" alt="" className="rectangle" />
-          <Box className="header_title">
-            <h1>Featured Brands</h1>
-          </Box>
+      {loading ? (
+        <div className={"loader_wrapper"}>
+          <ClipLoader
+            color={"#00BFFF"}
+            loading={loading}
+            size={100}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
+      ) : (
+        <>
+          <Container>
+            <Stack className="head_information_brand">
+              <img src="/home/rectangle.png" alt="" className="rectangle" />
+              <Box className="header_title">
+                <h1>Featured Brands</h1>
+              </Box>
 
-          <Box className="head_info_box">
-            <Box className="category_box"></Box>
-          </Box>
-        </Stack>
-        <Stack>
-          <Stack className="category_holder">
-            <Button
-              className="category_button"
-              onClick={() => searchHandler("mb_point")}
-              sx={{
-                "&:focus": {
-                  color: "#fff",
-                  bgcolor: "#000",
-                  borderRadius: "99px",
-                },
-              }}
-            >
-              Top
-            </Button>
-            <Button
-              className="category_button"
-              onClick={() => searchHandler("mb_views")}
-              sx={{
-                "&:focus": {
-                  color: "#fff",
-                  bgcolor: "#000",
-                  borderRadius: "99px",
-                },
-              }}
-            >
-              Most Visited
-            </Button>
-            <Button
-              className="category_button"
-              onClick={() => searchHandler("mb_likes")}
-              sx={{
-                "&:focus": {
-                  color: "#fff",
-                  bgcolor: "#000",
-                  borderRadius: "99px",
-                },
-              }}
-            >
-              Most Liked
-            </Button>
-            <Button
-              className="category_button"
-              onClick={() => searchHandler("createdAt")}
-              sx={{
-                "&:focus": {
-                  color: "white",
-                  backgroundColor: "#000",
-                  borderRadius: "99px",
-                },
-              }}
-            >
-              New
-            </Button>
-          </Stack>
-          <Box className={"fill_search_box"}>
-            {/* <Box className={"dropdown"} style={{ borderRadius: "20px" }}>
+              <Box className="head_info_box">
+                <Box className="category_box"></Box>
+              </Box>
+            </Stack>
+            <Stack>
+              <Stack className="category_holder">
+                <Button
+                  className="category_button"
+                  onClick={() => searchHandler("mb_point")}
+                  sx={{
+                    "&:focus": {
+                      color: "#fff",
+                      bgcolor: "#000",
+                      borderRadius: "99px",
+                    },
+                  }}
+                >
+                  Top
+                </Button>
+                <Button
+                  className="category_button"
+                  onClick={() => searchHandler("mb_views")}
+                  sx={{
+                    "&:focus": {
+                      color: "#fff",
+                      bgcolor: "#000",
+                      borderRadius: "99px",
+                    },
+                  }}
+                >
+                  Most Visited
+                </Button>
+                <Button
+                  className="category_button"
+                  onClick={() => searchHandler("mb_likes")}
+                  sx={{
+                    "&:focus": {
+                      color: "#fff",
+                      bgcolor: "#000",
+                      borderRadius: "99px",
+                    },
+                  }}
+                >
+                  Most Liked
+                </Button>
+                <Button
+                  className="category_button"
+                  onClick={() => searchHandler("createdAt")}
+                  sx={{
+                    "&:focus": {
+                      color: "white",
+                      backgroundColor: "#000",
+                      borderRadius: "99px",
+                    },
+                  }}
+                >
+                  New
+                </Button>
+              </Stack>
+              <Box className={"fill_search_box"}>
+                {/* <Box className={"dropdown"} style={{ borderRadius: "20px" }}>
               <button className="dropbtn">SORT BY:</button>
               <div className="dropdown-content">
                 <a onClick={() => searchHandler("mb_point")}>Top</a>
@@ -195,140 +218,144 @@ export function AllBrands() {
               </div>
             </Box> */}
 
-            <Box className={"search_big_box"}>
-              <form className={"search_form"} action={""} method={""}>
-                <input
-                  type={"search"}
-                  className={"searchInput"}
-                  name={"resSearch"}
-                  placeholder={"search"}
-                  style={{ border: "none" }}
-                />
-                <Button
-                  className={"button_search"}
-                  variant="contained"
-                  sx={{
-                    color: "black",
-                    "&:hover": {
-                      backgroundColor: "#edf3fc",
-                    },
-                  }}
-                >
-                  <SearchIcon />
-                </Button>
-              </form>
-            </Box>
-          </Box>
-          <Stack className={"all_res_box"}>
-            <CssVarsProvider>
-              {targetBrands.map((ele: Brand) => {
-                const image_path = `${serverApi}/${ele.mb_image}`;
-                return (
-                  <Card
-                    onClick={() => chosenBrandHandler(ele._id)}
-                    variant="outlined"
-                    sx={{
-                      minWidth: 290,
-                      mr: "30px",
-                      cursor: "pointer",
-                      mb: "30px",
-                    }}
-                  >
-                    <CardOverflow>
-                      <AspectRatio ratio="1">
-                        <Box className="brand_image_wrapper">
-                          <img
-                            src={image_path}
-                            loading="lazy"
-                            alt="brand_image"
-                          />
-                        </Box>
-                      </AspectRatio>
-                    </CardOverflow>
-                    <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
-                      {ele.mb_nick}
-                    </Typography>
-
-                    <Divider />
-                    <CardOverflow
-                      variant="soft"
+                <Box className={"search_big_box"}>
+                  <form className={"search_form"} action={""} method={""}>
+                    <input
+                      type={"search"}
+                      className={"searchInput"}
+                      name={"resSearch"}
+                      placeholder={"search"}
+                      style={{ border: "none" }}
+                    />
+                    <Button
+                      className={"button_search"}
+                      variant="contained"
                       sx={{
-                        display: "flex",
-                        gap: 1.5,
-                        py: 1.5,
-                        px: "var(--Card-padding)",
-                        bgcolor: "background.level1",
+                        color: "black",
+                        "&:hover": {
+                          backgroundColor: "#edf3fc",
+                        },
                       }}
                     >
-                      <Typography
-                        level="body3"
-                        sx={{ fontWeight: "md", color: "text.secondary" }}
-                      >
-                        {ele.mb_views} views
-                      </Typography>
-                      <Divider orientation="vertical" />
-                      <Typography
-                        level="body3"
-                        sx={{ fontWeight: "md", color: "text.secondary" }}
-                      >
-                        {ele.mb_likes} likes
-                      </Typography>
-                      <IconButton
-                        aria-label="Like minimal photography"
-                        size="sm"
-                        variant="solid"
-                        color="neutral"
+                      <SearchIcon />
+                    </Button>
+                  </form>
+                </Box>
+              </Box>
+              <Stack className={"all_res_box"}>
+                <CssVarsProvider>
+                  {targetBrands.map((ele: Brand) => {
+                    const image_path = `${serverApi}/${ele.mb_image}`;
+                    return (
+                      <Card
+                        onClick={() => chosenBrandHandler(ele._id)}
+                        variant="outlined"
                         sx={{
-                          position: "absolute",
-                          zIndex: 2,
-                          borderRadius: "50%",
-                          right: "1rem",
-                          bottom: "2.5rem",
-                          transform: "translateY(50%)",
-                          color: "rgba(0,0,0,.4)",
-                        }}
-                        onClick={(e) => {
-                          e.stopPropagation();
+                          minWidth: 290,
+                          mr: "30px",
+                          cursor: "pointer",
+                          mb: "30px",
                         }}
                       >
-                        <Favorite
-                          onClick={(e) => targetLikeHandler(e, ele._id)}
-                          style={{
-                            fill:
-                              ele?.me_liked && ele?.me_liked[0]?.my_favorite
-                                ? "#00FFFF"
-                                : "white",
-                          }}
-                        />
-                      </IconButton>
-                    </CardOverflow>
-                  </Card>
-                );
-              })}
-            </CssVarsProvider>
-          </Stack>
+                        <CardOverflow>
+                          <AspectRatio ratio="1">
+                            <Box className="brand_image_wrapper">
+                              <img
+                                src={image_path}
+                                loading="lazy"
+                                alt="brand_image"
+                              />
+                            </Box>
+                          </AspectRatio>
+                        </CardOverflow>
+                        <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
+                          {ele.mb_nick}
+                        </Typography>
 
-          <Stack className={"bottom_box"}>
-            <Pagination
-              count={
-                targetSearchObject.page >= 3 ? targetSearchObject.page + 1 : 3
-              }
-              page={targetSearchObject.page}
-              renderItem={(item) => (
-                <PaginationItem
-                  components={{
-                    previous: ArrowBackIcon,
-                    next: ArrowForwardIcon,
-                  }}
-                  {...item}
-                  color={"primary"}
+                        <Divider />
+                        <CardOverflow
+                          variant="soft"
+                          sx={{
+                            display: "flex",
+                            gap: 1.5,
+                            py: 1.5,
+                            px: "var(--Card-padding)",
+                            bgcolor: "background.level1",
+                          }}
+                        >
+                          <Typography
+                            level="body3"
+                            sx={{ fontWeight: "md", color: "text.secondary" }}
+                          >
+                            {ele.mb_views} views
+                          </Typography>
+                          <Divider orientation="vertical" />
+                          <Typography
+                            level="body3"
+                            sx={{ fontWeight: "md", color: "text.secondary" }}
+                          >
+                            {ele.mb_likes} likes
+                          </Typography>
+                          <IconButton
+                            aria-label="Like minimal photography"
+                            size="sm"
+                            variant="solid"
+                            color="neutral"
+                            sx={{
+                              position: "absolute",
+                              zIndex: 2,
+                              borderRadius: "50%",
+                              right: "1rem",
+                              bottom: "2.5rem",
+                              transform: "translateY(50%)",
+                              color: "rgba(0,0,0,.4)",
+                            }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                            }}
+                          >
+                            <Favorite
+                              onClick={(e) => targetLikeHandler(e, ele._id)}
+                              style={{
+                                fill:
+                                  ele?.me_liked && ele?.me_liked[0]?.my_favorite
+                                    ? "#00FFFF"
+                                    : "white",
+                              }}
+                            />
+                          </IconButton>
+                        </CardOverflow>
+                      </Card>
+                    );
+                  })}
+                </CssVarsProvider>
+              </Stack>
+
+              <Stack className={"bottom_box"}>
+                <Pagination
+                  count={
+                    targetSearchObject.page >= 3
+                      ? targetSearchObject.page + 1
+                      : 3
+                  }
+                  page={targetSearchObject.page}
+                  renderItem={(item) => (
+                    <PaginationItem
+                      components={{
+                        previous: ArrowBackIcon,
+                        next: ArrowForwardIcon,
+                      }}
+                      {...item}
+                      color={"primary"}
+                    />
+                  )}
+                  onChange={handlePaginationChange}
                 />
-              )}
-              onChange={handlePaginationChange}
-            />
-          </Stack>
-        </Stack>
-      </Container>
+              </Stack>
+            </Stack>
+          </Container>
+        </>
+      )}
     </div>
   );
 }
