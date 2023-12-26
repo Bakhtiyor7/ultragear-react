@@ -346,13 +346,12 @@
     text-transform: uppercase;
 }
 
-.homepage .ads_restaurant_frame {
+.homepage .ads_brand_frame {
     width: 100%;
     height: 900px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    margin-top: 15px;
     background-color: #956dd3;
 }
 

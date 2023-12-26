@@ -7,6 +7,16 @@ SwiperCore.use([Autoplay, Navigation, Pagination]);
 export function Events() {
   const events_list = [
     {
+      title: "MSI TOKYO GAME SHOW",
+      desc: "Attend in our Game Show in Tokyo and win prizes. Order tickets through www.msi.com",
+      detail:
+        "This is the service detail This is the service detail This is the service detail",
+      author: "MSI",
+      date: "2023/12/30",
+      location: "Toshkent, Chilonzor",
+      img: "/home/game_mask.svg",
+    },
+    {
       title: "Special event from Razer",
       desc: "Buy any product by Razer and get 80% off coupons for your next choice",
       detail:
@@ -24,17 +34,7 @@ export function Events() {
       author: "Logitech",
       date: "2022/09/12",
       location: "Toshkent, Yakkasaroy",
-      img: "",
-    },
-    {
-      title: "MSI TOKYO GAME SHOW",
-      desc: "Attend in our Game Show in Tokyo and win prizes. Order tickets through www.msi.com",
-      detail:
-        "This is the service detail This is the service detail This is the service detail",
-      author: "MSI",
-      date: "2022/12/30",
-      location: "Toshkent, Chilonzor",
-      img: "",
+      img: "/home/logtech_mask.svg",
     },
     {
       title: "Samsung Galaxy buds sale",
@@ -44,7 +44,7 @@ export function Events() {
       author: "Oasis",
       date: "2023/01/10 - 2022/02/10",
       location: "Toshkent, Chilonzor",
-      img: "",
+      img: "/home/buds_mask.png",
     },
   ];
 
@@ -83,7 +83,7 @@ export function Events() {
         {events_list.map((value, number) => {
           return (
             <SwiperSlide className={"events_info_frame"}>
-              <div>
+              <div style={{ height: "100%" }}>
                 <img src={value.img} />
               </div>
               <Box className="events_swiper_info">
