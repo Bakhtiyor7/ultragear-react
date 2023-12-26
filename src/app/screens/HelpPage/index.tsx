@@ -38,9 +38,9 @@ export function HelpPage() {
     },
     {
       question:
-        "Saytdan foydalansam ma'lumotlarim xavfsizligiga kafolat bormi?",
+        "Is the security gurranteed when I use the website?",
       answer:
-        "albatta, bizning dasturchilamiz sizning ma'lumotlaringiz havfsizligiga kafolat berishadi",
+        "Of course, our engineers make sure to provide your security",
     },
     {
       question: "Who should I contact if I have a problem?",
@@ -48,9 +48,9 @@ export function HelpPage() {
     },
     {
       question:
-        "Men foydalanuvchi emas biznesmen sifatida faoliyat yuritmoqchima. Nima qilishim kerak?",
+        "I am going to use this website as a business owner, not a normal user. What should i do?",
       answer:
-        "Hurmatli mijoz, saytda ko'rsatilgan telefon raqamlarga qo'ng'iroq qilishingizni so'rab qolamiz!",
+        "Dear customer, please contact us through our phone numbers or email address shown in the website",
     },
   ];
 
