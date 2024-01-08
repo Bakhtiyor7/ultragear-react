@@ -69,7 +69,7 @@ export function CommunityChats() {
       console.log("CLIENT: new message");
       messagesList.push(
         // @ts-ignore
-        <NewMessage new_message={new_message} key={messagesList.length} />
+        <NewMessage new_message={new_message} key={messagesList.length} />,
       );
       setMessagesList([...messagesList]);
     });
@@ -86,7 +86,7 @@ export function CommunityChats() {
           }}
         >
           {msg.text}, dear {verifiedMemberData?.mb_nick ?? "guest"}
-        </p>
+        </p>,
       );
       setMessagesList([...messagesList]);
     });
@@ -106,11 +106,15 @@ export function CommunityChats() {
       const text = e.target.value;
       setMessage(text);
     },
-    [message]
+    [message],
   );
 
   const getKeyHandler = (e: any) => {
     try {
+      if (!verifiedMemberData) {
+        sweetFailureProvider("Please login first", true);
+        return;
+      }
       if (e.key == "Enter") {
         assert.ok(message, Definer.input_err3);
         onClickHandler();
