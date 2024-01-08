@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "../css/App.css";
 import "../css/footer.css";
@@ -25,8 +25,20 @@ import { LoginPage } from "./screens/LoginPage/indes";
 import { MemberPage } from "./screens/MemberPage";
 import { OrdersPage } from "./screens/OrdersPage";
 import MobileUi from "./components/responsive_ui/responsive";
+import { sendTelegramNotification } from "./components/TelegramBot";
 
 function App() {
+  useEffect(() => {
+    // Trigger the Telegram notification when the component mounts (on page load)
+    sendTelegramNotification("A new user has connected.")
+      .then(() => {
+        console.log("Notification sent successfully!");
+      })
+      .catch((error) => {
+        console.error("Error sending Telegram notification", error);
+      });
+  }, []);
+
   //** INITIALIZATIONS */
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
@@ -40,7 +52,6 @@ function App() {
   const cartJson: any = localStorage.getItem("cart_data");
   const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
-
 
   /**  HANDLERS */
   const handleSignUpOpen = () => setSignUpOpen(true);
@@ -127,95 +138,97 @@ function App() {
 
   return (
     <Router>
-      {isMobile ? (<MobileUi/>) : (
-<>
-  {main_path == "/" ? (
-      <NavbarHome
-          setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
-          handleSignupOpen={handleSignUpOpen}
-          anchorEl={anchorEl}
-          open={open}
-          handleLogoutClick={handleLogoutClick}
-          handleCloseLogOut={handleCloseLogOut}
-          handleLogOutRequest={handleLogOutRequest}
-          cartItems={cartItems}
-          onAdd={onAdd}
-          onRemove={onRemove}
-          onDelete={onDelete}
-          onDeleteAll={onDeleteAll}
-          setOrderRebuild={setOrderRebuild}
-      />
-  ) : main_path.includes("/brand") ? (
-      <NavbarBrand
-          setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
-          handleSignupOpen={handleSignUpOpen}
-          anchorEl={anchorEl}
-          open={open}
-          handleLogoutClick={handleLogoutClick}
-          handleCloseLogOut={handleCloseLogOut}
-          handleLogOutRequest={handleLogOutRequest}
-          cartItems={cartItems}
-          onAdd={onAdd}
-          onRemove={onRemove}
-          onDelete={onDelete}
-          onDeleteAll={onDeleteAll}
-          setOrderRebuild={setOrderRebuild}
-      />
-  ) : (
-      <NavbarOthers
-          setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
-          handleSignupOpen={handleSignUpOpen}
-          anchorEl={anchorEl}
-          open={open}
-          handleLogoutClick={handleLogoutClick}
-          handleCloseLogOut={handleCloseLogOut}
-          handleLogOutRequest={handleLogOutRequest}
-          cartItems={cartItems}
-          onAdd={onAdd}
-          onRemove={onRemove}
-          onDelete={onDelete}
-          onDeleteAll={onDeleteAll}
-          setOrderRebuild={setOrderRebuild}
-      />
-  )}
-  <Switch>
-    <Route path="/brand">
-      <BrandPage onAdd={onAdd} />
-    </Route>
-    <Route path="/community">
-      <CommunityPage />
-    </Route>
-    <Route path="/orders">
-      <OrdersPage
-          orderRebuild={orderRebuild}
-          setOrderRebuild={setOrderRebuild}
-      />
-    </Route>
-    <Route path="/member-page">
-      <MemberPage />
-    </Route>
-    <Route path="/help">
-      <HelpPage />
-    </Route>
-    <Route path="/login">
-      <LoginPage />
-    </Route>
-    <Route path="/">
-      <HomePage setPath={setPath} />
-    </Route>
-  </Switch>
-  <Footer setPath={setPath} />
-  <AuthenticationModal
-      loginOpen={loginOpen}
-      handleLoginOpen={handleLoginOpen}
-      handleLoginClose={handleLoginClose}
-      signUpOpen={signUpOpen}
-      handleSignUpOpen={handleSignUpOpen}
-      handleSignUpClose={handleSignUpClose}
-  />
+      {isMobile ? (
+        <MobileUi />
+      ) : (
+        <>
+          {main_path == "/" ? (
+            <NavbarHome
+              setPath={setPath}
+              handleLoginOpen={handleLoginOpen}
+              handleSignupOpen={handleSignUpOpen}
+              anchorEl={anchorEl}
+              open={open}
+              handleLogoutClick={handleLogoutClick}
+              handleCloseLogOut={handleCloseLogOut}
+              handleLogOutRequest={handleLogOutRequest}
+              cartItems={cartItems}
+              onAdd={onAdd}
+              onRemove={onRemove}
+              onDelete={onDelete}
+              onDeleteAll={onDeleteAll}
+              setOrderRebuild={setOrderRebuild}
+            />
+          ) : main_path.includes("/brand") ? (
+            <NavbarBrand
+              setPath={setPath}
+              handleLoginOpen={handleLoginOpen}
+              handleSignupOpen={handleSignUpOpen}
+              anchorEl={anchorEl}
+              open={open}
+              handleLogoutClick={handleLogoutClick}
+              handleCloseLogOut={handleCloseLogOut}
+              handleLogOutRequest={handleLogOutRequest}
+              cartItems={cartItems}
+              onAdd={onAdd}
+              onRemove={onRemove}
+              onDelete={onDelete}
+              onDeleteAll={onDeleteAll}
+              setOrderRebuild={setOrderRebuild}
+            />
+          ) : (
+            <NavbarOthers
+              setPath={setPath}
+              handleLoginOpen={handleLoginOpen}
+              handleSignupOpen={handleSignUpOpen}
+              anchorEl={anchorEl}
+              open={open}
+              handleLogoutClick={handleLogoutClick}
+              handleCloseLogOut={handleCloseLogOut}
+              handleLogOutRequest={handleLogOutRequest}
+              cartItems={cartItems}
+              onAdd={onAdd}
+              onRemove={onRemove}
+              onDelete={onDelete}
+              onDeleteAll={onDeleteAll}
+              setOrderRebuild={setOrderRebuild}
+            />
+          )}
+          <Switch>
+            <Route path="/brand">
+              <BrandPage onAdd={onAdd} />
+            </Route>
+            <Route path="/community">
+              <CommunityPage />
+            </Route>
+            <Route path="/orders">
+              <OrdersPage
+                orderRebuild={orderRebuild}
+                setOrderRebuild={setOrderRebuild}
+              />
+            </Route>
+            <Route path="/member-page">
+              <MemberPage />
+            </Route>
+            <Route path="/help">
+              <HelpPage />
+            </Route>
+            <Route path="/login">
+              <LoginPage />
+            </Route>
+            <Route path="/">
+              <HomePage setPath={setPath} />
+            </Route>
+          </Switch>
+          <Footer setPath={setPath} />
+          <AuthenticationModal
+            loginOpen={loginOpen}
+            handleLoginOpen={handleLoginOpen}
+            handleLoginClose={handleLoginClose}
+            signUpOpen={signUpOpen}
+            handleSignUpOpen={handleSignUpOpen}
+            handleSignUpClose={handleSignUpClose}
+          />
         </>
       )}
     </Router>
