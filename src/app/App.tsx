@@ -31,16 +31,16 @@ import { CommunityChats } from "./screens/CommunityPage/communityChats";
 import { Button } from "@mui/material";
 
 function App() {
-  // useEffect(() => {
-  //   // Trigger the Telegram notification when the component mounts (on page load)
-  //   sendTelegramNotification("A new user has connected.")
-  //     .then(() => {
-  //       console.log("Notification sent successfully!");
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error sending Telegram notification", error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    // Trigger the Telegram notification when the component mounts (on page load)
+    sendTelegramNotification("A new user has connected.")
+      .then(() => {
+        console.log("Notification sent successfully!");
+      })
+      .catch((error) => {
+        console.error("Error sending Telegram notification", error);
+      });
+  }, []);
 
   //** INITIALIZATIONS */
   const [isOpen, setIsOpen] = useState(false);
@@ -87,13 +87,13 @@ function App() {
 
   const onAdd = (product: Product) => {
     const exist: any = cartItems.find(
-      (item: CartItem) => item._id === product._id
+      (item: CartItem) => item._id === product._id,
     );
     if (exist) {
       const cart_updated = cartItems.map((item: CartItem) =>
         item._id === product._id
           ? { ...exist, quantity: exist.quantity + 1 }
-          : item
+          : item,
       );
       setCartItems(cart_updated);
       localStorage.setItem("cart_data", JSON.stringify(cart_updated));
@@ -112,11 +112,11 @@ function App() {
   };
   const onRemove = (item: CartItem) => {
     const item_data: any = cartItems.find(
-      (ele: CartItem) => ele._id === item._id
+      (ele: CartItem) => ele._id === item._id,
     );
     if (item_data.quantity === 1) {
       const cart_updated = cartItems.filter(
-        (ele: CartItem) => ele._id !== item._id
+        (ele: CartItem) => ele._id !== item._id,
       );
       setCartItems(cart_updated);
       localStorage.setItem("cart_data", JSON.stringify(cart_updated));
@@ -124,7 +124,7 @@ function App() {
       const cart_updated = cartItems.map((ele: CartItem) =>
         ele._id === item._id
           ? { ...item_data, quantity: item_data.quantity - 1 }
-          : ele
+          : ele,
       );
       setCartItems(cart_updated);
       localStorage.setItem("cart_data", JSON.stringify(cart_updated));
@@ -132,7 +132,7 @@ function App() {
   };
   const onDelete = (item: CartItem) => {
     const cart_updated = cartItems.filter(
-      (ele: CartItem) => ele._id !== item._id
+      (ele: CartItem) => ele._id !== item._id,
     );
     setCartItems(cart_updated);
     localStorage.setItem("cart_data", JSON.stringify(cart_updated));
