@@ -242,7 +242,7 @@ function App() {
           <div className="chat-button-container">
             {/* <img src="/icons/chat.webp" style={{ height: "100%" }} /> */}
             <button className="chat-button" onClick={toggleChat}>
-              <Chat sx={{ mr: "15px" }} />
+              <Chat />
               Chat
             </button>
 

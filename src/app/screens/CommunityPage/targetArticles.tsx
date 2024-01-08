@@ -1,17 +1,16 @@
-import React, { useState } from "react";
-import { Box, Button, Container, Link, Stack } from "@mui/material";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import { Box, Link, Stack } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
+import assert from "assert";
 import moment from "moment";
-import { BoArticle } from "../../../types/boArticle";
+import { Definer } from "../../../lib/Definer";
 import { serverApi } from "../../../lib/config";
 import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
-import assert from "assert";
-import { Definer } from "../../../lib/Definer";
+import { BoArticle } from "../../../types/boArticle";
 import MemberApiService from "../../apiServices/memberApiService";
 import { verifiedMemberData } from "../../apiServices/verify";
 
@@ -89,7 +88,7 @@ export function TargetArticles(props: any) {
                       }}
                     >
                       <Checkbox
-                        sx={{ ml: "40px", color: "black" }}
+                        sx={{ color: "black" }}
                         icon={<FavoriteBorder />}
                         checkedIcon={<Favorite style={{ color: "red" }} />}
                         id={article?._id}
@@ -101,11 +100,11 @@ export function TargetArticles(props: any) {
                             : false
                         }
                       />
-                      <span style={{ marginRight: "18px" }}>
+                      <span style={{ marginRight: "15px" }}>
                         {article?.art_likes}
                       </span>
                       <RemoveRedEyeIcon />
-                      <span style={{ marginLeft: "18px" }}>
+                      <span style={{ marginLeft: "8px" }}>
                         {article?.art_views}
                       </span>
                     </Box>
@@ -126,7 +125,7 @@ export function TargetArticles(props: any) {
                       {article?.member_data.mb_nick}
                     </span>
                     <span className="written_date">
-                      {moment().format("YY-MM-DD HH:mm")}
+                      {moment(article?.createdAt).fromNow()}
                     </span>
                   </div>
                 </Box>
