@@ -1,25 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { Box, Container, Stack } from "@mui/material";
-import Pagination from "@mui/material/Pagination";
-import "../../../css/community.css";
-import { TargetArticles } from "./targetArticles";
-import { CommunityChats } from "./communityChats";
-import Tab from "@material-ui/core/Tab";
 import TabContext from "@material-ui/lab/TabContext";
-import TabList from "@material-ui/lab/TabList";
 import TabPanel from "@material-ui/lab/TabPanel";
-import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import CommunityApiService from "../../apiServices/communityApiService";
+import { Box, Container, Stack, Tab, Tabs } from "@mui/material";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
+import React, { useEffect, useState } from "react";
+import "../../../css/community.css";
 import { BoArticle, SearchArticlesObj } from "../../../types/boArticle";
+import CommunityApiService from "../../apiServices/communityApiService";
+import { TargetArticles } from "./targetArticles";
 //REDUX
-import { useDispatch, useSelector } from "react-redux";
-import { createSelector } from "reselect";
 import { Dispatch } from "@reduxjs/toolkit";
-import { setTargetBoArticles } from "../../screens/CommunityPage/slice";
-import { retrieveTargetBoArticles } from "../../screens/CommunityPage/selector";
+import { useDispatch, useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
+import { createSelector } from "reselect";
+import { retrieveTargetBoArticles } from "../../screens/CommunityPage/selector";
+import { setTargetBoArticles } from "../../screens/CommunityPage/slice";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -105,42 +102,87 @@ export function CommunityPage(props: any) {
           </div>
         ) : (
           <>
-            <Container sx={{ mt: "50px", mb: "50px" }}>
-              <Stack flexDirection={"row"} justifyContent={"space-between"}>
+            <Container sx={{ mt: "50px", mb: "50px", background: "#fff" }}>
+              <Stack>
                 <Stack className={"community_all_frame"} inputMode={"text"}>
                   <TabContext value={value}>
                     <Box className={"article_tabs"}>
-                      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                        <TabList
+                      <Box>
+                        <Tabs
                           value={value}
+                          style={{}}
                           TabIndicatorProps={{
-                            style: { background: "#1976d2" },
+                            style: { display: "none" },
                           }}
                           onChange={handleChange}
                           aria-label="lab API tabs example"
-                          style={{ borderColor: "blue" }}
                         >
                           <Tab
                             label="All articles"
                             value="1"
-                            style={{ color: "#1976d2" }}
+                            sx={{
+                              "&:focus": {
+                                color: "#fff",
+                                bgcolor: "#000",
+                                borderRadius: "99px",
+                              },
+                              "&.MuiTab-textColorPrimary.Mui-selected": {
+                                color: "#fff",
+                                bgcolor: "#000",
+                                borderRadius: "99px",
+                              },
+                            }}
                           />
                           <Tab
                             label="Popular"
                             value="2"
-                            style={{ color: "#1976d2" }}
+                            sx={{
+                              "&:focus": {
+                                color: "#fff",
+                                bgcolor: "#000",
+                                borderRadius: "99px",
+                              },
+                              "&.Mui-selected": {
+                                color: "#fff",
+                                bgcolor: "#000",
+                                borderRadius: "99px",
+                              },
+                            }}
                           />
                           <Tab
                             label="Brand review"
                             value="3"
-                            style={{ color: "#1976d2" }}
+                            sx={{
+                              "&:focus": {
+                                color: "#fff",
+                                bgcolor: "#000",
+                                borderRadius: "99px",
+                              },
+                              "&.Mui-selected": {
+                                color: "#fff",
+                                bgcolor: "#000",
+                                borderRadius: "99px",
+                              },
+                            }}
                           />
                           <Tab
                             label="Stories"
                             value="4"
-                            style={{ color: "#1976d2" }}
+                            sx={{
+                              "&:focus": {
+                                color: "#fff",
+                                bgcolor: "#000",
+                                borderRadius: "99px",
+                              },
+                              "&.Mui-selected": {
+                                color: "#fff",
+                                bgcolor: "#000",
+                                borderRadius: "99px",
+                              },
+                              transform: "capitalize",
+                            }}
                           />
-                        </TabList>
+                        </Tabs>
                       </Box>
                     </Box>
 
@@ -178,6 +220,7 @@ export function CommunityPage(props: any) {
                             ? searchArticlesObj.page + 1
                             : 3
                         }
+                        color="secondary"
                         page={searchArticlesObj.page}
                         renderItem={(item) => (
                           <PaginationItem
@@ -194,7 +237,7 @@ export function CommunityPage(props: any) {
                     </Box>
                   </TabContext>
                 </Stack>
-                <CommunityChats />
+                {/* <CommunityChats /> */}
               </Stack>
             </Container>
           </>

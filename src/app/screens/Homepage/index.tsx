@@ -14,6 +14,9 @@ import { Advertisement } from "./advs";
 import { Categories } from "./categories";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Advertisements } from "./advertisements";
+import { CommunityChats } from "../CommunityPage/communityChats";
+import { Chat } from "@mui/icons-material";
+import { Button } from "@material-ui/core";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -26,6 +29,11 @@ export function HomePage(props: any) {
   const { setTopBrands, setBestBrands } = actionDispatch(useDispatch());
 
   const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(false);
+
+  const toggleChat = () => {
+    setOpen(!open);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,7 +79,25 @@ export function HomePage(props: any) {
       <Events />
       <BestProducts />
       <TopBrands />
+
       {/* <Recommendations /> */}
     </div>
   );
 }
+
+// <div className="chat-button-container">
+//   {/* <img src="/icons/chat.webp" style={{ height: "100%" }} /> */}
+//   <Button className="chat-button" onClick={toggleChat}>
+//     <Chat sx={{mr: "15px"}} />
+//     Chat
+//   </Button>
+
+//   {open && (
+//     <div className="chat-popup">
+//       {/* Your chat content goes here */}
+//       <div className="chat-content">
+//         <CommunityChats />
+//       </div>
+//     </div>
+//   )}
+// </div>

@@ -11,6 +11,51 @@
   margin-bottom: 45px;
 }
 
+.homepage .chat-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 70px;
+  right: 80px;
+  z-index: 1000;
+}
+
+.homepage .chat-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 50px;
+  border-radius: 99px;
+  padding: 10px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  gap: 10px;
+
+  font-family: Pretendard, sans-serif;
+  font-size: 16px;
+}
+
+.homepage .chat-button:hover {
+  background-color: #007aff;
+}
+
+.homepage .chat-popup {
+  position: fixed;
+  bottom: 130px;
+  right: 50px;
+  width: 400px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
 .homepage .static_frame {
   width: 100%;
   background: #2c261e;
