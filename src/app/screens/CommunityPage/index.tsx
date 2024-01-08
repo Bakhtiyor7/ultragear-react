@@ -105,8 +105,8 @@ export function CommunityPage(props: any) {
           </div>
         ) : (
           <>
-            <Container sx={{ mt: "50px", mb: "50px" }}>
-              <Stack flexDirection={"row"} justifyContent={"space-between"}>
+            <Container sx={{ mt: "50px", mb: "50px", background: "#fff" }}>
+              <Stack>
                 <Stack className={"community_all_frame"} inputMode={"text"}>
                   <TabContext value={value}>
                     <Box className={"article_tabs"}>
@@ -178,6 +178,7 @@ export function CommunityPage(props: any) {
                             ? searchArticlesObj.page + 1
                             : 3
                         }
+                        color="secondary"
                         page={searchArticlesObj.page}
                         renderItem={(item) => (
                           <PaginationItem
@@ -194,7 +195,7 @@ export function CommunityPage(props: any) {
                     </Box>
                   </TabContext>
                 </Stack>
-                <CommunityChats />
+                {/* <CommunityChats /> */}
               </Stack>
             </Container>
           </>

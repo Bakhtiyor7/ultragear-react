@@ -26,20 +26,29 @@ import { MemberPage } from "./screens/MemberPage";
 import { OrdersPage } from "./screens/OrdersPage";
 import MobileUi from "./components/responsive_ui/responsive";
 import { sendTelegramNotification } from "./components/TelegramBot";
+import { Chat } from "@mui/icons-material";
+import { CommunityChats } from "./screens/CommunityPage/communityChats";
+import { Button } from "@mui/material";
 
 function App() {
-  useEffect(() => {
-    // Trigger the Telegram notification when the component mounts (on page load)
-    sendTelegramNotification("A new user has connected.")
-      .then(() => {
-        console.log("Notification sent successfully!");
-      })
-      .catch((error) => {
-        console.error("Error sending Telegram notification", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   // Trigger the Telegram notification when the component mounts (on page load)
+  //   sendTelegramNotification("A new user has connected.")
+  //     .then(() => {
+  //       console.log("Notification sent successfully!");
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error sending Telegram notification", error);
+  //     });
+  // }, []);
 
   //** INITIALIZATIONS */
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleChat = () => {
+    setIsOpen(!isOpen);
+  };
+
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
   const [signUpOpen, setSignUpOpen] = useState(false);
@@ -229,6 +238,23 @@ function App() {
             handleSignUpOpen={handleSignUpOpen}
             handleSignUpClose={handleSignUpClose}
           />
+
+          <div className="chat-button-container">
+            {/* <img src="/icons/chat.webp" style={{ height: "100%" }} /> */}
+            <button className="chat-button" onClick={toggleChat}>
+              <Chat sx={{ mr: "15px" }} />
+              Chat
+            </button>
+
+            {isOpen && (
+              <div className="chat-popup">
+                {/* Your chat content goes here */}
+                <div className="chat-content">
+                  <CommunityChats />
+                </div>
+              </div>
+            )}
+          </div>
         </>
       )}
     </Router>

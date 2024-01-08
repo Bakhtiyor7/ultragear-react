@@ -9,6 +9,7 @@
   display: flex;
   width: 100%;
   height: 100%;
+  background-color: #fff;
 }
 
 .community_page .community_frame .loader_wrapper {
@@ -27,16 +28,12 @@
   display: flex;
   flex-direction: column;
   background-color: #182226;
-  border: 0.5px solid gray;
   border-radius: 34px;
-  box-shadow:
-    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .community_page .community_all_frame {
-  width: 68%;
+  width: 100%;
   height: auto;
 }
 
@@ -162,67 +159,69 @@
 }
 
 .community_page .all_article_box {
-  width: 90%;
-  height: 170px;
-  margin-top: 15px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  background: #8675a9;
-  box-shadow: 0px 4px 40px rgb(0 0 0 / 25%);
-  border-radius: 30px;
+  flex-direction: column;
+  width: clamp(20rem, calc(20rem + 2vw), 22rem);
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* border-radius: 1em; */
+  background: #ece9e6;
+  background: linear-gradient(to right, #ffffff, #ece9e6);
 }
 
-.community_page .all_article_box .all_article_img {
-  width: 155px;
-  height: 155px;
-  border-radius: 25px;
-  /* background: url(https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3160&q=80); */
-  background-size: cover;
-  margin-left: 5px;
+.community_page .all_article_box img {
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .community_page .all_article_box .all_article_container {
-  margin-left: 15px;
-  width: 75%;
-  height: 90%;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
 .community_page .all_article_author_user {
-  margin-left: 10px;
-  font-family: "Poppins";
+  font-family: Pretendard, sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 16px;
   line-height: 26px;
-  color: #ffffff;
+  color: #000;
+}
+
+.community_page .written_date {
+  color: #666;
+  font-weight: 400;
 }
 
 .community_page .all_article_title {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 33px;
-  color: #e3c08d;
+  align-self: flex-start;
+  padding: 0.25em 0.75em;
+  border-radius: 1em;
+  font-size: 0.75rem;
+  background: #56ccf2;
+  background: linear-gradient(to bottom, #2f80ed, #56ccf2);
+  color: #fafafa;
+}
+.community_page .user_name_container {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
 }
 
 .community_page .all_article_desc {
-  margin-top: 5px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 26px;
-  color: #ffffff;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  color: #000;
 }
 
 .community_page .article_share {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  align-self: flex-start;
+  gap: 8px;
 }
 
 .community_page .article_bott {

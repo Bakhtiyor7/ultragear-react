@@ -17,6 +17,7 @@ import {
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import { RippleBadge } from "../../MaterialTheme/styled";
+import styled from "styled-components";
 
 const NewMessage = (data: any) => {
   if (data.new_message.mb_id == verifiedMemberData?._id) {
@@ -28,7 +29,7 @@ const NewMessage = (data: any) => {
         justifyContent={"flex-end"}
         sx={{ m: "10px 0px" }}
       >
-        <div className={"msg_right"}>{data.new_message.msg} </div>
+        <MsgRight>{data.new_message.msg} </MsgRight>
       </Box>
     );
   } else {
@@ -146,40 +147,160 @@ export function CommunityChats() {
   };
 
   return (
-    <Stack className={"chat_frame"}>
-      <Box className={"chat_top"}>
+    <ChatFrame>
+      <ChatTop>
         <div>Live Chat</div>
         <RippleBadge
           style={{ margin: "-30px 0 0 20px" }}
           badgeContent={onlineUsers}
         />
-      </Box>
-      <Box className={"chat_content"}>
-        <Stack className={"chat_main"}>
+      </ChatTop>
+      <ChatContent>
+        <ChatMain className={"chat_main"}>
           <Box
             flexDirection={"row"}
             style={{ display: "flex" }}
             sx={{ m: "10px 0px" }}
           >
-            <div className={"msg_left"}>We are online</div>
+            <MsgLeft>We are online</MsgLeft>
           </Box>
           {messagesList}
-        </Stack>
-      </Box>
-      <Box className={"chat_bott"}>
-        <input
+        </ChatMain>
+      </ChatContent>
+      <ChatBottom>
+        <MsgInput
           ref={textInput}
           type={"text"}
           name={"message"}
-          className={"msg_input"}
           placeholder={"Send a message"}
           onChange={getInputMessageHandler}
           onKeyDown={getKeyHandler}
         />
-        <button className={"send_msg_btn"} onClick={onClickHandler}>
+        <MsgButton onClick={onClickHandler}>
           <SendIcon style={{ color: "#fff" }} />
-        </button>
-      </Box>
-    </Stack>
+        </MsgButton>
+      </ChatBottom>
+    </ChatFrame>
   );
 }
+
+const ChatFrame = styled.div`
+  width: 100%;
+  height: 600px;
+
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(270deg, #5912ff 0%, #9c1fff 100%);
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+`;
+
+const ChatTop = styled.div`
+  width: 100%;
+  height: 94px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(228, 228, 228, 0.83);
+
+  font-family: "Helvetica";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 54px;
+  color: #fff;
+`;
+
+const ChatContent = styled.div`
+  position: relative;
+  padding: 17px;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  background: #fff;
+`;
+
+const ChatMain = styled.div`
+  position: relative;
+  /*padding: 17px;*/
+  width: 100%;
+  /*height: 100%;*/
+
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: auto;
+`;
+
+const MsgLeft = styled.div`
+  margin-left: 10px;
+  padding: 9px;
+  width: auto;
+  height: auto;
+
+  display: flex;
+  background: rgba(228, 228, 228, 0.83);
+  border-radius: 20px 20px 20px 0px;
+`;
+
+const ChatBottom = styled.div`
+  width: 100%;
+  height: 94px;
+
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(228, 228, 228, 0.83);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+`;
+
+const MsgInput = styled.input`
+  padding: 20px;
+  width: 276px;
+  height: 50px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f7f7f7;
+  border-radius: 28px;
+  border: none;
+  outline-color: #257677;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+`;
+
+const MsgButton = styled.button`
+  margin-left: 14px;
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #55a99d 0%, #007665 100%);
+  border: none;
+`;
+
+const MsgRight = styled.div`
+  padding: 9px;
+  width: auto;
+  height: auto;
+
+  display: flex;
+  background: #d0ece8;
+  border-radius: 20px 20px 0px 20px;
+  margin-right: 5px;
+`;
