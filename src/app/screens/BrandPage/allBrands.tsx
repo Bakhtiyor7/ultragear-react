@@ -78,6 +78,7 @@ export function AllBrands() {
           .getBrands(targetSearchObject)
           .then((data) => setTargetBrands(data))
           .catch((err) => console.log(err));
+
         setLoading(false);
       } catch (error) {
         console.log("Error loading data", error);
