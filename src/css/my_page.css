@@ -5,6 +5,15 @@
   background: #dddddd;
 }
 
+.my_page .loader_wrapper {
+  width: 100%;
+  /* height: 100vh; */
+  height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .my_page .left_frame {
   display: flex;
   justify-content: center;
