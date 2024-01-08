@@ -28,18 +28,18 @@ export function HomePage(props: any) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
         const brandService = new BrandApiService();
-        brandService
+        await brandService
           .getTopBrands()
           .then((data) => {
             setTopBrands(data);
           })
           .catch((err) => console.log(err));
 
-        brandService
+        await brandService
           .getBrands({ page: 1, limit: 4, order: "mb_point" })
           .then((data) => {
             setBestBrands(data);
@@ -52,7 +52,7 @@ export function HomePage(props: any) {
       }
     };
     fetchData();
-  }, [setBestBrands, setTopBrands]);
+  }, []);
   return loading ? (
     <div className={"loader_wrapper"}>
       <ClipLoader

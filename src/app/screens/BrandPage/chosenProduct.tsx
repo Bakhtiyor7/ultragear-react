@@ -42,13 +42,13 @@ const chosenProductRetriever = createSelector(
   retrieveChosenProduct,
   (chosenProduct) => ({
     chosenProduct,
-  }),
+  })
 );
 const chosenBrandRetriever = createSelector(
   retrieveChosenBrand,
   (chosenBrand) => ({
     chosenBrand,
-  }),
+  })
 );
 
 export function ChosenProduct(props: any) {
@@ -77,10 +77,10 @@ export function ChosenProduct(props: any) {
   };
 
   useEffect(() => {
-    const fetchData = () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
-        productRelatedProcess().then();
+        await productRelatedProcess();
         setLoading(false);
       } catch (error) {
         console.log("Error fetching data", error);

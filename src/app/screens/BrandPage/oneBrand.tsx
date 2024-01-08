@@ -10,6 +10,8 @@ import {
   MenuItem,
   Select,
   Stack,
+  Tab,
+  Tabs,
 } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -49,6 +51,7 @@ import {
 } from "../../../lib/sweetAlert";
 import { verifiedMemberData } from "../../apiServices/verify";
 import ClipLoader from "react-spinners/ClipLoader";
+import ProductList from "../../components/brandPage/productList";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -62,19 +65,19 @@ const randomBrandsRetriever = createSelector(
   retrieveRandomBrands,
   (randomBrands) => ({
     randomBrands,
-  }),
+  })
 );
 const chosenBrandRetriever = createSelector(
   retrieveChosenBrand,
   (chosenBrand) => ({
     chosenBrand,
-  }),
+  })
 );
 const targetProductsRetriever = createSelector(
   retrieveTargetProducts,
   (targetProducts) => ({
     targetProducts,
-  }),
+  })
 );
 
 export function OneBrand(props: any) {
@@ -99,22 +102,22 @@ export function OneBrand(props: any) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
         const brandService = new BrandApiService();
-        brandService
+        await brandService
           .getBrands({ page: 1, limit: 10, order: "random" })
           .then((data) => setRandomBrands(data))
           .catch((err) => console.log(err));
 
-        brandService
+        await brandService
           .getChosenBrand(chosenBrandId)
           .then((data) => setChosenBrand(data))
           .catch((err) => console.log(err));
 
         const productService = new ProductApiService();
-        productService
+        await productService
           .getTargetProducts(targetProductSearchObject)
           .then((data) => setTargetProducts(data))
           .catch((err) => console.log(err));
@@ -212,99 +215,55 @@ export function OneBrand(props: any) {
                 width={"90%"}
                 style={{ marginTop: "20px" }}
               >
-                <Stack className={"category_holder"}>
-                  <Button
+                <Tabs
+                  className={"category_holder"}
+                  value={targetProductSearchObject.product_collection}
+                  onChange={(event, newValue) => {
+                    searchCollectionHandler(newValue);
+                  }}
+                  TabIndicatorProps={{
+                    style: { display: "none" },
+                  }}
+                >
+                  <Tab
                     className="category_button"
-                    onClick={() => searchCollectionHandler("keyboard")}
-                    sx={{
-                      "&:focus": {
-                        color: "#fff",
-                        bgcolor: "#000",
-                        borderRadius: "99px",
-                      },
-                    }}
-                  >
-                    Keyboards
-                  </Button>
-                  <Button
+                    label="Keyboards"
+                    value={"keyboard"}
+                  />
+                  <Tab
                     className="category_button"
-                    onClick={() => searchCollectionHandler("mouse")}
-                    sx={{
-                      "&:focus": {
-                        color: "#fff",
-                        bgcolor: "#000",
-                        borderRadius: "99px",
-                      },
-                    }}
-                  >
-                    Mouse
-                  </Button>
-                  <Button
+                    label="Mouse"
+                    value={"mouse"}
+                  />
+                  <Tab
                     className="category_button"
-                    onClick={() => searchCollectionHandler("headset")}
-                    sx={{
-                      "&:focus": {
-                        color: "#fff",
-                        bgcolor: "#000",
-                        borderRadius: "99px",
-                      },
-                    }}
-                  >
-                    Headsets
-                  </Button>
-                  <Button
+                    label="Headsets"
+                    value={"headset"}
+                  />
+                  <Tab
                     className="category_button"
-                    onClick={() => searchCollectionHandler("earphone")}
-                    sx={{
-                      "&:focus": {
-                        color: "#fff",
-                        bgcolor: "#000",
-                        borderRadius: "99px",
-                      },
-                    }}
-                  >
-                    Earphones
-                  </Button>
-                  <Button
+                    label="earphone"
+                    value={"earphone"}
+                  />
+
+                  <Tab
                     className="category_button"
-                    onClick={() => searchCollectionHandler("monitor")}
-                    sx={{
-                      "&:focus": {
-                        color: "#fff",
-                        bgcolor: "#000",
-                        borderRadius: "99px",
-                      },
-                    }}
-                  >
-                    Monitor
-                  </Button>
-                  <Button
+                    label="monitor"
+                    value={"monitor"}
+                  />
+
+                  <Tab
                     className="category_button"
-                    onClick={() => searchCollectionHandler("laptop")}
-                    sx={{
-                      "&:focus": {
-                        color: "#fff",
-                        bgcolor: "#000",
-                        borderRadius: "99px",
-                      },
-                    }}
-                  >
-                    Laptop
-                  </Button>
-                  <Button
+                    label="laptop"
+                    value={"laptop"}
+                  />
+
+                  <Tab
                     className="category_button"
-                    onClick={() => searchCollectionHandler("etc")}
-                    sx={{
-                      "&:focus": {
-                        color: "#fff",
-                        bgcolor: "#000",
-                        borderRadius: "99px",
-                      },
-                    }}
-                  >
-                    Others
-                  </Button>
-                </Stack>
+                    label="others"
+                    value={"others"}
+                  />
+                </Tabs>
               </Stack>
 
               <Box className={"fill_search_box"}>
@@ -361,6 +320,9 @@ export function OneBrand(props: any) {
                         "&:hover": {
                           backgroundColor: "#edf3fc",
                         },
+                        "&.Mui-selected": {
+                          color: "#fff",
+                        },
                       }}
                     >
                       <SearchIcon />
@@ -373,110 +335,12 @@ export function OneBrand(props: any) {
                 style={{ width: "100%", display: "flex", minHeight: "60px" }}
                 flexDirection={"row"}
               >
-                <Stack className={"products_wrapper"}>
-                  {targetProducts.map((product: Product) => {
-                    const image_path = `${serverApi}/${product.product_images[0]}`;
-                    return (
-                      <Box
-                        className="product_box"
-                        key={product._id}
-                        onClick={() => chosenProductHandler(product._id)}
-                      >
-                        <Box className="product_img">
-                          <Box
-                            className="product_img_holder"
-                            sx={{
-                              // backgroundImage: `url(${image_path})`,
-                              cursor: "pointer",
-                            }}
-                            onClick={() => chosenProductHandler(product._id)}
-                          >
-                            <img src={image_path} alt={"product image"} />
-                          </Box>
-                          <Button
-                            className={"like_view_btn"}
-                            style={{ left: "36px" }}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                            }}
-                          >
-                            <Badge
-                              badgeContent={product.product_likes}
-                              color={"primary"}
-                            >
-                              <Checkbox
-                                icon={
-                                  <FavoriteBorder style={{ color: "white" }} />
-                                }
-                                id={product._id}
-                                checkedIcon={
-                                  <Favorite style={{ color: "red" }} />
-                                }
-                                onClick={targetLikeProduct}
-                                checked={
-                                  !!(
-                                    product?.me_liked &&
-                                    product?.me_liked[0]?.my_favorite
-                                  )
-                                }
-                              />
-                            </Badge>
-                          </Button>
-                          <Button
-                            className={"view_btn"}
-                            onClick={(e) => {
-                              props.onAdd(product);
-                              e.stopPropagation();
-                            }}
-                          >
-                            <img
-                              src={"/icons/shopping_cart.svg"}
-                              style={{ display: "flex" }}
-                              alt={"cart_icon"}
-                            />
-                          </Button>
-                          <Button
-                            className={"like_view_btn"}
-                            style={{ right: "36px" }}
-                          >
-                            <Badge
-                              badgeContent={product.product_views}
-                              color="primary"
-                            >
-                              <Checkbox
-                                icon={
-                                  <RemoveRedEyeIcon
-                                    style={{ color: "white" }}
-                                  />
-                                }
-                              />
-                            </Badge>
-                          </Button>
-                        </Box>
-                        <Stack className={"product_desc"}>
-                          <div
-                            style={{
-                              display: "flex",
-                              justifyContent: "space-between",
-                              alignItems: "flex-start",
-                              width: "100%",
-                            }}
-                          >
-                            <span className="product_collection">
-                              {product.product_collection}
-                            </span>
-                            <span className={"product_desc_text"}>
-                              ${product.product_price}
-                            </span>
-                          </div>
-                          <span className={"porduct_title_text"}>
-                            {product.product_name}
-                          </span>
-                        </Stack>
-                      </Box>
-                    );
-                  })}
-                </Stack>
+                <ProductList
+                  products={targetProducts}
+                  chosenProductHandler={chosenProductHandler}
+                  onAdd={props.onAdd}
+                  targetLikeProduct={targetLikeProduct}
+                />
               </Stack>
               <Stack
                 style={{
