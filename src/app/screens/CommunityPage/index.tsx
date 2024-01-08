@@ -32,7 +32,7 @@ const targetBoArticlesRetriever = createSelector(
   retrieveTargetBoArticles,
   (targetBoArticles) => ({
     targetBoArticles,
-  }),
+  })
 );
 export function CommunityPage(props: any) {
   /** INITIALIZATIONS **/
@@ -41,17 +41,18 @@ export function CommunityPage(props: any) {
 
   const [value, setValue] = React.useState("1");
   const [searchArticlesObj, setSearchArticlesObj] = useState<SearchArticlesObj>(
-    { bo_id: "all", page: 1, limit: 5 },
+    { bo_id: "all", page: 1, limit: 5 }
   );
   const [articleRebuild, setArticleRebuild] = useState<Date>(new Date());
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
+
         const communityService = new CommunityApiService();
-        communityService
+        await communityService
           .getTargetArticles(searchArticlesObj)
           .then((data) => setTargetBoArticles(data))
           .catch((err) => console.log(err));

@@ -226,7 +226,6 @@
 }
 
 .brand_page .single_brand .category_holder .category_button.Mui-selected {
-  /* Add your styles for the selected tab here */
   color: #fff;
   background-color: #000;
   border-radius: 99px;
