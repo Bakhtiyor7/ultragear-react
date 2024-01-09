@@ -220,7 +220,6 @@ export function CommunityPage(props: any) {
                             ? searchArticlesObj.page + 1
                             : 3
                         }
-                        color="secondary"
                         page={searchArticlesObj.page}
                         renderItem={(item) => (
                           <PaginationItem
@@ -229,7 +228,7 @@ export function CommunityPage(props: any) {
                               next: ArrowForwardIcon,
                             }}
                             {...item}
-                            color={"secondary"}
+                            color={"primary"}
                           />
                         )}
                         onChange={handlePaginationChange}

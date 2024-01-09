@@ -54,7 +54,7 @@ const targetBrandsRetriever = createSelector(
   retrieveTargetBrands,
   (targetBrands) => ({
     targetBrands,
-  })
+  }),
 );
 
 export function AllBrands() {
@@ -133,134 +133,134 @@ export function AllBrands() {
 
   return (
     <div className="all_brand">
-      {loading ? (
-        <div className={"loader_wrapper"}>
-          <ClipLoader
-            color={"#00BFFF"}
-            loading={loading}
-            size={100}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-        </div>
-      ) : (
-        <>
-          <Container>
-            <Stack className="head_information_brand">
-              <img src="/home/rectangle.png" alt="" className="rectangle" />
-              <Box className="header_title">
-                <h1>Featured Brands</h1>
-              </Box>
+      <Container>
+        <Stack className="head_information_brand">
+          <img src="/home/rectangle.png" alt="" className="rectangle" />
+          <Box className="header_title">
+            <h1>Featured Brands</h1>
+          </Box>
 
-              <Box className="head_info_box">
-                <Box className="category_box"></Box>
-              </Box>
-            </Stack>
-            <Stack>
-              <Tabs
-                value={targetSearchObject.order}
-                onChange={(event, newValue) => searchHandler(newValue)}
-                variant="scrollable"
-                scrollButtons="auto"
-                className="category_holder"
-                TabIndicatorProps={{
-                  style: { display: "none" },
-                }}
-              >
-                <Tab
-                  label="Top"
-                  value="mb_point"
+          <Box className="head_info_box">
+            <Box className="category_box"></Box>
+          </Box>
+        </Stack>
+        <Stack>
+          <Tabs
+            value={targetSearchObject.order}
+            onChange={(event, newValue) => searchHandler(newValue)}
+            variant="scrollable"
+            scrollButtons="auto"
+            className="category_holder"
+            TabIndicatorProps={{
+              style: { display: "none" },
+            }}
+          >
+            <Tab
+              label="Top"
+              value="mb_point"
+              sx={{
+                "&:focus": {
+                  color: "#fff",
+                  bgcolor: "#000",
+                  borderRadius: "99px",
+                },
+                "&.Mui-selected": {
+                  color: "#fff",
+                  bgcolor: "#000",
+                  borderRadius: "99px",
+                },
+              }}
+              className="filter_button"
+            />
+            <Tab
+              label="Most Visited"
+              value="mb_views"
+              sx={{
+                "&:focus": {
+                  color: "#fff",
+                  bgcolor: "#000",
+                  borderRadius: "99px",
+                },
+                "&.Mui-selected": {
+                  color: "#fff",
+                  bgcolor: "#000",
+                  borderRadius: "99px",
+                },
+              }}
+              className="filter_button"
+            />
+            <Tab
+              label="Most Liked"
+              value="mb_likes"
+              sx={{
+                "&:focus": {
+                  color: "#fff",
+                  bgcolor: "#000",
+                  borderRadius: "99px",
+                },
+                "&.Mui-selected": {
+                  color: "#fff",
+                  bgcolor: "#000",
+                  borderRadius: "99px",
+                },
+              }}
+              className="filter_button"
+            />
+            <Tab
+              label="New"
+              value="createdAt"
+              sx={{
+                "&:focus": {
+                  color: "white",
+                  backgroundColor: "#000",
+                  borderRadius: "99px",
+                },
+                "&.Mui-selected": {
+                  color: "#fff",
+                  bgcolor: "#000",
+                  borderRadius: "99px",
+                },
+              }}
+              className="filter_button"
+            />
+          </Tabs>
+          <Box className={"fill_search_box"}>
+            <Box className={"search_big_box"}>
+              <form className={"search_form"} action={""} method={""}>
+                <input
+                  type={"search"}
+                  className={"searchInput"}
+                  name={"resSearch"}
+                  placeholder={"search"}
+                  style={{ border: "none" }}
+                />
+                <Button
+                  className={"button_search"}
+                  variant="contained"
                   sx={{
-                    "&:focus": {
-                      color: "#fff",
-                      bgcolor: "#000",
-                      borderRadius: "99px",
-                    },
-                    "&.Mui-selected": {
-                      color: "#fff",
-                      bgcolor: "#000",
-                      borderRadius: "99px",
+                    color: "black",
+                    "&:hover": {
+                      backgroundColor: "#edf3fc",
                     },
                   }}
-                  className="filter_button"
-                />
-                <Tab
-                  label="Most Visited"
-                  value="mb_views"
-                  sx={{
-                    "&:focus": {
-                      color: "#fff",
-                      bgcolor: "#000",
-                      borderRadius: "99px",
-                    },
-                    "&.Mui-selected": {
-                      color: "#fff",
-                      bgcolor: "#000",
-                      borderRadius: "99px",
-                    },
-                  }}
-                  className="filter_button"
-                />
-                <Tab
-                  label="Most Liked"
-                  value="mb_likes"
-                  sx={{
-                    "&:focus": {
-                      color: "#fff",
-                      bgcolor: "#000",
-                      borderRadius: "99px",
-                    },
-                    "&.Mui-selected": {
-                      color: "#fff",
-                      bgcolor: "#000",
-                      borderRadius: "99px",
-                    },
-                  }}
-                  className="filter_button"
-                />
-                <Tab
-                  label="New"
-                  value="createdAt"
-                  sx={{
-                    "&:focus": {
-                      color: "white",
-                      backgroundColor: "#000",
-                      borderRadius: "99px",
-                    },
-                    "&.Mui-selected": {
-                      color: "#fff",
-                      bgcolor: "#000",
-                      borderRadius: "99px",
-                    },
-                  }}
-                  className="filter_button"
-                />
-              </Tabs>
-              <Box className={"fill_search_box"}>
-                <Box className={"search_big_box"}>
-                  <form className={"search_form"} action={""} method={""}>
-                    <input
-                      type={"search"}
-                      className={"searchInput"}
-                      name={"resSearch"}
-                      placeholder={"search"}
-                      style={{ border: "none" }}
-                    />
-                    <Button
-                      className={"button_search"}
-                      variant="contained"
-                      sx={{
-                        color: "black",
-                        "&:hover": {
-                          backgroundColor: "#edf3fc",
-                        },
-                      }}
-                    >
-                      <SearchIcon />
-                    </Button>
-                  </form>
-                </Box>
-              </Box>
+                >
+                  <SearchIcon />
+                </Button>
+              </form>
+            </Box>
+          </Box>
+          {loading ? (
+            <div className={"loader_wrapper"}>
+              <ClipLoader
+                color={"#00BFFF"}
+                loading={loading}
+                size={100}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            </div>
+          ) : (
+            <>
               <BrandListContainer
                 targetBrands={targetBrands}
                 chosenBrandHandler={chosenBrandHandler}
@@ -269,10 +269,10 @@ export function AllBrands() {
                 handlePaginationChange={handlePaginationChange}
                 targetSearchObject={targetSearchObject}
               />
-            </Stack>
-          </Container>
-        </>
-      )}
+            </>
+          )}
+        </Stack>
+      </Container>
     </div>
   );
 }

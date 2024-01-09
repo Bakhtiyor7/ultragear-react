@@ -8,14 +8,14 @@
 /* ===================== */
 .all_brand_box .loader_wrapper {
   width: 100%;
-  height: 100vh;
+  height: 800px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .single_brand .loader_wrapper {
   width: 100%;
-  height: 100vh;
+  height: 800px;
   display: flex;
   align-items: center;
   justify-content: center;
