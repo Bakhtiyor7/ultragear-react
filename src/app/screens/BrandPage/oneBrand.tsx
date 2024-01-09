@@ -65,19 +65,19 @@ const randomBrandsRetriever = createSelector(
   retrieveRandomBrands,
   (randomBrands) => ({
     randomBrands,
-  })
+  }),
 );
 const chosenBrandRetriever = createSelector(
   retrieveChosenBrand,
   (chosenBrand) => ({
     chosenBrand,
-  })
+  }),
 );
 const targetProductsRetriever = createSelector(
   retrieveTargetProducts,
   (targetProducts) => ({
     targetProducts,
-  })
+  }),
 );
 
 export function OneBrand(props: any) {
@@ -184,434 +184,425 @@ export function OneBrand(props: any) {
 
   return (
     <div className="single_brand">
-      {loading ? (
-        <div className={"loader_wrapper"}>
-          <ClipLoader
-            color={"#00BFFF"}
-            loading={loading}
-            size={100}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-        </div>
-      ) : (
-        <>
-          <Container>
-            <Stack className="head_information_brand">
-              <img src="/home/rectangle.png" alt="" className="rectangle" />
-              <Box className="header_title">
-                <h1>{chosenBrand?.mb_nick} Products Menu</h1>
-              </Box>
+      <Container>
+        <Stack className="head_information_brand">
+          <img src="/home/rectangle.png" alt="" className="rectangle" />
+          <Box className="header_title">
+            <h1>{chosenBrand?.mb_nick} Products Menu</h1>
+          </Box>
 
-              <Box className="head_info_box">
-                <Box className="category_box"></Box>
-              </Box>
-            </Stack>
-            <Stack flexDirection={"column"} alignItems={"center"}>
-              <Stack
-                display={"flex"}
-                flexDirection={"row"}
-                justifyContent={"space-between"}
-                width={"90%"}
-                style={{ marginTop: "20px" }}
+          <Box className="head_info_box">
+            <Box className="category_box"></Box>
+          </Box>
+        </Stack>
+        <Stack flexDirection={"column"} alignItems={"center"}>
+          <Stack
+            display={"flex"}
+            flexDirection={"row"}
+            justifyContent={"space-between"}
+            width={"90%"}
+            style={{ marginTop: "20px" }}
+          >
+            <Tabs
+              className={"category_holder"}
+              value={targetProductSearchObject.product_collection}
+              onChange={(event, newValue) => {
+                searchCollectionHandler(newValue);
+              }}
+              TabIndicatorProps={{
+                style: { display: "none" },
+              }}
+            >
+              <Tab
+                className="category_button"
+                label="Keyboards"
+                value={"keyboard"}
+              />
+              <Tab className="category_button" label="Mouse" value={"mouse"} />
+              <Tab
+                className="category_button"
+                label="Headsets"
+                value={"headset"}
+              />
+              <Tab
+                className="category_button"
+                label="earphone"
+                value={"earphone"}
+              />
+
+              <Tab
+                className="category_button"
+                label="monitor"
+                value={"monitor"}
+              />
+
+              <Tab
+                className="category_button"
+                label="laptop"
+                value={"laptop"}
+              />
+
+              <Tab
+                className="category_button"
+                label="others"
+                value={"others"}
+              />
+            </Tabs>
+          </Stack>
+
+          <Box className={"fill_search_box"}>
+            <FormControl style={{ width: "138px", height: "45px" }}>
+              <InputLabel id="sort-by-label">SORT BY :</InputLabel>
+              <Select
+                labelId="sort-by-label"
+                id="sort-by"
+                value={sortValue}
+                label="SORT BY:"
+                onChange={handleChange}
               >
-                <Tabs
-                  className={"category_holder"}
-                  value={targetProductSearchObject.product_collection}
-                  onChange={(event, newValue) => {
-                    searchCollectionHandler(newValue);
-                  }}
-                  TabIndicatorProps={{
-                    style: { display: "none" },
+                <MenuItem
+                  value="createdAt"
+                  onClick={() => searchOrderHandler("createdAt")}
+                >
+                  New
+                </MenuItem>
+                <MenuItem
+                  value="product_price"
+                  onClick={() => searchOrderHandler("product_price")}
+                >
+                  Price: Low to high
+                </MenuItem>
+                <MenuItem
+                  value="product_likes"
+                  onClick={() => searchOrderHandler("product_likes")}
+                >
+                  Most Liked
+                </MenuItem>
+                <MenuItem
+                  value="product_views"
+                  onClick={() => searchOrderHandler("product_views")}
+                >
+                  Most viewed
+                </MenuItem>
+              </Select>
+            </FormControl>
+
+            <Box className={"search_big_box"}>
+              <form className={"search_form"} action={""} method={""}>
+                <input
+                  type={"search"}
+                  className={"searchInput"}
+                  name={"resSearch"}
+                  placeholder={"search"}
+                  style={{ border: "none" }}
+                />
+                <Button
+                  className={"button_search"}
+                  variant="contained"
+                  sx={{
+                    color: "black",
+                    "&:hover": {
+                      backgroundColor: "#edf3fc",
+                    },
+                    "&.Mui-selected": {
+                      color: "#fff",
+                    },
                   }}
                 >
-                  <Tab
-                    className="category_button"
-                    label="Keyboards"
-                    value={"keyboard"}
-                  />
-                  <Tab
-                    className="category_button"
-                    label="Mouse"
-                    value={"mouse"}
-                  />
-                  <Tab
-                    className="category_button"
-                    label="Headsets"
-                    value={"headset"}
-                  />
-                  <Tab
-                    className="category_button"
-                    label="earphone"
-                    value={"earphone"}
-                  />
+                  <SearchIcon />
+                </Button>
+              </form>
+            </Box>
+          </Box>
 
-                  <Tab
-                    className="category_button"
-                    label="monitor"
-                    value={"monitor"}
-                  />
-
-                  <Tab
-                    className="category_button"
-                    label="laptop"
-                    value={"laptop"}
-                  />
-
-                  <Tab
-                    className="category_button"
-                    label="others"
-                    value={"others"}
-                  />
-                </Tabs>
-              </Stack>
-
-              <Box className={"fill_search_box"}>
-                <FormControl style={{ width: "138px", height: "45px" }}>
-                  <InputLabel id="sort-by-label">SORT BY :</InputLabel>
-                  <Select
-                    labelId="sort-by-label"
-                    id="sort-by"
-                    value={sortValue}
-                    label="SORT BY:"
-                    onChange={handleChange}
-                  >
-                    <MenuItem
-                      value="createdAt"
-                      onClick={() => searchOrderHandler("createdAt")}
-                    >
-                      New
-                    </MenuItem>
-                    <MenuItem
-                      value="product_price"
-                      onClick={() => searchOrderHandler("product_price")}
-                    >
-                      Price: Low to high
-                    </MenuItem>
-                    <MenuItem
-                      value="product_likes"
-                      onClick={() => searchOrderHandler("product_likes")}
-                    >
-                      Most Liked
-                    </MenuItem>
-                    <MenuItem
-                      value="product_views"
-                      onClick={() => searchOrderHandler("product_views")}
-                    >
-                      Most viewed
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-
-                <Box className={"search_big_box"}>
-                  <form className={"search_form"} action={""} method={""}>
-                    <input
-                      type={"search"}
-                      className={"searchInput"}
-                      name={"resSearch"}
-                      placeholder={"search"}
-                      style={{ border: "none" }}
-                    />
-                    <Button
-                      className={"button_search"}
-                      variant="contained"
-                      sx={{
-                        color: "black",
-                        "&:hover": {
-                          backgroundColor: "#edf3fc",
-                        },
-                        "&.Mui-selected": {
-                          color: "#fff",
-                        },
-                      }}
-                    >
-                      <SearchIcon />
-                    </Button>
-                  </form>
-                </Box>
-              </Box>
-
-              <Stack
-                style={{ width: "100%", display: "flex", minHeight: "60px" }}
-                flexDirection={"row"}
-              >
+          <Stack
+            style={{ width: "100%", display: "flex", minHeight: "60px" }}
+            flexDirection={"row"}
+          >
+            {loading ? (
+              <div className={"loader_wrapper"}>
+                <ClipLoader
+                  color={"#00BFFF"}
+                  loading={loading}
+                  size={100}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              </div>
+            ) : (
+              <>
                 <ProductList
                   products={targetProducts}
                   chosenProductHandler={chosenProductHandler}
                   onAdd={props.onAdd}
                   targetLikeProduct={targetLikeProduct}
                 />
-              </Stack>
-              <Stack
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  backgroundColor: "#E9EFFF",
-                }}
-                flexDirection={"row"}
-                sx={{ mt: "35px" }}
-              >
-                <Box className={"prev_btn brand-prev"}>
-                  <ArrowBackIosNewIcon
-                    sx={{ fontSize: 40 }}
-                    style={{ color: "black" }}
-                  />
-                </Box>
-                <Swiper
-                  className={"brand_avatars_wrapper"}
-                  slidesPerView={6}
-                  centeredSlides={false}
-                  spaceBetween={50}
-                  navigation={{
-                    nextEl: ".brand-next",
-                    prevEl: ".brand-prev",
-                  }}
-                >
-                  {randomBrands.map((ele: Brand) => {
-                    const image_path = `${serverApi}/${ele.mb_image}`;
-                    return (
-                      <SwiperSlide
-                        onClick={() => chosenBrandHandler(ele._id)}
-                        style={{ cursor: "pointer" }}
-                        key={ele._id}
-                        className={"brand_avatars"}
-                      >
-                        <img src={image_path} alt={"brand_image"} />
-
-                        {/* <span>{ele.mb_nick}</span> */}
-                      </SwiperSlide>
-                    );
-                  })}
-                </Swiper>
-                <Box
-                  className={"next_btn restaurant-next"}
-                  style={{ color: "black" }}
-                >
-                  <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
-                </Box>
-              </Stack>
-            </Stack>
-          </Container>
-
-          <div className="brand_review">
-            <Container
-              sx={{ mt: "100px" }}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+              </>
+            )}
+          </Stack>
+          <Stack
+            style={{
+              width: "100%",
+              display: "flex",
+              backgroundColor: "#E9EFFF",
+            }}
+            flexDirection={"row"}
+            sx={{ mt: "35px" }}
+          >
+            <Box className={"prev_btn brand-prev"}>
+              <ArrowBackIosNewIcon
+                sx={{ fontSize: 40 }}
+                style={{ color: "black" }}
+              />
+            </Box>
+            <Swiper
+              className={"brand_avatars_wrapper"}
+              slidesPerView={6}
+              centeredSlides={false}
+              spaceBetween={50}
+              navigation={{
+                nextEl: ".brand-next",
+                prevEl: ".brand-prev",
               }}
             >
-              <Box className={"category_title"}>CUSTOMER REVIEWS</Box>
-              <Stack
-                flexDirection={"row"}
-                display={"flex"}
-                width={"100%"}
-                style={{ marginTop: "20px", borderBottom: "0.5px solid gray" }}
-              >
-                <Box className="review_left">
-                  <Box display={"flex"} alignItems={"center"}>
-                    <img
-                      src="/community/kazuha.jpeg"
-                      className="review_img"
-                      alt={"author_image"}
-                    />
-                  </Box>
-                </Box>
-                <Stack className="review_right">
-                  <Box>
-                    <p className="review_title">
-                      I am satisfied with the products but could be better
-                    </p>
-                    <div className={"review_stars"}>
-                      <StarIcon style={{ color: "#F2BD57" }} />
-                      <StarIcon style={{ color: "#F2BD57" }} />
-                      <StarIcon style={{ color: "#F2BD57" }} />
-                      <StarIcon style={{ color: "whitesmoke" }} />
-                      <StarIcon style={{ color: "whitesmoke" }} />
-                    </div>
-                  </Box>
-                  <Box className="review_text">
-                    I am overall satisfied with the functionality of the
-                    products, they almost do what I want and need for work. But
-                    some of the products feel kind plasticy and low quality. But
-                    the product works just fine if you are not obsessed with the
-                    build quality like me. Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Deserunt, explicabo, sint,
-                    debitis quasi voluptatibus voluptatem aspernatur dicta
-                    itaque enim facilis et incidunt molestias ea at excepturi
-                    maxime dolore. Cupiditate, rem.
-                  </Box>
-                  <Box
-                    display={"flex"}
-                    flexDirection={"row"}
-                    sx={{ mt: "20px", mb: "20px" }}
+              {randomBrands.map((ele: Brand) => {
+                const image_path = `${serverApi}/${ele.mb_image}`;
+                return (
+                  <SwiperSlide
+                    onClick={() => chosenBrandHandler(ele._id)}
+                    style={{ cursor: "pointer" }}
+                    key={ele._id}
+                    className={"brand_avatars"}
                   >
-                    <FavoriteIcon
-                      className="review_icons"
-                      style={{ color: "red" }}
-                    />
-                    <ChatBubbleIcon className="review_icons" />
-                    <MoreHorizIcon className="review_icons" />
-                  </Box>
-                </Stack>
-              </Stack>
+                    <img src={image_path} alt={"brand_image"} />
 
-              <Stack
-                flexDirection={"row"}
+                    {/* <span>{ele.mb_nick}</span> */}
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            <Box
+              className={"next_btn restaurant-next"}
+              style={{ color: "black" }}
+            >
+              <ArrowForwardIosIcon sx={{ fontSize: 40 }} />
+            </Box>
+          </Stack>
+        </Stack>
+      </Container>
+
+      <div className="brand_review">
+        <Container
+          sx={{ mt: "100px" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Box className={"category_title"}>CUSTOMER REVIEWS</Box>
+          <Stack
+            flexDirection={"row"}
+            display={"flex"}
+            width={"100%"}
+            style={{ marginTop: "20px", borderBottom: "0.5px solid gray" }}
+          >
+            <Box className="review_left">
+              <Box display={"flex"} alignItems={"center"}>
+                <img
+                  src="/community/kazuha.jpeg"
+                  className="review_img"
+                  alt={"author_image"}
+                />
+              </Box>
+            </Box>
+            <Stack className="review_right">
+              <Box>
+                <p className="review_title">
+                  I am satisfied with the products but could be better
+                </p>
+                <div className={"review_stars"}>
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                </div>
+              </Box>
+              <Box className="review_text">
+                I am overall satisfied with the functionality of the products,
+                they almost do what I want and need for work. But some of the
+                products feel kind plasticy and low quality. But the product
+                works just fine if you are not obsessed with the build quality
+                like me. Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Deserunt, explicabo, sint, debitis quasi voluptatibus
+                voluptatem aspernatur dicta itaque enim facilis et incidunt
+                molestias ea at excepturi maxime dolore. Cupiditate, rem.
+              </Box>
+              <Box
                 display={"flex"}
-                width={"100%"}
-                style={{ marginTop: "20px", borderBottom: "0.5px solid gray" }}
-              >
-                <Box className="review_left">
-                  <Box display={"flex"} alignItems={"center"}>
-                    <img
-                      src="/community/justin.webp"
-                      className="review_img"
-                      alt={"author_image"}
-                    />
-                  </Box>
-                </Box>
-                <Stack className="review_right">
-                  <Box>
-                    <p className="review_title">
-                      They are making changes finally
-                    </p>
-                    <div className={"review_stars"}>
-                      <StarIcon style={{ color: "#F2BD57" }} />
-                      <StarIcon style={{ color: "#F2BD57" }} />
-                      <StarIcon style={{ color: "#F2BD57" }} />
-                      <StarIcon style={{ color: "whitesmoke" }} />
-                      <StarIcon style={{ color: "whitesmoke" }} />
-                    </div>
-                  </Box>
-                  <Box className="review_text">
-                    Silent buttons and an 8,000dpi sensor bring Logitech's
-                    flagship MX Master 3S Wireless Mouse just one or two clicks
-                    from perfection. Logitech finally serves up office workers a
-                    mechanical keyboard from its own stable. The wireless,
-                    low-profile MX Mechanical is a winner, offered in two sizes
-                    with three switch types.
-                  </Box>
-                  <Box
-                    display={"flex"}
-                    flexDirection={"row"}
-                    sx={{ mt: "20px", mb: "20px" }}
-                  >
-                    <FavoriteIcon
-                      className="review_icons"
-                      style={{ color: "red" }}
-                    />
-                    <ChatBubbleIcon className="review_icons" />
-                    <MoreHorizIcon className="review_icons" />
-                  </Box>
-                </Stack>
-              </Stack>
-
-              <Stack
                 flexDirection={"row"}
-                display={"flex"}
-                width={"100%"}
-                style={{ marginTop: "20px", borderBottom: "0.5px solid gray" }}
+                sx={{ mt: "20px", mb: "20px" }}
               >
-                <Box className="review_left">
-                  <Box display={"flex"} alignItems={"center"}>
-                    <img
-                      src="/community/guy.webp"
-                      className="review_img"
-                      alt={"author_image"}
-                    />
-                  </Box>
-                </Box>
-                <Stack className="review_right">
-                  <Box>
-                    <p className="review_title">I just love the design</p>
-                    <div className={"review_stars"}>
-                      <StarIcon style={{ color: "#F2BD57" }} />
-                      <StarIcon style={{ color: "#F2BD57" }} />
-                      <StarIcon style={{ color: "#F2BD57" }} />
-                      <StarIcon style={{ color: "whitesmoke" }} />
-                      <StarIcon style={{ color: "whitesmoke" }} />
-                    </div>
-                  </Box>
-                  <Box className="review_text">
-                    Smart illumination, fast charging, and recycled materials
-                    makes for some tempting peripherals. A mechanical keyboard
-                    for the TikTok generation, Logitech's POP Keys Mechanical
-                    Wireless Keyboard has a lively look and unique
-                    emoji-specific keys, though we wish it were a bit easier to
-                    type on.
-                  </Box>
-                  <Box
-                    display={"flex"}
-                    flexDirection={"row"}
-                    sx={{ mt: "20px", mb: "20px" }}
-                  >
-                    <FavoriteIcon
-                      className="review_icons"
-                      style={{ color: "red" }}
-                    />
-                    <ChatBubbleIcon className="review_icons" />
-                    <MoreHorizIcon className="review_icons" />
-                  </Box>
-                </Stack>
-              </Stack>
+                <FavoriteIcon
+                  className="review_icons"
+                  style={{ color: "red" }}
+                />
+                <ChatBubbleIcon className="review_icons" />
+                <MoreHorizIcon className="review_icons" />
+              </Box>
+            </Stack>
+          </Stack>
 
-              <Stack
+          <Stack
+            flexDirection={"row"}
+            display={"flex"}
+            width={"100%"}
+            style={{ marginTop: "20px", borderBottom: "0.5px solid gray" }}
+          >
+            <Box className="review_left">
+              <Box display={"flex"} alignItems={"center"}>
+                <img
+                  src="/community/justin.webp"
+                  className="review_img"
+                  alt={"author_image"}
+                />
+              </Box>
+            </Box>
+            <Stack className="review_right">
+              <Box>
+                <p className="review_title">They are making changes finally</p>
+                <div className={"review_stars"}>
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                </div>
+              </Box>
+              <Box className="review_text">
+                Silent buttons and an 8,000dpi sensor bring Logitech's flagship
+                MX Master 3S Wireless Mouse just one or two clicks from
+                perfection. Logitech finally serves up office workers a
+                mechanical keyboard from its own stable. The wireless,
+                low-profile MX Mechanical is a winner, offered in two sizes with
+                three switch types.
+              </Box>
+              <Box
+                display={"flex"}
                 flexDirection={"row"}
-                display={"flex"}
-                width={"100%"}
-                style={{ marginTop: "20px", borderBottom: "0.5px solid gray" }}
+                sx={{ mt: "20px", mb: "20px" }}
               >
-                <Box className="review_left">
-                  <Box display={"flex"} alignItems={"center"}>
-                    <img
-                      src="/community/suzy.webp"
-                      className="review_img"
-                      alt={"author_image"}
-                    />
-                  </Box>
-                </Box>
-                <Stack className="review_right">
-                  <Box>
-                    <p className="review_title">I was expecting more</p>
-                    <div className={"review_stars"}>
-                      <StarIcon style={{ color: "#F2BD57" }} />
-                      <StarIcon style={{ color: "#F2BD57" }} />
-                      <StarIcon style={{ color: "#F2BD57" }} />
-                      <StarIcon style={{ color: "whitesmoke" }} />
-                      <StarIcon style={{ color: "whitesmoke" }} />
-                    </div>
-                  </Box>
-                  <Box className="review_text">
-                    Qaulity and the design is a not for me I guess. If you love
-                    high quality and comfortable products maybe you should go
-                    for another one. Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Deserunt, explicabo, sint, debitis quasi
-                    voluptatibus voluptatem aspernatur dicta itaque enim facilis
-                    et incidunt molestias ea at excepturi maxime dolore.
-                    Cupiditate, rem.
-                  </Box>
-                  <Box
-                    display={"flex"}
-                    flexDirection={"row"}
-                    sx={{ mt: "20px", mb: "20px" }}
-                  >
-                    <FavoriteIcon
-                      className="review_icons"
-                      style={{ color: "red" }}
-                    />
-                    <ChatBubbleIcon className="review_icons" />
-                    <MoreHorizIcon className="review_icons" />
-                  </Box>
-                </Stack>
-              </Stack>
-            </Container>
-          </div>
+                <FavoriteIcon
+                  className="review_icons"
+                  style={{ color: "red" }}
+                />
+                <ChatBubbleIcon className="review_icons" />
+                <MoreHorizIcon className="review_icons" />
+              </Box>
+            </Stack>
+          </Stack>
 
-          <Container className={"member_reviews"}></Container>
-        </>
-      )}
+          <Stack
+            flexDirection={"row"}
+            display={"flex"}
+            width={"100%"}
+            style={{ marginTop: "20px", borderBottom: "0.5px solid gray" }}
+          >
+            <Box className="review_left">
+              <Box display={"flex"} alignItems={"center"}>
+                <img
+                  src="/community/guy.webp"
+                  className="review_img"
+                  alt={"author_image"}
+                />
+              </Box>
+            </Box>
+            <Stack className="review_right">
+              <Box>
+                <p className="review_title">I just love the design</p>
+                <div className={"review_stars"}>
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                </div>
+              </Box>
+              <Box className="review_text">
+                Smart illumination, fast charging, and recycled materials makes
+                for some tempting peripherals. A mechanical keyboard for the
+                TikTok generation, Logitech's POP Keys Mechanical Wireless
+                Keyboard has a lively look and unique emoji-specific keys,
+                though we wish it were a bit easier to type on.
+              </Box>
+              <Box
+                display={"flex"}
+                flexDirection={"row"}
+                sx={{ mt: "20px", mb: "20px" }}
+              >
+                <FavoriteIcon
+                  className="review_icons"
+                  style={{ color: "red" }}
+                />
+                <ChatBubbleIcon className="review_icons" />
+                <MoreHorizIcon className="review_icons" />
+              </Box>
+            </Stack>
+          </Stack>
+
+          <Stack
+            flexDirection={"row"}
+            display={"flex"}
+            width={"100%"}
+            style={{ marginTop: "20px", borderBottom: "0.5px solid gray" }}
+          >
+            <Box className="review_left">
+              <Box display={"flex"} alignItems={"center"}>
+                <img
+                  src="/community/suzy.webp"
+                  className="review_img"
+                  alt={"author_image"}
+                />
+              </Box>
+            </Box>
+            <Stack className="review_right">
+              <Box>
+                <p className="review_title">I was expecting more</p>
+                <div className={"review_stars"}>
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "#F2BD57" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                  <StarIcon style={{ color: "whitesmoke" }} />
+                </div>
+              </Box>
+              <Box className="review_text">
+                Qaulity and the design is a not for me I guess. If you love high
+                quality and comfortable products maybe you should go for another
+                one. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Deserunt, explicabo, sint, debitis quasi voluptatibus voluptatem
+                aspernatur dicta itaque enim facilis et incidunt molestias ea at
+                excepturi maxime dolore. Cupiditate, rem.
+              </Box>
+              <Box
+                display={"flex"}
+                flexDirection={"row"}
+                sx={{ mt: "20px", mb: "20px" }}
+              >
+                <FavoriteIcon
+                  className="review_icons"
+                  style={{ color: "red" }}
+                />
+                <ChatBubbleIcon className="review_icons" />
+                <MoreHorizIcon className="review_icons" />
+              </Box>
+            </Stack>
+          </Stack>
+        </Container>
+      </div>
+
+      <Container className={"member_reviews"}></Container>
     </div>
   );
 }

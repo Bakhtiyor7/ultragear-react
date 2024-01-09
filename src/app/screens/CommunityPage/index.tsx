@@ -29,7 +29,7 @@ const targetBoArticlesRetriever = createSelector(
   retrieveTargetBoArticles,
   (targetBoArticles) => ({
     targetBoArticles,
-  })
+  }),
 );
 export function CommunityPage(props: any) {
   /** INITIALIZATIONS **/
@@ -38,7 +38,7 @@ export function CommunityPage(props: any) {
 
   const [value, setValue] = React.useState("1");
   const [searchArticlesObj, setSearchArticlesObj] = useState<SearchArticlesObj>(
-    { bo_id: "all", page: 1, limit: 5 }
+    { bo_id: "all", page: 1, limit: 6 },
   );
   const [articleRebuild, setArticleRebuild] = useState<Date>(new Date());
   const [loading, setLoading] = useState(true);
@@ -90,102 +90,102 @@ export function CommunityPage(props: any) {
   return (
     <div className={"community_page"}>
       <div className={"community_frame"}>
-        {loading ? (
-          <div className={"loader_wrapper"}>
-            <ClipLoader
-              color={"#00BFFF"}
-              loading={loading}
-              size={100}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            />
-          </div>
-        ) : (
-          <>
-            <Container sx={{ mt: "50px", mb: "50px", background: "#fff" }}>
-              <Stack>
-                <Stack className={"community_all_frame"} inputMode={"text"}>
-                  <TabContext value={value}>
-                    <Box className={"article_tabs"}>
-                      <Box>
-                        <Tabs
-                          value={value}
-                          style={{}}
-                          TabIndicatorProps={{
-                            style: { display: "none" },
-                          }}
-                          onChange={handleChange}
-                          aria-label="lab API tabs example"
-                        >
-                          <Tab
-                            label="All articles"
-                            value="1"
-                            sx={{
-                              "&:focus": {
-                                color: "#fff",
-                                bgcolor: "#000",
-                                borderRadius: "99px",
-                              },
-                              "&.MuiTab-textColorPrimary.Mui-selected": {
-                                color: "#fff",
-                                bgcolor: "#000",
-                                borderRadius: "99px",
-                              },
-                            }}
-                          />
-                          <Tab
-                            label="Popular"
-                            value="2"
-                            sx={{
-                              "&:focus": {
-                                color: "#fff",
-                                bgcolor: "#000",
-                                borderRadius: "99px",
-                              },
-                              "&.Mui-selected": {
-                                color: "#fff",
-                                bgcolor: "#000",
-                                borderRadius: "99px",
-                              },
-                            }}
-                          />
-                          <Tab
-                            label="Brand review"
-                            value="3"
-                            sx={{
-                              "&:focus": {
-                                color: "#fff",
-                                bgcolor: "#000",
-                                borderRadius: "99px",
-                              },
-                              "&.Mui-selected": {
-                                color: "#fff",
-                                bgcolor: "#000",
-                                borderRadius: "99px",
-                              },
-                            }}
-                          />
-                          <Tab
-                            label="Stories"
-                            value="4"
-                            sx={{
-                              "&:focus": {
-                                color: "#fff",
-                                bgcolor: "#000",
-                                borderRadius: "99px",
-                              },
-                              "&.Mui-selected": {
-                                color: "#fff",
-                                bgcolor: "#000",
-                                borderRadius: "99px",
-                              },
-                              transform: "capitalize",
-                            }}
-                          />
-                        </Tabs>
-                      </Box>
-                    </Box>
+        <Container sx={{ mt: "50px", mb: "50px", background: "#fff" }}>
+          <Stack>
+            <Stack className={"community_all_frame"} inputMode={"text"}>
+              <TabContext value={value}>
+                <Box className={"article_tabs"}>
+                  <Box>
+                    <Tabs
+                      value={value}
+                      style={{}}
+                      TabIndicatorProps={{
+                        style: { display: "none" },
+                      }}
+                      onChange={handleChange}
+                      aria-label="lab API tabs example"
+                    >
+                      <Tab
+                        label="All articles"
+                        value="1"
+                        sx={{
+                          "&:focus": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                          "&.MuiTab-textColorPrimary.Mui-selected": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                        }}
+                      />
+                      <Tab
+                        label="Popular"
+                        value="2"
+                        sx={{
+                          "&:focus": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                          "&.Mui-selected": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                        }}
+                      />
+                      <Tab
+                        label="Brand review"
+                        value="3"
+                        sx={{
+                          "&:focus": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                          "&.Mui-selected": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                        }}
+                      />
+                      <Tab
+                        label="Stories"
+                        value="4"
+                        sx={{
+                          "&:focus": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                          "&.Mui-selected": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                          transform: "capitalize",
+                        }}
+                      />
+                    </Tabs>
+                  </Box>
+                </Box>
 
+                {loading ? (
+                  <div className={"loader_wrapper"}>
+                    <ClipLoader
+                      color={"#00BFFF"}
+                      loading={loading}
+                      size={100}
+                      aria-label="Loading Spinner"
+                      data-testid="loader"
+                    />
+                  </div>
+                ) : (
+                  <>
                     <Box className={"article_main"}>
                       <TabPanel value="1">
                         <TargetArticles
@@ -220,7 +220,6 @@ export function CommunityPage(props: any) {
                             ? searchArticlesObj.page + 1
                             : 3
                         }
-                        color="secondary"
                         page={searchArticlesObj.page}
                         renderItem={(item) => (
                           <PaginationItem
@@ -229,19 +228,19 @@ export function CommunityPage(props: any) {
                               next: ArrowForwardIcon,
                             }}
                             {...item}
-                            color={"secondary"}
+                            color={"primary"}
                           />
                         )}
                         onChange={handlePaginationChange}
                       />
                     </Box>
-                  </TabContext>
-                </Stack>
-                {/* <CommunityChats /> */}
-              </Stack>
-            </Container>
-          </>
-        )}
+                  </>
+                )}
+              </TabContext>
+            </Stack>
+            {/* <CommunityChats /> */}
+          </Stack>
+        </Container>
       </div>
     </div>
   );

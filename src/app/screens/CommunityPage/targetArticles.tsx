@@ -38,17 +38,18 @@ export function TargetArticles(props: any) {
     <Stack
       direction={"row"}
       flexWrap={"wrap"}
-      // justifyContent={"space-between"}
       gap={5}
+      className={"all_articles_wrapper"}
     >
       {props.targetBoArticles?.map((article: BoArticle) => {
         const art_image_url = article?.art_image
           ? `${serverApi}/${article.art_image}`
           : "/community/article_default.jpg";
+        // const width = `clamp(18rem, calc(20rem + 2vw), 20rem`;
         return (
           <Box
             key={article?._id}
-            // width={"calc(33.3% - 10px)"} // Set width for each article (33.33% - margin)
+            // width={width}
             boxSizing="border-box"
           >
             <Link
@@ -117,8 +118,10 @@ export function TargetArticles(props: any) {
                         ? `${serverApi}/${article.member_data.mb_image}`
                         : "/auth/default_avatar.jpg"
                     }
+                    alt={"member image"}
                     width={"35px"}
                     style={{ borderRadius: "50%", backgroundSize: "cover" }}
+                    className={"author_img"}
                   />
                   <div className="user_name_container">
                     <span className={"all_article_author_user"}>
