@@ -83,7 +83,8 @@ export default function AuthenticationModal(props: any) {
 
   const handleSignupRequest = async () => {
     try {
-      const is_fulfilled = mb_nick !== "" && mb_password !== "" && mb_phone !== 0;
+      const is_fulfilled =
+        mb_nick !== "" && mb_password !== "" && mb_phone !== 0;
       assert.ok(is_fulfilled, Definer.input_err1);
 
       const signup_data = {
@@ -127,96 +128,103 @@ export default function AuthenticationModal(props: any) {
   };
 
   const passwordKeyPressHandler = (e: any) => {
-    if ((e.key === "Enter" && props.signUpOpen) || (e.key === "Enter" && props.loginOpen)) {
+    if (
+      (e.key === "Enter" && props.signUpOpen) ||
+      (e.key === "Enter" && props.loginOpen)
+    ) {
       props.signUpOpen ? handleSignupRequest() : handleLoginRequest();
     }
   };
 
   return (
-      <div>
-        <Modal
-            aria-labelledby="transition-modal-title"
-            aria-describedby="transition-modal-description"
-            className={classes.modal}
-            open={props.signUpOpen || props.loginOpen}
-            onClose={props.signUpOpen ? props.handleSignupClose : props.handleLoginClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 500,
-            }}
-        >
-          <Fade in={props.signUpOpen || props.loginOpen}>
-            <div className={classes.paper}>
-              <IconButton
-                  className={classes.closeBtn}
-                  onClick={props.signUpOpen ? props.handleSignupClose : props.handleLoginClose}
-                  color="inherit"
-                  aria-label="close"
-                  size="large"
-              >
-                <CloseIcon />
-              </IconButton>
-              <div className={classes.imgContainer}>
-                <img
-                    className={classes.modalImg}
-                    src={"/auth/auth_img.png"}
-                    alt="camera"
-                />
-              </div>
-              <div className={classes.formContainer}>
-                <Typography variant="h4">
-                  {props.signUpOpen ? "SignUp Form" : "Login Form"}
-                </Typography>
-                <TextField
-                    onChange={handleUsername}
-                    id="outlined-basic"
-                    label="username"
-                    variant="outlined"
-                />
-                {props.signUpOpen && (
-                    <TextField
-                        onChange={handlePhone}
-                        id="outlined-basic"
-                        label="phone number"
-                        variant="outlined"
-                    />
-                )}
-                <TextField
-                    onChange={handlePassword}
-                    onKeyPress={passwordKeyPressHandler}
-                    id="outlined-basic"
-                    label="password"
-                    variant="outlined"
-                    type={showPassword ? "text" : "password"}
-                />
-                {props.signUpOpen && (
-                    <IconButton
-                        onClick={toggleShowPassword}
-                        color="primary"
-                        aria-label="toggle password visibility"
-                        size="small"
-                    >
-                      {showPassword ? (
-                          <VisibilityIcon />
-                      ) : (
-                          <VisibilityOffIcon />
-                      )}
-                    </IconButton>
-                )}
-                <Fab
-                    onClick={props.signUpOpen ? handleSignupRequest : handleLoginRequest}
-                    sx={{ marginTop: "30px", width: "120px" }}
-                    variant="extended"
-                    color="primary"
-                >
-                  <LoginIcon sx={{ mr: 1 }} />
-                  {props.signUpOpen ? "Signup" : "Login"}
-                </Fab>
-              </div>
+    <div>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={props.signUpOpen || props.loginOpen}
+        onClose={
+          props.signUpOpen ? props.handleSignupClose : props.handleLoginClose
+        }
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={props.signUpOpen || props.loginOpen}>
+          <div className={classes.paper}>
+            <IconButton
+              className={classes.closeBtn}
+              onClick={
+                props.signUpOpen
+                  ? props.handleSignupClose
+                  : props.handleLoginClose
+              }
+              color="inherit"
+              aria-label="close"
+              size="large"
+            >
+              <CloseIcon />
+            </IconButton>
+            <div className={classes.imgContainer}>
+              <img
+                className={classes.modalImg}
+                src={"/auth/auth_img.png"}
+                alt="camera"
+              />
             </div>
-          </Fade>
-        </Modal>
-      </div>
+            <div className={classes.formContainer}>
+              <Typography variant="h4">
+                {props.signUpOpen ? "SignUp Form" : "Login Form"}
+              </Typography>
+              <TextField
+                onChange={handleUsername}
+                id="outlined-basic"
+                label="username"
+                variant="outlined"
+              />
+              {props.signUpOpen && (
+                <TextField
+                  onChange={handlePhone}
+                  id="outlined-basic"
+                  label="phone number"
+                  variant="outlined"
+                />
+              )}
+              <TextField
+                onChange={handlePassword}
+                onKeyPress={passwordKeyPressHandler}
+                id="outlined-basic"
+                label="password"
+                variant="outlined"
+                type={showPassword ? "text" : "password"}
+              />
+              {props.signUpOpen && (
+                <IconButton
+                  onClick={toggleShowPassword}
+                  color="primary"
+                  aria-label="toggle password visibility"
+                  size="small"
+                >
+                  {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                </IconButton>
+              )}
+              <Fab
+                onClick={
+                  props.signUpOpen ? handleSignupRequest : handleLoginRequest
+                }
+                sx={{ marginTop: "30px", width: "120px" }}
+                variant="extended"
+                color="primary"
+              >
+                <LoginIcon sx={{ mr: 1 }} />
+                {props.signUpOpen ? "Signup" : "Login"}
+              </Fab>
+            </div>
+          </div>
+        </Fade>
+      </Modal>
+    </div>
   );
 }
