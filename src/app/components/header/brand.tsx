@@ -150,6 +150,19 @@ export function NavbarBrand(props: any) {
                 Logout
               </MenuItem>
             </Menu>
+            <Box>
+              {!verifiedMemberData ? ( // login buganda signup button yoqoladi
+                <Button
+                  variant="text"
+                  style={{
+                    color: "#000000",
+                  }}
+                  onClick={props.handleSignupOpen}
+                >
+                  Signup
+                </Button>
+              ) : null}
+            </Box>
           </Stack>
         </Stack>
         {/* <Stack className="head_information_brand">
