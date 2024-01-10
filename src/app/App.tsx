@@ -28,7 +28,7 @@ import MobileUi from "./components/responsive_ui/responsive";
 import { sendTelegramNotification } from "./components/TelegramBot";
 import { Chat } from "@mui/icons-material";
 import { CommunityChats } from "./screens/CommunityPage/communityChats";
-import { Button } from "@mui/material";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 function App() {
   useEffect(() => {
@@ -45,9 +45,12 @@ function App() {
   //** INITIALIZATIONS */
   const [isOpen, setIsOpen] = useState(false);
 
+  //chat related
   const toggleChat = () => {
     setIsOpen(!isOpen);
   };
+
+  // chat code ends here
 
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
@@ -238,12 +241,20 @@ function App() {
             handleSignUpOpen={handleSignUpOpen}
             handleSignUpClose={handleSignUpClose}
           />
-
+          // Chatting related
           <div className="chat-button-container">
-            {/* <img src="/icons/chat.webp" style={{ height: "100%" }} /> */}
             <button className="chat-button" onClick={toggleChat}>
-              <Chat />
-              Chat
+              {isOpen ? (
+                <>
+                  <CancelIcon />
+                  Close
+                </>
+              ) : (
+                <>
+                  <Chat />
+                  Chat
+                </>
+              )}
             </button>
 
             {isOpen && (
