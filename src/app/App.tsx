@@ -241,7 +241,7 @@ function App() {
             handleSignUpOpen={handleSignUpOpen}
             handleSignUpClose={handleSignUpClose}
           />
-          // Chatting related
+          {/*Online chatting related*/}
           <div className="chat-button-container">
             <button className="chat-button" onClick={toggleChat}>
               {isOpen ? (
