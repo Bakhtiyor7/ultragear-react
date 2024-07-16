@@ -1,9 +1,9 @@
 module.exports = {
   apps: [
     {
-      name: "ULTRAGEAR-REACT",
+      name: "ULTRAGEAR",
       cwd: "./",
-      script: "./index.tsx",
+      script: "./server.js",
       watch: "false",
       env_production: {
         NODE_ENV: "production",
@@ -11,7 +11,7 @@ module.exports = {
       env_development: {
         NODE_ENV: "development",
       },
-      instances: 2,
+      instances: "max",
       exec_mode: "cluster",
     },
   ],
