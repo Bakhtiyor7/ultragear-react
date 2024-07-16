@@ -5,7 +5,7 @@ import { Definer } from "./Definer";
 
 export const sweetErrorHandling = async (
   err: any,
-  sweet_off: boolean = false
+  sweet_off: boolean = false,
 ) => {
   let error_message = err.message.includes("att:")
     ? err.message
@@ -24,7 +24,7 @@ export const sweetErrorHandling = async (
 
 export const sweetTopSuccessAlert = async (
   msg: string,
-  duration: number = 2000
+  duration: number = 2000,
 ) => {
   await Swal.fire({
     position: "top-end",
@@ -39,7 +39,7 @@ export const sweetTopSuccessAlert = async (
 export const sweetTopSmallSuccessAlert = async (
   msg: string,
   duration: number = 2000,
-  enable_forward: boolean = false
+  enable_forward: boolean = false,
 ) => {
   const Toast = Swal.mixin({
     toast: true,
@@ -63,7 +63,7 @@ export const sweetFailureProvider = (
   msg: string,
   show_button: boolean = false,
   enable_forward: boolean = false,
-  forward_url: string = "/"
+  forward_url: string = "/",
 ) => {
   Swal.fire({
     icon: "error",
@@ -74,5 +74,14 @@ export const sweetFailureProvider = (
     if (enable_forward) {
       window.location.replace(forward_url);
     }
+  });
+};
+
+export const sweetComingSoonAlert = () => {
+  Swal.fire({
+    title: "Coming Soon!",
+    text: "Please use Brands page or product links for shopping! Stay Tuned!",
+    icon: "info",
+    confirmButtonText: "OK",
   });
 };

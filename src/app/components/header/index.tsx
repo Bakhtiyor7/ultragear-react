@@ -82,6 +82,7 @@ export function NavbarHome(props: any) {
             flexDirection={"row"}
             justifyContent="space-evenly"
             alignItems={"center"}
+            gap={"15px"}
           >
             <Basket
               cartItems={props.cartItems}
@@ -180,7 +181,7 @@ export function NavbarHome(props: any) {
         <Container className="navlinks_container">
           <Stack className="head_info">
             <Stack justifyContent={"column"} className="head_items">
-              <Box className="define_restaurant">
+              <Box className="define_brand">
                 Find the right device for yourself
               </Box>
               <Box className="timeline_service">

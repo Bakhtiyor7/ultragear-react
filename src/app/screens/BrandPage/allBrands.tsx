@@ -17,8 +17,10 @@ import {
   Pagination,
   PaginationItem,
   Stack,
+  Tab,
+  Tabs,
 } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { serverApi } from "../../../lib/config";
 //REDUX
 import { Dispatch } from "@reduxjs/toolkit";
@@ -39,6 +41,8 @@ import { verifiedMemberData } from "../../apiServices/verify";
 import { retrieveTargetBrands } from "./selector";
 import { setTargetBrands } from "./slice";
 import Favorite from "@mui/icons-material/Favorite";
+import ClipLoader from "react-spinners/ClipLoader";
+import BrandListContainer from "../../components/brandPage/brand_list";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -50,7 +54,7 @@ const targetBrandsRetriever = createSelector(
   retrieveTargetBrands,
   (targetBrands) => ({
     targetBrands,
-  })
+  }),
 );
 
 export function AllBrands() {
@@ -64,16 +68,27 @@ export function AllBrands() {
     limit: 8,
     order: "mb_point",
   });
+  const [loading, setLoading] = useState(true);
 
   const refs: any = useRef([]);
 
   useEffect(() => {
-    // TODO: retrieve target brands data
-    const brandService = new BrandApiService();
-    brandService
-      .getBrands(targetSearchObject)
-      .then((data) => setTargetBrands(data))
-      .catch((err) => console.log(err));
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const brandService = new BrandApiService();
+        await brandService
+          .getBrands(targetSearchObject)
+          .then((data) => setTargetBrands(data))
+          .catch((err) => console.log(err));
+
+        setLoading(false);
+      } catch (error) {
+        console.log("Error loading data", error);
+        setLoading(false);
+      }
+    };
+    fetchData();
   }, [targetSearchObject]);
 
   /** HANDLERS */
@@ -130,71 +145,86 @@ export function AllBrands() {
           </Box>
         </Stack>
         <Stack>
-          <Stack className="category_holder">
-            <Button
-              className="category_button"
-              onClick={() => searchHandler("mb_point")}
+          <Tabs
+            value={targetSearchObject.order}
+            onChange={(event, newValue) => searchHandler(newValue)}
+            variant="scrollable"
+            scrollButtons="auto"
+            className="category_holder"
+            TabIndicatorProps={{
+              style: { display: "none" },
+            }}
+          >
+            <Tab
+              label="Top"
+              value="mb_point"
               sx={{
                 "&:focus": {
                   color: "#fff",
                   bgcolor: "#000",
                   borderRadius: "99px",
                 },
+                "&.Mui-selected": {
+                  color: "#fff",
+                  bgcolor: "#000",
+                  borderRadius: "99px",
+                },
               }}
-            >
-              Top
-            </Button>
-            <Button
-              className="category_button"
-              onClick={() => searchHandler("mb_views")}
+              className="filter_button"
+            />
+            <Tab
+              label="Most Visited"
+              value="mb_views"
               sx={{
                 "&:focus": {
                   color: "#fff",
                   bgcolor: "#000",
                   borderRadius: "99px",
                 },
+                "&.Mui-selected": {
+                  color: "#fff",
+                  bgcolor: "#000",
+                  borderRadius: "99px",
+                },
               }}
-            >
-              Most Visited
-            </Button>
-            <Button
-              className="category_button"
-              onClick={() => searchHandler("mb_likes")}
+              className="filter_button"
+            />
+            <Tab
+              label="Most Liked"
+              value="mb_likes"
               sx={{
                 "&:focus": {
                   color: "#fff",
                   bgcolor: "#000",
                   borderRadius: "99px",
                 },
+                "&.Mui-selected": {
+                  color: "#fff",
+                  bgcolor: "#000",
+                  borderRadius: "99px",
+                },
               }}
-            >
-              Most Liked
-            </Button>
-            <Button
-              className="category_button"
-              onClick={() => searchHandler("createdAt")}
+              className="filter_button"
+            />
+            <Tab
+              label="New"
+              value="createdAt"
               sx={{
                 "&:focus": {
                   color: "white",
                   backgroundColor: "#000",
                   borderRadius: "99px",
                 },
+                "&.Mui-selected": {
+                  color: "#fff",
+                  bgcolor: "#000",
+                  borderRadius: "99px",
+                },
               }}
-            >
-              New
-            </Button>
-          </Stack>
+              className="filter_button"
+            />
+          </Tabs>
           <Box className={"fill_search_box"}>
-            {/* <Box className={"dropdown"} style={{ borderRadius: "20px" }}>
-              <button className="dropbtn">SORT BY:</button>
-              <div className="dropdown-content">
-                <a onClick={() => searchHandler("mb_point")}>Top</a>
-                <a onClick={() => searchHandler("mb_views")}>Most visited</a>
-                <a onClick={() => searchHandler("mb_likes")}>Most liked</a>
-                <a onClick={() => searchHandler("createdAt")}>New</a>
-              </div>
-            </Box> */}
-
             <Box className={"search_big_box"}>
               <form className={"search_form"} action={""} method={""}>
                 <input
@@ -219,114 +249,28 @@ export function AllBrands() {
               </form>
             </Box>
           </Box>
-          <Stack className={"all_res_box"}>
-            <CssVarsProvider>
-              {targetBrands.map((ele: Brand) => {
-                const image_path = `${serverApi}/${ele.mb_image}`;
-                return (
-                  <Card
-                    onClick={() => chosenBrandHandler(ele._id)}
-                    variant="outlined"
-                    sx={{
-                      minWidth: 290,
-                      mr: "30px",
-                      cursor: "pointer",
-                      mb: "30px",
-                    }}
-                  >
-                    <CardOverflow>
-                      <AspectRatio ratio="1">
-                        <Box className="brand_image_wrapper">
-                          <img
-                            src={image_path}
-                            loading="lazy"
-                            alt="brand_image"
-                          />
-                        </Box>
-                      </AspectRatio>
-                    </CardOverflow>
-                    <Typography level="h2" sx={{ fontSize: "md", mt: 2 }}>
-                      {ele.mb_nick}
-                    </Typography>
-
-                    <Divider />
-                    <CardOverflow
-                      variant="soft"
-                      sx={{
-                        display: "flex",
-                        gap: 1.5,
-                        py: 1.5,
-                        px: "var(--Card-padding)",
-                        bgcolor: "background.level1",
-                      }}
-                    >
-                      <Typography
-                        level="body3"
-                        sx={{ fontWeight: "md", color: "text.secondary" }}
-                      >
-                        {ele.mb_views} views
-                      </Typography>
-                      <Divider orientation="vertical" />
-                      <Typography
-                        level="body3"
-                        sx={{ fontWeight: "md", color: "text.secondary" }}
-                      >
-                        {ele.mb_likes} likes
-                      </Typography>
-                      <IconButton
-                        aria-label="Like minimal photography"
-                        size="sm"
-                        variant="solid"
-                        color="neutral"
-                        sx={{
-                          position: "absolute",
-                          zIndex: 2,
-                          borderRadius: "50%",
-                          right: "1rem",
-                          bottom: "2.5rem",
-                          transform: "translateY(50%)",
-                          color: "rgba(0,0,0,.4)",
-                        }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
-                      >
-                        <Favorite
-                          onClick={(e) => targetLikeHandler(e, ele._id)}
-                          style={{
-                            fill:
-                              ele?.me_liked && ele?.me_liked[0]?.my_favorite
-                                ? "#00FFFF"
-                                : "white",
-                          }}
-                        />
-                      </IconButton>
-                    </CardOverflow>
-                  </Card>
-                );
-              })}
-            </CssVarsProvider>
-          </Stack>
-
-          <Stack className={"bottom_box"}>
-            <Pagination
-              count={
-                targetSearchObject.page >= 3 ? targetSearchObject.page + 1 : 3
-              }
-              page={targetSearchObject.page}
-              renderItem={(item) => (
-                <PaginationItem
-                  components={{
-                    previous: ArrowBackIcon,
-                    next: ArrowForwardIcon,
-                  }}
-                  {...item}
-                  color={"primary"}
-                />
-              )}
-              onChange={handlePaginationChange}
-            />
-          </Stack>
+          {loading ? (
+            <div className={"loader_wrapper"}>
+              <ClipLoader
+                color={"#00BFFF"}
+                loading={loading}
+                size={100}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            </div>
+          ) : (
+            <>
+              <BrandListContainer
+                targetBrands={targetBrands}
+                chosenBrandHandler={chosenBrandHandler}
+                targetLikeHandler={targetLikeHandler}
+                loading={loading}
+                handlePaginationChange={handlePaginationChange}
+                targetSearchObject={targetSearchObject}
+              />
+            </>
+          )}
         </Stack>
       </Container>
     </div>

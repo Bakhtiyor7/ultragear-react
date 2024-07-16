@@ -2,8 +2,9 @@ import { Box, Button, Container } from "@mui/material";
 import "../../../css/home.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
+import { NavLink } from "react-router-dom";
 
-export function Advertisement() {
+export function Advertisement(props: any) {
   const events_list = [
     {
       category: "PC peripheralsa",
@@ -56,9 +57,13 @@ export function Advertisement() {
                   <p>{value.category}</p>
                   <h1>{value.title}</h1>
                   <p className="swiper_text">{value.desc}</p>
-                  <Box>
+                  <NavLink
+                    to={"/brand"}
+                    onClick={props.setPath}
+                    style={{ textDecoration: "none" }}
+                  >
                     <Button className="view_more_button">View More</Button>
-                  </Box>
+                  </NavLink>
                 </Box>
                 <Box className="swiper_right">
                   <img

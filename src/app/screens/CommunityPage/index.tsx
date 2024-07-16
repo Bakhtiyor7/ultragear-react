@@ -1,24 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { Box, Container, Stack } from "@mui/material";
-import Pagination from "@mui/material/Pagination";
-import "../../../css/community.css";
-import { TargetArticles } from "./targetArticles";
-import { CommunityChats } from "./communityChats";
-import Tab from "@material-ui/core/Tab";
 import TabContext from "@material-ui/lab/TabContext";
-import TabList from "@material-ui/lab/TabList";
 import TabPanel from "@material-ui/lab/TabPanel";
-import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import CommunityApiService from "../../apiServices/communityApiService";
+import { Box, Container, Stack, Tab, Tabs } from "@mui/material";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
+import React, { useEffect, useState } from "react";
+import "../../../css/community.css";
 import { BoArticle, SearchArticlesObj } from "../../../types/boArticle";
+import CommunityApiService from "../../apiServices/communityApiService";
+import { TargetArticles } from "./targetArticles";
 //REDUX
-import { useDispatch, useSelector } from "react-redux";
-import { createSelector } from "reselect";
 import { Dispatch } from "@reduxjs/toolkit";
-import { setTargetBoArticles } from "../../screens/CommunityPage/slice";
+import { useDispatch, useSelector } from "react-redux";
+import ClipLoader from "react-spinners/ClipLoader";
+import { createSelector } from "reselect";
 import { retrieveTargetBoArticles } from "../../screens/CommunityPage/selector";
+import { setTargetBoArticles } from "../../screens/CommunityPage/slice";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -31,7 +29,7 @@ const targetBoArticlesRetriever = createSelector(
   retrieveTargetBoArticles,
   (targetBoArticles) => ({
     targetBoArticles,
-  })
+  }),
 );
 export function CommunityPage(props: any) {
   /** INITIALIZATIONS **/
@@ -40,16 +38,28 @@ export function CommunityPage(props: any) {
 
   const [value, setValue] = React.useState("1");
   const [searchArticlesObj, setSearchArticlesObj] = useState<SearchArticlesObj>(
-    { bo_id: "all", page: 1, limit: 5 }
+    { bo_id: "all", page: 1, limit: 6 },
   );
   const [articleRebuild, setArticleRebuild] = useState<Date>(new Date());
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const communityService = new CommunityApiService();
-    communityService
-      .getTargetArticles(searchArticlesObj)
-      .then((data) => setTargetBoArticles(data))
-      .catch((err) => console.log(err));
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+
+        const communityService = new CommunityApiService();
+        await communityService
+          .getTargetArticles(searchArticlesObj)
+          .then((data) => setTargetBoArticles(data))
+          .catch((err) => console.log(err));
+        setLoading(false);
+      } catch (error) {
+        console.log("Error fetching data", error);
+        setLoading(false);
+      }
+    };
+    fetchData();
   }, [searchArticlesObj, articleRebuild]);
 
   /** HANDLERS **/
@@ -80,94 +90,155 @@ export function CommunityPage(props: any) {
   return (
     <div className={"community_page"}>
       <div className={"community_frame"}>
-        <Container sx={{ mt: "50px", mb: "50px" }}>
-          <Stack flexDirection={"row"} justifyContent={"space-between"}>
+        <Container sx={{ mt: "50px", mb: "50px", background: "#fff" }}>
+          <Stack>
             <Stack className={"community_all_frame"} inputMode={"text"}>
               <TabContext value={value}>
                 <Box className={"article_tabs"}>
-                  <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                    <TabList
+                  <Box>
+                    <Tabs
                       value={value}
-                      TabIndicatorProps={{ style: { background: "#1976d2" } }}
+                      style={{}}
+                      TabIndicatorProps={{
+                        style: { display: "none" },
+                      }}
                       onChange={handleChange}
                       aria-label="lab API tabs example"
-                      style={{ borderColor: "blue" }}
                     >
                       <Tab
                         label="All articles"
                         value="1"
-                        style={{ color: "#1976d2" }}
+                        sx={{
+                          "&:focus": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                          "&.MuiTab-textColorPrimary.Mui-selected": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                        }}
                       />
                       <Tab
                         label="Popular"
                         value="2"
-                        style={{ color: "#1976d2" }}
+                        sx={{
+                          "&:focus": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                          "&.Mui-selected": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                        }}
                       />
                       <Tab
                         label="Brand review"
                         value="3"
-                        style={{ color: "#1976d2" }}
+                        sx={{
+                          "&:focus": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                          "&.Mui-selected": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                        }}
                       />
                       <Tab
                         label="Stories"
                         value="4"
-                        style={{ color: "#1976d2" }}
+                        sx={{
+                          "&:focus": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                          "&.Mui-selected": {
+                            color: "#fff",
+                            bgcolor: "#000",
+                            borderRadius: "99px",
+                          },
+                          transform: "capitalize",
+                        }}
                       />
-                    </TabList>
+                    </Tabs>
                   </Box>
                 </Box>
 
-                <Box className={"article_main"}>
-                  <TabPanel value="1">
-                    <TargetArticles
-                      targetBoArticles={targetBoArticles}
-                      setArticleRebuild={setArticleRebuild}
+                {loading ? (
+                  <div className={"loader_wrapper"}>
+                    <ClipLoader
+                      color={"#00BFFF"}
+                      loading={loading}
+                      size={100}
+                      aria-label="Loading Spinner"
+                      data-testid="loader"
                     />
-                  </TabPanel>
-                  <TabPanel value="2">
-                    <TargetArticles
-                      targetBoArticles={targetBoArticles}
-                      setArticleRebuild={setArticleRebuild}
-                    />
-                  </TabPanel>
-                  <TabPanel value="3">
-                    <TargetArticles
-                      targetBoArticles={targetBoArticles}
-                      setArticleRebuild={setArticleRebuild}
-                    />
-                  </TabPanel>
-                  <TabPanel value="4">
-                    <TargetArticles
-                      targetBoArticles={targetBoArticles}
-                      setArticleRebuild={setArticleRebuild}
-                    />
-                  </TabPanel>
-                </Box>
+                  </div>
+                ) : (
+                  <>
+                    <Box className={"article_main"}>
+                      <TabPanel value="1">
+                        <TargetArticles
+                          targetBoArticles={targetBoArticles}
+                          setArticleRebuild={setArticleRebuild}
+                        />
+                      </TabPanel>
+                      <TabPanel value="2">
+                        <TargetArticles
+                          targetBoArticles={targetBoArticles}
+                          setArticleRebuild={setArticleRebuild}
+                        />
+                      </TabPanel>
+                      <TabPanel value="3">
+                        <TargetArticles
+                          targetBoArticles={targetBoArticles}
+                          setArticleRebuild={setArticleRebuild}
+                        />
+                      </TabPanel>
+                      <TabPanel value="4">
+                        <TargetArticles
+                          targetBoArticles={targetBoArticles}
+                          setArticleRebuild={setArticleRebuild}
+                        />
+                      </TabPanel>
+                    </Box>
 
-                <Box className={"article_bott"}>
-                  <Pagination
-                    count={
-                      searchArticlesObj.page >= 3
-                        ? searchArticlesObj.page + 1
-                        : 3
-                    }
-                    page={searchArticlesObj.page}
-                    renderItem={(item) => (
-                      <PaginationItem
-                        components={{
-                          previous: ArrowBackIcon,
-                          next: ArrowForwardIcon,
-                        }}
-                        {...item}
-                        color={"secondary"}
+                    <Box className={"article_bott"}>
+                      <Pagination
+                        count={
+                          searchArticlesObj.page >= 3
+                            ? searchArticlesObj.page + 1
+                            : 3
+                        }
+                        page={searchArticlesObj.page}
+                        renderItem={(item) => (
+                          <PaginationItem
+                            components={{
+                              previous: ArrowBackIcon,
+                              next: ArrowForwardIcon,
+                            }}
+                            {...item}
+                            color={"primary"}
+                          />
+                        )}
+                        onChange={handlePaginationChange}
                       />
-                    )}
-                    onChange={handlePaginationChange}
-                  />
-                </Box>
+                    </Box>
+                  </>
+                )}
               </TabContext>
             </Stack>
-            <CommunityChats />
+            {/* <CommunityChats /> */}
           </Stack>
         </Container>
       </div>

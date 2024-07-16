@@ -49,6 +49,15 @@
   align-items: center;
   height: 100%;
 }
+.format .head_info_others {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
 
 .format_others.home_navbar .head_information {
   display: flex;
@@ -277,7 +286,7 @@
   flex-direction: column;
 }
 
-.home_navbar .define_restaurant {
+.home_navbar .define_brand {
   position: relative;
   width: 484px;
   height: 143px;
@@ -287,6 +296,21 @@
   font-size: 54px;
   font-style: normal;
   font-weight: 500;
+  line-height: 75px;
+  color: #ffffff;
+  letter-spacing: -1.08px;
+}
+
+.home_navbar .define_brand_others {
+  position: relative;
+  width: 600px;
+  height: 143px;
+  margin-top: 40px;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 54px;
+  font-style: normal;
+  font-weight: 600;
   line-height: 75px;
   color: #ffffff;
   letter-spacing: -1.08px;
@@ -302,6 +326,21 @@
 
   font-family: "Pretendard", sans-serif;
   font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.36px;
+}
+
+.home_navbar .timeline_service_others {
+  position: relative;
+  width: 550px;
+  height: 28px;
+  margin-top: 12px;
+
+  color: #e4e4e4;
+
+  font-family: "Pretendard", sans-serif;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
   letter-spacing: -0.36px;

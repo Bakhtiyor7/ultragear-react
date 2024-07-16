@@ -37,3 +37,47 @@
     transform: translateY(0px);
   }
 }
+.chat-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 20px;
+  right: 50px;
+  z-index: 1000;
+}
+
+.chat-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 50px;
+  border-radius: 99px;
+  background: #007aff;
+  /* background-color: #007bff; */
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  gap: 10px;
+
+  font-family: Pretendard, sans-serif;
+  font-size: 16px;
+}
+
+.chat-button:hover {
+  background-color: #7091f5;
+}
+
+.chat-popup {
+  position: fixed;
+  bottom: 80px;
+  right: 50px;
+  width: 400px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}

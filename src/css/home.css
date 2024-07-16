@@ -1,6 +1,59 @@
+.loader_wrapper {
+  width: 100%;
+  height: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .homepage {
   background: #fff;
   margin-bottom: 45px;
+}
+
+.homepage .chat-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 70px;
+  right: 80px;
+  z-index: 1000;
+}
+
+.homepage .chat-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 50px;
+  border-radius: 99px;
+  padding: 10px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  gap: 10px;
+
+  font-family: Pretendard, sans-serif;
+  font-size: 16px;
+}
+
+.homepage .chat-button:hover {
+  background-color: #007aff;
+}
+
+.homepage .chat-popup {
+  position: fixed;
+  bottom: 130px;
+  right: 50px;
+  width: 400px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 
 .homepage .static_frame {
@@ -227,9 +280,8 @@
 
 .homepage .product_box .product_img .product_img_holder {
   position: relative;
-  width: 270px;
-  height: 250px;
-  background-size: cover;
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   background-color: #eff5fc;
@@ -244,8 +296,8 @@
   justify-content: center;
   background: #f8be69;
   box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 0px 50px 50px 0px;
-  font-family: "Poppins";
+  border-radius: 0 50px 50px 0;
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -338,19 +390,21 @@
   text-transform: uppercase;
 }
 
-.homepage .ads_restaurant_frame {
+.homepage .ads_brand_frame {
   width: 100%;
-  height: 900px;
+  height: 780px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  margin-top: 15px;
-  background-color: #956dd3;
+  background-color: #fff;
 }
 
 .homepage .ads_video {
   width: 100%;
-  background: #0b0e11;
+  margin-top: 60px;
+  background: #fff;
   display: flex;
   overflow: hidden;
 }
@@ -533,7 +587,7 @@
 }
 
 .homepage .swiper-wrapper {
-  width: 100%;
+  width: 1280px;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -783,6 +837,7 @@
   border-radius: 4px;
   background: #033afd;
   box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
 }
 
 .homepage .adv_frame .swiper_right {

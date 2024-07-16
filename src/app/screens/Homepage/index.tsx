@@ -1,24 +1,22 @@
-import React, { useEffect } from "react";
-import { Container } from "@mui/system";
-import { Statistics } from "./statistics";
+import React, { useEffect, useState } from "react";
 import { TopBrands } from "./topBrands";
-import { BestBrands } from "./bestBrands";
 import { BestProducts } from "./bestProducts";
-import { Advertisements } from "./advertisements";
 import { Events } from "./events";
-import { Recommendations } from "./recommendations";
 import "../../../css/home.css";
 
 //REDUX
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { createSelector } from "reselect";
-import { setBestBrands, setTopBrands } from "../../screens/Homepage/slice";
-import { retrieveTopBrands } from "../../screens/Homepage/selector";
+import { setBestBrands, setTopBrands } from "./slice";
 import { Brand } from "../../../types/user";
 import BrandApiService from "../../apiServices/brandApiService";
 import { Advertisement } from "./advs";
 import { Categories } from "./categories";
+import ClipLoader from "react-spinners/ClipLoader";
+import { Advertisements } from "./advertisements";
+import { CommunityChats } from "../CommunityPage/communityChats";
+import { Chat } from "@mui/icons-material";
+import { Button } from "@material-ui/core";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -26,37 +24,80 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setBestBrands: (data: Brand[]) => dispatch(setBestBrands(data)),
 });
 
-export function HomePage() {
-  // selector: store => data
+export function HomePage(props: any) {
   // INITIALIZATIONS
   const { setTopBrands, setBestBrands } = actionDispatch(useDispatch());
 
-  useEffect(() => {
-    // backend data request => data
-    const brandService = new BrandApiService();
-    brandService
-      .getTopBrands()
-      .then((data) => {
-        setTopBrands(data);
-      })
-      .catch((err) => console.log(err));
+  const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(false);
 
-    brandService
-      .getBrands({ page: 1, limit: 4, order: "mb_point" })
-      .then((data) => {
-        setBestBrands(data);
-      })
-      .catch((err) => console.log(err));
-  }, [setBestBrands, setTopBrands]);
-  return (
+  const toggleChat = () => {
+    setOpen(!open);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const brandService = new BrandApiService();
+        await brandService
+          .getTopBrands()
+          .then((data) => {
+            setTopBrands(data);
+          })
+          .catch((err) => console.log(err));
+
+        await brandService
+          .getBrands({ page: 1, limit: 4, order: "mb_point" })
+          .then((data) => {
+            setBestBrands(data);
+          })
+          .catch((err) => console.log(err));
+        setLoading(false);
+      } catch (err) {
+        console.log("Error fetching data", err);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+  return loading ? (
+    <div className={"loader_wrapper"}>
+      <ClipLoader
+        color={"#00BFFF"}
+        loading={loading}
+        size={100}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    </div>
+  ) : (
     <div className="homepage">
+      <Advertisements />
       <Categories />
       <Advertisement />
       <Events />
       <BestProducts />
       <TopBrands />
-      {/* <Advertisements /> */}
+
       {/* <Recommendations /> */}
     </div>
   );
 }
+
+// <div className="chat-button-container">
+//   {/* <img src="/icons/chat.webp" style={{ height: "100%" }} /> */}
+//   <Button className="chat-button" onClick={toggleChat}>
+//     <Chat sx={{mr: "15px"}} />
+//     Chat
+//   </Button>
+
+//   {open && (
+//     <div className="chat-popup">
+//       {/* Your chat content goes here */}
+//       <div className="chat-content">
+//         <CommunityChats />
+//       </div>
+//     </div>
+//   )}
+// </div>

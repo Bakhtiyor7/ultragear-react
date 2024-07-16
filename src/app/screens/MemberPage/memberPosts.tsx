@@ -102,9 +102,7 @@ export function MemberPosts(props: any) {
                       marginRight: "50px",
                     }}
                   >
-                    <span>
-                      {moment(article?.createdAt).format("YY-MM-DD HH:mm")}
-                    </span>
+                    <span>{moment(article?.createdAt).fromNow()}</span>
                     <Checkbox
                       sx={{ ml: "40px" }}
                       icon={<FavoriteBorder />}
