@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "ULTRAGEAR-REACT",
       cwd: "./",
-      script: "./server.js",
+      script: "./index.tsx",
       watch: "false",
       env_production: {
         NODE_ENV: "production",
